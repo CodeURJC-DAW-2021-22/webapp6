@@ -35,8 +35,6 @@
 ## Tecnología complementaria
 - **Enviar email:** Unirse a partido. Recordatorio de partido. Enviar PDFs.
 - **Generar PDF:** Para campeón de torneo. Para descargar estadísticas.
-- **Google Maps:** Para localización de torneo.
-- **Chat:** Para hablar en el torneo.
 
 ## Algoritmo o consulta avanzada
 - **Aleatoriedad de emparejamientos inicial.**
