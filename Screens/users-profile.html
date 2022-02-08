@@ -306,6 +306,7 @@
                       <script>
                         document.addEventListener("DOMContentLoaded", () => {
                           echarts.init(document.querySelector("#donutChart")).setOption({
+                            color: ['#67d400', '#121212'],
                             tooltip: {
                               trigger: 'item'
                             },
@@ -367,6 +368,7 @@
                             yAxis: {
                               type: 'value'
                             },
+                            color: ['#67d400', '#121212', '#fac858', '#ee6666', '#73c0de', '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc'],
                             series: [{
                               data: [150, 230, 224, 218, 135, 147, 260],
                               type: 'line',
@@ -579,9 +581,8 @@
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
   <script src="assets/vendor/quill/quill.min.js"></script>
-  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
