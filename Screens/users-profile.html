@@ -211,22 +211,14 @@
             <div class="card-body profile-card pt-2 d-flex flex-column justify-content-center align-items-center">
               <h2 class="mb-1">Tus parejas</h2>
 
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="d-flex justify-content-start align-middle mt-2">
-                    <div><img src="assets/images/profile-img.jpg" alt="Profile" class="partner-img rounded-circle border-green-tiny small me-2" ></div>
-                    <span class="d-flex align-items-center partner-name">Kevin Anderson</span>
-                  </div>
-                </div>
+              <div class="d-flex justify-content-start align-middle mt-2">
+                <div><img src="assets/images/profile-img.jpg" alt="Profile" class="partner-img rounded-circle border-green-tiny small me-2" ></div>
+                <span class="d-flex align-items-center partner-name">Kevin Anderson</span>
               </div>
 
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="d-flex justify-content-start align-middle mt-2">
-                    <div><img src="assets/images/team_01.jpg" alt="Profile" class="partner-img rounded-circle border-green-tiny small me-2" ></div>
-                    <span class="d-flex align-items-center partner-name">Paco Navarro</span>
-                  </div>
-                </div>
+              <div class="d-flex justify-content-start align-middle mt-2">
+                <div><img src="assets/images/team_01.jpg" alt="Profile" class="partner-img rounded-circle border-green-tiny small me-2" ></div>
+                <span class="d-flex align-items-center partner-name">Paco Navarro</span>
               </div>
               
             </div>
@@ -294,90 +286,6 @@
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Teléfono</div>
                     <div class="col-lg-9 col-md-8">699335816</div>
-                  </div>
-
-                  <div class="card">
-                    <div class="card-body pb-0">
-                      <h5 class="card-title pb-0 mb-0">Victorias - Derrotas</h5>
-        
-                      <!-- Donut Chart -->
-                      <div id="donutChart" style="min-height: 250px;" class="echart d-flex align-items-center"></div>
-        
-                      <script>
-                        document.addEventListener("DOMContentLoaded", () => {
-                          echarts.init(document.querySelector("#donutChart")).setOption({
-                            tooltip: {
-                              trigger: 'item'
-                            },
-                            legend: {
-                              top: '5%',
-                              left: 'center'
-                            },
-                            series: [{
-                              name: 'Victorias - Derrotas',
-                              type: 'pie',
-                              radius: ['40%', '70%'],
-                              avoidLabelOverlap: false,
-                              label: {
-                                show: false,
-                                position: 'center'
-                              },
-                              emphasis: {
-                                label: {
-                                  show: true,
-                                  fontSize: '18',
-                                  fontWeight: 'bold'
-                                }
-                              },
-                              labelLine: {
-                                show: false
-                              },
-                              data: [{
-                                  value: 1048,
-                                  name: 'Victorias',
-                                },
-                                {
-                                  value: 735,
-                                  name: 'Derrotas'
-                                }
-                              ]
-                            }]
-                          });
-                        });
-                      </script>
-                      <!-- End Donut Chart -->
-        
-                    </div>
-                  </div>
-
-                  <div class="card">
-                    <div class="card-body pb-0">
-                      <h5 class="card-title pb-0 mb-0">Karma</h5>
-        
-                      <!-- Line Chart -->
-                      <div id="lineChart" style="min-height: 400px;" class="echart d-flex align-items-center"></div>
-        
-                      <script>
-                        document.addEventListener("DOMContentLoaded", () => {
-                          echarts.init(document.querySelector("#lineChart")).setOption({
-                            xAxis: {
-                              type: 'category',
-                              data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-                            },
-                            yAxis: {
-                              type: 'value'
-                            },
-                            series: [{
-                              data: [150, 230, 224, 218, 135, 147, 260],
-                              type: 'line',
-                              smooth: true
-                            }]
-                          });
-                        });
-                      </script>
-                      <!-- End Line Chart -->
-        
-                    </div>
                   </div>
 
                 </div>
@@ -579,6 +487,8 @@
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.min.js"></script>
   <script src="assets/vendor/echarts/echarts.min.js"></script>
   <script src="assets/vendor/quill/quill.min.js"></script>
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
