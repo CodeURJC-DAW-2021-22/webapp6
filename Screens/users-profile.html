@@ -288,6 +288,60 @@
                     <div class="col-lg-9 col-md-8">699335816</div>
                   </div>
 
+                  <div class="card">
+                    <div class="card-body pb-0">
+                      <h5 class="card-title pb-0 mb-0">Victorias - Derrotas</h5>
+        
+                      <!-- Donut Chart -->
+                      <div id="donutChart" style="min-height: 250px;" class="echart"></div>
+        
+                      <script>
+                        document.addEventListener("DOMContentLoaded", () => {
+                          echarts.init(document.querySelector("#donutChart")).setOption({
+                            tooltip: {
+                              trigger: 'item'
+                            },
+                            legend: {
+                              top: '5%',
+                              left: 'center'
+                            },
+                            series: [{
+                              name: 'Victorias - Derrotas',
+                              type: 'pie',
+                              radius: ['40%', '70%'],
+                              avoidLabelOverlap: false,
+                              label: {
+                                show: false,
+                                position: 'center'
+                              },
+                              emphasis: {
+                                label: {
+                                  show: true,
+                                  fontSize: '18',
+                                  fontWeight: 'bold'
+                                }
+                              },
+                              labelLine: {
+                                show: false
+                              },
+                              data: [{
+                                  value: 1048,
+                                  name: 'Victorias',
+                                },
+                                {
+                                  value: 735,
+                                  name: 'Derrotas'
+                                }
+                              ]
+                            }]
+                          });
+                        });
+                      </script>
+                      <!-- End Donut Chart -->
+        
+                    </div>
+                  </div>
+
                 </div>
 
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
@@ -487,8 +541,6 @@
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="assets/vendor/chart.js/chart.min.js"></script>
   <script src="assets/vendor/echarts/echarts.min.js"></script>
   <script src="assets/vendor/quill/quill.min.js"></script>
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
