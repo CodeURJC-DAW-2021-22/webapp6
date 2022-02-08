@@ -29,8 +29,8 @@
 - **Pareja: Imagen de pareja:** Opcional. Modificable
 
 ## Gráficos
-- **Porcentaje devictoria total:** Cúmulo individual. Gráficos de sectores
-- **Porcentaje de victoria con cada pareja:** Gráficos de sectores
+- **Porcentaje de victoria total:** Cúmulo individual. Gráficos de sectores
+- **Evolución individual de puntos de karma:** Gráfico lineal
 
 ## Tecnología complementaria
 - **Enviar email:** Unirse a partido. Recordatorio de partido. Enviar PDFs.
@@ -39,6 +39,5 @@
 ## Algoritmo o consulta avanzada
 - **Aleatoriedad de emparejamientos inicial.**
 - **Cálculo automático de próximos partidos en un torneo.**
-- **Sugerencia de personas con las que más se ha jugado históricamente.**
-- **Clasificación en torneos que tengan liguilla.**
+- **Clasificación en competiciones de formato liga.**
 - **Karma:** Puntos totales que bajen o suban en función del karma de la pareja contraria.
