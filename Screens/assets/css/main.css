@@ -1046,11 +1046,11 @@ margin: 25px 15px 25px auto;
   max-width: 120px;
 }
 
-.profile .partner-name {
+.partner-name {
 	width: 180px;
 }
 
-.profile .partner-img {
+.partner-img {
 	width: 50px;
 }
 
@@ -1128,6 +1128,81 @@ margin: 25px 15px 25px auto;
     font-size: 1rem;
 }
 
+
+/*--------------------------------------------------------------
+# Tournament
+--------------------------------------------------------------*/
+
+.main-tournament {
+  margin-top: 80px;
+  padding-top: 20px;
+  transition: all 0.3s;
+}
+
+.tournament .tournament-img img {
+  width: 120px;
+  height: 120px;
+}
+
+.tournament img.small{
+  width: 40px;
+  height: 40px;
+}
+
+.tournament .tournament-card h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #121212;
+  margin: 10px 0 0 0;
+}
+
+.tournament .tournament-card h3 {
+  font-size: 18px;
+}
+
+.tournament .tournament-card .social-links a {
+  font-size: 25px;
+  display: inline-block;
+  color: #67d400;
+  line-height: 0;
+  margin-right: 10px;
+  transition: 0.3s;
+}
+
+.tournament .tournament-card .social-links a:hover {
+  color: #121212;
+}
+
+.tournament .tournament-overview .row {
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+.tournament .tournament-overview .card-title {
+  color: #121212;
+}
+
+.tournament .tournament-overview .label {
+  font-weight: 600;
+  color: #67d400;
+}
+
+.tournament .tournament-edit label {
+  font-weight: 600;
+  color: #67d400;
+}
+
+.tournament .tournament-edit img {
+  max-width: 120px;
+}
+
+.partner-name {
+	width: 180px;
+}
+
+.partner-img {
+	width: 50px;
+}
 
 
 
