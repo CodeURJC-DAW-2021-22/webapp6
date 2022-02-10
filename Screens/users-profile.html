@@ -228,19 +228,19 @@
               <ul class="nav nav-tabs nav-tabs-bordered">
 
                 <li class="nav-item">
-                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Mis Datos</button>
+                  <button class="nav-link active d-flex align-items-center" data-bs-toggle="tab" data-bs-target="#profile-overview"><i class="ri-information-fill pe-2"></i>Mis Datos</button>
                 </li>
 
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Editar Perfil</button>
+                  <button class="nav-link d-flex align-items-center" data-bs-toggle="tab" data-bs-target="#profile-edit"><i class="ri-edit-2-fill pe-2"></i>Editar Perfil</button>
                 </li>
 
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Ajustes</button>
+                  <button class="nav-link d-flex align-items-center" data-bs-toggle="tab" data-bs-target="#profile-settings"><i class="ri-settings-3-fill pe-2"></i>Ajustes</button>
                 </li>
 
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Cambiar Contraseña</button>
+                  <button class="nav-link d-flex align-items-center" data-bs-toggle="tab" data-bs-target="#profile-change-password"><i class="ri-lock-fill pe-2"></i>Cambiar Contraseña</button>
                 </li>
 
               </ul>
@@ -377,10 +377,12 @@
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                       <div class="col-md-8 col-lg-9">
-                        <img src="assets/images/profile-img.jpg" alt="Profile">
+                        <div class="profile-card">
+                          <img src="assets/images/profile-img.jpg" alt="Profile">
+                        </div>
                         <div class="pt-2">
-                          <a class="button btn-green btn-sm" title="Upload new profile image" href="register.html"><i class="bi bi-upload"></i></a>
-                          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                          <a href="#" class="btn btn-green btn-sm" title="Upload new profile image"><i class="ri-upload-2-fill"></i></a>
+                          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="ri-delete-bin-fill"></i></a>
                         </div>
                       </div>
                     </div>
