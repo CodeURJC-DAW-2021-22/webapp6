@@ -1259,6 +1259,10 @@ Admin search
   font-size: 13px;
 }
 
+.tournament .date-title {
+  font-weight: 600;
+}
+
 .tournament .btn-tournament{
   background-color: #67d400;
   color:#121212
