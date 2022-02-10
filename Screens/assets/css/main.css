@@ -62,11 +62,7 @@
 }
 
 .bg-green {
-<<<<<<< HEAD
 	background-color: #67d400;
-=======
-    background-color: #232323;
->>>>>>> f3b71932b011b070977bcaebd1aaff078faaafb9
 }
 
 body {
@@ -1259,7 +1255,6 @@ Admin search
     font-size: 18px;
 }
 
-<<<<<<< HEAD
 .tournament .tournament-card h5 {
   font-size: 13px;
 }
@@ -1282,19 +1277,6 @@ Admin search
   font-size: 1rem;
   border-radius: 0.25rem;
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-=======
-.tournament .tournament-card .social-links a {
-    font-size: 25px;
-    display: inline-block;
-    color: #67d400;
-    line-height: 0;
-    margin-right: 10px;
-    transition: 0.3s;
-}
-
-.tournament .tournament-card .social-links a:hover {
-    color: #121212;
->>>>>>> f3b71932b011b070977bcaebd1aaff078faaafb9
 }
 
 .tournament .tournament-overview .row {
@@ -1320,17 +1302,6 @@ Admin search
     max-width: 120px;
 }
 
-<<<<<<< HEAD
-=======
-.partner-name {
-    width: 180px;
-}
-
-.partner-img {
-    width: 50px;
-}
-
->>>>>>> f3b71932b011b070977bcaebd1aaff078faaafb9
 
 /*--------------------------------------------------------------
 # Lastest Products
