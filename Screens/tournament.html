@@ -403,12 +403,29 @@ https://templatemo.com/tm-546-sixteen-clothing
               <div class="row mb-3">
                 <label for="seeding" class="col-md-4 col-lg-3 col-form-label">Seeding</label>
                 <div class="col-md-8 col-lg-9">
-                  <select class="form-select" id="seeding">
+                  <select class="form-select" id="seeding" filter="true">
                     <option selected value="1">Aleatorio</option>
                     <option value="2">Manual</option>
                   </select>
                 </div>
               </div>
+
+              <div class="row mb-3">
+                <label for="invite" class="col-md-4 col-lg-3 col-form-label">Invitar participantes</label>
+                <div class="col-md-8 col-lg-9">
+                  <div class="search-bar">
+                    <form class="search-form d-flex align-items-center" method="POST" action="#">
+                      <input type="text" name="query" placeholder="Introducir usuario" title="Introducir usuario">
+                      <button type="submit" title="Search"><i class="ri-search-line"></i></button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
 
               <div class="text-center">
                   <button class="btn btn-green fw-bold" type="submit">Guardar cambios</button>
