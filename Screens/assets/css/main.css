@@ -604,12 +604,12 @@ Admin search
     height: 80px;
     width: 80px;
     /* los siguientes valores son independientes del tamaño del círculo */
-    margin: auto;
+    margin: 5px;
     background-position: 50%;
     border-radius: 50%;
     background-size: 100% auto;
     border: 3px solid #67d400;
-    padding: 2px;
+    
 }
 
 .lineUser .partner-name {
@@ -685,12 +685,12 @@ Admin search
     height: 80px;
     width: 80px;
     /* los siguientes valores son independientes del tamaño del círculo */
-    margin: auto;
+    margin: 5px;
     background-position: 50%;
     border-radius: 50%;
     background-size: 100% auto;
     border: 3px solid #67d400;
-    padding: 2px;
+    
 }
 
 .lineTournament .partner-name {
@@ -757,6 +757,10 @@ Admin search
     margin: 10px;
     font-size: 40px;
     color: black;
+}
+
+.btnBackE404:hover{
+    color:black;
 }
 
 
