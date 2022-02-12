@@ -47,11 +47,17 @@
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Login.png" align="center"  width="300"></img>
 <p>Un usuario puede hacer Login o Registrarse</p>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Resgistrate.png" width="300"></img>
+<p>Al registrarse, introducirá su nombre de usuario, nombre completo, email, contraseña y aceptará los términos y condiciones</p>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Main1.png" width="300"></img>
+<p>Desde la página inicial, cualquier usuario podrá ver los torneos públicos, pero solo los registrados podrán crear torneos o iniciar sesión</p>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Main3.png" width="300"></img>
+<p>En la página inicial se mostrarán inicialmente 6 torneos públicos. Para ver más, habrá que pulsar en "cargar más"</p>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/AdminPage.png" width="300"></img>
+<p>Un administrador podrá buscar tanto torneos como usuarios para poder gestionar la aplicación (resolver conflictos, eliminar)</p>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/ErrorPage.png" width="300"></img>
+<p>La página de error se mostrará cuando haya fallos de conexión con el servidor</p>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/MensageNotification.png" width="300"></img>
+<p>Un usuario registrado podrá ver notificaciones y mensages referentes a los torneos en los que está apuntado</p>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Information.png" width="300"></img>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Notifications.png" width="300"></img>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/UserOpctions.png" width="300"></img>
