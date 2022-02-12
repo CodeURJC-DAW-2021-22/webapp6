@@ -629,7 +629,7 @@ Admin search
 }
 
 .lineUser:hover {
-    background-color: #999999;
+    background-color: #d8d8d8;
 }
 
 
@@ -1612,3 +1612,14 @@ footer .inner-content p a {
   background: none;
 }
 
+
+/*--------------------------------------------------------------
+# Pop Up inscription
+--------------------------------------------------------------*/
+
+.addUser{
+    color:#67d400; 
+    font-size: 20px;
+    padding: 0.1rem 0.4rem;
+    background-color: #121212;
+}

@@ -222,11 +222,53 @@ https://templatemo.com/tm-546-sixteen-clothing
               <a class="button btn-tournament upper-text my-1" href="#"><i class="ri-heart-3-fill pe-1"></i> Seguir</a>
             </div>
             <div class="d-flex justify-content-end">
-              <a class="d-inline button btn-tournament upper-text my-1" href="#"><i class="ri-edit-fill pe-1"></i> Incribirse</a>
+              <a class="d-inline button btn-tournament upper-text my-1" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <i class="ri-edit-fill pe-1"></i> Incribirse
+              </a>
             </div>
             <div class="d-flex justify-content-end">
               <a class="button btn-tournament upper-text my-1" href="#"><i class="ri-tools-fill pe-1"></i> Admin</a>
             </div>
+
+            <!-- Pop Up Inscriptions -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+              aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h3 class="modal-title fw-bold" id="staticBackdropLabel">Añade a tu pareja</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="d-flex justify-content-center mb-2">
+                      <div class="search-bar">
+                        <form class="search-form d-flex align-items-center" method="POST" action="#">
+                          <input type="text" name="query" placeholder="Introducir usuario" title="Introducir usuario">
+                          <button type="submit" title="Search"><i class="ri-search-line"></i></button>
+                        </form>
+                      </div>
+                    </div>
+            
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="d-flex align-items-center justify-content-between lineUser">
+                          <div class="pe-2">
+                            <img src="assets/images/profile-img.jpg" alt="Profile" class="partner-img rounded-circle border-green-tiny small me-2" >Kevin Ander
+                          </div>
+                          <a href="#" class="btn addUser me-2 fw-bold" title="add partner"><i class="ri-add-line"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn bg-232323 color-fff fw-bold" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-green color-121212 fw-bold">Accept</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Pop Up Inscriptions -->
+
           </div>
         </div>
       </div>
@@ -713,6 +755,15 @@ https://templatemo.com/tm-546-sixteen-clothing
 
   <script>
     new UISearch(document.getElementById('sb-search'));
+  </script>
+  
+  <script>
+    var myModal = document.getElementById('myModal')
+    var myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', function () {
+      myInput.focus()
+    })
   </script>
 
 
