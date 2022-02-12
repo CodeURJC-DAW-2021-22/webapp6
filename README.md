@@ -45,7 +45,7 @@
 # FASE 1
 
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Login.png" align="center"  width="300"></img>
-<p>El usuario puede hacer Login</p>
+<p>Un usuario puede hacer Login o Registrarse</p>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Resgistrate.png" width="300"></img>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Main1.png" width="300"></img>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Main3.png" width="300"></img>
