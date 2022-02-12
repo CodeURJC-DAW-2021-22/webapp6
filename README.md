@@ -41,3 +41,56 @@
 - **Cálculo automático de próximos partidos en un torneo.**
 - **Clasificación en competiciones de formato liga.**
 - **Karma:** Puntos totales que bajen o suban en función del karma de la pareja contraria.
+
+# FASE 1
+
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Login.png"  align="left" width="600"></img>
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Resgistrate.png" width="600"></img>
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Main1.png" width="600"></img>
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Main3.png" width="600"></img>
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/AdminPage.png" width="600"></img>
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/ErrorPage.png" width="600"></img>
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/MensageNotification.png" width="600"></img>
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Notifications.png" width="600"></img>
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/UserOpctions.png" width="600"></img>
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/ProfileDates.png" width="600"></img>
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/EditProfile.png" width="600"></img>
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/EditProfile2.png" width="600"></img>
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Adjust.png" width="600"></img>
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/ChangePassword.png" width="600"></img>
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/MyTournaments.png" width="600"></img>
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/TournamentTemplate.png" width="600"></img>
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Bracket.png" width="600"></img>
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Bracket2.png" width="600"></img>
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/AdminAdjust.png" width="600"></img>
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/AdminAdjust2.png" width="600"></img>
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/CreateTournament1.png" width="600"></img>
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/CreateTournamente2.png" width="600"></img>
+
+
+
+<!-- ESTO SERIA USANDO MARKDOWN PERO NO HE PODIDO HACER LAS IMAGENES MAS PEQUEÑAS, POR ESO HE USADO HTML
+
+![Login](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Login.png)
+![Registrate](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Resgistrate.png)
+![Main1](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Main1.png)
+![Main3](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Main3.png)
+![AdminPage](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/AdminPage.png)
+![ErrorPage](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/ErrorPage.png)
+![MesangeNotification](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/MensageNotification.png)
+![Notification](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Notifications.png)
+![UserOpctions](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/UserOpctions.png)
+![PRofileDAtes](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/ProfileDates.png)
+![EditProfile](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/EditProfile.png)
+![EditProfile2](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/EditProfile2.png)
+![Adjust](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Adjust.png)
+![ChangePassword](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/ChangePassword.png)
+![MyTournaments](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/MyTournaments.png)
+![TournamentsTemplate](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/TournamentTemplate.png)
+![Bracket](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Bracket.png)
+![Bracket2](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Bracket2.png)
+![AdminAdjust](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/AdminAdjust.png)
+![AdminAdjust2](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/AdminAdjust2.png)
+![CreateTournament1](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/CreateTournament1.png)
+![CreateTournament2](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/CreateTournamente2.png)-->
+
