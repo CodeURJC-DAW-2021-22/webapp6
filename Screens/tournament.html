@@ -623,7 +623,7 @@ https://templatemo.com/tm-546-sixteen-clothing
               <div class="row mb-3">
                 <label for="tournamentImage" class="col-md-4 col-lg-3 col-form-label">Imagen del torneo</label>
                 <div class="col-md-8 col-lg-9 tournament-img">
-                  <img src="assets/images/icon.png" alt="Profile">
+                  <img src="assets/images/icon.png" alt="tournamentImage">
                   <div class="pt-2">
                     <a href="#" class="btn btn-green btn-sm" title="Upload new profile image"><i class="ri-upload-2-fill"></i></a>
                     <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="ri-delete-bin-fill"></i></a>
@@ -634,21 +634,21 @@ https://templatemo.com/tm-546-sixteen-clothing
               <div class="row mb-3">
                 <label for="name" class="col-md-4 col-lg-3 col-form-label">Nombre</label>
                 <div class="col-md-8 col-lg-9">
-                  <input name="fullName" type="text" class="form-control" id="username" value="eGrillos Cup">
+                  <input name="name" type="text" class="form-control" id="name" value="eGrillos Cup">
                 </div>
               </div>
 
               <div class="row mb-3">
-                <label for="name" class="col-md-4 col-lg-3 col-form-label">Participantes</label>
+                <label for="participants" class="col-md-4 col-lg-3 col-form-label">Participantes</label>
                 <div class="col-md-8 col-lg-9">
                   <select class="form-select" id="participants">
                     <option value="1">2</option>
                     <option value="2">4</option>
                     <option value="3">8</option>
-                    <option value="3">16</option>
-                    <option selected value="3">32</option>
-                    <option value="3">64</option>
-                    <option value="3">128</option>
+                    <option value="4">16</option>
+                    <option selected value="5">32</option>
+                    <option value="6">64</option>
+                    <option value="7">128</option>
                   </select>
                 </div>
               </div>
@@ -663,28 +663,28 @@ https://templatemo.com/tm-546-sixteen-clothing
               <div class="row mb-3">
                 <label for="ruleset" class="col-md-4 col-lg-3 col-form-label">Reglamento</label>
                 <div class="col-md-8 col-lg-9">
-                  <textarea name="about" class="form-control" id="ruleset" style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
+                  <textarea name="ruleset" class="form-control" id="ruleset" style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
                 </div>
               </div>
 
               <div class="row mb-3">
                 <label for="location" class="col-md-4 col-lg-3 col-form-label">Localidad</label>
                 <div class="col-md-8 col-lg-9">
-                  <input name="company" type="text" class="form-control" id="location" value="Madrid">
+                  <input name="location" type="text" class="form-control" id="location" value="Madrid">
                 </div>
               </div>
 
               <div class="row mb-3">
                 <label for="inscription-date" class="col-md-4 col-lg-3 col-form-label">Fin de inscripciones</label>
                 <div class="col-md-8 col-lg-9">
-                  <input type="datetime-local" class="form-control" id="inscription-date" value="2022-02-20T17:00">
+                  <input name="inscription-date" type="datetime-local" class="form-control" id="inscription-date" value="2022-02-20T17:00">
                 </div>
               </div>
 
               <div class="row mb-3">
                 <label for="start-date" class="col-md-4 col-lg-3 col-form-label">Inicio del torneo</label>
                 <div class="col-md-8 col-lg-9">
-                  <input type="datetime-local" class="form-control" id="start-date" value="2022-02-21T17:00">
+                  <input name="start-date" type="datetime-local" class="form-control" id="start-date" value="2022-02-21T17:00">
                 </div>
               </div>
 
@@ -703,7 +703,7 @@ https://templatemo.com/tm-546-sixteen-clothing
                 <div class="col-md-8 col-lg-9">
                   <div class="search-bar">
                     <form class="search-form d-flex align-items-center" method="POST" action="#">
-                      <input type="text" name="query" placeholder="Introducir usuario" title="Introducir usuario">
+                      <input type="text" name="invite" placeholder="Introducir usuario" title="Introducir usuario" id="invite">
                       <button type="submit" title="Search"><i class="ri-search-line"></i></button>
                     </form>
                   </div>

@@ -629,7 +629,7 @@ Admin search
 }
 
 .lineUser:hover {
-    background-color: #d8d8d8;
+    background-color: #ccc;
 }
 
 
@@ -652,7 +652,7 @@ Admin search
     padding: 8px 16px;
     text-decoration: none;
     transition: background-color .3s;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     margin: 0 4px;
 }
 
@@ -663,7 +663,7 @@ Admin search
 }
 
 .pagination a:hover:not(.active) {
-    background-color: #ddd;
+    background-color: #ccc;
 }
 
 
@@ -710,7 +710,7 @@ Admin search
 }
 
 .lineTournament:hover {
-    background-color: #999999;
+    background-color: #ccc;
 }
 
 
@@ -1154,7 +1154,7 @@ Admin search
     transition: all 0.3s;
 }
 
-.tournament .tournament-img img {
+.tournament-img img {
     width: 120px;
     height: 120px;
 }

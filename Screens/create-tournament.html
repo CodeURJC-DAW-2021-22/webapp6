@@ -56,63 +56,100 @@ https://templatemo.com/tm-546-sixteen-clothing
                   <div class="card-intro py-3">
                     <h5 class="upper-text text-center pb-0 fw-bold">Crea un torneo nuevo</h5>
                   </div>
-                  <div class="card-intro py-3">
-                    <center>
-                      <img src="assets/images/copa-default.jpg" alt="Imagen Torneo" class="rounded-circle border-green-tiny small me-2">
-                    </center>
-                    
-                  </div>
 
 
                   <form class="row g-3 needs-validation" novalidate>
 
                     <div class="col-12">
-                      <label for="yourUsername" class="form-label">Nombre Torneo</label>
-                      <div class="input-group has-validation">
-                        <input type="text" name="username" class="form-control" id="yourUsername" required>
-                        <div class="invalid-feedback">Introduce el nombre del torneo.</div>
+                      <label for="tournamentImage" class="form-label">Imagen del torneo</label>
+                      <div class="tournament-img">
+                        <img src="assets/images/icon.png" alt="Profile">
+                      </div>  
+                      <div class="pt-2">
+                        <a href="#" class="btn btn-green btn-sm" title="Upload new profile image"><i class="ri-upload-2-fill"></i></a>
+                        <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="ri-delete-bin-fill"></i></a>
+                      </div>
+                      <div class="invalid-feedback">Introduce una imagen válida.</div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="name" class="form-label">Nombre del torneo</label>
+                      <input type="text" name="name" class="form-control" id="name" required>
+                      <div class="invalid-feedback">Introduce el nombre.</div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="participants" class="form-label">Participantes</label>
+                      <select class="form-select" name="participants" id="participants">
+                        <option value="1">2</option>
+                        <option value="2">4</option>
+                        <option value="3">8</option>
+                        <option value="4">16</option>
+                        <option value="5">32</option>
+                        <option value="6">64</option>
+                        <option value="7">128</option>
+                      </select>
+                      <div class="invalid-feedback">Introduce el número de participantes.</div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="about" class="form-label">Sobre el torneo</label>
+                      <textarea name="about" class="form-control" id="about" style="height: 100px"></textarea>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="ruleset" class="form-label">Reglamento</label>
+                      <textarea name="ruleset" class="form-control" id="ruleset" style="height: 100px"></textarea>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="location" class="form-label">Localidad</label>
+                      <input type="text" name="location" class="form-control" id="location" required>
+                      <div class="invalid-feedback">Introduce el lugar el torneo.</div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="inscription-date" class="form-label">Fin de inscripciones</label>
+                      <input name="inscription-date" type="datetime-local" class="form-control" id="inscription-date" required>
+                      <div class="invalid-feedback">Introduce la fecha.</div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="start-date" class="form-label">Inicio del torneo</label>
+                      <input name="start-date" type="datetime-local" class="form-control" id="start-date" required>
+                      <div class="invalid-feedback">Introduce la fecha.</div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="format" class="form-label">Formato</label>
+                      <select class="form-select" name="format" id="format">
+                        <option selected value="1">Torneo simple</option>
+                        <option value="2">Liga regular</option>
+                      </select>
+                      <div class="invalid-feedback">Introduce el formato.</div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="seeding" class="form-label">Seeding</label>
+                      <select class="form-select" name="seeding" id="seeding">
+                        <option selected value="1">Aleatorio</option>
+                        <option value="2">Manual</option>
+                      </select>
+                      <div class="invalid-feedback">Introduce el tipo de seeding.</div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="invite" class="form-label">Invitar participantes</label>
+                      <div class="search-bar">
+                        <form class="search-form d-flex align-items-center" method="POST" action="#">
+                          <input type="text" name="invite" placeholder="Introducir usuario" title="Introducir usuario" id="invite">
+                          <button type="submit" title="Search"><i class="ri-search-line"></i></button>
+                        </form>
                       </div>
                     </div>
 
-                    <div class="col-12">
-                      <label for="yourName" class="form-label">Lugar donde se juega</label>
-                      <input type="text" name="name" class="form-control" id="yourName" required>
-                      <div class="invalid-feedback">Introduce el lugar donde se va a jugar.</div>
-                    </div>
-                    
-                    <div class="col-12">
-                      <label for="yourEmail" class="form-label">Formato del torneo</label>
-                      <div>
-                      <select clas="form-select">
-                        <option selected>Elija la opcion</option>
-                        <option value="1">Torneo Normal</option>
-                        <option value="2">Liguilla</option>
-                      </select>
-                    </div>
-                      <div class="invalid-feedback">Indique un formato.</div>
-                    </div>
-
-                    <div class="col-12">
-                      <label for="yourEmail" class="form-label">Tipo de torneo</label>
-                      <div>
-                      <select clas="form-select">
-                        <option selected>Elija la opcion</option>
-                        <option value="1">Público</option>
-                        <option value="2">Privado</option>
-                      </select>
-                    </div>
-                      <div class="invalid-feedback">Indique una opcion.</div>
-                    </div>
-
-                    <div class="col-12">
-                      <label for="numberPeople" class="form-label">Indique numero de personas</label>
-                      <input type="number" name="numberPeople" class="form-control" id="numberPeople" required>
-                      <div class="invalid-feedback">Introduce el numero de personas.</div>
-                    </div>
-
-                    
-                    <div class="col-12">
-                      <button class="btn btn-login upper-text w-100" type="submit">Crear Torneo</button>
+                    <div class="col-12 mt-4">
+                      <button class="btn btn-login upper-text w-100" type="submit">Crear torneo</button>
                     </div>
                     
                     
