@@ -59,22 +59,37 @@
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/MensageNotification.png" width="300"></img>
 <p>Un usuario registrado podrá ver notificaciones y mensages referentes a los torneos en los que está apuntado</p>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Information.png" width="300"></img>
+<p>Cualquier jugador que haya jugado un partido podrá añadir el resultado</p>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Notifications.png" width="300"></img>
+<p>Los usuarios registrados podrán ver notificaciones</p>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/UserOpctions.png" width="300"></img>
+<p>Los usuarios registrados podrán ver su perfil y cerrar sesión</p>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/ProfileDates.png" width="300"></img>
+<p>Dentro del perfil se podrán ver los datos generales del usuario registrado</p>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/EditProfile.png" width="300"></img>
+
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/EditProfile2.png" width="300"></img>
+<p>A su vez, se podrá editar</p>
+
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Adjust.png" width="300"></img>
+<p>También se podrá seleccionar qué tipo de notificaciones por correo o en la propia página</p>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/ChangePassword.png" width="300"></img>
+<p>Se podrá cambiar la contraseña</p>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/MyTournaments.png" width="300"></img>
+<p>Por último, dentro del perfil se pueden ver los torneos en los que el usuario ha jugado o está jugando</p>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/TournamentTemplate.png" width="300"></img>
+<p>En la página del torneo se podrán ver los participantes</p>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Add.png" width="300"></img>
+<p>En la página del torneo, un usuario que haya sido invitado podrá invitar a su pareja</p>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Bracket.png" width="300"></img>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Bracket2.png" width="300"></img>
+<p>Se podrán ir viendo los cruces de los partidos</p>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/AdminAdjust.png" width="300"></img>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/AdminAdjust2.png" width="300"></img>
+<p>El usuario creador del torneo podrá cambiar diferentes ajustes relativos al mismo</p>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/CreateTournament1.png" width="300"></img>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/CreateTournamente2.png" width="300"></img>
+<p>Un usuario registrado podrá crear torneos rellenado un formulario</p>
 **Navegation Photos**
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Navegation 1.png" width="300"></img>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Navegation 2.png" width="300"></img>
