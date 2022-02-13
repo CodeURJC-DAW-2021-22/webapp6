@@ -75,7 +75,9 @@
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/AdminAdjust2.png" width="300"></img>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/CreateTournament1.png" width="300"></img>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/CreateTournamente2.png" width="300"></img>
-
+**Navegation Photos**
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Navegation 1.png" width="300"></img>
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Navegation 2.png" width="300"></img>
 
 
 <!-- ESTO SERIA USANDO MARKDOWN PERO NO HE PODIDO HACER LAS IMAGENES MAS PEQUEÑAS, POR ESO HE USADO HTML
@@ -101,8 +103,9 @@
 ![AdminAdjust](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/AdminAdjust.png)
 ![AdminAdjust2](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/AdminAdjust2.png)
 ![CreateTournament1](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/CreateTournament1.png)
-![CreateTournament2](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/CreateTournamente2.png)-->
-**Navegation Photos**
-<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Navegation 1.png" width="300"></img>
-<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Navegation 2.png" width="300"></img>
+![CreateTournament2](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/CreateTournamente2.png)
+![Navegation 2](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Navegation 2.png)
+![Navegation 1](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Navegation 1.png)-->
+
+
 
