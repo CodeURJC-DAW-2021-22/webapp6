@@ -98,13 +98,12 @@
               </li>
               <!-- End Matchs Nav -->
 
-              <li class="nav-item dropdown">
+              <!-- <li class="nav-item dropdown">
 
                 <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                   <i class="ri-notification-3-fill"></i>
                   <span class="badge bg-danger badge-number">1</span>
                 </a>
-                <!-- End Notification Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
                   <li class="dropdown-header">
@@ -126,9 +125,8 @@
                   </li>
 
                 </ul>
-                <!-- End Notification Dropdown Items -->
 
-              </li>
+              </li> -->
               <!-- End Notification Nav -->
 
               <li class="nav-item dropdown">
@@ -249,6 +247,11 @@
 
                 <li class="nav-item">
                   <button class="nav-link d-flex align-items-center" data-bs-toggle="tab"
+                    data-bs-target="#show-tournaments"><i class="ri-dribbble-line pe-2"></i>Mis Torneos</button>
+                </li>
+
+                <li class="nav-item">
+                  <button class="nav-link d-flex align-items-center" data-bs-toggle="tab"
                     data-bs-target="#profile-edit"><i class="ri-edit-2-fill pe-2"></i>Editar Perfil</button>
                 </li>
 
@@ -261,11 +264,6 @@
                   <button class="nav-link d-flex align-items-center" data-bs-toggle="tab"
                     data-bs-target="#profile-change-password"><i class="ri-lock-fill pe-2"></i>Cambiar
                     Contraseña</button>
-                </li>
-
-                <li class="nav-item">
-                  <button class="nav-link d-flex align-items-center" data-bs-toggle="tab"
-                    data-bs-target="#show-tournaments"><i class="ri-lock-fill pe-2"></i>Mis Torneos</button>
                 </li>
 
               </ul>
@@ -395,6 +393,16 @@
                     </div>
                   </div>
 
+                </div>
+
+                <div class="tab-pane fade pt-3" id="show-tournaments">
+                  <!-- Show tournaments -->
+                  <div class="container">
+                    <div class="row">
+                      <span> No estás apuntado a ningún torneo</span>
+                    </div>
+                    <!-- show pages when it's not empty-->
+                  </div><!-- End Show tournaments -->
                 </div>
 
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
@@ -583,16 +591,6 @@
                     </div>
                   </form><!-- End Change Password Form -->
 
-                </div>
-
-                <div class="tab-pane fade pt-3" id="show-tournaments">
-                  <!-- Show tournaments -->
-                  <div class="container">
-                    <div class="row">
-                      <span> No estás apuntado a ningún torneo</span>
-                    </div>
-                    <!-- show pages when it's not empty-->
-                  </div><!-- End Show tournaments -->
                 </div>
 
               </div><!-- End Bordered Tabs -->
