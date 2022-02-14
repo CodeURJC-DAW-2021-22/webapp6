@@ -33,7 +33,7 @@
 - **Evolución individual de puntos de karma:** Gráfico lineal
 
 ## Tecnología complementaria
-- **Enviar email:** Unirse a partido. Recordatorio de partido. Enviar PDFs.
+- **Enviar email:** Enviar PDFs a los ganadores de torneos.
 - **Generar PDF:** Para campeón de torneo. Para descargar estadísticas.
 
 ## Algoritmo o consulta avanzada
@@ -90,9 +90,12 @@
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/CreateTournament1.png" width="300"></img>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/CreateTournamente2.png" width="300"></img>
 <p>Un usuario registrado podrá crear torneos rellenado un formulario</p>
+
 **Navegation Photos**
-<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Navegation 1.png" width="300"></img>
-<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Navegation 2.png" width="300"></img>
+
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Navegation 1.png" width="1000"></img>
+
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Navegation 2.png" width="1000"></img>
 
 
 <!-- ESTO SERIA USANDO MARKDOWN PERO NO HE PODIDO HACER LAS IMAGENES MAS PEQUEÑAS, POR ESO HE USADO HTML
