@@ -33,7 +33,7 @@
 - **Evolución individual de puntos de karma:** Gráfico lineal
 
 ## Tecnología complementaria
-- **Enviar email:** Unirse a partido. Recordatorio de partido. Enviar PDFs.
+- **Enviar email:** Enviar PDFs a los ganadores de torneos.
 - **Generar PDF:** Para campeón de torneo. Para descargar estadísticas.
 
 ## Algoritmo o consulta avanzada
