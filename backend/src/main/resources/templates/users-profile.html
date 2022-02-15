@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Users / Profile - NiceAdmin Bootstrap Template</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin - v2.2.2
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="bg-232323">
+
+  <!-- Header -->
+  <header class="fixed-top">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container d-flex justify-content-between">
+        <div class="d-flex justify-content-start">
+          <a class="navbar-brand" href="main.html">
+            <h2><em>Padel</em>ante </h2>
+          </a>
+        </div>
+        <div>
+          <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+
+              <li class="nav-item dropdown">
+
+                <a class="nav-link nav-icon" href="errorPage.html">
+                  <!--data-bs-toggle="dropdown"> -->
+                  <i class="ri-error-warning-line"></i>
+                </a>
+                <!-- End error page Icon -->
+
+              <li class="nav-item dropdown">
+
+                <a class="nav-link nav-icon" href="admin.html">
+                  <!--data-bs-toggle="dropdown"> -->
+                  <i class="ri-tools-fill"></i>
+                </a>
+                <!-- End Admin Icon -->
+
+              </li>
+              <!-- End Admin Nav -->
+
+              <li class="nav-item dropdown">
+
+                <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                  <i class="ri-dribbble-line"></i>
+                  <span class="badge bg-danger badge-number">1</span>
+                </a>
+                <!-- End Matchs Icon -->
+
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+                  <li class="dropdown-header">
+                    Tienes 1 mensaje nuevo
+                    <a href="#"><span class="badge rounded-pill p-2 ms-2">Leer todo</span></a>
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+
+                  <li class="message-item">
+                    <a href="match.html">
+                      <div>
+                        <h4>eGrillos Cup</h4>
+                        <p>Te toca jugar cuartos de final contra Los Ramones</p>
+                        <p>Hace 4 horas</p>
+                      </div>
+                    </a>
+                  </li>
+
+                </ul>
+                <!-- End Matchs Dropdown Items -->
+
+              </li>
+              <!-- End Matchs Nav -->
+
+              <li class="nav-item dropdown">
+
+                <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                  <i class="ri-notification-3-fill"></i>
+                  <span class="badge bg-danger badge-number">1</span>
+                </a>
+                <!-- End Notification Icon -->
+
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+                  <li class="dropdown-header">
+                    Tienes 1 notificación nueva
+                    <a href="#"><span class="badge rounded-pill p-2 ms-2">Leer todo</span></a>
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+
+                  <li class="message-item">
+                    <a href="tournament.html">
+                      <div>
+                        <h4>eGrillos Cup</h4>
+                        <p>El torneo empezará en 24 horas. ¡Apuntate!</p>
+                        <p>Hace 2 días</p>
+                      </div>
+                    </a>
+                  </li>
+
+                </ul>
+                <!-- End Notification Dropdown Items -->
+
+              </li>
+              <!-- End Notification Nav -->
+
+              <li class="nav-item dropdown">
+
+                <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                  <i class="ri-account-circle-fill"></i>
+                </a>
+                <!-- End Profile Iamge Icon -->
+
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                  <li class="dropdown-header">
+                    <h6>Rubén-DAW</h6>
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+
+                  <li>
+                    <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                      <i class="ri-user-3-line"></i>
+                      <span>Mi perfil</span>
+                    </a>
+                  </li>
+
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+
+                  <li>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                      <i class="ri-logout-box-r-line"></i>
+                      <span>Cerrar sesión</span>
+                    </a>
+                  </li>
+
+                </ul>
+                <!-- End Profile Dropdown Items -->
+              </li>
+              <!-- End Profile Nav -->
+
+              <li class="nav-item">
+                <a class="nav-link nav-icon nav-text" href="login.html">Iniciar sesión</a>
+                <!-- End Log In Icon -->
+              </li>
+              <!-- End Profile Nav -->
+
+            </ul>
+          </nav>
+          <!-- End Icons Navigation -->
+
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container main-profile">
+
+    <section class="section profile">
+      <div class="row">
+        <div class="col-lg-3">
+
+          <div class="card text-center">
+            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+              <img src="assets/images/profile-img.jpg" alt="Profile" class="rounded-circle border-green">
+              <h2>Kevin Anderson</h2>
+              <h3 class="mt-1 color-green"><span class="fw-bold">@</span>Kevin_And</h3>
+              <h3 class="my-2">Karma: <em>150</em></h3>
+              <div class="social-links mt-2">
+                <a href="#" class="whatsapp"><i class="bi bi-whatsapp"></i></a>
+                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="discord"><i class="bi bi-discord"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card text-center">
+            <div class="card-body profile-card pt-2 d-flex flex-column justify-content-center align-items-center">
+              <h2 class="mb-1">Tus parejas</h2>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="d-flex justify-content-start align-middle mt-2">
+                    <div><img src="assets/images/profile-img.jpg" alt="Profile"
+                        class="partner-img rounded-circle border-green-tiny small me-2"></div>
+                    <span class="d-flex align-items-center partner-name">Kevin Anderson</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="d-flex justify-content-start align-middle mt-2">
+                    <div><img src="assets/images/team_01.jpg" alt="Profile"
+                        class="partner-img rounded-circle border-green-tiny small me-2"></div>
+                    <span class="d-flex align-items-center partner-name">Paco Navarro</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-lg-9">
+
+          <div class="card">
+            <div class="card-body pt-3">
+              <!-- Bordered Tabs -->
+              <ul class="nav nav-tabs nav-tabs-bordered">
+
+                <li class="nav-item">
+                  <button class="nav-link active d-flex align-items-center" data-bs-toggle="tab"
+                    data-bs-target="#profile-overview"><i class="ri-information-fill pe-2"></i>Mis Datos</button>
+                </li>
+
+                <li class="nav-item">
+                  <button class="nav-link d-flex align-items-center" data-bs-toggle="tab"
+                    data-bs-target="#profile-edit"><i class="ri-edit-2-fill pe-2"></i>Editar Perfil</button>
+                </li>
+
+                <li class="nav-item">
+                  <button class="nav-link d-flex align-items-center" data-bs-toggle="tab"
+                    data-bs-target="#profile-settings"><i class="ri-settings-3-fill pe-2"></i>Ajustes</button>
+                </li>
+
+                <li class="nav-item">
+                  <button class="nav-link d-flex align-items-center" data-bs-toggle="tab"
+                    data-bs-target="#profile-change-password"><i class="ri-lock-fill pe-2"></i>Cambiar
+                    Contraseña</button>
+                </li>
+
+                <li class="nav-item">
+                  <button class="nav-link d-flex align-items-center" data-bs-toggle="tab"
+                    data-bs-target="#show-tournaments"><i class="ri-lock-fill pe-2"></i>Mis Torneos</button>
+                </li>
+
+              </ul>
+              <div class="tab-content pt-2">
+
+                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                  <h5 class="card-title">Sobre mí</h5>
+                  <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque
+                    temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem
+                    eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
+
+                  <h5 class="card-title">Detalles del perfil</h5>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">Usuario</div>
+                    <div class="col-lg-9 col-md-8"><span class="fw-bold">@</span>Kevin_And</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">Nombre completo</div>
+                    <div class="col-lg-9 col-md-8">Kevin Anderson</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Localidad</div>
+                    <div class="col-lg-9 col-md-8">Madrid</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">País</div>
+                    <div class="col-lg-9 col-md-8">España</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Correo eletrónico</div>
+                    <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Teléfono</div>
+                    <div class="col-lg-9 col-md-8">699335816</div>
+                  </div>
+
+                  <div class="card">
+                    <div class="card-body pb-0">
+                      <h5 class="card-title pb-0 mb-0">Victorias - Derrotas</h5>
+
+                      <!-- Donut Chart -->
+                      <div id="donutChart" style="min-height: 250px;" class="echart d-flex align-items-center"></div>
+
+                      <script>
+                        document.addEventListener("DOMContentLoaded", () => {
+                          echarts.init(document.querySelector("#donutChart")).setOption({
+                            color: ['#67d400', '#121212'],
+                            tooltip: {
+                              trigger: 'item'
+                            },
+                            legend: {
+                              top: '5%',
+                              left: 'center'
+                            },
+                            series: [{
+                              name: 'Victorias - Derrotas',
+                              type: 'pie',
+                              radius: ['40%', '70%'],
+                              avoidLabelOverlap: false,
+                              label: {
+                                show: false,
+                                position: 'center'
+                              },
+                              emphasis: {
+                                label: {
+                                  show: true,
+                                  fontSize: '18',
+                                  fontWeight: 'bold'
+                                }
+                              },
+                              labelLine: {
+                                show: false
+                              },
+                              data: [{
+                                value: 1048,
+                                name: 'Victorias',
+                              },
+                              {
+                                value: 735,
+                                name: 'Derrotas'
+                              }
+                              ]
+                            }]
+                          });
+                        });
+                      </script>
+                      <!-- End Donut Chart -->
+
+                    </div>
+                  </div>
+
+                  <div class="card">
+                    <div class="card-body pb-0">
+                      <h5 class="card-title pb-0 mb-0">Karma</h5>
+
+                      <!-- Line Chart -->
+                      <div id="lineChart" style="min-height: 400px;" class="echart d-flex align-items-center"></div>
+
+                      <script>
+                        document.addEventListener("DOMContentLoaded", () => {
+                          echarts.init(document.querySelector("#lineChart")).setOption({
+                            xAxis: {
+                              type: 'category',
+                              data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                            },
+                            yAxis: {
+                              type: 'value'
+                            },
+                            color: ['#67d400', '#121212', '#fac858', '#ee6666', '#73c0de', '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc'],
+                            series: [{
+                              data: [150, 230, 224, 218, 135, 147, 260],
+                              type: 'line',
+                              smooth: true
+                            }]
+                          });
+                        });
+                      </script>
+                      <!-- End Line Chart -->
+
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+
+                  <!-- Profile Edit Form -->
+                  <form>
+                    <div class="row mb-3">
+                      <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+                      <div class="col-md-8 col-lg-9">
+                        <div class="profile-card">
+                          <img src="assets/images/profile-img.jpg" alt="Profile">
+                        </div>
+                        <div class="pt-2">
+                          <a href="#" class="btn btn-green btn-sm" title="Upload new profile image"><i
+                              class="ri-upload-2-fill"></i></a>
+                          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i
+                              class="ri-delete-bin-fill"></i></a>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="username" class="col-md-4 col-lg-3 col-form-label">Usuario</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="fullName" type="text" class="form-control" id="username" value="Kevin_And">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nombre completo</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="fullName" type="text" class="form-control" id="fullName" value="Kevin Anderson">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="about" class="col-md-4 col-lg-3 col-form-label">Sobre mí</label>
+                      <div class="col-md-8 col-lg-9">
+                        <textarea name="about" class="form-control" id="about"
+                          style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="company" class="col-md-4 col-lg-3 col-form-label">Localidad</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="company" type="text" class="form-control" id="location" value="Madrid">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Country" class="col-md-4 col-lg-3 col-form-label">País</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="country" type="text" class="form-control" id="Country" value="España">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Email" class="col-md-4 col-lg-3 col-form-label">Correo eletrónico</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="email" type="email" class="form-control" id="Email" value="k.anderson@example.com"
+                          disabled>
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Teléfono</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="phone" type="text" class="form-control" id="Phone" value="699335816">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="twitter" type="text" class="form-control" id="Twitter"
+                          value="https://twitter.com/#">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="instagram" type="text" class="form-control" id="Instagram"
+                          value="https://instagram.com/#">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Discord</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="linkedin" type="text" class="form-control" id="Linkedin" value="Kevin_And#1234">
+                      </div>
+                    </div>
+
+                    <div class="text-center">
+                      <button class="btn btn-green fw-bold" type="submit">Guardar cambios</button>
+                    </div>
+                  </form><!-- End Profile Edit Form -->
+
+                </div>
+
+                <div class="tab-pane fade pt-3" id="profile-settings">
+
+                  <!-- Settings Form -->
+                  <form>
+
+                    <div class="row mb-3">
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Notificaciones por correo
+                        electrónico</label>
+                      <div class="col-md-8 col-lg-9">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="changesMade" checked>
+                          <label class="form-check-label" for="changesMade">
+                            Cambios hechos en tu cuenta
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="newProducts">
+                          <label class="form-check-label" for="newProducts">
+                            Información de nuevos torneos
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="securityNotify" checked disabled>
+                          <label class="form-check-label" for="securityNotify">
+                            Alertas de seguridad
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="notifications" class="col-md-4 col-lg-3 col-form-label">Notificaciones en
+                        Padelante</label>
+                      <div class="col-md-8 col-lg-9">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="changesMade" checked>
+                          <label class="form-check-label" for="changesMade">
+                            Inicio de torneos donde estoy inscrito
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="newProducts">
+                          <label class="form-check-label" for="newProducts">
+                            Menos de 24h para el cierre de inscripciones de un torneo que sigo
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-green fw-bold">Guardar cambios</button>
+                    </div>
+                  </form><!-- End settings Form -->
+
+                </div>
+
+                <div class="tab-pane fade pt-3" id="profile-change-password">
+                  <!-- Change Password Form -->
+                  <form>
+
+                    <div class="row mb-3">
+                      <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Contraseña actual</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="password" type="password" class="form-control" id="currentPassword">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Contraseña nueva</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="newpassword" type="password" class="form-control" id="newPassword">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Contraseña nueva</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                      </div>
+                    </div>
+
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-green fw-bold">Cambiar contraseña</button>
+                    </div>
+                  </form><!-- End Change Password Form -->
+
+                </div>
+
+                <div class="tab-pane fade pt-3" id="show-tournaments">
+                  <!-- Show tournaments -->
+                  <div class="container">
+                    <div class="row">
+                      <span> No estás apuntado a ningún torneo</span>
+                    </div>
+                    <!-- show pages when it's not empty-->
+                  </div><!-- End Show tournaments -->
+                </div>
+
+              </div><!-- End Bordered Tabs -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!--  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>   -->
+
+  </main><!-- End #main -->
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Vendor JS Files -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/custom.js"></script>
+  <script src="assets/js/uisearch.js"></script>
+  <script src="https://use.fontawesome.com/13bf04a6da.js"></script>
+  <script src="assets/js/main.js"></script>
+
+
+  <script language="text/Javascript">
+    cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+    function clearField(t) {                   //declaring the array outside of the
+      if (!cleared[t.id]) {                      // function makes it static and global
+        cleared[t.id] = 1;  // you could use true and false, but that's more typing
+        t.value = '';         // with more chance of typos
+        t.style.color = '#fff';
+      }
+    }
+  </script>
+
+  <script>
+    new UISearch(document.getElementById('sb-search'));
+  </script>
+
+</body>
+
+</html>
