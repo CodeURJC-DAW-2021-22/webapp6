@@ -1,4 +1,4 @@
-package es.webapp6.Padelante;
+package es.webapp6.Padelante.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
