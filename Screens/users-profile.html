@@ -182,13 +182,15 @@
 
               <img src="assets/images/profile-img.jpg" alt="Profile" class="rounded-circle border-green">
               <h2>Kevin Anderson</h2>
-              <h3 class="mt-1 color-green"><span class="fw-bold">@</span>Kevin_And</h3>
-              <h3 class="my-2">Karma: <em>150</em></h3>
+              <h3 class="mt-1 color-green"><span class="fw-bold">@Kevin_And</span></h3>
+              <h3 class="my-2">Karma: <span class="color-green fw-bold">150 puntos</span></h3>
+              <h3 class="mb-3">Madrid, España</h3>
               <div class="social-links mt-2">
-                <a href="#" class="whatsapp"><i class="bi bi-whatsapp"></i></a>
-                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="discord"><i class="bi bi-discord"></i></a>
+                <a href="#" class="email"><i class="ri-mail-fill"></i></a>
+                <a href="#" class="whatsapp"><i class="ri-whatsapp-fill"></i></a>
+                <a href="#" class="twitter"><i class="ri-twitter-fill"></i></a>
+                <a href="#" class="instagram"><i class="ri-instagram-fill"></i></a>
+                <a href="#" class="discord"><i class="ri-discord-fill"></i></a>
               </div>
             </div>
           </div>
@@ -231,7 +233,7 @@
 
                 <li class="nav-item">
                   <button class="nav-link active d-flex align-items-center" data-bs-toggle="tab"
-                    data-bs-target="#profile-overview"><i class="ri-information-fill pe-2"></i>Mis Datos</button>
+                    data-bs-target="#profile-overview"><i class="ri-information-fill pe-2"></i>Mis Estadísticas</button>
                 </li>
 
                 <li class="nav-item">
@@ -259,43 +261,7 @@
               <div class="tab-content pt-2">
 
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                  <h5 class="card-title">Sobre mí</h5>
-                  <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque
-                    temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem
-                    eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
-
-                  <h5 class="card-title">Detalles del perfil</h5>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label ">Usuario</div>
-                    <div class="col-lg-9 col-md-8"><span class="fw-bold">@</span>Kevin_And</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label ">Nombre completo</div>
-                    <div class="col-lg-9 col-md-8">Kevin Anderson</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Localidad</div>
-                    <div class="col-lg-9 col-md-8">Madrid</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">País</div>
-                    <div class="col-lg-9 col-md-8">España</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Correo eletrónico</div>
-                    <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Teléfono</div>
-                    <div class="col-lg-9 col-md-8">699335816</div>
-                  </div>
-
+                  
                   <div class="card">
                     <div class="card-body pb-0">
                       <h5 class="card-title pb-0 mb-0">Victorias - Derrotas</h5>
@@ -386,12 +352,37 @@
 
                 <div class="tab-pane fade pt-3" id="show-tournaments">
                   <!-- Show tournaments -->
-                  <div class="container">
-                    <div class="row">
-                      <span> No estás apuntado a ningún torneo</span>
-                    </div>
-                    <!-- show pages when it's not empty-->
-                  </div><!-- End Show tournaments -->
+                  <section class="card tournament-card">
+                    <a class="d-flex justify-content-between" href="tournament.html">
+                      <div class="d-flex flex-row">
+                        <div class="tournament-img p-3 me-2">
+                          <img src="assets/images/icon.png" alt="Tournament Image" class="rounded-circle border-green bg-232323">
+                        </div>
+                        <div class="d-flex align-items-center ps-2">
+                          <div>
+                            <h3 class="mt-0 fw-bold">eGrillos Cup</h3>
+                            <div class="progress my-3">
+                              <div class="progress-bar bg-green" role="progressbar" style="width: 12.5%" aria-valuenow="4" aria-valuemin="0" aria-valuemax="32"></div>
+                            </div>
+                            <h6>Participantes: 4/32<span class="ps-5">Madrid</span></h6>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="d-flex align-items-center justify-content-center p-2 pe-0 ms-5">
+                        <div class="text-center">
+                          <h6 class="pb-1 date-title">Fin de inscripciones</h6>
+                          <h6 class="pt-1"><em>20/02/2022 17:00</em></h6>
+                        </div>
+                      </div>
+                      <div class="d-flex align-items-center justify-content-center p-2 ps-0 me-4">
+                        <div class="text-center">
+                          <h6 class="py-1 date-title">Inicio del torneo</h6>
+                          <h6 class="pt-1"><em>21/02/2022 17:00</em></h6>
+                        </div>
+                      </div>
+                      
+                    </a>
+                  </section>
                 </div>
 
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
