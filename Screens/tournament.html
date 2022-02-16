@@ -264,7 +264,7 @@
     </section>
 
     <div class="card">
-      <div class="card-body pt-3">
+      <div class="card-body py-3">
         <!-- Bordered Tabs -->
         <ul class="nav nav-tabs nav-tabs-bordered">
 
@@ -290,9 +290,9 @@
             <h5 class="card-title">Reglamento</h5>
             <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
           
-            <h5 class="card-title">Participantes</h5>
+            <h5 class="card-title pb-1">Participantes</h5>
 
-            <div class="row pb-3">
+            <div class="row py-2 pair-tournament">
               <div class="col-md-11 d-flex justify-content-start align-items-center">
                 <div class="pe-2">
                   <img src="assets/images/profile-img.jpg" alt="Profile" class="partner-img rounded-circle border-green-tiny small me-2" >Kevin Ander
@@ -307,7 +307,7 @@
               </div>
             </div>
 
-            <div class="row pb-3">
+            <div class="row py-2 pair-tournament">
               <div class="col-md-11 d-flex justify-content-start align-items-center">
                 <div class="pe-2">
                   <img src="assets/images/profile-img.jpg" alt="Profile" class="partner-img rounded-circle border-green-tiny small me-2" >Kevin Ander
@@ -322,7 +322,7 @@
               </div>
             </div>
             
-            <div class="row pb-3">
+            <div class="row py-2 pair-tournament">
               <div class="col-md-11 d-flex justify-content-start align-items-center">
                 <div class="pe-2">
                   <img src="assets/images/profile-img.jpg" alt="Profile" class="partner-img rounded-circle border-green-tiny small me-2" >Kevin Ander
@@ -337,7 +337,7 @@
               </div>
             </div>
 
-            <div class="row">
+            <div class="row py-2 pair-tournament">
               <div class="col-md-11 d-flex justify-content-start align-items-center">
                 <div class="pe-2">
                   <img src="assets/images/profile-img.jpg" alt="Profile" class="partner-img rounded-circle border-green-tiny small me-2" >Kevin Ander
@@ -628,21 +628,6 @@
               </div>
 
               <div class="row mb-3">
-                <label for="participants" class="col-md-4 col-lg-3 col-form-label">Participantes</label>
-                <div class="col-md-8 col-lg-9">
-                  <select class="form-select" id="participants">
-                    <option value="1">2</option>
-                    <option value="2">4</option>
-                    <option value="3">8</option>
-                    <option value="4">16</option>
-                    <option selected value="5">32</option>
-                    <option value="6">64</option>
-                    <option value="7">128</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="row mb-3">
                 <label for="about" class="col-md-4 col-lg-3 col-form-label">Sobre el torneo</label>
                 <div class="col-md-8 col-lg-9">
                   <textarea name="about" class="form-control" id="about" style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
@@ -664,6 +649,21 @@
               </div>
 
               <div class="row mb-3">
+                <label for="participants" class="col-md-4 col-lg-3 col-form-label">Participantes</label>
+                <div class="col-md-8 col-lg-9">
+                  <select class="form-select" id="participants">
+                    <option value="1">2</option>
+                    <option value="2">4</option>
+                    <option value="3">8</option>
+                    <option value="4">16</option>
+                    <option selected value="5">32</option>
+                    <option value="6">64</option>
+                    <option value="7">128</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row mb-3">
                 <label for="inscription-date" class="col-md-4 col-lg-3 col-form-label">Fin de inscripciones</label>
                 <div class="col-md-8 col-lg-9">
                   <input name="inscription-date" type="datetime-local" class="form-control" id="inscription-date" value="2022-02-20T17:00">
@@ -680,7 +680,7 @@
               <div class="row mb-3">
                 <label for="seeding" class="col-md-4 col-lg-3 col-form-label">Seeding</label>
                 <div class="col-md-8 col-lg-9">
-                  <select class="form-select" id="seeding" filter="true">
+                  <select class="form-select" id="seeding" filter="true" disabled>
                     <option selected value="1">Aleatorio</option>
                     <option value="2">Manual</option>
                   </select>
@@ -688,6 +688,16 @@
               </div>
 
               <div class="row mb-3">
+                <label for="visibility" class="col-md-4 col-lg-3 col-form-label">Visibilidad</label>
+                <div class="col-md-8 col-lg-9">
+                  <select class="form-select" id="visibility" filter="true" disabled>
+                    <option selected value="1">Público</option>
+                    <option value="2">Privado</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- <div class="row mb-3">
                 <label for="invite" class="col-md-4 col-lg-3 col-form-label">Invitar participantes</label>
                 <div class="col-md-8 col-lg-9">
                   <div class="search-bar">
@@ -697,7 +707,7 @@
                     </form>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
 
 

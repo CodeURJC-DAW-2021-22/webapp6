@@ -1,5 +1,13 @@
 {
     "configurations": [
+        // {
+        //     "name": "Launch Chrome",
+        //     "request": "launch",
+        //     "type": "pwa-chrome",
+        //     "url" : "file:///D:/Universidad/Curso%204/Segundo%20Cuatrimestre/Desarrollo%20de%20App%20Web/ProyectoDAW/webapp6/Screens/main.html",
+        //     "webRoot": "${workspaceFolder}"
+        // }
+        // ,
         {
             "type": "java",
             "name": "Spring Boot-PadelanteApplication<Padelante>",

@@ -167,6 +167,9 @@
 .tournament-bracket__match:focus {
   border-color: #67d400;
 }
+.tournament-bracket__match:hover {
+  background-color: #eee;
+}
 .tournament-bracket__match::before,
 .tournament-bracket__match::after {
   transition: all 0.2s linear;
