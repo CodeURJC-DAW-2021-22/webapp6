@@ -1,4 +1,4 @@
-package es.webapp6.Padelante;
+package es.webapp6.Padelante.model;
 
 import java.sql.Date;
 
@@ -15,7 +15,7 @@ public class Tournament {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String name; 
+    private String tournamentName; 
     private int numParticipants;
     private String about;
     private String ruleset;
@@ -28,33 +28,31 @@ public class Tournament {
     protected Tournament() {
     }
 
-    public Tournament(String name, int numParticipants,String about,String ruleset,String location,Date inscriptionDate,
-        Date startDate,String format,String tournamentImage) {
-                this.name=name;
+    public Tournament(String tournamentName, int numParticipants
+    // String about,String ruleset,String location,Date inscriptionDate,
+    //     Date startDate,String format,String tournamentImage
+        ) {
+                this.tournamentName=tournamentName;
                 this.numParticipants = numParticipants;
-                this.about=about;
-                this.ruleset = ruleset;
-                this.location= location;
-                this.inscriptionDate=inscriptionDate;
-                this.startDate=startDate;
-                this.format=format;
-                this.tournamentImage=tournamentImage;
+                // this.about=about;
+                // this.ruleset = ruleset;
+                // this.location= location;
+                // this.inscriptionDate=inscriptionDate;
+                // this.startDate=startDate;
+                // this.format=format;
+                // this.tournamentImage=tournamentImage;
     }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public String getTournamentName() {
+        return tournamentName;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setTournamentName(String tournamentName) {
+        this.tournamentName = tournamentName;
     }
 
     public int getNumParticipants() {
