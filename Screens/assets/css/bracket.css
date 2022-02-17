@@ -258,17 +258,17 @@
     align-items: flex-end;
   }
 }
-.tournament-bracket__content .tournament-bracket__team:first-child .tournament-bracket__country {
+.tournament-bracket__content .tournament-bracket__team:first-child .tournament-bracket__team-name {
   order: 2;
   justify-content: flex-end;
 }
 @media (min-width: 24em) {
-  .tournament-bracket__content .tournament-bracket__team:first-child .tournament-bracket__country {
+  .tournament-bracket__content .tournament-bracket__team:first-child .tournament-bracket__team-name {
     order: 0;
   }
 }
 @media (min-width: 38em) and (max-width: 52em) {
-  .tournament-bracket__content .tournament-bracket__team:first-child .tournament-bracket__country {
+  .tournament-bracket__content .tournament-bracket__team:first-child .tournament-bracket__team-name {
     flex-direction: column-reverse;
     align-items: flex-end;
   }
@@ -292,12 +292,12 @@
   }
 }
 @media (min-width: 38em) {
-  .tournament-bracket__content .tournament-bracket__team:last-child .tournament-bracket__country {
+  .tournament-bracket__content .tournament-bracket__team:last-child .tournament-bracket__team-name {
     justify-content: flex-start;
   }
 }
 @media (min-width: 38em) and (max-width: 52em) {
-  .tournament-bracket__content .tournament-bracket__team:last-child .tournament-bracket__country {
+  .tournament-bracket__content .tournament-bracket__team:last-child .tournament-bracket__team-name {
     align-items: flex-start;
   }
 }
@@ -328,23 +328,23 @@
     flex-direction: column-reverse;
   }
 }
-.tournament-bracket__country {
+.tournament-bracket__team-name {
   font-size: 0.95rem;
   display: flex;
   margin-top: 0.5em;
   align-items: center;
 }
 @media (max-width: 24em) {
-  .tournament-bracket__country {
+  .tournament-bracket__team-name {
     margin-top: 0;
   }
 }
 @media (min-width: 38em) and (max-width: 52em) {
-  .tournament-bracket__country {
+  .tournament-bracket__team-name {
     display: flex;
     flex-direction: column;
   }
-  .tournament-bracket__country .tournament-bracket__code {
+  .tournament-bracket__team-name .tournament-bracket__code {
     margin-top: 0.2em;
   }
 }
@@ -355,7 +355,6 @@
   text-transform: uppercase;
   border: 0;
   text-decoration: none;
-  cursor: help;
   transition: padding 0.2s ease-in-out;
 }
 @media (max-width: 24em) {

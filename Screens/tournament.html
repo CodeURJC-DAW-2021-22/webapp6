@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/vendor/remixicon/remixicon.css">
   <link rel="stylesheet" href="assets/css/bracket.css">
+  <link rel="stylesheet" href="assets/css/league.css">
 
 </head>
 
@@ -277,13 +278,21 @@
           </li>
 
           <li class="nav-item">
+            <button class="nav-link d-flex align-items-center" data-bs-toggle="tab" data-bs-target="#league-matches"><i class="ri-organization-chart pe-2"></i>Jornadas</button>
+          </li>
+
+          <li class="nav-item">
+            <button class="nav-link d-flex align-items-center" data-bs-toggle="tab" data-bs-target="#league-clasification"><i class="ri-organization-chart pe-2"></i>Clasificación</button>
+          </li>
+
+          <li class="nav-item">
             <button class="nav-link d-flex align-items-center" data-bs-toggle="tab" data-bs-target="#tournament-settings"><i class="ri-settings-3-fill pe-2"></i>Ajustes admin</button>
           </li>
 
         </ul>
         <div class="tab-content pt-2">
           <!-- Tournament Info -->
-          <div class="tab-pane fade show active profile-overview" id="tournament-info">
+          <div class="tab-pane fade profile-overview" id="tournament-info">
             <h5 class="card-title">Sobre el torneo</h5>
             <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
 
@@ -369,16 +378,16 @@
                           </caption>  
                           <tbody class="tournament-bracket__content">
                             <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                              <td class="tournament-bracket__country">
-                                <abbr class="tournament-bracket__code" title="Canada">CAN</abbr>
+                              <td class="tournament-bracket__team-name">
+                                <abbr class="tournament-bracket__code">CAN</abbr>
                               </td>
                               <td class="tournament-bracket__score">
                                 <span class="tournament-bracket__number">4</span>
                               </td>
                             </tr>
                             <tr class="tournament-bracket__team">
-                              <td class="tournament-bracket__country">
-                                <abbr class="tournament-bracket__code" title="Kazakhstan">KAZ</abbr>
+                              <td class="tournament-bracket__team-name">
+                                <abbr class="tournament-bracket__code">KAZ</abbr>
                               </td>
                               <td class="tournament-bracket__score">
                                 <span class="tournament-bracket__number">1</span>
@@ -397,16 +406,16 @@
                           </caption>
                           <tbody class="tournament-bracket__content">
                             <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                              <td class="tournament-bracket__country">
-                                <abbr class="tournament-bracket__code" title="Czech Republic">CZE</abbr>
+                              <td class="tournament-bracket__team-name">
+                                <abbr class="tournament-bracket__code">CZE</abbr>
                               </td>
                               <td class="tournament-bracket__score">
                                 <span class="tournament-bracket__number">4</span>
                               </td>
                             </tr>
                             <tr class="tournament-bracket__team">
-                              <td class="tournament-bracket__country">
-                                <abbr class="tournament-bracket__code" title="Unitede states of America">USA</abbr>
+                              <td class="tournament-bracket__team-name">
+                                <abbr class="tournament-bracket__code">USA</abbr>
                               </td>
                               <td class="tournament-bracket__score">
                                 <span class="tournament-bracket__number">1</span>
@@ -424,16 +433,16 @@
                           </caption>
                           <tbody class="tournament-bracket__content">
                             <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                              <td class="tournament-bracket__country">
-                                <abbr class="tournament-bracket__code" title="Finland">FIN</abbr>
+                              <td class="tournament-bracket__team-name">
+                                <abbr class="tournament-bracket__code">FIN</abbr>
                               </td>
                               <td class="tournament-bracket__score">
                                 <span class="tournament-bracket__number">2</span>
                               </td>
                             </tr>
                             <tr class="tournament-bracket__team">
-                              <td class="tournament-bracket__country">
-                                <abbr class="tournament-bracket__code" title="Sweden">SVE</abbr>
+                              <td class="tournament-bracket__team-name">
+                                <abbr class="tournament-bracket__code">SVE</abbr>
                               </td>
                               <td class="tournament-bracket__score">
                                 <span class="tournament-bracket__number">1</span>
@@ -452,16 +461,16 @@
                           </caption>
                           <tbody class="tournament-bracket__content">
                             <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                              <td class="tournament-bracket__country">
-                                <abbr class="tournament-bracket__code" title="Russia">RUS</abbr>
+                              <td class="tournament-bracket__team-name">
+                                <abbr class="tournament-bracket__code">RUS</abbr>
                               </td>
                               <td class="tournament-bracket__score">
                                 <span class="tournament-bracket__number">4</span>
                               </td>
                             </tr>
                             <tr class="tournament-bracket__team">
-                              <td class="tournament-bracket__country">
-                                <abbr class="tournament-bracket__code" title="Belarus">BEL</abbr>
+                              <td class="tournament-bracket__team-name">
+                                <abbr class="tournament-bracket__code">BEL</abbr>
                               </td>
                               <td class="tournament-bracket__score">
                                 <span class="tournament-bracket__number">1</span>
@@ -484,16 +493,16 @@
                           </caption>
                           <tbody class="tournament-bracket__content">
                             <tr class="tournament-bracket__team">
-                              <td class="tournament-bracket__country">
-                                <abbr class="tournament-bracket__code" title="Canada">CAN</abbr>
+                              <td class="tournament-bracket__team-name">
+                                <abbr class="tournament-bracket__code">CAN</abbr>
                               </td>
                               <td class="tournament-bracket__score">
                                 <span class="tournament-bracket__number">1</span>
                               </td>
                             </tr>
                             <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                              <td class="tournament-bracket__country">
-                                <abbr class="tournament-bracket__code" title="Czech Republic">CZE</abbr>
+                              <td class="tournament-bracket__team-name">
+                                <abbr class="tournament-bracket__code">CZE</abbr>
                               </td>
                               <td class="tournament-bracket__score">
                                 <span class="tournament-bracket__number">2</span>
@@ -512,16 +521,16 @@
                           </caption>
                           <tbody class="tournament-bracket__content">
                             <tr class="tournament-bracket__team">
-                              <td class="tournament-bracket__country">
-                                <abbr class="tournament-bracket__code" title="Finland">FIN</abbr>
+                              <td class="tournament-bracket__team-name">
+                                <abbr class="tournament-bracket__code">FIN</abbr>
                               </td>
                               <td class="tournament-bracket__score">
                                 <span class="tournament-bracket__number">4</span>
                               </td>
                             </tr>
                             <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                              <td class="tournament-bracket__country">
-                                <abbr class="tournament-bracket__code" title="Russia">RUS</abbr>
+                              <td class="tournament-bracket__team-name">
+                                <abbr class="tournament-bracket__code">RUS</abbr>
                               </td>
                               <td class="tournament-bracket__score">
                                 <span class="tournament-bracket__number">7</span>
@@ -544,8 +553,8 @@
                           </caption>
                           <tbody class="tournament-bracket__content">
                             <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                              <td class="tournament-bracket__country">
-                                <abbr class="tournament-bracket__code" title="Finland">FIN</abbr>
+                              <td class="tournament-bracket__team-name">
+                                <abbr class="tournament-bracket__code">FIN</abbr>
                               </td>
                               <td class="tournament-bracket__score">
                                 <span class="tournament-bracket__number">3</span>
@@ -553,8 +562,8 @@
                               </td>
                             </tr>
                             <tr class="tournament-bracket__team">
-                              <td class="tournament-bracket__country">
-                                <abbr class="tournament-bracket__code" title="Canada">CAN</abbr>
+                              <td class="tournament-bracket__team-name">
+                                <abbr class="tournament-bracket__code">CAN</abbr>
                               </td>
                               <td class="tournament-bracket__score">
                                 <span class="tournament-bracket__number">2</span>
@@ -577,8 +586,8 @@
                           </caption>
                           <tbody class="tournament-bracket__content">
                             <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                              <td class="tournament-bracket__country">
-                                <abbr class="tournament-bracket__code" title="Czech Republic">CZE</abbr>
+                              <td class="tournament-bracket__team-name">
+                                <abbr class="tournament-bracket__code">CZE</abbr>
                               </td>
                               <td class="tournament-bracket__score">
                                 <span class="tournament-bracket__number">1</span>
@@ -586,8 +595,8 @@
                               </td>
                             </tr>
                             <tr class="tournament-bracket__team">
-                              <td class="tournament-bracket__country">
-                                <abbr class="tournament-bracket__code" title="Russia">RUS</abbr>
+                              <td class="tournament-bracket__team-name">
+                                <abbr class="tournament-bracket__code">RUS</abbr>
                               </td>
                               <td class="tournament-bracket__score">
                                 <span class="tournament-bracket__number">0</span>
@@ -604,6 +613,90 @@
             </div>
 
           </div>
+
+
+          <div class="tab-pane fade show active profile-edit pt-3" id="league-matches">
+
+            <ul class="league-bracket__list">
+              <li class="league-bracket__item">
+                <div class="league-bracket__match" tabindex="0">
+                  <table class="league-bracket__table">
+                    <caption class="league-bracket__caption">
+                      <time datetime="1998-02-18">18 February 1998</time>
+                    </caption>  
+                    <tbody class="league-bracket__content">
+                      <tr class="league-bracket__team league-bracket__team--winner">
+                        <td class="league-bracket__team-name">
+                          <abbr class="league-bracket__code">
+                            Paco Navarro
+                            <i class="ri-arrow-left-right-fill"></i>
+                            Pepe Medina</abbr>
+                        </td>
+                        <td class="league-bracket__score">
+                          <span class="league-bracket__number">4</span>
+                        </td>
+                      </tr>
+                      <tr class="league-bracket__team">
+                        <td class="league-bracket__team-name">
+                          <abbr class="league-bracket__code">
+                            Paco Sanz
+                            <i class="ri-arrow-left-right-fill"></i>
+                            Juan Ruiz</abbr>
+                        </td>
+                        <td class="league-bracket__score">
+                          <span class="league-bracket__number">1</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </li>
+
+              <li class="league-bracket__item">
+                <div class="league-bracket__match" tabindex="0">
+                  <table class="league-bracket__table">
+                    <caption class="league-bracket__caption">
+                      <time datetime="1998-02-18">18 February 1998</time>
+                    </caption>  
+                    <tbody class="league-bracket__content">
+                      <tr class="league-bracket__team league-bracket__team--winner">
+                        <td class="league-bracket__team-name">
+                          <abbr class="league-bracket__code">
+                            Carlos Sanz
+                            <i class="ri-arrow-left-right-fill"></i>
+                            Sara Ruiz</abbr>
+                        </td>
+                        <td class="league-bracket__score">
+                          <span class="league-bracket__number">4</span>
+                        </td>
+                      </tr>
+                      <tr class="league-bracket__team">
+                        <td class="league-bracket__team-name">
+                          <abbr class="league-bracket__code">
+                            Pepe Navarro
+                            <i class="ri-arrow-left-right-fill"></i>
+                            Juan Gonzalez
+                          </abbr>
+                        </td>
+                        <td class="league-bracket__score">
+                          <span class="league-bracket__number">1</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </li>
+            </ul>
+
+          </div>
+
+
+          <div class="tab-pane fade profile-edit pt-3" id="league-clasification">
+
+
+
+          </div>
+
 
           <div class="tab-pane fade profile-edit pt-3" id="tournament-settings">
 
