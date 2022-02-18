@@ -11,9 +11,25 @@ public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    
-    // public void Team(){
-    // }
 
-    // Many to One Relation with Match. Need to think about specific attributes.
+    private String data; //just to add and atributte and check the below methods
+    
+    public Team() {
+		super();
+	}
+
+	public Team(String data) {
+		super();
+		this.data = data;
+	}
+
+    public String getData() {
+		return data;
+	}
+
+	@Override
+	public String toString() {
+		return "Team [id=" + id + ", data=" + data + "]";
+	}
+    
 }

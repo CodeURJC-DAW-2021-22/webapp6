@@ -2,35 +2,45 @@ package es.webapp6.Padelante.model;
 
 
 
-import java.util.ArrayList;
-import java.util.Date;
+//import java.util.ArrayList;
+//import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+@Entity
 public class Match {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private ArrayList<Integer> result; //To be defined correctly   
-
-    private Date dateOfMatch;
-    private Team winnerTeam; 
+    //this two var commented, if I descommented the project doesnt work
+    //private ArrayList<Integer> result; //To be defined correctly   
+    //private Date dateOfMatch;
+    private String data; //just to try easily, in the future it can be eliminated
+    //private Team winnerTeam; 
 
     @ManyToOne 
     private Team teamOne;
+
     @ManyToOne
     private Team teamTwo;
+
     @ManyToOne
     Tournament tournament; // Needs to be in Constructor?
 
-    public void Match(Date dateOfMatch){
-        this.dateOfMatch = dateOfMatch;
-    }
+    public Match() {
+		super();
+	}
+
+	public Match(String data) {
+		super();
+		this.data = data;
+	}
 
     public Team getTeamOne() {
         return teamOne;
@@ -48,34 +58,46 @@ public class Match {
         this.teamTwo = teamTwo;
     }
 
+    public String getData() {
+		return data;
+	}
+
+    // At the moment of create a macht we dont hava a resuelt yet, are the two methods below correct?
+    // public ArrayList<Integer> getResult() {
+    //     return result;
+    // }
+
+    // public void setResult(ArrayList<Integer> result) {
+    //     this.result = result;
+    // }
+
+    //just to make ir easier, i commment dateofmatch 
+    // public Date getDateOfMatch() {
+    //     return dateOfMatch;
+    // }
+
+    // public void setDateOfMatch(Date dateOfMatch) {
+    //     this.dateOfMatch = dateOfMatch;
+    // }
+
+    //at the momment of create o match we dont have a winner, is this ok?
+    // public Team getWinnerTeam() {
+    //     return winnerTeam;
+    // }
+
+    // public void setWinnerTeam(Team winnerTeam) {
+    //     this.winnerTeam = winnerTeam;
+    // }
+
     public void setTournament(Tournament tournament) {
-        this.tournament = tournament;
-    }
-    public ArrayList<Integer> getResult() {
-        return result;
-    }
+		this.tournament = tournament;
+	}
+    // public Tournament getTournament() {
+    //     return tournament;
+    // }
 
-    public void setResult(ArrayList<Integer> result) {
-        this.result = result;
-    }
-
-    public Date getDateOfMatch() {
-        return dateOfMatch;
-    }
-
-    public void setDateOfMatch(Date dateOfMatch) {
-        this.dateOfMatch = dateOfMatch;
-    }
-
-    public Team getWinnerTeam() {
-        return winnerTeam;
-    }
-
-    public void setWinnerTeam(Team winnerTeam) {
-        this.winnerTeam = winnerTeam;
-    }
-
-    public Tournament getTournament() {
-        return tournament;
-    }
+    @Override
+	public String toString() {
+		return "Match [id=" + id + ", data=" + data + "]";
+	}
 }

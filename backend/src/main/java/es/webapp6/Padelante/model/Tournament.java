@@ -2,7 +2,7 @@ package es.webapp6.Padelante.model;
 
 import java.sql.Date;
 
-import javax.annotation.Generated;
+//import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,13 +25,15 @@ public class Tournament {
     private String format;
     private String tournamentImage;
 
-    protected Tournament() {
+    public Tournament() {
+        super();
     }
 
     public Tournament(String tournamentName, int numParticipants
     // String about,String ruleset,String location,Date inscriptionDate,
     //     Date startDate,String format,String tournamentImage
         ) {
+                super();
                 this.tournamentName=tournamentName;
                 this.numParticipants = numParticipants;
                 // this.about=about;
@@ -42,6 +44,11 @@ public class Tournament {
                 // this.format=format;
                 // this.tournamentImage=tournamentImage;
     }
+
+    @Override
+	public String toString() {
+		return "Tournament [id=" + id + ", tournamentName=" + tournamentName + ", numParticipants="+numParticipants+ "]";
+	}
 
     public long getId() {
         return id;
