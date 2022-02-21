@@ -1,35 +1,12 @@
 package es.webapp6.Padelante.controller;
 
-
-
-import javax.annotation.PostConstruct;
-
-import org.hibernate.type.descriptor.java.UUIDTypeDescriptor.ToBytesTransformer;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-
 import es.webapp6.Padelante.model.Tournament;
-import es.webapp6.Padelante.repositories.TournamentRepository;
 import es.webapp6.Padelante.service.TournamentService;
-import es.webapp6.Padelante.model.Match;
-import es.webapp6.Padelante.model.Team;
-
-import es.webapp6.Padelante.repositories.MatchRepository;
-import es.webapp6.Padelante.repositories.TeamRepository;
-
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-
-
-
-
-
-
 
 @Controller
 public class indexController {
@@ -52,9 +29,7 @@ public class indexController {
     //     return tournaments;
     // }
 
-    
 
-    
 
     @Autowired
 	private TournamentService tournamentService;	
