@@ -203,19 +203,30 @@
                         <h2>Mis Torneos</h2>
                     </div>
                 </div>
+
+
+                {{#tourns}}
+                    
+                
                 <div class="col-md-4">
                     <div class="product-item">
                         <!-- select image from DB when necessary-->
+                      
+
                         <a href="tournament.html"><img class="img-lista-torneos" src="assets/images/product_01.jpg" alt=""></a>
                         <div class="down-content text-center">
                             <a href="tournament.html">
-                                <h4>eGrillos Cup</h4> <!-- tournamentName-->
+                                <h4>{{tournamentName}}</h4> <!-- tournamentName-->
                             </a>
-                            <p>16/02/2022</p> <!-- startDate-->
-                            <span>25/32 equipos</span> <!-- numParticipants-->
+
+                            
+                            <span>{{numParticipants}} equipos</span> <!-- numParticipants-->
                         </div>
                     </div>
                 </div>
+                {{/tourns}}
+
+<!-- 
                 <div class="col-md-4">
                     <div class="product-item">
                         <a href="tournament.html"><img class="img-lista-torneos" src="assets/images/product_06.jpg" alt=""></a>
@@ -227,7 +238,7 @@
                             <span>10/32 equipos</span>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

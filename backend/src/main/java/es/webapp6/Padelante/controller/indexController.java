@@ -4,6 +4,7 @@ package es.webapp6.Padelante.controller;
 
 import javax.annotation.PostConstruct;
 
+import org.hibernate.type.descriptor.java.UUIDTypeDescriptor.ToBytesTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,8 @@ import es.webapp6.Padelante.repositories.MatchRepository;
 import es.webapp6.Padelante.repositories.TeamRepository;
 
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 
@@ -109,7 +112,15 @@ public class indexController {
 
     @GetMapping("/")
     public String greeting(Model model) {
-        model.addAttribute("tournamentName","Dani");// tournamentRepository.findByTournamentName("Dani").get(0).getTournamentName()
+        Tournament t1= new Tournament("Torneo 1", 5);
+        Tournament t2= new Tournament("Torneo 2", 6);
+        Tournament t3= new Tournament("Torneo 3", 7);
+        Tournament t4= new Tournament("Torneo 4", 8);
+    
+        
+        List <Tournament> tourns =  Arrays.asList(t1,t2,t3,t4);
+
+        model.addAttribute("tourns",tourns);// tournamentRepository.findByTournamentName("Dani").get(0).getTournamentName()
         return "main";
     }
 
@@ -150,4 +161,15 @@ public class indexController {
         //model.addAttribute("tournamentName","Dani");// tournamentRepository.findByTournamentName("Dani").get(0).getTournamentName()
         return "users-profile";
     }
+
+
+    
+
+   
+
+    
+
+
+
+    
 }
