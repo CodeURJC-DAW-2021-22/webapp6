@@ -1,12 +1,9 @@
 package es.webapp6.Padelante;
 
 import java.util.List;
-
 import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-
+import org.springframework.stereotype.Component;
 import es.webapp6.Padelante.model.Match;
 import es.webapp6.Padelante.model.Team;
 import es.webapp6.Padelante.model.Tournament;
@@ -14,7 +11,7 @@ import es.webapp6.Padelante.repositories.MatchRepository;
 import es.webapp6.Padelante.repositories.TeamRepository;
 import es.webapp6.Padelante.repositories.TournamentRepository;
 
-@Controller
+@Component
 public class ExamplesGenerator {
 
 	@Autowired
@@ -25,7 +22,6 @@ public class ExamplesGenerator {
 	
 	@Autowired
 	private TeamRepository teamRepository;
-
 
     @PostConstruct
 	public void init() {
@@ -38,7 +34,7 @@ public class ExamplesGenerator {
 		teamRepository.save(t2);
 		teamRepository.save(t3);
 		
-		Tournament tournament = new Tournament("Torneo 11",5);
+		Tournament tournament = new Tournament("Torneo 11", 5);
         Tournament tournament1= new Tournament("Torneo 22", 5);
         Tournament tournament2= new Tournament("Torneo 33", 6);
         Tournament tournament3= new Tournament("Torneo 44", 7);
