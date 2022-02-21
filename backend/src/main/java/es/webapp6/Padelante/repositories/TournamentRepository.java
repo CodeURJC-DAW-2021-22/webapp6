@@ -14,5 +14,7 @@ public interface TournamentRepository extends JpaRepository<Tournament, Long> {
   public List<Tournament> getTournaments(Team team);
 
   List<Tournament> findByTournamentName(String tournamentName);
+  
+
 
 }

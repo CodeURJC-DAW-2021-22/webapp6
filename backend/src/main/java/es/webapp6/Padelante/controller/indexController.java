@@ -75,7 +75,16 @@ public class indexController {
 		teamRepository.save(t3);
 		
 		Tournament tournament = new Tournament("T",5);
+        Tournament tournament1= new Tournament("Torneo 1", 5);
+        Tournament tournament2= new Tournament("Torneo 2", 6);
+        Tournament tournament3= new Tournament("T11223344", 7);
+        Tournament tournament4= new Tournament("Torneo 4", 8);
+
 		tournamentRepository.save(tournament);
+        tournamentRepository.save(tournament1);
+        tournamentRepository.save(tournament2);
+        tournamentRepository.save(tournament3);
+        tournamentRepository.save(tournament4);
 		
 		Match m1 = new Match("M1");
 		m1.setTeamOne(t1);
@@ -112,13 +121,10 @@ public class indexController {
 
     @GetMapping("/")
     public String greeting(Model model) {
-        Tournament t1= new Tournament("Torneo 1", 5);
-        Tournament t2= new Tournament("Torneo 2", 6);
-        Tournament t3= new Tournament("Torneo 3", 7);
-        Tournament t4= new Tournament("Torneo 4", 8);
+      
     
+        List<Tournament> tourns = tournamentRepository.findAll();
         
-        List <Tournament> tourns =  Arrays.asList(t1,t2,t3,t4);
 
         model.addAttribute("tourns",tourns);// tournamentRepository.findByTournamentName("Dani").get(0).getTournamentName()
         return "main";
