@@ -16,26 +16,6 @@ import es.webapp6.Padelante.service.TournamentService;
 @Controller
 public class indexController {
     
-    // private Collection<Tournament> tournaments;
-
-    // @Autowired
-    // private TournamentRepository tournamentRepository;
-
-    // @PostConstruct
-    // public void init(){
-    //     tournamentRepository.save(new Tournament("Álvaro", 5));
-    //     tournamentRepository.save(new Tournament("Rubén", 5));
-    //     tournamentRepository.save(new Tournament("Dani", 5));
-    // }
-
-    // @GetMapping("/")
-    // public Collection<Tournament> getTournament() {
-    //     tournaments = tournamentRepository.findByTournamentName("Dani");
-    //     return tournaments;
-    // }
-
-
-
     @Autowired
 	private TournamentService tournamentService;	
 	
