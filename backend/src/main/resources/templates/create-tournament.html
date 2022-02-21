@@ -7,24 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
   <title>Padelante - Crea torneos propios</title>
   <link rel="icon" href="assets/images/icon.png">
 
   <!-- Bootstrap core CSS -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!--
-
-TemplateMo 546 Sixteen Clothing
-
-https://templatemo.com/tm-546-sixteen-clothing
-
--->
 
   <!-- Additional CSS Files -->
-  <link rel="stylesheet" href="assets/css/fontawesome.css">
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/vendor/remixicon/remixicon.css">
 
@@ -73,23 +64,9 @@ https://templatemo.com/tm-546-sixteen-clothing
                     </div>
 
                     <div class="col-12">
-                      <label for="name" class="form-label">Nombre del torneo</label>
-                      <input type="text" name="name" class="form-control" id="name" required>
-                      <div class="invalid-feedback">Introduce el nombre.</div>
-                    </div>
-
-                    <div class="col-12">
-                      <label for="participants" class="form-label">Participantes</label>
-                      <select class="form-select" name="participants" id="participants">
-                        <option value="1">2</option>
-                        <option value="2">4</option>
-                        <option value="3">8</option>
-                        <option value="4">16</option>
-                        <option value="5">32</option>
-                        <option value="6">64</option>
-                        <option value="7">128</option>
-                      </select>
-                      <div class="invalid-feedback">Introduce el número de participantes.</div>
+                      <label for="tournamentName" class="form-label">Nombre del torneo</label>
+                      <input type="text" name="tournamentName" class="form-control" id="tournamentName" required>
+                      <div class="invalid-feedback">Introduce el nombre del torneo.</div>
                     </div>
 
                     <div class="col-12">
@@ -109,6 +86,20 @@ https://templatemo.com/tm-546-sixteen-clothing
                     </div>
 
                     <div class="col-12">
+                      <label for="numParticipants" class="form-label">Participantes</label>
+                      <select class="form-select" name="numParticipants" id="numParticipants" required>
+                        <option value="1">2</option>
+                        <option value="2">4</option>
+                        <option value="3">8</option>
+                        <option value="4">16</option>
+                        <option value="5">32</option>
+                        <option value="6">64</option>
+                        <option value="7">128</option>
+                      </select>
+                      <div class="invalid-feedback">Introduce el número de participantes.</div>
+                    </div>
+
+                    <div class="col-12">
                       <label for="inscription-date" class="form-label">Fin de inscripciones</label>
                       <input name="inscription-date" type="datetime-local" class="form-control" id="inscription-date" required>
                       <div class="invalid-feedback">Introduce la fecha.</div>
@@ -122,7 +113,7 @@ https://templatemo.com/tm-546-sixteen-clothing
 
                     <div class="col-12">
                       <label for="format" class="form-label">Formato</label>
-                      <select class="form-select" name="format" id="format">
+                      <select class="form-select" name="format" id="format" required>
                         <option selected value="1">Torneo simple</option>
                         <option value="2">Liga regular</option>
                       </select>
@@ -131,7 +122,7 @@ https://templatemo.com/tm-546-sixteen-clothing
 
                     <div class="col-12">
                       <label for="seeding" class="form-label">Seeding</label>
-                      <select class="form-select" name="seeding" id="seeding">
+                      <select class="form-select" name="seeding" id="seeding" disabled>
                         <option selected value="1">Aleatorio</option>
                         <option value="2">Manual</option>
                       </select>
@@ -139,6 +130,14 @@ https://templatemo.com/tm-546-sixteen-clothing
                     </div>
 
                     <div class="col-12">
+                      <label for="visibility" class="form-label">Visibilidad</label>
+                      <select class="form-select" id="visibility" filter="true" disabled>
+                        <option selected value="1">Público</option>
+                        <option value="2">Privado</option>
+                      </select>
+                    </div>
+
+                    <!-- <div class="col-12">
                       <label for="invite" class="form-label">Invitar participantes</label>
                       <div class="search-bar">
                         <form class="search-form d-flex align-items-center" method="POST" action="#">
@@ -146,7 +145,7 @@ https://templatemo.com/tm-546-sixteen-clothing
                           <button type="submit" title="Search"><i class="ri-search-line"></i></button>
                         </form>
                       </div>
-                    </div>
+                    </div> -->
 
                     <div class="col-12 mt-4">
                       <button class="btn btn-login upper-text w-100" type="submit">Crear torneo</button>
@@ -176,13 +175,10 @@ https://templatemo.com/tm-546-sixteen-clothing
 
   <!-- JS Files -->
   <script src="assets/js/custom.js"></script>
-  <script src="https://use.fontawesome.com/13bf04a6da.js"></script>
   <script src="assets/js/modernizr.custom.js"></script>
   
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
