@@ -1,10 +1,15 @@
 package es.webapp6.Padelante.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import es.webapp6.Padelante.model.Tournament;
 import es.webapp6.Padelante.service.TournamentService;
 
@@ -42,9 +47,14 @@ public class indexController {
     }
 
     @GetMapping("/create_tournament")
-    public String create_tournament(Model model) {
-        //model.addAttribute();
+    public String createTournamentPage(Model model) {
         return "create-tournament";
+    }
+
+    @PostMapping("/create_tournament")
+    public String createTournament(@RequestParam String tournamentName, @RequestParam int numParticipants){
+        tournamentService.createTournament(tournamentName, numParticipants);    
+        return "redirect:/";
     }
 
     @GetMapping("/errorPage")

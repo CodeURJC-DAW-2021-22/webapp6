@@ -49,7 +49,7 @@
                   </div>
 
 
-                  <form class="row g-3 needs-validation" novalidate>
+                  <form class="row g-3 needs-validation" novalidate action="create_tournament" method="post">
 
                     <div class="col-12">
                       <label for="tournamentImage" class="form-label">Imagen del torneo</label>
@@ -88,13 +88,13 @@
                     <div class="col-12">
                       <label for="numParticipants" class="form-label">Participantes</label>
                       <select class="form-select" name="numParticipants" id="numParticipants" required>
-                        <option value="1">2</option>
-                        <option value="2">4</option>
-                        <option value="3">8</option>
-                        <option value="4">16</option>
-                        <option value="5">32</option>
-                        <option value="6">64</option>
-                        <option value="7">128</option>
+                        <option value="2">2</option>
+                        <option value="4">4</option>
+                        <option value="8">8</option>
+                        <option value="16">16</option>
+                        <option value="32">32</option>
+                        <option value="64">64</option>
+                        <option value="128">128</option>
                       </select>
                       <div class="invalid-feedback">Introduce el número de participantes.</div>
                     </div>

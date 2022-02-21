@@ -19,6 +19,11 @@ public class TournamentService {
 		return tournaments.findAll();
 	}
 
+    public void createTournament(String tournamentName, int numParticipants){
+        Tournament t1 = new Tournament(tournamentName, numParticipants);
+        tournaments.save(t1);
+    }
+
 
 	// public ResponseEntity<Tournament> getTournament(@PathVariable long id) {
 
