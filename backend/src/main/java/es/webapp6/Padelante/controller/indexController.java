@@ -52,7 +52,6 @@ public class indexController {
     // }
 
     
-   
 
     @Autowired
 	private TournamentRepository tournamentRepository;
@@ -62,6 +61,9 @@ public class indexController {
 	
 	@Autowired
 	private TeamRepository teamRepository;
+
+    @Autowired
+	private TournamentController tournamentController;
 	
 	@PostConstruct
 	public void init() {
@@ -74,17 +76,17 @@ public class indexController {
 		teamRepository.save(t2);
 		teamRepository.save(t3);
 		
-		Tournament tournament = new Tournament("T",5);
-        Tournament tournament1= new Tournament("Torneo 1", 5);
-        Tournament tournament2= new Tournament("Torneo 2", 6);
-        Tournament tournament3= new Tournament("T11223344", 7);
-        Tournament tournament4= new Tournament("Torneo 4", 8);
+		// Tournament tournament = new Tournament("T",5);
+        // Tournament tournament1= new Tournament("Torneo 1", 5);
+        // Tournament tournament2= new Tournament("Torneo 2", 6);
+        // Tournament tournament3= new Tournament("T11223344", 7);
+        // Tournament tournament4= new Tournament("Torneo 4", 8);
 
-		tournamentRepository.save(tournament);
-        tournamentRepository.save(tournament1);
-        tournamentRepository.save(tournament2);
-        tournamentRepository.save(tournament3);
-        tournamentRepository.save(tournament4);
+		// tournamentRepository.save(tournament);
+        // tournamentRepository.save(tournament1);
+        // tournamentRepository.save(tournament2);
+        // tournamentRepository.save(tournament3);
+        // tournamentRepository.save(tournament4);
 		
 		Match m1 = new Match("M1");
 		m1.setTeamOne(t1);
@@ -98,9 +100,9 @@ public class indexController {
 		m3.setTeamOne(t1);
 		m3.setTeamTwo(t3);
 		
-		m1.setTournament(tournament);
-		m2.setTournament(tournament);
-		m3.setTournament(tournament);
+		// m1.setTournament(tournament);
+		// m2.setTournament(tournament);
+		// m3.setTournament(tournament);
 		
 		matchRepository.save(m1);
 		matchRepository.save(m2);
@@ -110,20 +112,20 @@ public class indexController {
 		
 		System.out.println("Tournaments: "+tournaments);
 		
-		List<Match> matches = matchRepository.getMatches(tournament);
+		// List<Match> matches = matchRepository.getMatches(tournament);
 		
-		System.out.println("Matches: "+matches);
+		// System.out.println("Matches: "+matches);
 		
-		List<Team> teams = teamRepository.getTeams(tournament);
+		// List<Team> teams = teamRepository.getTeams(tournament);
 		
-		System.out.println("Teams: "+teams);
+		// System.out.println("Teams: "+teams);
 	}
 
     @GetMapping("/")
     public String greeting(Model model) {
       
-    
-        List<Tournament> tourns = tournamentRepository.findAll();
+        
+        List<Tournament> tourns = tournamentController.getTournament();
         
 
         model.addAttribute("tourns",tourns);// tournamentRepository.findByTournamentName("Dani").get(0).getTournamentName()

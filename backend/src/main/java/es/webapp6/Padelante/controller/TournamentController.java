@@ -2,6 +2,7 @@ package es.webapp6.Padelante.controller;
 
 import java.net.URI;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
@@ -30,14 +31,26 @@ public class TournamentController {
     
     @Autowired
     private TournamentRepository tournaments;
+	
+	
 
-    // @PostConstruct
-    // public void init(){
-    //     tournaments.save(new Tournament("T",5));
-    // }
+    @PostConstruct
+    public void init(){
+		Tournament tournament = new Tournament("T",5);
+        Tournament tournament1= new Tournament("aaaaaa 1", 5);
+        Tournament tournament2= new Tournament("Torneo 2", 6);
+        Tournament tournament3= new Tournament("T11223344", 7);
+        Tournament tournament4= new Tournament("asdfasdfa 4", 8);
+
+		tournaments.save(tournament);
+        tournaments.save(tournament1);
+        tournaments.save(tournament2);
+        tournaments.save(tournament3);
+        tournaments.save(tournament4);
+    }
 
     @GetMapping("/")
-	public Collection<Tournament> getTournament() {
+	public List<Tournament> getTournament() {
 		return tournaments.findAll();
 	}
 
