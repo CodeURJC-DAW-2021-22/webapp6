@@ -13,8 +13,5 @@ public interface TournamentRepository extends JpaRepository<Tournament, Long> {
       "WHERE m.teamOne = :team OR m.teamTwo = :team")
   public List<Tournament> getTournaments(Team team);
 
-  List<Tournament> findByTournamentName(String tournamentName);
-  
-
-
+  List<Tournament> findByTournamentName(String tournamentName); 
 }
