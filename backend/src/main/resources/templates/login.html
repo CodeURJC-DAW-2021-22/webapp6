@@ -49,20 +49,20 @@
                     <h5 class="upper-text text-center pb-0 fw-bold">Inicia sesión en tu cuenta</h5>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
+                  <form class="row g-3 needs-validation" novalidate action="/login" method="post">
 
                     <div class="col-12">
-                      <label for="yourUsername" class="form-label">Usuario</label>
+                      <label for="username" class="form-label">Usuario</label>
                       <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="text" name="yourUsername" class="form-control" id="yourUsername" required>
+                        <input type="text" name="username" class="form-control" id="username" required>
                         <div class="invalid-feedback">Introduce el usuario.</div>
                       </div>
                     </div>
 
                     <div class="col-12">
-                      <label for="yourPassword" class="form-label">Contraseña</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" required>
+                      <label for="password" class="form-label">Contraseña</label>
+                      <input type="password" name="password" class="form-control" id="password" required>
                       <div class="invalid-feedback">Introduce la contraseña.</div>
                     </div>
 
@@ -75,6 +75,7 @@
                     <div class="col-12">
                       <button class="btn btn-login upper-text w-100" type="submit">Iniciar sesión</button>
                     </div>
+                    <input type="hidden" name="_csrf" value="{{token}}"/>
                     <div class="col-12 pt-2">
                       <p class="small mb-0 text-center">¿No tienes cuenta?</p>
                     </div>

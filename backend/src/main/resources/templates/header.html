@@ -11,7 +11,7 @@
                 <div>
                     <nav class="header-nav ms-auto">
                         <ul class="d-flex align-items-center">
-    
+                            {{#logged}}
                             <li class="nav-item dropdown">
     
                                 <a class="nav-link nav-icon" href="errorPage.html">
@@ -19,7 +19,7 @@
                                     <i class="ri-error-warning-line"></i>
                                 </a>
                                 <!-- End error page Icon -->
-    
+                            {{/logged}}
                             <li class="nav-item dropdown">
     
                                 <a class="nav-link nav-icon" href="admin.html">
@@ -30,7 +30,7 @@
     
                             </li>
                             <!-- End Admin Nav -->
-    
+                            {{#logged}}
                             <li class="nav-item dropdown">
     
                                 <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
@@ -132,13 +132,14 @@
                                 <!-- End Profile Dropdown Items -->
                             </li>
                             <!-- End Profile Nav -->
-    
+                            {{/logged}}
+                            {{^logged}}
                             <li class="nav-item">
-                                <a class="nav-link nav-icon nav-text" href="login.html">Iniciar sesión</a>
+                                <a class="nav-link nav-icon nav-text" href="/login">Iniciar sesión</a>
                                 <!-- End Log In Icon -->
                             </li>
                             <!-- End Profile Nav -->
-    
+                            {{/logged}}
                         </ul>
                     </nav>
                     <!-- End Icons Navigation -->

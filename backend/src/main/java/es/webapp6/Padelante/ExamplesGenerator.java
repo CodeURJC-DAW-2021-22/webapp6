@@ -3,25 +3,34 @@ package es.webapp6.Padelante;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import es.webapp6.Padelante.model.Match;
 import es.webapp6.Padelante.model.Team;
 import es.webapp6.Padelante.model.Tournament;
+import es.webapp6.Padelante.model.User;
 import es.webapp6.Padelante.repositories.MatchRepository;
 import es.webapp6.Padelante.repositories.TeamRepository;
 import es.webapp6.Padelante.repositories.TournamentRepository;
+import es.webapp6.Padelante.repositories.UserRepository;
 
 @Component
 public class ExamplesGenerator {
 
 	@Autowired
 	private TournamentRepository tournamentRepository;
+
+	@Autowired
+	private UserRepository userRepository;
 	
 	@Autowired
 	private MatchRepository matchRepository;
 	
 	@Autowired
 	private TeamRepository teamRepository;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
     @PostConstruct
 	public void init() {
@@ -65,6 +74,9 @@ public class ExamplesGenerator {
 		matchRepository.save(m1);
 		matchRepository.save(m2);
 		matchRepository.save(m3);
+
+		userRepository.save(new User("user", passwordEncoder.encode("pass"), "USER"));
+		userRepository.save(new User("admin", passwordEncoder.encode("adminpass"), "USER", "ADMIN"));
 				
 		List<Tournament> tournaments = tournamentRepository.getTournaments(t1);
 		
