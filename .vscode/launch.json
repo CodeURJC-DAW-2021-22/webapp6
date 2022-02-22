@@ -1,12 +1,5 @@
 {
     "configurations": [
-        {
-            "name": "Launch Chrome",
-            "request": "launch",
-            "type": "pwa-chrome",
-            "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}"
-        },
     {
         "name": "Launch Chrome",
         "request": "launch",
@@ -14,23 +7,15 @@
         "url": "http://localhost:8080",
         "webRoot": "${workspaceFolder}"
     },
-        // {
-        //     "name": "Launch Chrome",
-        //     "request": "launch",
-        //     "type": "pwa-chrome",
-        //     "url" : "file:///C:/Users/Ruben/Desktop/URJC/Curso 4/DAW/Proyecto DAW/webapp6/Screens/main.html",
-        //     "webRoot": "${workspaceFolder}"
-        // }
-        // ,
-        {
-            "type": "java",
-            "name": "Spring Boot-PadelanteApplication<Padelante>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "console": "internalConsole",
-            "mainClass": "es.webapp6.Padelante.PadelanteApplication",
-            "projectName": "Padelante",
-            "args": ""
-        }
+    {
+        "type": "java",
+        "name": "Spring Boot-PadelanteApplication<Padelante>",
+        "request": "launch",
+        "cwd": "${workspaceFolder}",
+        "console": "internalConsole",
+        "mainClass": "es.webapp6.Padelante.PadelanteApplication",
+        "projectName": "Padelante",
+        "args": ""
+    }
     ]
 }

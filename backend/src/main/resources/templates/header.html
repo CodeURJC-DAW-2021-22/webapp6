@@ -122,10 +122,15 @@
                                     </li>
     
                                     <li>
-                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                            <i class="ri-logout-box-r-line"></i>
-                                            <span>Cerrar sesión</span>
-                                        </a>
+                                        <form action="/logout" method="post">
+                                            <button class="button-no-format" type="submit">
+                                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                                    <i class="ri-logout-box-r-line"></i>
+                                                    <span>Cerrar sesión</span>
+                                                </a>
+                                            </button>
+                                            <input type="hidden" name="_csrf" value="{{token}}"/>
+                                        </form>
                                     </li>
     
                                 </ul>
