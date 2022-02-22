@@ -48,7 +48,7 @@ public class indexController {
 
     @GetMapping("/create_tournament")
     public String createTournamentPage(Model model) {
-        return "create-tournament";
+        return "create_tournament";
     }
 
     @PostMapping("/create_tournament")
@@ -59,44 +59,37 @@ public class indexController {
 
     @GetMapping("/errorPage")
     public String errorPage(Model model) {
-       // model.addAttribute("tournamentName","Dani");// tournamentRepository.findByTournamentName("Dani").get(0).getTournamentName()
         return "errorPage";
     }
 
     @GetMapping("/login")
     public String login(Model model) {
-        //model.addAttribute("tournamentName","Dani");// tournamentRepository.findByTournamentName("Dani").get(0).getTournamentName()
         return "login";
     }
+
     @GetMapping("/match")
     public String match(Model model) {
-        //model.addAttribute("tournamentName","Dani");// tournamentRepository.findByTournamentName("Dani").get(0).getTournamentName()
         return "match";
     }
+
     @GetMapping("/register")
     public String register(Model model) {
-        //model.addAttribute("tournamentName","Dani");// tournamentRepository.findByTournamentName("Dani").get(0).getTournamentName()
         return "register";
     }
+
     @GetMapping("/tournament")
     public String tournament(Model model) {
-        //model.addAttribute("tournamentName","Dani");// tournamentRepository.findByTournamentName("Dani").get(0).getTournamentName()
         return "tournament";
     }
+
     @GetMapping("/user_profile")
     public String user_profile(Model model) {
-        //model.addAttribute("tournamentName","Dani");// tournamentRepository.findByTournamentName("Dani").get(0).getTournamentName()
-        return "users-profile";
+        return "user_profile";
     }
 
-
-    
-
+    @GetMapping("/admin")
+    public String admin(Model model) {
+        return "admin";
+    }
    
-
-    
-
-
-
-    
 }

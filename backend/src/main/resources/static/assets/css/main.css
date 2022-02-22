@@ -207,25 +207,6 @@ header .navbar {
     padding: 16px 0px;
 }
 
-.background-header .navbar {
-    padding: 17px 0px;
-}
-
-.background-header {
-    top: 0;
-    position: fixed;
-    background-color: #fff;
-    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
-}
-
-.background-header .navbar-brand h2 {
-    color: #121212;
-}
-
-.background-header .header-nav a.nav-link {
-    color: #121212;
-}
-
 .navbar-brand {
     float: left;
     outline: none;
@@ -313,6 +294,7 @@ header .navbar {
 .header-nav .messages .message-item {
     padding: 15px 10px;
     transition: 0.3s;
+    width: 250px;
 }
 
 .header-nav .messages .message-item a {
@@ -371,60 +353,6 @@ header .navbar {
 
 .header-nav .profile .dropdown-item:hover {
     background-color: #333333;
-}
-
-
-/*--------------------------------------------------------------
-# Header-nav background-header
---------------------------------------------------------------*/
-
-.background-header .header-nav .messages .message-item h4 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 5px;
-    color: #121212;
-}
-
-.background-header .header-nav .messages .message-item p {
-    font-size: 13px;
-    margin-bottom: 3px;
-    color: #121212;
-}
-
-.background-header .header-nav .messages .message-item:hover {
-    background-color: #eee;
-}
-
-.background-header .header-nav .profile {
-    min-width: 240px;
-    padding-bottom: 0;
-}
-
-.background-header .header-nav .profile .dropdown-header h6 {
-    font-size: 18px;
-    margin-bottom: 0;
-    font-weight: 600;
-    color: #121212;
-}
-
-.background-header .header-nav .profile .dropdown-header span {
-    font-size: 14px;
-}
-
-.background-header .header-nav .profile .dropdown-item {
-    font-size: 14px;
-    padding: 10px 15px;
-    transition: 0.3s;
-}
-
-.background-header .header-nav .profile .dropdown-item i {
-    margin-right: 10px;
-    font-size: 18px;
-    line-height: 0;
-}
-
-.background-header .header-nav .profile .dropdown-item:hover {
-    background-color: #eee;
 }
 
 
@@ -751,10 +679,6 @@ Admin search
     box-shadow: 0 5px 30px 0 rgba(82, 63, 105, 0.2);
 }
 
-.background-header .dropdown-menu {
-    background-color: #fff;
-}
-
 .dropdown-menu .dropdown-header,
 .dropdown-menu .dropdown-footer {
     text-align: center;
@@ -764,10 +688,6 @@ Admin search
 
 .dropdown-header {
     color: #fff;
-}
-
-.background-header .dropdown-header {
-    color: #121212;
 }
 
 .dropdown-menu .dropdown-footer a {
@@ -790,10 +710,6 @@ Admin search
     color: #fff;
     padding: 10px 15px;
     transition: 0.3s;
-}
-
-.background-header .dropdown-menu .dropdown-item {
-    color: #121212;
 }
 
 .dropdown-menu .dropdown-item i {
@@ -823,9 +739,6 @@ Admin search
         transform: rotate(45deg);
         border-top: 2px solid #67d400;
         border-left: 2px solid #67d400;
-    }
-    .background-header .dropdown-menu-arrow::before {
-        background: #fff;
     }
 }
 

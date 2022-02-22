@@ -26,7 +26,7 @@
   {{>header}} <!--Header-->
 
   <!-- Page Content -->
-  <!-- Banner Starts Here -->
+  <!-- Banner Starts Here 
   <div class="banner header-text">
     <div class="banner-item-01">
       <div class="container">
@@ -34,121 +34,121 @@
       </div>
     </div>
   </div>
-  <!-- Banner Ends Here -->
+   Banner Ends Here -->
 
-  <div class="container" style="margin-top: 15px;">
+  <div class="container main-tournament">
 
-  <div class="card">
-    <div class="card-body pt-3">
-      <!-- Bordered Tabs -->
-      <ul class="nav nav-tabs nav-tabs-bordered">
+    <div class="card">
+      <div class="card-body pt-3">
+        <!-- Bordered Tabs -->
+        <ul class="nav nav-tabs nav-tabs-bordered">
 
-        <li class="nav-item">
-          <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Jugadores</button>
-        </li>
+          <li class="nav-item">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Jugadores</button>
+          </li>
 
-        <li class="nav-item">
-          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Torneos</button>
-        </li>
+          <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Torneos</button>
+          </li>
 
 
 
-      </ul>
+        </ul>
 
-      <div class="topnav d-flex justify-content-center">
-        <div class="search-container">
-          <form action="/action_page.php">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit"><i class="ri-search-line"></i></button>
-          </form>
+        <div class="topnav d-flex justify-content-center">
+          <div class="search-container">
+            <form action="/action_page.php">
+              <input type="text" placeholder="Search.." name="search">
+              <button type="submit"><i class="ri-search-line"></i></button>
+            </form>
+          </div>
         </div>
+        
+        <div class="tab-content pt-2">
+
+          <!--Player finder-->
+          <div class="tab-pane fade show active profile-overview" id="profile-overview">
+
+            <div class="card text-center">
+              <div class="card-body profile-card pt-2 d-flex flex-column justify-content-center">
+                <h2 class="mt-2 mb-1">Usuarios encontrados</h2>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="d-flex lineUser">
+                      <div><img src="assets/images/profile-img.jpg" alt="Profile" class="userFinder "></div>
+                      <span class="d-flex align-items-center partner-name">Kevin Anderson</span>
+                      <a href="#" class="btn btn-danger binUsers"  title="Perma delate users"><i class="ri-delete-bin-fill" ></i></a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="d-flex lineUser">
+                      <div ><img src="assets/images/team_01.jpg" alt="Profile" class="userFinder"></div>
+                      <span class="d-flex align-items-center partner-name">Paco Navarro</span>
+                      <a href="#" class="btn btn-danger binUsers"  title="Perma delate users"><i class="ri-delete-bin-fill" ></i></a>
+                    </div>
+                  </div>
+                </div>  
+              </div>
+
+              <div class="center">
+                <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#" class="active">1</a>
+                <a href="#" >2</a>
+                <a href="#">&raquo;</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Tournament finder-->
+          <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+            <div class="card text-center">
+              <div class="card-body profile-card pt-2 d-flex flex-column justify-content-center">
+                <h2 class="mt-2 mb-1">Torneos encontrados</h2>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="d-flex lineTournament">
+                      <div><img src="assets/images/copa-default.jpg" alt="Torunament" class="tournamentFinder "></div>
+                      <span class="d-flex align-items-center partner-name">Copa piston</span>
+                      <a href="#" class="btn btn-danger binTournament"  title="Perma delate tournament"><i class="ri-delete-bin-fill" ></i></a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="d-flex lineTournament">
+                      <div><img src="assets/images/copa-default.jpg" alt="Torunament" class="tournamentFinder "></div>
+                      <span class="d-flex align-items-center partner-name">Copa Arcoiris</span>
+                      <a href="#" class="btn btn-danger binTournament"  title="Perma delate tournament"><i class="ri-delete-bin-fill" ></i></a>
+                    </div>
+                  </div>
+                </div>
+
+
+              <div class="center">
+                <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#" class="active">1</a>
+                <a href="#" >2</a>
+                <a href="#">&raquo;</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+
+        </div><!-- End Bordered Tabs -->
+
       </div>
-      
-      <div class="tab-content pt-2">
-
-        <!--Player finder-->
-        <div class="tab-pane fade show active profile-overview" id="profile-overview">
-
-          <div class="card text-center">
-            <div class="card-body profile-card pt-2 d-flex flex-column justify-content-center">
-              <h2 class="mb-1">Usuarios encontrados</h2>
-
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="d-flex lineUser">
-                    <div><img src="assets/images/profile-img.jpg" alt="Profile" class="userFinder "></div>
-                    <span class="d-flex align-items-center partner-name">Kevin Anderson</span>
-                    <a href="#" class="btn btn-danger binUsers"  title="Perma delate users"><i class="ri-delete-bin-fill" ></i></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="d-flex lineUser">
-                    <div ><img src="assets/images/team_01.jpg" alt="Profile" class="userFinder"></div>
-                    <span class="d-flex align-items-center partner-name">Paco Navarro</span>
-                    <a href="#" class="btn btn-danger binUsers"  title="Perma delate users"><i class="ri-delete-bin-fill" ></i></a>
-                  </div>
-                </div>
-              </div>  
-            </div>
-
-            <div class="center">
-              <div class="pagination">
-              <a href="#">&laquo;</a>
-              <a href="#" class="active">1</a>
-              <a href="#" >2</a>
-              <a href="#">&raquo;</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!--Tournament finder-->
-        <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-          <div class="card text-center">
-            <div class="card-body profile-card pt-2 d-flex flex-column justify-content-center">
-              <h2 class="mb-1">Torneos encontrados</h2>
-
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="d-flex lineTournament">
-                    <div><img src="assets/images/copa-default.jpg" alt="Torunament" class="tournamentFinder "></div>
-                    <span class="d-flex align-items-center partner-name">Copa piston</span>
-                    <a href="#" class="btn btn-danger binTournament"  title="Perma delate tournament"><i class="ri-delete-bin-fill" ></i></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="d-flex lineTournament">
-                    <div><img src="assets/images/copa-default.jpg" alt="Torunament" class="tournamentFinder "></div>
-                    <span class="d-flex align-items-center partner-name">Copa Arcoiris</span>
-                    <a href="#" class="btn btn-danger binTournament"  title="Perma delate tournament"><i class="ri-delete-bin-fill" ></i></a>
-                  </div>
-                </div>
-              </div>
-
-
-            <div class="center">
-              <div class="pagination">
-              <a href="#">&laquo;</a>
-              <a href="#" class="active">1</a>
-              <a href="#" >2</a>
-              <a href="#">&raquo;</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
-
-      </div><!-- End Bordered Tabs -->
-
     </div>
   </div>
-</div>
 
 
 
@@ -158,7 +158,6 @@
 
 
   <!-- Additional Scripts -->
-  <script src="assets/js/custom.js"></script>
   <script src="assets/js/main.js"></script>
 
 
