@@ -33,7 +33,6 @@ public class indexController {
 			model.addAttribute("logged", true);
 			model.addAttribute("userName", principal.getName());
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
-
 		} else {
 			model.addAttribute("logged", false);
 		}
