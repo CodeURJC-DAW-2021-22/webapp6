@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity(name = "UserTable")
 public class User {
@@ -15,8 +16,25 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
 	private String name;
+	// private String email;
+	// private String realName;
+	// private String location;
+	// private String country;
+	// private int phone;
+	// private int numWins;
+	// private int numLoses;
+	// private int numPlayed;
+	// private int karma;
+
+	
+	// private List<Tournament> myTournaments;
+
+	// @ManyToMany
+	// private List<Team> teams;
+
+
+	//Profile Img To Do
 
 	private String encodedPassword;
 
@@ -47,6 +65,102 @@ public class User {
 	public void setEncodedPassword(String encodedPassword) {
 		this.encodedPassword = encodedPassword;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	// public String getEmail() {
+	// 	return email;
+	// }
+
+	// public void setEmail(String email) {
+	// 	this.email = email;
+	// }
+
+	// public String getRealName() {
+	// 	return realName;
+	// }
+
+	// public void setRealName(String realName) {
+	// 	this.realName = realName;
+	// }
+
+	// public String getLocation() {
+	// 	return location;
+	// }
+
+	// public void setLocation(String location) {
+	// 	this.location = location;
+	// }
+
+	// public String getCountry() {
+	// 	return country;
+	// }
+
+	// public void setCountry(String country) {
+	// 	this.country = country;
+	// }
+
+	// public int getPhone() {
+	// 	return phone;
+	// }
+
+	// public void setPhone(int phone) {
+	// 	this.phone = phone;
+	// }
+
+	// public List<Tournament> getMyTournaments() {
+	// 	return myTournaments;
+	// }
+
+	// public void setMyTournaments(List<Tournament> myTournaments) {
+	// 	this.myTournaments = myTournaments;
+	// }
+
+	// public List<Team> getTeams() {
+	// 	return teams;
+	// }
+
+	// public void setMyPartners(List<Team> teams) {
+	// 	this.teams = teams;
+	// }
+
+	// public int getNumWins() {
+	// 	return numWins;
+	// }
+
+	// public void setNumWins(int numWins) {
+	// 	this.numWins = numWins;
+	// }
+
+	// public int getNumLoses() {
+	// 	return numLoses;
+	// }
+
+	// public void setNumLoses(int numLoses) {
+	// 	this.numLoses = numLoses;
+	// }
+
+	// public int getNumPlayed() {
+	// 	return numPlayed;
+	// }
+
+	// public void setNumPlayed(int numPlayed) {
+	// 	this.numPlayed = numPlayed;
+	// }
+
+	// public int getKarma() {
+	// 	return karma;
+	// }
+
+	// public void setKarma(int karma) {
+	// 	this.karma = karma;
+	// }
 
 	public List<String> getRoles() {
 		return roles;

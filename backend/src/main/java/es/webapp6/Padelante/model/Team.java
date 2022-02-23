@@ -1,9 +1,13 @@
 package es.webapp6.Padelante.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
 
 @Entity
 public class Team {
@@ -11,6 +15,10 @@ public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+	// @ManyToMany(mappedBy="Team")
+	// private List<User> players;
+
 
     private String data; //just to add and atributte and check the below methods
     

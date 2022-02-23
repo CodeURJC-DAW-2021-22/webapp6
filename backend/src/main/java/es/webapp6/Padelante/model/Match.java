@@ -18,12 +18,6 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    //this two var commented, if I descommented the project doesnt work
-    //private ArrayList<Integer> result; //To be defined correctly   
-    //private Date dateOfMatch;
-    private String data; //just to try easily, in the future it can be eliminated
-    //private Team winnerTeam; 
-
     @ManyToOne 
     private Team teamOne;
 
@@ -32,6 +26,13 @@ public class Match {
 
     @ManyToOne
     Tournament tournament; // Needs to be in Constructor?
+    
+
+    //this var commented, if I descommented the project doesnt work
+    //private ArrayList<Integer> result; //To be defined correctly   
+    //private Date dateOfMatch;
+    //private Team winnerTeam; 
+    private String data; //just to try easily, in the future it can be eliminated
 
     public Match() {
 		super();
