@@ -48,8 +48,18 @@ public class indexController {
     }
 
     @GetMapping("/create_tournament")
-    public String createTournamentPage(Model model) {
-        return "create_tournament";
+    public String createTournamentPage(Model model,HttpServletRequest request) {
+
+        Principal principal = request.getUserPrincipal();
+
+		if (principal != null) {
+
+			return "create_tournament";
+		} else {
+			return "login";
+		}
+
+        
     }
 
     @PostMapping("/create_tournament")
