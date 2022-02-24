@@ -10,14 +10,14 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
     <title>Padelante - Crea torneos propios</title>
-    <link rel="icon" href="assets/images/icon.png">
+    <link rel="icon" href="/assets/images/icon.png">
 
     <!-- Bootstrap core CSS -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/vendor/remixicon/remixicon.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/vendor/remixicon/remixicon.css">
 
 </head>
 
@@ -60,9 +60,9 @@
                 <div class="col-md-4">
                     <div class="product-item">
                         <!-- select image from DB when necessary-->                     
-                        <a href="/tournament"><img class="img-lista-torneos" src="assets/images/product_01.jpg" alt=""></a>
+                        <a href="/tourns/{{id}}"><img class="img-lista-torneos" src="assets/images/product_01.jpg" alt=""></a>
                         <div class="down-content text-center">
-                            <a href="/tournament">
+                            <a href="/tourns/{{id}}">
                                 <h4>{{tournamentName}}</h4> <!-- tournamentName-->
                             </a>                           
                             <span>{{numParticipants}} equipos</span> <!-- numParticipants-->

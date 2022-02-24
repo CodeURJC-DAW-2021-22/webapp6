@@ -2,6 +2,7 @@ package es.webapp6.Padelante.controller;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,8 +42,8 @@ public class indexController {
 	
     @GetMapping("/")
     public String greeting(Model model) {     
-        List<Tournament> tourns = tournamentService.getTournaments();      
-        model.addAttribute("tourns",tourns);// tournamentRepository.findByTournamentName("Dani").get(0).getTournamentName()
+      
+        model.addAttribute("tourns",tournamentService.findAll());// tournamentRepository.findByTournamentName("Dani").get(0).getTournamentName()
         return "main";
     }
 
@@ -90,5 +92,19 @@ public class indexController {
     public String admin(Model model) {
         return "admin";
     }
+
+
+    @GetMapping("/tourns/{id}")
+	public String showTournament(Model model, @PathVariable long id) {
+
+		Optional<Tournament> tournament = tournamentService.findById(id);
+		if (tournament.isPresent()) {
+			model.addAttribute("tourns", tournament.get());
+			return "tournament";
+		} else {
+			return "main";
+		}
+
+	}
    
 }

@@ -2,6 +2,8 @@ package es.webapp6.Padelante.service;
 
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import es.webapp6.Padelante.model.Tournament;
@@ -24,6 +26,25 @@ public class TournamentService {
         tournaments.save(t1);
     }
 
+	public Optional<Tournament> findById(long id) {
+		return tournaments.findById(id);
+	}
+	
+	public boolean exist(long id) {
+		return tournaments.existsById(id);
+	}
+
+	public List<Tournament> findAll() {
+		return tournaments.findAll();
+	}
+
+	public void save(Tournament tourn) {
+		tournaments.save(tourn);
+	}
+
+	public void delete(long id) {
+		tournaments.deleteById(id);
+	}
 
 	// public ResponseEntity<Tournament> getTournament(@PathVariable long id) {
 
