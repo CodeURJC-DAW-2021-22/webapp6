@@ -23,6 +23,11 @@ public class Tournament {
     private String format;
     private String tournamentImage;
 
+    // @Lob //for the image
+	// private Blob imageFile;
+
+	// private boolean image;
+
     public Tournament() {
         super();
     }
@@ -128,6 +133,21 @@ public class Tournament {
         this.tournamentImage = tournamentImage;
     }
 
-    
+
+    // public Blob getImageFile() {
+	// 	return imageFile;
+	// }
+
+	// public void setImageFile(Blob image) {
+	// 	this.imageFile = image;
+	// }
+
+	// public boolean getImage(){
+	// 	return this.image;
+	// }
+
+	// public void setImage(boolean image){
+	// 	this.image = image;
+	// }
 
 }

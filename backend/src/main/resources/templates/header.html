@@ -22,6 +22,7 @@
                                 <!-- End error page Icon -->
                             {{/logged}}
 
+                            {{#admin}}
                             <li class="nav-item dropdown">
     
                                 <a class="nav-link nav-icon" href="/admin">
@@ -30,7 +31,7 @@
                                 </a>
                                 <!-- End Admin Icon -->
     
-                            </li>
+                            </li>{{/admin}}
                             <!-- End Admin Nav -->
 
                             {{#logged}}
@@ -79,7 +80,7 @@
     
                                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                                     <li class="dropdown-header">
-                                        <h6>Rubén-DAW</h6>
+                                        <h6>{{userName}}</h6>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
