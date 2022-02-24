@@ -23,5 +23,9 @@ public class UserService {
         userRepository.save(new User(userName, passwordEncoder.encode(encodedPassword), "USER"));
 
     }
+
+    public void save(User user) {
+		userRepository.save(user);
+	}
     
 }

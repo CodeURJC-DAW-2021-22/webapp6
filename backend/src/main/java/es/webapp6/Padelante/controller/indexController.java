@@ -6,9 +6,12 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.catalina.User;
+import org.hibernate.annotations.SourceType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StopWatch;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,13 +20,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import es.webapp6.Padelante.model.Tournament;
+import es.webapp6.Padelante.repositories.UserRepository;
 import es.webapp6.Padelante.service.TournamentService;
+import es.webapp6.Padelante.service.UserService;
 
 @Controller
 public class indexController {
     
     @Autowired
 	private TournamentService tournamentService;	
+
+    @Autowired
+	private UserService userService;	
 
     @ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -41,10 +49,9 @@ public class indexController {
 	}
 	
     @GetMapping("/")
-    public String greeting(Model model) {     
-      
-        model.addAttribute("tourns",tournamentService.findAll());// tournamentRepository.findByTournamentName("Dani").get(0).getTournamentName()
-        return "main";
+    public String greeting(Model model) {         
+        model.addAttribute("tourns",tournamentService.findAll());
+       return "main";
     }
 
     @GetMapping("/create_tournament")
@@ -73,10 +80,7 @@ public class indexController {
         return "errorPage";
     }
 
-    @GetMapping("/login")
-    public String login(Model model) {
-        return "login";
-    }
+   
 
     @GetMapping("/match")
     public String match(Model model) {
@@ -86,6 +90,13 @@ public class indexController {
     @GetMapping("/register")
     public String register(Model model) {
         return "register";
+    }
+
+    @PostMapping("/register")
+    public String newRegister(Model model, @RequestParam String name, @RequestParam String encodedPassword){
+        userService.registerNewUser(name, encodedPassword);
+        
+        return "redirect:/";
     }
 
     @GetMapping("/tournament")
