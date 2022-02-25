@@ -25,6 +25,7 @@ import org.springframework.http.HttpHeaders;
 
 
 import es.webapp6.Padelante.model.Tournament;
+import es.webapp6.Padelante.model.User;
 import es.webapp6.Padelante.service.TournamentService;
 import es.webapp6.Padelante.service.UserService;
 
@@ -41,6 +42,7 @@ public class indexController {
 	public void addAttributes(Model model, HttpServletRequest request) {
 
 		Principal principal = request.getUserPrincipal();
+		
 
 		if (principal != null) {
 
@@ -124,8 +126,9 @@ public class indexController {
     }
 
     @PostMapping("/register")
-    public String newRegister(Model model, @RequestParam String name, @RequestParam String encodedPassword){
-        userService.registerNewUser(name, encodedPassword);
+    public String newRegister(Model model, @RequestParam String name, @RequestParam String encodedPassword,@RequestParam String email,
+	@RequestParam String realName){
+        userService.registerNewUser(name, encodedPassword,email,realName);
         return "redirect:/";
     }
 
@@ -136,6 +139,7 @@ public class indexController {
 
     @GetMapping("/user_profile")
     public String user_profile(Model model) {
+		//Optional<User> user = userService.findByName("user");
         return "user_profile";
     }
 

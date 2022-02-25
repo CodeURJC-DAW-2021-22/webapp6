@@ -79,8 +79,8 @@ public class ExamplesGenerator {
 		matchRepository.save(m2);
 		matchRepository.save(m3);
 
-		userRepository.save(new User("user", passwordEncoder.encode("pass"), "USER"));
-		userRepository.save(new User("admin", passwordEncoder.encode("adminpass"), "USER", "ADMIN"));
+		userRepository.save(new User("user", passwordEncoder.encode("pass"),"user@correo.com","User", "USER"));
+		userRepository.save(new User("admin", passwordEncoder.encode("adminpass"),"admin@correo.com","Admin", "USER", "ADMIN"));
 				
 		List<Tournament> tournaments = tournamentRepository.getTournaments(t1);
 		
