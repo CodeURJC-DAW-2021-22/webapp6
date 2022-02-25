@@ -28,12 +28,13 @@
                   </div>
 
 
-                  <form class="row g-3 needs-validation" novalidate action="create_tournament" method="post">
+                  <form class="row g-3 needs-validation" novalidate action="create_tournament" method="post" enctype="multipart/form-data">
 
                     <div class="col-12">
                       <label for="tournamentImage" class="form-label">Imagen del torneo</label>
                       <div class="tournament-img">
-                        <img src="assets/images/icon.png" alt="Profile">
+                        <input type='file' name='imageField' accept=".jpg, .jpeg" />
+                        <!-- <img src="assets/images/icon.png" alt="Profile"> -->
                       </div>  
                       <div class="pt-2">
                         <a href="#" class="btn btn-green btn-sm" title="Upload new profile image"><i class="ri-upload-2-fill"></i></a>

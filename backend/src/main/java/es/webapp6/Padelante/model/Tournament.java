@@ -1,10 +1,12 @@
 package es.webapp6.Padelante.model;
 
+import java.sql.Blob;
 import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 public class Tournament {
@@ -21,7 +23,14 @@ public class Tournament {
     private Date inscriptionDate;
     private Date startDate;
     private String format;
-    private String tournamentImage;
+   
+
+    @Lob
+	private Blob imageFile;
+
+	private boolean image;
+
+    
 
 
     public Tournament() {
@@ -30,7 +39,7 @@ public class Tournament {
 
     public Tournament(String tournamentName, int numParticipants
     // String about,String ruleset,String location,Date inscriptionDate,
-    //     Date startDate,String format,String tournamentImage
+    //     Date startDate,String format
         ) {
                 super();
                 this.tournamentName=tournamentName;
@@ -41,7 +50,7 @@ public class Tournament {
                 // this.inscriptionDate=inscriptionDate;
                 // this.startDate=startDate;
                 // this.format=format;
-                // this.tournamentImage=tournamentImage;
+              
     }
 
     @Override
@@ -73,60 +82,68 @@ public class Tournament {
         this.numParticipants = numParticipants;
     }
 
-    public String getAbout() {
-        return about;
-    }
+    // public String getAbout() {
+    //     return about;
+    // }
 
-    public void setAbout(String about) {
-        this.about = about;
-    }
+    // public void setAbout(String about) {
+    //     this.about = about;
+    // }
 
-    public String getRuleset() {
-        return ruleset;
-    }
+    // public String getRuleset() {
+    //     return ruleset;
+    // }
 
-    public void setRuleset(String ruleset) {
-        this.ruleset = ruleset;
-    }
+    // public void setRuleset(String ruleset) {
+    //     this.ruleset = ruleset;
+    // }
 
-    public String getLocation() {
-        return location;
-    }
+    // public String getLocation() {
+    //     return location;
+    // }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
+    // public void setLocation(String location) {
+    //     this.location = location;
+    // }
 
-    public Date getInscriptionDate() {
-        return inscriptionDate;
-    }
+    // public Date getInscriptionDate() {
+    //     return inscriptionDate;
+    // }
 
-    public void setInscriptionDate(Date inscriptionDate) {
-        this.inscriptionDate = inscriptionDate;
-    }
+    // public void setInscriptionDate(Date inscriptionDate) {
+    //     this.inscriptionDate = inscriptionDate;
+    // }
 
-    public Date getStartDate() {
-        return startDate;
-    }
+    // public Date getStartDate() {
+    //     return startDate;
+    // }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
+    // public void setStartDate(Date startDate) {
+    //     this.startDate = startDate;
+    // }
 
-    public String getFormat() {
-        return format;
-    }
+    // public String getFormat() {
+    //     return format;
+    // }
 
-    public void setFormat(String format) {
-        this.format = format;
-    }
+    // public void setFormat(String format) {
+    //     this.format = format;
+    // }
 
-    public String getTournamentImage() {
-        return tournamentImage;
-    }
+    public Blob getImageFile() {
+		return imageFile;
+	}
 
-    public void setTournamentImage(String tournamentImage) {
-        this.tournamentImage = tournamentImage;
-    }
+	public void setImageFile(Blob image) {
+		this.imageFile = image;
+	}
+
+	public boolean getImage(){
+		return this.image;
+	}
+
+	public void setImage(boolean image){
+		this.image = image;
+	}
 
 }

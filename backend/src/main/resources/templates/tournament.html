@@ -1,28 +1,43 @@
-{{>stylesheets}} <!-- Css imports and more -->
+{{>stylesheets}}
+<!-- Css imports and more -->
 
 <body class="bg-232323">
 
-  {{>header}} <!--Header-->
+  {{>header}}
+  <!--Header-->
 
   <!-- Page Content -->
-  
-  <main class= "container main-tournament tournament">
-    
+
+  <main class="container main-tournament tournament">
+
     <section class="card tournament-card">
       <div class="d-flex justify-content-between">
         <div class="d-flex flex-row">
           <div class="tournament-img p-3">
-            <img src="/assets/images/icon.png" alt="Tournament Image" class="rounded-circle border-green bg-232323">
+
+
+            {{#tourns.image}}
+            <img src="/tourns/{{tourns.id}}/image">
+            {{/tourns.image}}
+
+            {{^tourns.image}}
+            <img src="/assets/images/product_01.jpg">
+            {{/tourns.image}}
+
+
+            <!-- <img src="/assets/images/icon.png" alt="Tournament Image" class="rounded-circle border-green bg-232323"> -->
           </div>
           <div class="d-flex align-items-center ps-2">
             <div>
               <h2 class="mt-0">{{tourns.tournamentName}}</h2>
               <h3 class="d-flex align-items-center pt-2"><em>Organizador:</em>
-                <img src="/assets/images/profile-img.jpg" alt="Profile" class="tournament-img rounded-circle border-green-tiny small ms-2 me-1">
+                <img src="/assets/images/profile-img.jpg" alt="Profile"
+                  class="tournament-img rounded-circle border-green-tiny small ms-2 me-1">
                 Kevin Anderson
               </h3>
               <div class="progress my-2">
-                <div class="progress-bar bg-green" role="progressbar" style="width: 12.5%" aria-valuenow="4" aria-valuemin="0" aria-valuemax="32"></div>
+                <div class="progress-bar bg-green" role="progressbar" style="width: 12.5%" aria-valuenow="4"
+                  aria-valuemin="0" aria-valuemax="32"></div>
               </div>
               <h5>Participantes: 4/32<span class="ps-5">Madrid</span></h5>
             </div>
@@ -42,7 +57,8 @@
               <a class="button btn-tournament upper-text my-1" href="#"><i class="ri-heart-3-fill pe-1"></i> Seguir</a>
             </div> -->
             <div class="d-flex justify-content-end">
-              <a class="d-inline button btn-tournament upper-text my-1" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              <a class="d-inline button btn-tournament upper-text my-1" href="#" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop">
                 <i class="ri-edit-fill pe-1"></i> Incribirse
               </a>
             </div>
@@ -68,14 +84,16 @@
                         </form>
                       </div>
                     </div>
-            
+
                     <div class="row">
                       <div class="col-md-12">
                         <div class="d-flex align-items-center justify-content-between lineUser">
                           <div class="pe-2">
-                            <img src="/assets/images/profile-img.jpg" alt="Profile" class="partner-img rounded-circle border-green-tiny small me-2" >Kevin Ander
+                            <img src="/assets/images/profile-img.jpg" alt="Profile"
+                              class="partner-img rounded-circle border-green-tiny small me-2">Kevin Ander
                           </div>
-                          <a href="#" class="btn addUser me-2 fw-bold" title="add partner"><i class="ri-add-line"></i></a>
+                          <a href="#" class="btn addUser me-2 fw-bold" title="add partner"><i
+                              class="ri-add-line"></i></a>
                         </div>
                       </div>
                     </div>
@@ -100,23 +118,28 @@
         <ul class="nav nav-tabs nav-tabs-bordered">
 
           <li class="nav-item">
-            <button class="nav-link active d-flex align-items-center" data-bs-toggle="tab" data-bs-target="#tournament-info"><i class="ri-information-fill pe-2"></i>Información</button>
+            <button class="nav-link active d-flex align-items-center" data-bs-toggle="tab"
+              data-bs-target="#tournament-info"><i class="ri-information-fill pe-2"></i>Información</button>
           </li>
 
           <li class="nav-item">
-            <button class="nav-link d-flex align-items-center" data-bs-toggle="tab" data-bs-target="#tournament-bracket"><i class="ri-organization-chart pe-2"></i>Bracket</button>
+            <button class="nav-link d-flex align-items-center" data-bs-toggle="tab"
+              data-bs-target="#tournament-bracket"><i class="ri-organization-chart pe-2"></i>Bracket</button>
           </li>
 
           <li class="nav-item">
-            <button class="nav-link d-flex align-items-center" data-bs-toggle="tab" data-bs-target="#league-matches"><i class="ri-organization-chart pe-2"></i>Jornadas</button>
+            <button class="nav-link d-flex align-items-center" data-bs-toggle="tab" data-bs-target="#league-matches"><i
+                class="ri-organization-chart pe-2"></i>Jornadas</button>
           </li>
 
           <li class="nav-item">
-            <button class="nav-link d-flex align-items-center" data-bs-toggle="tab" data-bs-target="#league-clasification"><i class="ri-organization-chart pe-2"></i>Clasificación</button>
+            <button class="nav-link d-flex align-items-center" data-bs-toggle="tab"
+              data-bs-target="#league-clasification"><i class="ri-organization-chart pe-2"></i>Clasificación</button>
           </li>
 
           <li class="nav-item">
-            <button class="nav-link d-flex align-items-center" data-bs-toggle="tab" data-bs-target="#tournament-settings"><i class="ri-settings-3-fill pe-2"></i>Ajustes admin</button>
+            <button class="nav-link d-flex align-items-center" data-bs-toggle="tab"
+              data-bs-target="#tournament-settings"><i class="ri-settings-3-fill pe-2"></i>Ajustes admin</button>
           </li>
 
         </ul>
@@ -124,70 +147,86 @@
           <!-- Tournament Info -->
           <div class="tab-pane fade show active profile-overview" id="tournament-info">
             <h5 class="card-title">Sobre el torneo</h5>
-            <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
+            <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus.
+              Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet
+              perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
 
             <h5 class="card-title">Reglamento</h5>
-            <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
-          
+            <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus.
+              Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet
+              perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
+
             <h5 class="card-title pb-1">Participantes</h5>
 
             <div class="row py-2 pair-tournament">
               <div class="col-md-11 d-flex justify-content-start align-items-center">
                 <div class="pe-2">
-                  <img src="/assets/images/profile-img.jpg" alt="Profile" class="partner-img rounded-circle border-green-tiny small me-2" >Kevin Ander
+                  <img src="/assets/images/profile-img.jpg" alt="Profile"
+                    class="partner-img rounded-circle border-green-tiny small me-2">Kevin Ander
                 </div>
                 <i class="ri-arrow-left-right-fill"></i>
                 <div class="ps-2">
-                  <img src="/assets/images/team_01.jpg" alt="Profile" class="partner-img rounded-circle border-green-tiny small me-2" >Paco Navarrito
+                  <img src="/assets/images/team_01.jpg" alt="Profile"
+                    class="partner-img rounded-circle border-green-tiny small me-2">Paco Navarrito
                 </div>
               </div>
               <div class="col-md-1 d-flex justify-content-end align-items-center">
-                <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="ri-delete-bin-fill"></i></a>
+                <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i
+                    class="ri-delete-bin-fill"></i></a>
               </div>
             </div>
 
             <div class="row py-2 pair-tournament">
               <div class="col-md-11 d-flex justify-content-start align-items-center">
                 <div class="pe-2">
-                  <img src="/assets/images/profile-img.jpg" alt="Profile" class="partner-img rounded-circle border-green-tiny small me-2" >Kevin Ander
+                  <img src="/assets/images/profile-img.jpg" alt="Profile"
+                    class="partner-img rounded-circle border-green-tiny small me-2">Kevin Ander
                 </div>
                 <i class="ri-arrow-left-right-fill"></i>
                 <div class="ps-2">
-                  <img src="/assets/images/team_01.jpg" alt="Profile" class="partner-img rounded-circle border-green-tiny small me-2" >Paco Navarrito
+                  <img src="/assets/images/team_01.jpg" alt="Profile"
+                    class="partner-img rounded-circle border-green-tiny small me-2">Paco Navarrito
                 </div>
               </div>
               <div class="col-md-1 d-flex justify-content-end align-items-center">
-                <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="ri-delete-bin-fill"></i></a>
-              </div>
-            </div>
-            
-            <div class="row py-2 pair-tournament">
-              <div class="col-md-11 d-flex justify-content-start align-items-center">
-                <div class="pe-2">
-                  <img src="/assets/images/profile-img.jpg" alt="Profile" class="partner-img rounded-circle border-green-tiny small me-2" >Kevin Ander
-                </div>
-                <i class="ri-arrow-left-right-fill"></i>
-                <div class="ps-2">
-                  <img src="/assets/images/team_01.jpg" alt="Profile" class="partner-img rounded-circle border-green-tiny small me-2" >Paco Navarrito
-                </div>
-              </div>
-              <div class="col-md-1 d-flex justify-content-end align-items-center">
-                <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="ri-delete-bin-fill"></i></a>
+                <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i
+                    class="ri-delete-bin-fill"></i></a>
               </div>
             </div>
 
             <div class="row py-2 pair-tournament">
               <div class="col-md-11 d-flex justify-content-start align-items-center">
                 <div class="pe-2">
-                  <img src="/assets/images/profile-img.jpg" alt="Profile" class="partner-img rounded-circle border-green-tiny small me-2" >Kevin Ander
+                  <img src="/assets/images/profile-img.jpg" alt="Profile"
+                    class="partner-img rounded-circle border-green-tiny small me-2">Kevin Ander
                 </div>
                 <i class="ri-arrow-left-right-fill"></i>
                 <div class="ps-2">
-                  <img src="/assets/images/team_01.jpg" alt="Profile" class="partner-img rounded-circle border-green-tiny small me-2" >Paco Navarrito
+                  <img src="/assets/images/team_01.jpg" alt="Profile"
+                    class="partner-img rounded-circle border-green-tiny small me-2">Paco Navarrito
                 </div>
               </div>
               <div class="col-md-1 d-flex justify-content-end align-items-center">
-                <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="ri-delete-bin-fill"></i></a>
+                <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i
+                    class="ri-delete-bin-fill"></i></a>
+              </div>
+            </div>
+
+            <div class="row py-2 pair-tournament">
+              <div class="col-md-11 d-flex justify-content-start align-items-center">
+                <div class="pe-2">
+                  <img src="/assets/images/profile-img.jpg" alt="Profile"
+                    class="partner-img rounded-circle border-green-tiny small me-2">Kevin Ander
+                </div>
+                <i class="ri-arrow-left-right-fill"></i>
+                <div class="ps-2">
+                  <img src="/assets/images/team_01.jpg" alt="Profile"
+                    class="partner-img rounded-circle border-green-tiny small me-2">Paco Navarrito
+                </div>
+              </div>
+              <div class="col-md-1 d-flex justify-content-end align-items-center">
+                <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i
+                    class="ri-delete-bin-fill"></i></a>
               </div>
             </div>
           </div>
@@ -195,7 +234,7 @@
           <div class="tab-pane fade pt-3" id="tournament-bracket">
             <!-- Tournament Bracket -->
             <div class="container pb-2">
-              <div class="tournament-bracket tournament-bracket--rounded">                                                     
+              <div class="tournament-bracket tournament-bracket--rounded">
                 <div class="tournament-bracket__round tournament-bracket__round--quarterfinals">
                   <h3 class="tournament-bracket__round-title">Cuartos de final</h3>
                   <ul class="tournament-bracket__list">
@@ -204,7 +243,7 @@
                         <table class="tournament-bracket__table">
                           <caption class="tournament-bracket__caption">
                             <time datetime="1998-02-18">18 February 1998</time>
-                          </caption>  
+                          </caption>
                           <tbody class="tournament-bracket__content">
                             <tr class="tournament-bracket__team tournament-bracket__team--winner">
                               <td class="tournament-bracket__team-name">
@@ -226,7 +265,7 @@
                         </table>
                       </div>
                     </li>
-            
+
                     <li class="tournament-bracket__item">
                       <div class="tournament-bracket__match" tabindex="0">
                         <table class="tournament-bracket__table">
@@ -281,7 +320,7 @@
                         </table>
                       </div>
                     </li>
-            
+
                     <li class="tournament-bracket__item">
                       <div class="tournament-bracket__match" tabindex="0">
                         <table class="tournament-bracket__table">
@@ -341,7 +380,7 @@
                         </table>
                       </div>
                     </li>
-            
+
                     <li class="tournament-bracket__item">
                       <div class="tournament-bracket__match" tabindex="0">
                         <table class="tournament-bracket__table">
@@ -387,7 +426,8 @@
                               </td>
                               <td class="tournament-bracket__score">
                                 <span class="tournament-bracket__number">3</span>
-                                <span class="tournament-bracket__medal tournament-bracket__medal--bronze fa fa-trophy" aria-label="Bronze medal"></span>
+                                <span class="tournament-bracket__medal tournament-bracket__medal--bronze fa fa-trophy"
+                                  aria-label="Bronze medal"></span>
                               </td>
                             </tr>
                             <tr class="tournament-bracket__team">
@@ -420,7 +460,8 @@
                               </td>
                               <td class="tournament-bracket__score">
                                 <span class="tournament-bracket__number">1</span>
-                                <span class="tournament-bracket__medal tournament-bracket__medal--gold fa fa-trophy" aria-label="Gold medal"></span>
+                                <span class="tournament-bracket__medal tournament-bracket__medal--gold fa fa-trophy"
+                                  aria-label="Gold medal"></span>
                               </td>
                             </tr>
                             <tr class="tournament-bracket__team">
@@ -429,7 +470,8 @@
                               </td>
                               <td class="tournament-bracket__score">
                                 <span class="tournament-bracket__number">0</span>
-                                <span class="tournament-bracket__medal tournament-bracket__medal--silver fa fa-trophy" aria-label="Silver medal"></span>
+                                <span class="tournament-bracket__medal tournament-bracket__medal--silver fa fa-trophy"
+                                  aria-label="Silver medal"></span>
                               </td>
                             </tr>
                           </tbody>
@@ -452,7 +494,7 @@
                   <table class="league-bracket__table">
                     <caption class="league-bracket__caption">
                       <time datetime="1998-02-18">18 February 1998</time>
-                    </caption>  
+                    </caption>
                     <tbody class="league-bracket__content">
                       <tr class="league-bracket__team league-bracket__team--winner">
                         <td class="league-bracket__team-name">
@@ -486,7 +528,7 @@
                   <table class="league-bracket__table">
                     <caption class="league-bracket__caption">
                       <time datetime="1998-02-18">18 February 1998</time>
-                    </caption>  
+                    </caption>
                     <tbody class="league-bracket__content">
                       <tr class="league-bracket__team league-bracket__team--winner">
                         <td class="league-bracket__team-name">
@@ -536,8 +578,10 @@
                 <div class="col-md-8 col-lg-9 tournament-img">
                   <img src="/assets/images/icon.png" alt="tournamentImage">
                   <div class="pt-2">
-                    <a href="#" class="btn btn-green btn-sm" title="Upload new profile image"><i class="ri-upload-2-fill"></i></a>
-                    <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="ri-delete-bin-fill"></i></a>
+                    <a href="#" class="btn btn-green btn-sm" title="Upload new profile image"><i
+                        class="ri-upload-2-fill"></i></a>
+                    <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i
+                        class="ri-delete-bin-fill"></i></a>
                   </div>
                 </div>
               </div>
@@ -552,14 +596,16 @@
               <div class="row mb-3">
                 <label for="about" class="col-md-4 col-lg-3 col-form-label">Sobre el torneo</label>
                 <div class="col-md-8 col-lg-9">
-                  <textarea name="about" class="form-control" id="about" style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
+                  <textarea name="about" class="form-control" id="about"
+                    style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
                 </div>
               </div>
 
               <div class="row mb-3">
                 <label for="ruleset" class="col-md-4 col-lg-3 col-form-label">Reglamento</label>
                 <div class="col-md-8 col-lg-9">
-                  <textarea name="ruleset" class="form-control" id="ruleset" style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
+                  <textarea name="ruleset" class="form-control" id="ruleset"
+                    style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
                 </div>
               </div>
 
@@ -588,14 +634,16 @@
               <div class="row mb-3">
                 <label for="inscription-date" class="col-md-4 col-lg-3 col-form-label">Fin de inscripciones</label>
                 <div class="col-md-8 col-lg-9">
-                  <input name="inscription-date" type="datetime-local" class="form-control" id="inscription-date" value="2022-02-20T17:00">
+                  <input name="inscription-date" type="datetime-local" class="form-control" id="inscription-date"
+                    value="2022-02-20T17:00">
                 </div>
               </div>
 
               <div class="row mb-3">
                 <label for="start-date" class="col-md-4 col-lg-3 col-form-label">Inicio del torneo</label>
                 <div class="col-md-8 col-lg-9">
-                  <input name="start-date" type="datetime-local" class="form-control" id="start-date" value="2022-02-21T17:00">
+                  <input name="start-date" type="datetime-local" class="form-control" id="start-date"
+                    value="2022-02-21T17:00">
                 </div>
               </div>
 
@@ -637,7 +685,7 @@
 
 
               <div class="text-center">
-                  <button class="btn btn-green fw-bold" type="submit">Guardar cambios</button>
+                <button class="btn btn-green fw-bold" type="submit">Guardar cambios</button>
               </div>
             </form><!-- End Profile Edit Form -->
 
@@ -649,4 +697,5 @@
     </div>
   </main>
 
-{{>javascripts}} <!-- JS and scripts -->
+  {{>javascripts}}
+  <!-- JS and scripts -->
