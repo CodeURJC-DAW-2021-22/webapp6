@@ -39,16 +39,16 @@
                 <div class="progress-bar bg-green" role="progressbar" style="width: 12.5%" aria-valuenow="4"
                   aria-valuemin="0" aria-valuemax="32"></div>
               </div>
-              <h5>Participantes: 4/32<span class="ps-5">Madrid</span></h5>
+              <h5>Participantes: 0/{{tourns.numParticipants}}<span class="ps-5">{{tourns.location}}</span></h5>
             </div>
           </div>
         </div>
         <div class="d-flex align-items-center justify-content-center p-2">
           <div class="text-center">
             <h3 class="py-1 date-title">Fin de inscripciones</h3>
-            <h3 class="py-1"><em>20/02/2022 17:00</em></h3>
+            <h3 class="py-1"><em>{{tourns.inscriptionDate}}</em></h3>
             <h3 class="py-1 date-title">Inicio del torneo</h3>
-            <h3 class="py-1"><em>21/02/2022 17:00</em></h3>
+            <h3 class="py-1"><em>{{tourns.startDate}}</em></h3>
           </div>
         </div>
         <div class="d-flex align-items-center justify-content-end p-2 pe-3">
@@ -147,14 +147,14 @@
           <!-- Tournament Info -->
           <div class="tab-pane fade show active profile-overview" id="tournament-info">
             <h5 class="card-title">Sobre el torneo</h5>
-            <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus.
-              Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet
-              perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
+            <p class="small fst-italic">
+              {{tourns.about}}
+            </p>
 
             <h5 class="card-title">Reglamento</h5>
-            <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus.
-              Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet
-              perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
+            <p class="small fst-italic">
+              {{tourns.ruleset}}
+            </p>
 
             <h5 class="card-title pb-1">Participantes</h5>
 

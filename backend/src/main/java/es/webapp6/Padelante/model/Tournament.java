@@ -37,19 +37,19 @@ public class Tournament {
         super();
     }
 
-    public Tournament(String tournamentName, int numParticipants
-    // String about,String ruleset,String location,Date inscriptionDate,
-    //     Date startDate,String format
+    public Tournament(String tournamentName, int numParticipants,
+    String about,String ruleset,String location,Date inscriptionDate,
+        Date startDate,String format
         ) {
                 super();
                 this.tournamentName=tournamentName;
                 this.numParticipants = numParticipants;
-                // this.about=about;
-                // this.ruleset = ruleset;
-                // this.location= location;
-                // this.inscriptionDate=inscriptionDate;
-                // this.startDate=startDate;
-                // this.format=format;
+                this.about=about;
+                this.ruleset = ruleset;
+                this.location= location;
+                this.inscriptionDate=inscriptionDate;
+                this.startDate=startDate;
+                this.format=format;
               
     }
 
@@ -82,53 +82,53 @@ public class Tournament {
         this.numParticipants = numParticipants;
     }
 
-    // public String getAbout() {
-    //     return about;
-    // }
+    public String getAbout() {
+        return about;
+    }
 
-    // public void setAbout(String about) {
-    //     this.about = about;
-    // }
+    public void setAbout(String about) {
+        this.about = about;
+    }
 
-    // public String getRuleset() {
-    //     return ruleset;
-    // }
+    public String getRuleset() {
+        return ruleset;
+    }
 
-    // public void setRuleset(String ruleset) {
-    //     this.ruleset = ruleset;
-    // }
+    public void setRuleset(String ruleset) {
+        this.ruleset = ruleset;
+    }
 
-    // public String getLocation() {
-    //     return location;
-    // }
+    public String getLocation() {
+        return location;
+    }
 
-    // public void setLocation(String location) {
-    //     this.location = location;
-    // }
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-    // public Date getInscriptionDate() {
-    //     return inscriptionDate;
-    // }
+    public Date getInscriptionDate() {
+        return inscriptionDate;
+    }
 
-    // public void setInscriptionDate(Date inscriptionDate) {
-    //     this.inscriptionDate = inscriptionDate;
-    // }
+    public void setInscriptionDate(Date inscriptionDate) {
+        this.inscriptionDate = inscriptionDate;
+    }
 
-    // public Date getStartDate() {
-    //     return startDate;
-    // }
+    public Date getStartDate() {
+        return startDate;
+    }
 
-    // public void setStartDate(Date startDate) {
-    //     this.startDate = startDate;
-    // }
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
 
-    // public String getFormat() {
-    //     return format;
-    // }
+    public String getFormat() {
+        return format;
+    }
 
-    // public void setFormat(String format) {
-    //     this.format = format;
-    // }
+    public void setFormat(String format) {
+        this.format = format;
+    }
 
     public Blob getImageFile() {
 		return imageFile;

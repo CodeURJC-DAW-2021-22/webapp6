@@ -80,7 +80,7 @@ public class indexController {
 
 
     @PostMapping("/create_tournament")
-	public String newBookProcess(Model model, Tournament tourna, MultipartFile imageField) throws IOException {
+	public String newTournamentProcess(Model model, Tournament tourna, MultipartFile imageField) throws IOException {
 
 		if (!imageField.isEmpty()) {
 			tourna.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
