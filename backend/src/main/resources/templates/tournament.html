@@ -21,7 +21,7 @@
             {{/tourns.image}}
 
             {{^tourns.image}}
-            <img src="/assets/images/product_01.jpg" alt="Tournament Image" class="rounded-circle border-green bg-232323">
+            <img src="/assets/images/product_02.jpg" alt="Tournament Image" class="rounded-circle border-green bg-232323">
             {{/tourns.image}}
 
 
@@ -33,7 +33,7 @@
               <h3 class="d-flex align-items-center pt-2"><em>Organizador:</em>
                 <img src="/assets/images/profile-img.jpg" alt="Profile"
                   class="tournament-img rounded-circle border-green-tiny small ms-2 me-1">
-                Kevin Anderson
+                {{tourns.owner}}
               </h3>
               <div class="progress my-2">
                 <div class="progress-bar bg-green" role="progressbar" style="width: 12.5%" aria-valuenow="4"
@@ -78,10 +78,12 @@
                   <div class="modal-body">
                     <div class="d-flex justify-content-center mb-2">
                       <div class="search-bar">
-                        <form class="search-form d-flex align-items-center" method="POST" action="#">
-                          <input type="text" name="query" placeholder="Introducir usuario" title="Introducir usuario">
+
+                        <form class="search-form d-flex align-items-center" method="POST" action="sing_up_tournament">
+                          <input type="text" name="searchTeamMate" placeholder="Introducir usuario" title="Introducir usuario">
                           <button type="submit" title="Search"><i class="ri-search-line"></i></button>
                         </form>
+
                       </div>
                     </div>
 

@@ -15,6 +15,7 @@ public class Tournament {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    private String owner;
     private String tournamentName; 
     private int numParticipants;
     private String about;
@@ -39,7 +40,7 @@ public class Tournament {
 
     public Tournament(String tournamentName, int numParticipants,
     String about,String ruleset,String location,Date inscriptionDate,
-        Date startDate,String format
+        Date startDate,String format, String owner
         ) {
                 super();
                 this.tournamentName=tournamentName;
@@ -50,6 +51,7 @@ public class Tournament {
                 this.inscriptionDate=inscriptionDate;
                 this.startDate=startDate;
                 this.format=format;
+                this.owner = owner;
               
     }
 
@@ -96,6 +98,14 @@ public class Tournament {
 
     public void setRuleset(String ruleset) {
         this.ruleset = ruleset;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public String getLocation() {

@@ -47,11 +47,11 @@ public class ExamplesGenerator {
 		Date fecha2 = new Date(116, 5,3);
 		Date fecha1 = new Date(116, 5,3);
 		
-		Tournament tournament = new Tournament("Torneo 11", 5,"About5","RulesSet","Madrid11",fecha1,fecha2,"Format");
-        Tournament tournament1= new Tournament("Torneo 22", 5,"About6","RulesSet","Madrid12",fecha1,fecha2,"Format");
-        Tournament tournament2= new Tournament("Torneo 33", 6,"About7","RulesSet","Madrid13",fecha1,fecha2,"Format");
-        Tournament tournament3= new Tournament("Torneo 44", 7,"About8","RulesSet","Madrid14",fecha1,fecha2,"Format");
-        Tournament tournament4= new Tournament("Torneo 55", 8,"About9","RulesSet","Madrid15",fecha1,fecha2,"Format");
+		Tournament tournament = new Tournament("Torneo 11", 5,"About5","RulesSet","Madrid11",fecha1,fecha2,"Format","user");
+        Tournament tournament1= new Tournament("Torneo 22", 5,"About6","RulesSet","Madrid12",fecha1,fecha2,"Format","user");
+        Tournament tournament2= new Tournament("Torneo 33", 6,"About7","RulesSet","Madrid13",fecha1,fecha2,"Format","user");
+        Tournament tournament3= new Tournament("Torneo 44", 7,"About8","RulesSet","Madrid14",fecha1,fecha2,"Format","user");
+        Tournament tournament4= new Tournament("Torneo 55", 8,"About9","RulesSet","Madrid15",fecha1,fecha2,"Format","user");
 		
 		tournamentRepository.save(tournament);
         tournamentRepository.save(tournament1);

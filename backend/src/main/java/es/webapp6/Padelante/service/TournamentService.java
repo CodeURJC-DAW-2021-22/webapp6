@@ -24,8 +24,8 @@ public class TournamentService {
 
     public void createTournament(String tournamentName, int numParticipants,
     String about,String ruleset,String location,Date inscriptionDate,
-        Date startDate,String format){
-        Tournament t1 = new Tournament(tournamentName, numParticipants,about,ruleset,location,inscriptionDate,startDate,format);
+        Date startDate,String format,String owner){
+        Tournament t1 = new Tournament(tournamentName, numParticipants,about,ruleset,location,inscriptionDate,startDate,format,owner);
         tournaments.save(t1);
     }
 
