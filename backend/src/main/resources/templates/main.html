@@ -40,14 +40,16 @@
                     <div class="product-item">
                         <!-- select image from DB when necessary-->  
                                            
-                        <a href="/tourns/{{id}}"><img class="img-lista-torneos" src="assets/images/product_01.jpg" alt=""></a>
-                        <!-- {{#tourns.image}}
-                            <img src="/tourns/{{tourns.id}}/image">
-                            {{/tourns.image}}
+                        <a href="/tourns/{{id}}">
+                            <!-- <img class="img-lista-torneos" src="assets/images/product_01.jpg" alt=""> -->
+                            {{#image}}
+                            <img src="/tourns/{{id}}/image">
+                            {{/image}}
                 
-                            {{^tourns.image}}
-                            <img src="/images/no_image.png">
-                            {{/tourns.image}} -->
+                            {{^image}}
+                            <img src="/assets/images/product_02.jpg">
+                            {{/image}}
+                        </a>
                 
                         <div class="down-content text-center">
                             <a href="/tourns/{{id}}">
