@@ -2,6 +2,7 @@ package es.webapp6.Padelante.controller;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Optional;
 
@@ -81,32 +82,28 @@ public class indexController {
     // }
 
 
+	//if we change this, we must know that the orden is important
     @PostMapping("/create_tournament")
-	public String newTournamentProcess(Model model, Tournament tourna, MultipartFile imageField) throws IOException {
+	public String newTournamentProcess(Model model,HttpServletRequest request, @RequestParam String tournamentName, 
+	@RequestParam int numParticipants, @RequestParam String about,
+	@RequestParam String ruleset, @RequestParam String location, @RequestParam String format,
+	 MultipartFile imageField) throws IOException {
+		//with the date not work
 
+		Principal principal = request.getUserPrincipal();
+
+		Date startDate = new Date(116, 5,3);
+		Date inscriptionDate = new Date(116, 5,3);
+		Tournament tournament5= new Tournament(tournamentName, numParticipants,about,ruleset,location,inscriptionDate,startDate,format,principal.getName());
 		if (!imageField.isEmpty()) {
-			tourna.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
-			tourna.setImage(true);
+			tournament5.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
+			tournament5.setImage(true);
 		}
-		tournamentService.save(tourna);
+		tournamentService.save(tournament5);
 		return "redirect:/";
 	}
 
-    @GetMapping("/tourns/{id}/image")
-	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
-
-		Optional<Tournament> tourna = tournamentService.findById(id);
-		if (tourna.isPresent() && tourna.get().getImageFile() != null) {
-
-			Resource file = new InputStreamResource(tourna.get().getImageFile().getBinaryStream());
-
-			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
-					.contentLength(tourna.get().getImageFile().length()).body(file);
-
-		} else {
-			return ResponseEntity.notFound().build();
-		}
-	}
+   
 
 
     @GetMapping("/errorPage")
@@ -161,6 +158,22 @@ public class indexController {
 		}
 
 	} 
+
+	@GetMapping("/tourns/{id}/image")
+	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
+
+		Optional<Tournament> tourna = tournamentService.findById(id);
+		if (tourna.isPresent() && tourna.get().getImageFile() != null) {
+
+			Resource file = new InputStreamResource(tourna.get().getImageFile().getBinaryStream());
+
+			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+					.contentLength(tourna.get().getImageFile().length()).body(file);
+
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
 
     // @GetMapping("/removeTourn/{id}")
 	// public String removeTournament(Model model, @PathVariable long id) {

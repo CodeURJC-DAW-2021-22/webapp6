@@ -2,10 +2,13 @@ package es.webapp6.Padelante.model;
 
 
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 
 
@@ -16,7 +19,7 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-	// @ManyToMany(mappedBy="Team")
+	// @ManyToMany(mappedBy="team")
 	// private List<User> players;
 
 
