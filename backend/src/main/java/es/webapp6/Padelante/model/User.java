@@ -35,10 +35,6 @@ public class User {
 	// @ManyToMany
 	// private List<Team> teams;
 
-	//this one
-	// @ManyToOne
-	// private Team team;
-
 
 	//Profile Img To Do
 

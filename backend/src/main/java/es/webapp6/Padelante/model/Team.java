@@ -19,7 +19,7 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-	// @ManyToMany(mappedBy="team")
+	// @ManyToMany(mappedBy="teams")
 	// private List<User> players;
 
 
