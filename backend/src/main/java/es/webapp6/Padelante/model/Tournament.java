@@ -1,7 +1,10 @@
 package es.webapp6.Padelante.model;
 
 import java.sql.Blob;
-import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -116,20 +119,26 @@ public class Tournament {
         this.location = location;
     }
 
-    public Date getInscriptionDate() {
-        return inscriptionDate;
+    public String getInscriptionDate() {
+        DateFormat formatter = new SimpleDateFormat("hh:mm  dd/MM/yyyy");
+        return formatter.format(this.inscriptionDate);
     }
 
-    public void setInscriptionDate(Date inscriptionDate) {
-        this.inscriptionDate = inscriptionDate;
+    public void setInscriptionDate(String inscriptionDate) throws ParseException {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
+        Date date = (Date)formatter.parse(inscriptionDate); 
+        this.inscriptionDate = date;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public String getStartDate() {
+        DateFormat formatter = new SimpleDateFormat("hh:mm  dd/MM/yyyy");
+        return formatter.format(this.startDate);
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setStartDate(String startDate) throws ParseException {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
+        Date date = (Date)formatter.parse(startDate); 
+        this.startDate = date;
     }
 
     public String getFormat() {

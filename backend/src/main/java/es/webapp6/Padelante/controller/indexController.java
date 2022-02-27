@@ -2,7 +2,6 @@ package es.webapp6.Padelante.controller;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Optional;
 
@@ -82,27 +81,19 @@ public class indexController {
     // }
 
 
-	//if we change this, we must know that the orden is important
-    @PostMapping("/create_tournament")
-	public String newTournamentProcess(Model model,HttpServletRequest request, @RequestParam String tournamentName, 
-	@RequestParam int numParticipants, @RequestParam String about,
-	@RequestParam String ruleset, @RequestParam String location, @RequestParam String format,
-	 MultipartFile imageField) throws IOException {
-		//with the date not work
+	@PostMapping("/create_tournament")
+	public String newTournamentProcess(Model model, Tournament tourna, MultipartFile imageField, HttpServletRequest request) throws IOException {
+		if (!imageField.isEmpty()) {
+			tourna.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
+			tourna.setImage(true);
+		}
 
 		Principal principal = request.getUserPrincipal();
-
-		Date startDate = new Date(116, 5,3);
-		Date inscriptionDate = new Date(116, 5,3);
-		Tournament tournament5= new Tournament(tournamentName, numParticipants,about,ruleset,location,inscriptionDate,startDate,format,principal.getName());
-		if (!imageField.isEmpty()) {
-			tournament5.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
-			tournament5.setImage(true);
-		}
-		tournamentService.save(tournament5);
+		String user = principal.getName();
+		tourna.setOwner(user);
+		tournamentService.save(tourna);
 		return "redirect:/";
 	}
-
    
 
 

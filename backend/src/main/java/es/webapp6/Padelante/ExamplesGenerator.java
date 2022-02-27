@@ -1,6 +1,7 @@
 package es.webapp6.Padelante;
 
-import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +45,8 @@ public class ExamplesGenerator {
 		teamRepository.save(t2);
 		teamRepository.save(t3);
 		
-		Date fecha2 = new Date(116, 5,3);
-		Date fecha1 = new Date(116, 5,3);
+		Date fecha1 = new Date("12/16/2022 16:00");
+		Date fecha2 = new Date("12/20/2022 17:00");
 		
 		Tournament tournament = new Tournament("Torneo 11", 5,"About5","RulesSet","Madrid11",fecha1,fecha2,"Format","user");
         Tournament tournament1= new Tournament("Torneo 22", 5,"About6","RulesSet","Madrid12",fecha1,fecha2,"Format","user");
