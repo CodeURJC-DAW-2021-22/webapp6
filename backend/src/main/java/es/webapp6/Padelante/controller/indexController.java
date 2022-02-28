@@ -133,6 +133,21 @@ public class indexController {
         return "user_profile";
     }
 
+	@PostMapping("/update_userProfile")
+	public String updateProfile(Model model,@RequestParam String userN,@RequestParam String fullName,@RequestParam String location,
+	@RequestParam String country,@RequestParam String phone){
+		Optional<User> user = userService.findByName(userN); //By ID??
+
+		user.get().setLocation(location);
+		user.get().setCountry(country);
+		user.get().setPhone(phone);
+		user.get().setRealName(fullName);
+		userService.save(user.get());
+        
+
+        return "redirect:user_profile";
+    }
+
     @GetMapping("/admin")
     public String admin(Model model) {
         return "admin";
