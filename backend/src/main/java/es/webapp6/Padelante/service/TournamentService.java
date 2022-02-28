@@ -64,6 +64,17 @@ public class TournamentService {
         tournaments.save(t1);
     }
 
+	public void addParticipant(Tournament tournament, Team team){
+		List<Match> auxMatches = matches.getAuxMatches(tournament);
+		if (auxMatches.isEmpty() || !auxMatches.get(auxMatches.size()-1).getTeamTwo().isTbd()){
+			Team teamTwo = new Team(true);
+			Match match = new Match(0, team, teamTwo, tournament);
+			matches.save(match);
+		} else {
+			auxMatches.get(auxMatches.size()-1).setTeamTwo(team);
+		}
+	}
+
 	private static double log(double num, int base) {
 		return (Math.log10(num) / Math.log10(base));
 	}

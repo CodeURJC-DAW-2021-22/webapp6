@@ -36,11 +36,20 @@ public class ExamplesGenerator {
 
     @PostConstruct
 	public void init() {
+
+		User u1 = new User("user", passwordEncoder.encode("pass"),"user@correo.com","User", "USER");
+		User u2 = new User("admin", passwordEncoder.encode("adminpass"),"admin@correo.com","Admin", "USER", "ADMIN");
+
+		userRepository.save(u1);
+		userRepository.save(u2);
 		
 		Team TBD = new Team(true);
 		Team t1 = new Team(false);
 		Team t2 = new Team(false);
 		Team t3 = new Team(false);
+
+		t1.addPlayer(u1);
+		t1.addPlayer(u2);
 		
 		teamRepository.save(TBD);
 		teamRepository.save(t1);
@@ -71,13 +80,14 @@ public class ExamplesGenerator {
 		matchRepository.save(m1);
 		matchRepository.save(m2);
 		matchRepository.save(m3);
-
-		userRepository.save(new User("user", passwordEncoder.encode("pass"),"user@correo.com","User", "USER"));
-		userRepository.save(new User("admin", passwordEncoder.encode("adminpass"),"admin@correo.com","Admin", "USER", "ADMIN"));
 				
 		List<Tournament> tournaments = tournamentRepository.getTeamTournaments(t1);
 		
 		System.out.println("Tournaments: "+tournaments);
+
+		// List<User> players = userRepository.getPlayerPairs(u1);
+
+		// System.out.println("Players: "+players);
 		
 		// List<Match> matches = matchRepository.getMatches(tournament);
 		
