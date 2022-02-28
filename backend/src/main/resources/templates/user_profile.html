@@ -14,8 +14,8 @@
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
               <img src="assets/images/profile-img.jpg" alt="Profile" class="rounded-circle border-green">
-              <h2>Kevin Anderson</h2>
-              <h3 class="mt-1 color-green"><span class="fw-bold">@{{userName}}</span></h3>
+              <h2>{{user.realName}}</h2>
+              <h3 class="mt-1 color-green"><span class="fw-bold">@{{user.name}}</span></h3>
               <h3 class="my-2">Karma: <span class="color-green fw-bold">150 puntos</span></h3>
               <h3 class="mb-3">Madrid, España</h3>
               <!-- <div class="social-links mt-2">
@@ -236,12 +236,12 @@
                         </div>
                       </div>
                     </div>
-
                     
                     <div class="row mb-3">
-                      <label for="username" class="col-md-4 col-lg-3 col-form-label">Usuario</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="fullName" type="text" class="form-control" id="username" value={{user.name}}>
+                      <label for="username" class="col-md-4 col-lg-3 col-form-label">Usuario @</label>
+                      <div class="col-md-8 col-lg-9"> 
+                                 
+                        <input name="fullName" type="text" class="form-control" id="username" value={{user.name}}>                        
                       </div>
                     </div>
 
