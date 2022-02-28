@@ -49,7 +49,7 @@ public class Match {
         this.teamTwo = teamTwo;
         this.tournament = tournament;
         this.result = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 6; i = i + 1) {
             this.result.add(0);
         }
     }
