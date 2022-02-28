@@ -48,7 +48,8 @@ public class Match {
         this.teamOne = teamOne;
         this.teamTwo = teamTwo;
         this.tournament = tournament;
-        for (int i = 0; i <= 5; i = i + 1) {
+        this.result = new ArrayList<>();
+        for (int i = 0; i < 6; i++) {
             this.result.add(0);
         }
     }

@@ -65,13 +65,10 @@ public class indexController {
         Principal principal = request.getUserPrincipal();
 
 		if (principal != null) {
-
 			return "create_tournament";
 		} else {
 			return "login";
-		}
-
-        
+		}        
     }
 
     // @PostMapping("/create_tournament")
@@ -126,8 +123,13 @@ public class indexController {
     }
 
     @GetMapping("/user_profile")
-    public String user_profile(Model model) {
-		//Optional<User> user = userService.findByName("user");
+    public String user_profile(Model model, HttpServletRequest request) {
+		Principal principal = request.getUserPrincipal();
+		String userName = principal.getName();
+		Optional<User> user = userService.findByName(userName); //By ID??
+		
+		model.addAttribute("user", user.get());
+		//model.addAttribute("userCompleteName", user.get().getRealName());
         return "user_profile";
     }
 
