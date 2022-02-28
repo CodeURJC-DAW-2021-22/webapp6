@@ -50,7 +50,11 @@ public class Team {
 		this.players.add(u);
 	}
 
-    public String getData() {
+    public List<User> getPlayers() {
+		return players;
+	}
+
+	public String getData() {
 		return data;
 	}
 

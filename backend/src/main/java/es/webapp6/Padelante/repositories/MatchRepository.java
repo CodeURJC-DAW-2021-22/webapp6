@@ -24,4 +24,7 @@ public interface MatchRepository extends JpaRepository<Match,Long> {
     @Query("SELECT m FROM Match m WHERE (m.teamOne = :t OR m.teamTwo = :t) AND m.round != 0")
 	public List<Match> getTeamMatches(Team t);
     
+    @Query("SELECT m FROM Match m WHERE (m.teamOne = :t OR m.teamTwo = :t) AND m.round = 0 AND m.tournament = :tour")
+	public List<Match> getTeamAuxMatches(Tournament tour, Team t);
+    
 }
