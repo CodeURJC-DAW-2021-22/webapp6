@@ -21,6 +21,7 @@ public class Match {
     private long id;
 
     private int round;
+    private ArrayList<Integer> result;
 
     @ManyToOne 
     private Team teamOne;
@@ -47,6 +48,33 @@ public class Match {
         this.teamOne = teamOne;
         this.teamTwo = teamTwo;
         this.tournament = tournament;
+        for (int i = 0; i <= 5; i = i + 1) {
+            this.result.add(0);
+        }
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public int getRound() {
+        return round;
+    }
+
+    public void setRound(int round) {
+        this.round = round;
+    }
+
+    public ArrayList<Integer> getResult() {
+        return result;
+    }
+
+    public void setResult(ArrayList<Integer> result) {
+        this.result = result;
     }
 
     public Team getTeamOne() {
@@ -65,18 +93,13 @@ public class Match {
         this.teamTwo = teamTwo;
     }
 
-    public String getData() {
-		return data;
+    public Tournament getTournament() {
+        return tournament;
+    }
+
+    public void setTournament(Tournament tournament) {
+		this.tournament = tournament;
 	}
-
-    // At the moment of create a macht we dont hava a resuelt yet, are the two methods below correct?
-    // public ArrayList<Integer> getResult() {
-    //     return result;
-    // }
-
-    // public void setResult(ArrayList<Integer> result) {
-    //     this.result = result;
-    // }
 
     //just to make ir easier, i commment dateofmatch 
     // public Date getDateOfMatch() {
@@ -96,12 +119,6 @@ public class Match {
     //     this.winnerTeam = winnerTeam;
     // }
 
-    public void setTournament(Tournament tournament) {
-		this.tournament = tournament;
-	}
-    // public Tournament getTournament() {
-    //     return tournament;
-    // }
 
     @Override
 	public String toString() {

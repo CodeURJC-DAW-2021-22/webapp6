@@ -33,12 +33,13 @@ public class TournamentService {
 		return tournaments.findAll();
 	}
 
-    public void createTournament(String tournamentName, int numParticipants,
-    String about,String ruleset,String location,Date inscriptionDate,
-        Date startDate,String format,String owner){
-        Tournament t1 = new Tournament(tournamentName, numParticipants,about,ruleset,location,inscriptionDate,startDate,format,owner);
-        tournaments.save(t1);
-    }
+	public List<Tournament> getTeamTournaments(Team team){
+		return tournaments.getTeamTournaments(team);
+	}
+
+	public List<Tournament> getTournamentByName(String tournamentName){
+		return tournaments.findByTournamentName(tournamentName);
+	}
 
 	public Optional<Tournament> findById(long id) {
 		return tournaments.findById(id);
@@ -48,10 +49,6 @@ public class TournamentService {
 		return tournaments.existsById(id);
 	}
 
-	public List<Tournament> findAll() {
-		return tournaments.findAll();
-	}
-
 	public void save(Tournament tourn) {
 		tournaments.save(tourn);
 	}
@@ -59,6 +56,13 @@ public class TournamentService {
 	public void delete(long id) {
 		tournaments.deleteById(id);
 	}
+
+    public void createTournament(String tournamentName, int numParticipants,
+    String about,String ruleset,String location,Date inscriptionDate,
+        Date startDate,String format,String owner){
+        Tournament t1 = new Tournament(tournamentName, numParticipants,about,ruleset,location,inscriptionDate,startDate,format,owner);
+        tournaments.save(t1);
+    }
 
 	private static double log(double num, int base) {
 		return (Math.log10(num) / Math.log10(base));

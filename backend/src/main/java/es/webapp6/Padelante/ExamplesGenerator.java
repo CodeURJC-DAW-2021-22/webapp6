@@ -68,10 +68,6 @@ public class ExamplesGenerator {
 		
 		Match m3 = new Match(2, t1, t3, tournament);
 		
-		// m1.setTournament(tournament);
-		// m2.setTournament(tournament);
-		// m3.setTournament(tournament);
-		
 		matchRepository.save(m1);
 		matchRepository.save(m2);
 		matchRepository.save(m3);
@@ -79,7 +75,7 @@ public class ExamplesGenerator {
 		userRepository.save(new User("user", passwordEncoder.encode("pass"),"user@correo.com","User", "USER"));
 		userRepository.save(new User("admin", passwordEncoder.encode("adminpass"),"admin@correo.com","Admin", "USER", "ADMIN"));
 				
-		List<Tournament> tournaments = tournamentRepository.getTournaments(t1);
+		List<Tournament> tournaments = tournamentRepository.getTeamTournaments(t1);
 		
 		System.out.println("Tournaments: "+tournaments);
 		

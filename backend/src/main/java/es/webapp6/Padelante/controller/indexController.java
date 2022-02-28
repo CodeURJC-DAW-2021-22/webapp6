@@ -56,7 +56,7 @@ public class indexController {
 	
     @GetMapping("/")
     public String greeting(Model model) {         
-        model.addAttribute("tourns",tournamentService.findAll());
+        model.addAttribute("tourns",tournamentService.getTournaments());
        return "main";
     }
 
