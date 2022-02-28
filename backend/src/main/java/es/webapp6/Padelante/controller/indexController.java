@@ -145,7 +145,7 @@ public class indexController {
 			model.addAttribute("tourns", tournament.get());
 			return "tournament";
 		} else {
-			return "main";
+			return "error";
 		}
 
 	} 
