@@ -32,8 +32,8 @@ public class User {
 	
 	// private List<Tournament> myTournaments;
 
-	// @ManyToMany
-	// private List<Team> teams;
+	@ManyToMany
+	private List<Team> teams;
 
 
 	//Profile Img To Do

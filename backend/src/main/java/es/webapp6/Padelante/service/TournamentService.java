@@ -7,7 +7,12 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import es.webapp6.Padelante.model.Match;
+import es.webapp6.Padelante.model.Team;
 import es.webapp6.Padelante.model.Tournament;
+import es.webapp6.Padelante.repositories.MatchRepository;
+import es.webapp6.Padelante.repositories.TeamRepository;
 import es.webapp6.Padelante.repositories.TournamentRepository;
 
 
@@ -16,6 +21,12 @@ public class TournamentService {
 
     @Autowired
 	private TournamentRepository tournaments;
+
+	@Autowired
+	private MatchRepository matches;
+	
+	@Autowired
+	private TeamRepository teams;
 
 
 	public List<Tournament> getTournaments() {
@@ -47,6 +58,37 @@ public class TournamentService {
 
 	public void delete(long id) {
 		tournaments.deleteById(id);
+	}
+
+	private static double log(double num, int base) {
+		return (Math.log10(num) / Math.log10(base));
+	}
+
+	public static int calcSpotsRoundOne (int numEquipos, int numParticipants) {
+		int exponenteN = (int) log(numEquipos, 2);
+		int exponenteK = (int) log(numParticipants, 2);
+			
+		while (exponenteN < exponenteK - 1) {
+			exponenteK --;
+		}
+		return (int) Math.pow(2, exponenteK);
+	}
+
+	public void generateEmptyBracket(Tournament tournament){
+		int rondas = (int) log(calcSpotsRoundOne(teams.getTeams(tournament).size(),
+		tournament.getNumParticipants()), 2);
+
+		int potencia = 0;
+		for (int i = rondas; i >= 1; i = i - 1) {
+			potencia = (int) Math.pow(2, i);
+			for (int j = 1; j <= potencia; j = j + 1) {
+				Team teamOne = new Team(true);
+				Team teamTwo = new Team(true);
+				Match match = new Match(i, teamOne, teamTwo, tournament);
+				matches.save(match);
+			}
+		}
+
 	}
 
 	// public ResponseEntity<Tournament> getTournament(@PathVariable long id) {

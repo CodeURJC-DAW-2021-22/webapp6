@@ -19,8 +19,10 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-	// @ManyToMany(mappedBy="teams")
-	// private List<User> players;
+	private boolean tbd;
+
+	@ManyToMany(mappedBy="teams")
+	private List<User> players;
 
 
     private String data; //just to add and atributte and check the below methods
@@ -29,9 +31,17 @@ public class Team {
 		super();
 	}
 
-	public Team(String data) {
+	public Team(boolean tbd) {
 		super();
-		this.data = data;
+		this.tbd = tbd;
+	}
+
+	public boolean isTbd() {
+		return tbd;
+	}
+
+	public void setTbd(boolean tbd) {
+		this.tbd = tbd;
 	}
 
     public String getData() {

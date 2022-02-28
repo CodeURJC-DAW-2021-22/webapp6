@@ -20,6 +20,8 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    private int round;
+
     @ManyToOne 
     private Team teamOne;
 
@@ -40,10 +42,12 @@ public class Match {
 		super();
 	}
 
-	public Match(String data) {
-		super();
-		this.data = data;
-	}
+    public Match(int round, Team teamOne, Team teamTwo, Tournament tournament) {
+        this.round = round;
+        this.teamOne = teamOne;
+        this.teamTwo = teamTwo;
+        this.tournament = tournament;
+    }
 
     public Team getTeamOne() {
         return teamOne;

@@ -37,10 +37,12 @@ public class ExamplesGenerator {
     @PostConstruct
 	public void init() {
 		
-		Team t1 = new Team("Team1");
-		Team t2 = new Team("Team2");
-		Team t3 = new Team("Team3");
+		Team TBD = new Team(true);
+		Team t1 = new Team(false);
+		Team t2 = new Team(false);
+		Team t3 = new Team(false);
 		
+		teamRepository.save(TBD);
 		teamRepository.save(t1);
 		teamRepository.save(t2);
 		teamRepository.save(t3);
@@ -60,17 +62,11 @@ public class ExamplesGenerator {
         tournamentRepository.save(tournament3);
         tournamentRepository.save(tournament4);
 		
-		Match m1 = new Match("M1");
-		m1.setTeamOne(t1);
-		m1.setTeamTwo(t2);
+		Match m1 = new Match(1, t1, t2, tournament);
 		
-		Match m2 = new Match("M2");
-		m2.setTeamOne(t2);
-		m2.setTeamTwo(t3);
+		Match m2 = new Match(1, t2, t3, tournament);
 		
-		Match m3 = new Match("M3");
-		m3.setTeamOne(t1);
-		m3.setTeamTwo(t3);
+		Match m3 = new Match(2, t1, t3, tournament);
 		
 		// m1.setTournament(tournament);
 		// m2.setTournament(tournament);
