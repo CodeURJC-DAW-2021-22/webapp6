@@ -51,13 +51,13 @@ public class User {
 		this.encodedPassword = encodedPassword;
 		this.email = email;
 		this.realName = realName;
-		this.location = "undefined";
-		this.country = "undefined";
-		this.phone = "XXXXXXXXX";
+		this.location = "";
+		this.country = "";
+		this.phone = "";
 		this.numWins=0;
 		this.numLoses=0;
 		this.numPlayed=0;
-		this.karma=150;
+		this.karma=500;
 		this.roles = List.of(roles);
 	}
 

@@ -16,8 +16,8 @@
               <img src="assets/images/profile-img.jpg" alt="Profile" class="rounded-circle border-green">
               <h2>{{user.realName}}</h2>
               <h3 class="mt-1 color-green"><span class="fw-bold">@{{user.name}}</span></h3>
-              <h3 class="my-2">Karma: <span class="color-green fw-bold">150 puntos</span></h3>
-              <h3 class="mb-3">Madrid, España</h3>
+              <h3 class="my-2">Karma: <span class="color-green fw-bold">{{user.karma}} puntos</span></h3>
+              <h3 class="mb-3">{{user.location}} {{user.country}}</h3>
               <!-- <div class="social-links mt-2">
                 <a href="#" class="email"><i class="ri-mail-fill"></i></a>
                 <a href="#" class="whatsapp"><i class="ri-whatsapp-fill"></i></a>
@@ -263,21 +263,21 @@
                     <div class="row mb-3">
                       <label for="company" class="col-md-4 col-lg-3 col-form-label">Localidad</label>
                       <div class="col-md-8 col-lg-9">                        
-                        <input name="company" type="text" placeholder="Introduce tu localidad" class="form-control" id="location" value="">
+                        <input name="company" type="text" placeholder="Introduce tu localidad" class="form-control" id="location" value="{{user.location}}">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Country" class="col-md-4 col-lg-3 col-form-label">País</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="country" type="text" placeholder="Introduce tu país" class="form-control" id="Country" value="">
+                        <input name="country" type="text" placeholder="Introduce tu país" class="form-control" id="Country" value="{{user.country}}">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Email" class="col-md-4 col-lg-3 col-form-label">Correo eletrónico</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control" id="Email" value="k.anderson@example.com"
+                        <input name="email" type="email" class="form-control" id="Email" value="{{user.email}}"
                           disabled>
                       </div>
                     </div>
@@ -285,7 +285,7 @@
                     <div class="row mb-3">
                       <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Teléfono</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="phone" type="text" placeholder="Introduce tu teléfono" class="form-control" id="Phone" value="">
+                        <input name="phone" type="text" placeholder="Introduce tu teléfono" class="form-control" id="Phone" value="{{user.phone}}">
                       </div>
                     </div>
 
