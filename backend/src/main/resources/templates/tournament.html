@@ -574,7 +574,7 @@
           <div class="tab-pane fade profile-edit pt-3" id="tournament-settings">
 
             <!-- Tournament Settings Admin -->
-            <form>
+            <form action="/update_tourns/{{tourns.id}}" method="post">
               <div class="row mb-3">
                 <label for="tournamentImage" class="col-md-4 col-lg-3 col-form-label">Imagen del torneo</label>
                 <div class="col-md-8 col-lg-9 tournament-img">
@@ -591,7 +591,7 @@
               <div class="row mb-3">
                 <label for="name" class="col-md-4 col-lg-3 col-form-label">Nombre</label>
                 <div class="col-md-8 col-lg-9">
-                  <input name="name" type="text" class="form-control" id="name" value="eGrillos Cup">
+                  <input name="name" type="text" class="form-control" id="name" value="{{tourns.tournamentName}}">
                 </div>
               </div>
 
@@ -599,7 +599,7 @@
                 <label for="about" class="col-md-4 col-lg-3 col-form-label">Sobre el torneo</label>
                 <div class="col-md-8 col-lg-9">
                   <textarea name="about" class="form-control" id="about"
-                    style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
+                    style="height: 100px" value="{{tourns.about}}">{{tourns.about}}</textarea>
                 </div>
               </div>
 
@@ -607,21 +607,22 @@
                 <label for="ruleset" class="col-md-4 col-lg-3 col-form-label">Reglamento</label>
                 <div class="col-md-8 col-lg-9">
                   <textarea name="ruleset" class="form-control" id="ruleset"
-                    style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
+                    style="height: 100px" value="{{tourns.ruleset}}">{{tourns.ruleset}}
+                  </textarea>
                 </div>
               </div>
 
               <div class="row mb-3">
                 <label for="location" class="col-md-4 col-lg-3 col-form-label">Localidad</label>
                 <div class="col-md-8 col-lg-9">
-                  <input name="location" type="text" class="form-control" id="location" value="Madrid">
+                  <input name="location" type="text" class="form-control" id="location" value="{{tourns.location}}">
                 </div>
               </div>
 
               <div class="row mb-3">
                 <label for="participants" class="col-md-4 col-lg-3 col-form-label">Participantes</label>
                 <div class="col-md-8 col-lg-9">
-                  <select class="form-select" id="participants">
+                  <select class="form-select" id="participants" disabled>
                     <option value="1">2</option>
                     <option value="2">4</option>
                     <option value="3">8</option>
@@ -637,7 +638,7 @@
                 <label for="inscription-date" class="col-md-4 col-lg-3 col-form-label">Fin de inscripciones</label>
                 <div class="col-md-8 col-lg-9">
                   <input name="inscription-date" type="datetime-local" class="form-control" id="inscription-date"
-                    value="2022-02-20T17:00">
+                    value="{{tourns.inscriptionDate}}" disabled>
                 </div>
               </div>
 
@@ -645,7 +646,7 @@
                 <label for="start-date" class="col-md-4 col-lg-3 col-form-label">Inicio del torneo</label>
                 <div class="col-md-8 col-lg-9">
                   <input name="start-date" type="datetime-local" class="form-control" id="start-date"
-                    value="2022-02-21T17:00">
+                    value="{{tourns.startDate}}" disabled>
                 </div>
               </div>
 
@@ -689,6 +690,8 @@
               <div class="text-center">
                 <button class="btn btn-green fw-bold" type="submit">Guardar cambios</button>
               </div>
+
+              <input type="hidden" name="_csrf" value="{{token}}"/>
             </form><!-- End Profile Edit Form -->
 
           </div>

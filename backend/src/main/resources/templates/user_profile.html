@@ -221,7 +221,7 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-                  <form>
+                  <form action="update_userProfile" method="post">
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                       <div class="col-md-8 col-lg-9">
@@ -241,7 +241,7 @@
                       <label for="username" class="col-md-4 col-lg-3 col-form-label">Usuario @</label>
                       <div class="col-md-8 col-lg-9"> 
                                  
-                        <input name="fullName" type="text" class="form-control" id="username" value={{user.name}}>                        
+                        <input name="userN" type="text" class="form-control" id="username" value={{user.name}} >                        
                       </div>
                     </div>
 
@@ -261,9 +261,9 @@
                     </div> -->
 
                     <div class="row mb-3">
-                      <label for="company" class="col-md-4 col-lg-3 col-form-label">Localidad</label>
+                      <label for="location" class="col-md-4 col-lg-3 col-form-label">Localidad</label>
                       <div class="col-md-8 col-lg-9">                        
-                        <input name="company" type="text" placeholder="Introduce tu localidad" class="form-control" id="location" value="{{user.location}}">
+                        <input name="location" type="text" placeholder="Introduce tu localidad" class="form-control" id="location" value="{{user.location}}">
                       </div>
                     </div>
 
@@ -315,6 +315,8 @@
                     <div class="text-center">
                       <button class="btn btn-green fw-bold" type="submit">Guardar cambios</button>
                     </div>
+
+                    <input type="hidden" name="_csrf" value="{{token}}"/>
                   </form><!-- End Profile Edit Form -->
 
                 </div>
@@ -371,7 +373,9 @@
                     <div class="text-center">
                       <button type="submit" class="btn btn-green fw-bold">Guardar cambios</button>
                     </div>
-                  </form><!-- End settings Form -->
+                  </form>
+                  
+                  <!-- End settings Form -->
 
                 </div>
 

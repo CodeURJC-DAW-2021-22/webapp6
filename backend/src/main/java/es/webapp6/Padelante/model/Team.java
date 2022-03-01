@@ -2,6 +2,7 @@ package es.webapp6.Padelante.model;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -34,6 +35,7 @@ public class Team {
 	public Team(boolean tbd) {
 		super();
 		this.tbd = tbd;
+		this.players = new ArrayList<>();
 	}
 
 	public boolean isTbd() {
@@ -44,7 +46,15 @@ public class Team {
 		this.tbd = tbd;
 	}
 
-    public String getData() {
+	public void addPlayer(User u){
+		this.players.add(u);
+	}
+
+    public List<User> getPlayers() {
+		return players;
+	}
+
+	public String getData() {
 		return data;
 	}
 

@@ -144,6 +144,21 @@ public class indexController {
         return "user_profile";
     }
 
+	@PostMapping("/update_userProfile")
+	public String updateProfile(Model model,@RequestParam String userN,@RequestParam String fullName,@RequestParam String location,
+	@RequestParam String country,@RequestParam String phone){
+		Optional<User> user = userService.findByName(userN); //By ID??
+
+		user.get().setLocation(location);
+		user.get().setCountry(country);
+		user.get().setPhone(phone);
+		user.get().setRealName(fullName);
+		userService.save(user.get());
+        
+
+        return "redirect:user_profile";
+    }
+
     @GetMapping("/admin")
     public String admin(Model model) {
         return "admin";
@@ -162,6 +177,29 @@ public class indexController {
 		}
 
 	} 
+
+//select player from player where team in 
+	@PostMapping("/update_tourns/{id}")
+	public String updateTournament(Model model, @PathVariable long id , @RequestParam String name, @RequestParam String about,
+	@RequestParam String ruleset, @RequestParam String location){
+		Optional<Tournament> tournament = tournamentService.findById(id);
+
+		if (tournament.isPresent()) {
+			tournament.get().setTournamentName(name);
+			tournament.get().setAbout(about);
+			tournament.get().setRuleset(ruleset);
+			tournament.get().setLocation(location);
+			tournamentService.save(tournament.get());
+			return "redirect:/tourns/{id}";
+		} else {
+			return "error";
+		}
+		
+		
+
+		
+		
+    }
 
 	@GetMapping("/tourns/{id}/image")
 	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {

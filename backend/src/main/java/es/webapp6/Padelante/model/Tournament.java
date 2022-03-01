@@ -21,6 +21,8 @@ public class Tournament {
     private String owner;
     private String tournamentName; 
     private int numParticipants;
+    private int numSignedUp;
+    private int rounds;
     private String about;
     private String ruleset;
     private String location;
@@ -48,9 +50,11 @@ public class Tournament {
                 super();
                 this.tournamentName=tournamentName;
                 this.numParticipants = numParticipants;
-                this.about=about;
-                this.ruleset = ruleset;
-                this.location= location;
+                this.numSignedUp = 0;
+                this.rounds = 0;
+                this.about="";
+                this.ruleset = "";
+                this.location= "";
                 this.inscriptionDate=inscriptionDate;
                 this.startDate=startDate;
                 this.format=format;
@@ -85,6 +89,22 @@ public class Tournament {
 
     public void setNumParticipants(int numParticipants) {
         this.numParticipants = numParticipants;
+    }
+
+    public int getNumSignedUp() {
+        return numSignedUp;
+    }
+
+    public void setNumSignedUp(int numSignedUp) {
+        this.numSignedUp = numSignedUp;
+    }
+
+    public int getRounds() {
+        return rounds;
+    }
+
+    public void setRounds(int rounds) {
+        this.rounds = rounds;
     }
 
     public String getAbout() {

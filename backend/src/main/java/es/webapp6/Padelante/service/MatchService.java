@@ -20,7 +20,7 @@ public class MatchService {
 		return matches.findAll();
 	}
 
-    public List<Match> getMatches(Tournament t){
+    public List<Match> getTournamentMatches(Tournament t){
         return matches.getMatches(t);
     }
 
