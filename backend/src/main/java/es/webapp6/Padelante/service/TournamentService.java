@@ -89,14 +89,16 @@ public class TournamentService {
 		if (!isAnyUserOfTeamInTournament(tournament, team)){
 			if (auxMatches.isEmpty() || !auxMatches.get(auxMatches.size()-1).getTeamTwo().isTbd()){
 				Team teamTwo = new Team(true);
+				teams.save(teamTwo);
 				Match match = new Match(0, team, teamTwo, tournament);
 				matches.save(match);
 			} else {
+				teams.delete(auxMatches.get(auxMatches.size()-1).getTeamTwo());
 				auxMatches.get(auxMatches.size()-1).setTeamTwo(team);
-				//Posible save de matches
+				matches.save(auxMatches.get(auxMatches.size()-1));
 			}
 			tournament.setNumSignedUp(tournament.getNumSignedUp()+1);
-			//Posible save de tournament
+			tournaments.save(tournament);
 		}
 		
 	}
@@ -106,14 +108,18 @@ public class TournamentService {
 		Team teamAux = new Team(true);
 		for (int i = 0; i < auxMatches.size(); i++){
 			if (auxMatches.get(i).getTeamOne() == team) {
+				teams.save(teamAux);
 				auxMatches.get(i).setTeamOne(teamAux);
 				tournament.setNumSignedUp(tournament.getNumSignedUp()-1);
-				//Posible save de tournament y matches
+				matches.save(auxMatches.get(i));
+				tournaments.save(tournament);
 			} else{
 				if (auxMatches.get(i).getTeamTwo() == team) {
-				auxMatches.get(i).setTeamTwo(teamAux);
-				tournament.setNumSignedUp(tournament.getNumSignedUp()-1);
-				//Posible save de tournament y matches
+					teams.save(teamAux);
+					auxMatches.get(i).setTeamTwo(teamAux);
+					tournament.setNumSignedUp(tournament.getNumSignedUp()-1);
+					matches.save(auxMatches.get(i));
+					tournaments.save(tournament);
 				}
 			}
 		}
@@ -143,12 +149,16 @@ public class TournamentService {
 			for (int j = 1; j <= power; j++) {
 				Team teamOne = new Team(true);
 				Team teamTwo = new Team(true);
+				teams.save(teamOne);
+				teams.save(teamTwo);
 				Match match = new Match(i, teamOne, teamTwo, tournament);
 				matches.save(match);
 			}
 		}
-		//Posible save de tournament (si hemos guardado los match hace falta?)
+		tournaments.save(tournament);
 	}
+
+	//Revisar saves
 
 	public List<Team> getTeamsSignedUp(Tournament tournament){
 		List<Match> auxMatches = matches.getAuxMatches(tournament);
@@ -176,7 +186,7 @@ public class TournamentService {
 		for (int i = 0; i < startRound.size(); i++){
 			startRound.get(i).setTeamOne(teams.get(0));
 			teams.remove(0);
-			//Posible save de matches
+			matches.save(startRound.get(i));
 		}
 
 		List<Team> teamsUp = teams.subList(0, (int) (teams.size()/2)+(1/2));
@@ -198,8 +208,26 @@ public class TournamentService {
 		}
 	}
 
+	public void moveNextRound(Tournament tournament, Match match, Team team){
+		List<Match> matchRound = matches.getRoundMatches(tournament, match.getRound());
+		List<Match> nextRound = matches.getRoundMatches(tournament, match.getRound()-1);
+	}
+
 	public void setFreeWins(Tournament tournament){
-		
+		List<Match> startRound = matches.getRoundMatches(tournament, tournament.getRounds());
+		Team teamOne = null;
+		Team teamTwo = null;
+		for (int i = 0; i < startRound.size(); i++){
+			teamOne = startRound.get(i).getTeamOne();
+			teamTwo = startRound.get(i).getTeamTwo();
+			if (teamOne.isTbd()){
+				moveNextRound(tournament, startRound.get(i), teamTwo);
+			} else {
+				if (teamTwo.isTbd()){
+					moveNextRound(tournament, startRound.get(i), teamOne);
+				}
+			}
+		}
 	}
 
 	// public ResponseEntity<Tournament> getTournament(@PathVariable long id) {
