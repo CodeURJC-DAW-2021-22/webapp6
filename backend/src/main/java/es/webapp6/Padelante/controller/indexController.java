@@ -181,10 +181,13 @@ public class indexController {
 //select player from player where team in 
 	@PostMapping("/update_tourns/{id}")
 	public String updateTournament(Model model, @PathVariable long id , @RequestParam String name, @RequestParam String about,
-	@RequestParam String ruleset, @RequestParam String location){
+	@RequestParam String ruleset, @RequestParam String location, boolean removeImage, 
+	MultipartFile imageField) throws IOException, SQLException{
+		
 		Optional<Tournament> tournament = tournamentService.findById(id);
 
 		if (tournament.isPresent()) {
+			updateImage(tournament.get(), removeImage, imageField);
 			tournament.get().setTournamentName(name);
 			tournament.get().setAbout(about);
 			tournament.get().setRuleset(ruleset);
@@ -193,13 +196,30 @@ public class indexController {
 			return "redirect:/tourns/{id}";
 		} else {
 			return "error";
-		}
-		
-		
-
-		
-		
+		}	
     }
+
+	private void updateImage(Tournament tourn, boolean removeImage, MultipartFile imageField) throws IOException, SQLException {
+		
+		if (!imageField.isEmpty()) {
+			tourn.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
+			tourn.setImage(true);
+		} else {
+			if (removeImage) {
+				tourn.setImageFile(null);
+				tourn.setImage(false);
+			} else {
+				// Maintain the same image loading it before updating the book
+				Tournament dbTournament = tournamentService.findById(tourn.getId()).orElseThrow();
+				if (dbTournament.getImage()) {
+					tourn.setImageFile(BlobProxy.generateProxy(dbTournament.getImageFile().getBinaryStream(),
+						dbTournament.getImageFile().length()));
+							tourn.setImage(true);
+				}
+			}
+		}
+	}
+
 
 	@GetMapping("/tourns/{id}/image")
 	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
@@ -217,50 +237,8 @@ public class indexController {
 		}
 	}
 
-    // @GetMapping("/removeTourn/{id}")
-	// public String removeTournament(Model model, @PathVariable long id) {
-
-	// 	Optional<Tournament> tourn = tournamentService.findById(id);
-	// 	if (tourn.isPresent()) {
-	// 		tournamentService.delete(id);
-			
-	// 	}
-	// 	return "***";
-	// }
+  
 
     
 
-	// @PostMapping("/editTournament")
-	// public String editBookProcess(Model model, Tournament tourn, boolean removeImage, MultipartFile imageField)
-	// 		throws IOException, SQLException {
-
-	// 	updateImage(tourn, removeImage, imageField);
-
-	// 	tournamentService.save(tourn);
-
-	// 	model.addAttribute("bookId", tourn.getId());
-
-	// 	return "redirect:/books/"+tourn.getId();
-	// }
-
-	// private void updateImage(Tournament tourn, boolean removeImage, MultipartFile imageField) throws IOException, SQLException {
-		
-	// 	if (!imageField.isEmpty()) {
-	// 		tourn.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
-	// 		tourn.setImage(true);
-	// 	} else {
-	// 		if (removeImage) {
-	// 			tourn.setImageFile(null);
-	// 			tourn.setImage(false);
-	// 		} else {
-	// 			// Maintain the same image loading it before updating the book
-	// 			Tournament dbTournament = tournamentService.findById(tourn.getId()).orElseThrow();
-	// 			if (dbTournament.getImage()) {
-	// 				tourn.setImageFile(BlobProxy.generateProxy(dbTournament.getImageFile().getBinaryStream(),
-    //                 dbTournament.getImageFile().length()));
-    //                         tourn.setImage(true);
-	// 			}
-	// 		}
-	// 	}
-	// }
 }
