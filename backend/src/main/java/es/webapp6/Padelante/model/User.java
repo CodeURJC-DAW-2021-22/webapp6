@@ -32,7 +32,7 @@ public class User {
 	
 	// private List<Tournament> myTournaments;
 
-	@ManyToMany
+	@ManyToMany(mappedBy="players")
 	private List<Team> teams;
 
 

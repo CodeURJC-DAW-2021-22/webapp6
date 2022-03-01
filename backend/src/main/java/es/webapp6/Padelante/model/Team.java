@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 
@@ -22,7 +23,8 @@ public class Team {
 
 	private boolean tbd;
 
-	@ManyToMany(mappedBy="teams")
+	@ManyToMany
+	@JoinTable(name = "user_table_teams")
 	private List<User> players;
 
 
