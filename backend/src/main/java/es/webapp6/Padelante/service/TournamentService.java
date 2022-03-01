@@ -162,48 +162,52 @@ public class TournamentService {
 
 	public List<Team> getTeamsSignedUp(Tournament tournament){
 		List<Match> auxMatches = matches.getAuxMatches(tournament);
-		List<Team> teams = new ArrayList<Team>();
+		List<Team> teamsSignedUp = new ArrayList<Team>();
 		Team teamOne = null;
 		Team teamTwo = null;
 		for (int i = 0; i < auxMatches.size(); i++){
 			teamOne = auxMatches.get(i).getTeamOne();
 			if (!teamOne.isTbd()){
-				teams.add(teamOne);
+				teamsSignedUp.add(teamOne);
 			}
 			teamTwo = auxMatches.get(i).getTeamOne();
 			if (!teamTwo.isTbd()){
-				teams.add(teamTwo);
+				teamsSignedUp.add(teamTwo);
 			}
 		}
-		return teams;
+		return teamsSignedUp;
 	}
 
 	public void assignTeamsStart(Tournament tournament){
 		List<Match> startRound = matches.getRoundMatches(tournament, tournament.getRounds());
-		List<Team> teams = getTeamsSignedUp(tournament);
-		Collections.shuffle(teams);
+		List<Team> teamsSignedUp = getTeamsSignedUp(tournament);
+		Collections.shuffle(teamsSignedUp);
 
 		for (int i = 0; i < startRound.size(); i++){
-			startRound.get(i).setTeamOne(teams.get(0));
-			teams.remove(0);
+			teams.delete(startRound.get(i).getTeamOne());
+			startRound.get(i).setTeamOne(teamsSignedUp.get(0));
+			teamsSignedUp.remove(0);
 			matches.save(startRound.get(i));
 		}
 
-		List<Team> teamsUp = teams.subList(0, (int) (teams.size()/2)+(1/2));
-		List<Team> teamsDown = teams.subList((int) (teams.size()/2)+(1/2), (int) teams.size());
+		List<Team> teamsUp = teamsSignedUp.subList(0, (int) (teamsSignedUp.size()/2)+(1/2));
+		List<Team> teamsDown = teamsSignedUp.subList
+			((int) (teamsSignedUp.size()/2)+(1/2), (int) teamsSignedUp.size());
 
 		int i = 0;
 		while (!teamsUp.isEmpty()){
+			teams.delete(startRound.get(i).getTeamTwo());
 			startRound.get(i).setTeamTwo(teamsUp.get(0));
 			teamsUp.remove(0);
-			//Posible save de matches
+			matches.save(startRound.get(i));
 			i++;
 		}
 		i = startRound.size()/2;
 		while (!teamsDown.isEmpty()){
+			teams.delete(startRound.get(i).getTeamTwo());
 			startRound.get(i).setTeamTwo(teamsDown.get(0));
 			teamsDown.remove(0);
-			//Posible save de matches
+			matches.save(startRound.get(i));
 			i++;
 		}
 	}
