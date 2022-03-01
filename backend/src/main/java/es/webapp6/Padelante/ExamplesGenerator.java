@@ -55,12 +55,22 @@ public class ExamplesGenerator {
         Tournament tournament2= new Tournament("Torneo 33", 6,"About7","RulesSet","Madrid13",fecha1,fecha2,"Format","user");
         Tournament tournament3= new Tournament("Torneo 44", 7,"About8","RulesSet","Madrid14",fecha1,fecha2,"Format","user");
         Tournament tournament4= new Tournament("Torneo 55", 8,"About9","RulesSet","Madrid15",fecha1,fecha2,"Format","user");
+		Tournament tournament5 = new Tournament("Torneo 66", 5,"About5","RulesSet","Madrid11",fecha1,fecha2,"Format","user");
+        Tournament tournament6= new Tournament("Torneo 77", 5,"About6","RulesSet","Madrid12",fecha1,fecha2,"Format","user");
+        Tournament tournament7= new Tournament("Torneo 88", 6,"About7","RulesSet","Madrid13",fecha1,fecha2,"Format","user");
+        Tournament tournament8= new Tournament("Torneo 99", 7,"About8","RulesSet","Madrid14",fecha1,fecha2,"Format","user");
+        Tournament tournament9= new Tournament("Torneo 100", 8,"About9","RulesSet","Madrid15",fecha1,fecha2,"Format","user");
 		
 		tournamentRepository.save(tournament);
         tournamentRepository.save(tournament1);
         tournamentRepository.save(tournament2);
         tournamentRepository.save(tournament3);
         tournamentRepository.save(tournament4);
+		tournamentRepository.save(tournament5);
+        tournamentRepository.save(tournament6);
+        tournamentRepository.save(tournament7);
+        tournamentRepository.save(tournament8);
+        tournamentRepository.save(tournament9);
 		
 		Match m1 = new Match(1, t1, t2, tournament);
 		

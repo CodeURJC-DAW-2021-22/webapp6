@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,17 +22,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 
 
 import es.webapp6.Padelante.model.Tournament;
 import es.webapp6.Padelante.model.User;
+import es.webapp6.Padelante.repositories.TournamentRepository;
 import es.webapp6.Padelante.service.TournamentService;
 import es.webapp6.Padelante.service.UserService;
 
 @Controller
 public class indexController {
-    
+    @Autowired
+	private TournamentRepository tournamentRepository;
     @Autowired
 	private TournamentService tournamentService;	
 
@@ -53,11 +57,18 @@ public class indexController {
 			model.addAttribute("logged", false);
 		}
 	}
+
+	// @GetMapping("/")
+	// public Page<Tournament> findAll(){
+	// 	return tournamentService.listTournamentPageable();
+	// }
 	
-    @GetMapping("/")
-    public String greeting(Model model) {         
-        model.addAttribute("tourns",tournamentService.getTournaments());
-       return "main";
+     @GetMapping("/")
+     public String greeting(Model model, @RequestParam(required = false) Integer page  ) {       
+		 int pageInt = page == null? 0: page;  
+         model.addAttribute("tourns",tournamentService.getTournaments(pageInt).getContent());
+		 model.addAttribute("nextpage", pageInt+1);
+        return "main";
     }
 
     @GetMapping("/create_tournament")

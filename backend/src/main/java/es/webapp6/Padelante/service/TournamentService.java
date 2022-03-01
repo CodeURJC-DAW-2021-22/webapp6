@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import es.webapp6.Padelante.model.Match;
@@ -28,9 +31,13 @@ public class TournamentService {
 	@Autowired
 	private TeamRepository teams;
 
+	public Page<Tournament> listTournamentPageable(){
+		return tournaments.findAll(PageRequest.of(0, 3));
+	}
 
-	public List<Tournament> getTournaments() {
-		return tournaments.findAll();
+
+	public Page<Tournament> getTournaments(int page) {
+		return tournaments.findAll(PageRequest.of(page, 3));
 	}
 
 	public List<Tournament> getTeamTournaments(Team team){

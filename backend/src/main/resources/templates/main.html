@@ -34,38 +34,51 @@
                         <h2>Mis Torneos</h2>
                     </div>
                 </div>
-
-                {{#tourns}}               
-                <div class="col-md-4">
-                    <div class="product-item">
-                        <!-- select image from DB when necessary-->  
-                                           
-                        <a href="/tourns/{{id}}">
-                            <!-- <img class="img-lista-torneos" src="assets/images/product_01.jpg" alt=""> -->
-                            {{#image}}
-                            <img class="img-lista-torneos" src="/tourns/{{id}}/image">
-                            {{/image}}
-                
-                            {{^image}}
-                            <img class="img-lista-torneos" src="/assets/images/product_02.jpg">
-                            {{/image}}
-                        </a>
-                
-                        <div class="down-content text-center">
+                <div id="elements">
+                    {{#tourns}}               
+                    <div class="col-md-4">
+                        <div class="product-item">
+                            <!-- select image from DB when necessary-->  
+                                            
                             <a href="/tourns/{{id}}">
-                                <h4>{{tournamentName}}</h4> <!-- tournamentName-->
+                                <!-- <img class="img-lista-torneos" src="assets/images/product_01.jpg" alt=""> -->
+                                {{#image}}
+                                <img class="img-lista-torneos" src="/tourns/{{id}}/image">
+                                {{/image}}
+                    
+                                {{^image}}
+                                <img class="img-lista-torneos" src="/assets/images/product_02.jpg">
+                                {{/image}}
                             </a>
-                            <p>{{inscriptionDate}}</p>                           
-                            <span>{{numParticipants}} equipos</span> <!-- numParticipants-->
-                            
+                    
+                            <div class="down-content text-center">
+                                <a href="/tourns/{{id}}">
+                                    <h4>{{tournamentName}}</h4> <!-- tournamentName-->
+                                </a>
+                                <p>{{inscriptionDate}}</p>                           
+                                <span>{{numParticipants}} equipos</span> <!-- numParticipants-->
+                                
+                            </div>
                         </div>
                     </div>
-                </div>
-                {{/tourns}}
+                    {{/tourns}}
+                    <div id="loadArea-{{nextpage}}">
 
+                    </div>
+
+                </div>
+                    
+                    <row>
+                        <col-md-12 class="d-flex justify-content-center">
+                            <button class="cargar-mas mb-5" id="loadMore" onclick="loadMore()">Cargar más</button>
+                        </col-md-12>
+                
+                    </row>
+                </div>
             </div>
         </div>
     </div>
+    
     {{/logged}}
     <!-- End of my tournaments. Only for logged users-->
 
