@@ -1,6 +1,5 @@
 package es.webapp6.Padelante;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
