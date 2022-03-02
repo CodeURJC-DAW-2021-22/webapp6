@@ -14,6 +14,7 @@ import es.webapp6.Padelante.repositories.MatchRepository;
 import es.webapp6.Padelante.repositories.TeamRepository;
 import es.webapp6.Padelante.repositories.TournamentRepository;
 import es.webapp6.Padelante.repositories.UserRepository;
+import es.webapp6.Padelante.service.TournamentService;
 
 @Component
 public class ExamplesGenerator {
@@ -31,6 +32,9 @@ public class ExamplesGenerator {
 	private TeamRepository teamRepository;
 
 	@Autowired
+	private TournamentService tournamentService;
+
+	@Autowired
 	private PasswordEncoder passwordEncoder;
 
     @PostConstruct
@@ -40,22 +44,36 @@ public class ExamplesGenerator {
 		// ------ USERS AND TEAMS ------
 		//
 
+		User userNone = new User("none", passwordEncoder.encode("pass"),"none@correo.com","None", "USER");
+
 		User user1 = new User("user", passwordEncoder.encode("pass"),"user@correo.com","User", "USER");
 		User user2 = new User("admin", passwordEncoder.encode("adminpass"),"admin@correo.com","Admin", "USER", "ADMIN");
 
 		//Creo que se pedian solo 2 usuarios, asi que estos habria que borrarlos despues si es asi
 		User user3 = new User("Paco", passwordEncoder.encode("pass"),"paco@correo.com","Paco Navarro", "USER");
 		User user4 = new User("KevinAnd", passwordEncoder.encode("pass"),"kevinand@correo.com","Kevin Anderson", "USER");
+		User user5 = new User("Dani", passwordEncoder.encode("pass"),"dani@correo.com","Daniel Haro", "USER");
+		User user6 = new User("Ruben", passwordEncoder.encode("pass"),"ruben@correo.com","Ruben Catalan", "USER");
+		User user7 = new User("Silvia", passwordEncoder.encode("pass"),"silvia@correo.com","Silvia Ventura", "USER");
+		User user8 = new User("Alvaro", passwordEncoder.encode("pass"),"alvaro@correo.com","Alvaro Gonzalez", "USER");
 
+		userRepository.save(userNone);
 		userRepository.save(user1);
 		userRepository.save(user2);
 		userRepository.save(user3);
 		userRepository.save(user4);
+		userRepository.save(user5);
+		userRepository.save(user6);
+		userRepository.save(user7);
+		userRepository.save(user8);
 		
-		Team TBD = new Team(true);
-		Team t1 = new Team(false);
-		Team t2 = new Team(false);
-		Team t3 = new Team(false);
+		Team TBD = new Team(true, userNone, userNone);
+		Team t1 = new Team(false, userNone, userNone);
+		Team t2 = new Team(false, userNone, userNone);
+		Team t3 = new Team(false, userNone, userNone);
+		Team t4 = new Team(false, userNone, userNone);
+		Team t5 = new Team(false, userNone, userNone);
+		Team t6 = new Team(false, userNone, userNone);
 
 		t1.setUserA(user1);		
 		t1.setUserB(user2);
@@ -65,11 +83,23 @@ public class ExamplesGenerator {
 
 		t3.setUserA(user1);		
 		t3.setUserB(user4);
+
+		t4.setUserA(user1);
+		t4.setUserB(user3);
+
+		t5.setUserA(user5);
+		t5.setUserB(user6);
+
+		t6.setUserA(user7);
+		t6.setUserB(user8);
 		
 		teamRepository.save(TBD);
 		teamRepository.save(t1);
 		teamRepository.save(t2);
 		teamRepository.save(t3);
+		teamRepository.save(t4);
+		teamRepository.save(t5);
+		teamRepository.save(t6);
 
 		List<Team> teams = teamRepository.findAll();
 		System.out.println("Teams: "+teams);
@@ -119,11 +149,11 @@ public class ExamplesGenerator {
         tournamentRepository.save(tournament8);
         tournamentRepository.save(tournament9);
 		
-		Match m1 = new Match(1, t1, t2, tournament);
+		Match m1 = new Match(1, t1, t2, tournament1);
 		
-		Match m2 = new Match(1, t2, t3, tournament);
+		Match m2 = new Match(1, t2, t3, tournament1);
 		
-		Match m3 = new Match(2, t1, t3, tournament);
+		Match m3 = new Match(2, t1, t3, tournament1);
 		
 		matchRepository.save(m1);
 		matchRepository.save(m2);
@@ -132,6 +162,17 @@ public class ExamplesGenerator {
 		List<Tournament> tournaments = tournamentRepository.getTeamTournaments(t1);
 		
 		System.out.println("Tournaments: "+tournaments);
+
+
+		Tournament tour = tournamentRepository.findByTournamentName("Torneo 11").get(0);
+
+		tournamentService.addParticipant(tour, t1);
+		tournamentService.addParticipant(tour, t2);
+		// tournamentService.addParticipant(tour, t3);
+
+
+
+		
 
 		// List<User> players = userRepository.getPlayerPairs(u1);
 

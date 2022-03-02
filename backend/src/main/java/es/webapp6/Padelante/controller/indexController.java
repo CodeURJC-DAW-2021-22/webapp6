@@ -59,7 +59,7 @@ public class indexController {
 	// }
 	
      @GetMapping("/")
-     public String greeting(Model model, @RequestParam(required = false) Integer page  ) {       
+     public String greeting(Model model, @RequestParam(required = false) Integer page) {       
 		 int pageInt = page == null? 0: page;  
          model.addAttribute("tourns",tournamentService.getTournaments(pageInt).getContent());
 		 model.addAttribute("nextpage", pageInt+1);

@@ -19,6 +19,7 @@ import es.webapp6.Padelante.model.User;
 import es.webapp6.Padelante.repositories.MatchRepository;
 import es.webapp6.Padelante.repositories.TeamRepository;
 import es.webapp6.Padelante.repositories.TournamentRepository;
+import es.webapp6.Padelante.repositories.UserRepository;
 
 
 @Service
@@ -32,6 +33,9 @@ public class TournamentService {
 	
 	@Autowired
 	private TeamRepository teams;
+
+	@Autowired
+	private UserRepository users;
 
 	public Page<Tournament> listTournamentPageable(){
 		return tournaments.findAll(PageRequest.of(0, 3));
@@ -99,12 +103,11 @@ public class TournamentService {
 
 		if (!isAnyUserOfTeamInTournament(tournament, team)){
 			if (auxMatches.isEmpty() || !auxMatches.get(auxMatches.size()-1).getTeamTwo().isTbd()){
-				Team teamTwo = new Team(true);
+				Team teamTwo = new Team(true, users.findByName("none").get(), users.findByName("none").get());
 				teams.save(teamTwo);
 				Match match = new Match(0, team, teamTwo, tournament);
 				matches.save(match);
 			} else {
-				teams.delete(auxMatches.get(auxMatches.size()-1).getTeamTwo());
 				auxMatches.get(auxMatches.size()-1).setTeamTwo(team);
 				matches.save(auxMatches.get(auxMatches.size()-1));
 			}
@@ -116,7 +119,7 @@ public class TournamentService {
 
 	public void deleteParticipant(Tournament tournament, Team team){
 		List<Match> auxMatches = matches.getTeamAuxMatches(tournament, team);
-		Team teamAux = new Team(true);
+		Team teamAux = new Team(true, users.findByName("none").get(), users.findByName("none").get());
 		for (int i = 0; i < auxMatches.size(); i++){
 			if (auxMatches.get(i).getTeamOne() == team) {
 				teams.save(teamAux);
@@ -158,8 +161,8 @@ public class TournamentService {
 		for (int i = rounds; i >= 1; i--) {
 			power = (int) Math.pow(2, i);
 			for (int j = 1; j <= power; j++) {
-				Team teamOne = new Team(true);
-				Team teamTwo = new Team(true);
+				Team teamOne = new Team(true, users.findByName("none").get(), users.findByName("none").get());
+				Team teamTwo = new Team(true, users.findByName("none").get(), users.findByName("none").get());
 				teams.save(teamOne);
 				teams.save(teamTwo);
 				Match match = new Match(i, teamOne, teamTwo, tournament);
@@ -195,7 +198,6 @@ public class TournamentService {
 		Collections.shuffle(teamsSignedUp);
 
 		for (int i = 0; i < startRound.size(); i++){
-			teams.delete(startRound.get(i).getTeamOne());
 			startRound.get(i).setTeamOne(teamsSignedUp.get(0));
 			teamsSignedUp.remove(0);
 			matches.save(startRound.get(i));
@@ -207,7 +209,6 @@ public class TournamentService {
 
 		int i = 0;
 		while (!teamsUp.isEmpty()){
-			teams.delete(startRound.get(i).getTeamTwo());
 			startRound.get(i).setTeamTwo(teamsUp.get(0));
 			teamsUp.remove(0);
 			matches.save(startRound.get(i));
@@ -215,7 +216,6 @@ public class TournamentService {
 		}
 		i = startRound.size()/2;
 		while (!teamsDown.isEmpty()){
-			teams.delete(startRound.get(i).getTeamTwo());
 			startRound.get(i).setTeamTwo(teamsDown.get(0));
 			teamsDown.remove(0);
 			matches.save(startRound.get(i));
@@ -233,14 +233,8 @@ public class TournamentService {
 		}
 		int numMatch = (int) i/2;
 		if (i%2 == 0) {
-			if (nextRound.get(numMatch).getTeamOne().isTbd()) {
-				teams.delete(nextRound.get(numMatch).getTeamOne());
-			}
 			nextRound.get(numMatch).setTeamOne(winner);
 		} else {
-			if (nextRound.get(numMatch).getTeamTwo().isTbd()) {
-				teams.delete(nextRound.get(numMatch).getTeamTwo());
-			}
 			nextRound.get(numMatch).setTeamTwo(winner);
 		}
 

@@ -29,8 +29,10 @@ public class Team {
 		super();
 	}
 
-	public Team(boolean tbd) {
+	public Team(boolean tbd, User a, User b) {
 		super();
+		this.userA = a;
+		this.userB = b;
 		this.tbd = tbd;
 	}
 
