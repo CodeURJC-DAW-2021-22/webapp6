@@ -12,19 +12,19 @@ public interface MatchRepository extends JpaRepository<Match,Long> {
     @Query("SELECT m FROM Match m WHERE m.tournament = :t")
 	public List<Match> getMatches(Tournament t);
 
-    @Query("SELECT m FROM Match m WHERE m.tournament = :t AND m.round = 0")
+    @Query("SELECT m FROM Match m WHERE m.tournament = :t AND m.round = 0 ORDER BY id ASC")
 	public List<Match> getAuxMatches(Tournament t);
 
-    @Query("SELECT m FROM Match m WHERE m.tournament = :t AND m.round = :r")
+    @Query("SELECT m FROM Match m WHERE m.tournament = :t AND m.round = :r ORDER BY id ASC")
 	public List<Match> getRoundMatches(Tournament t, int r);
 
     // @Query("SELECT m FROM Match m WHERE m.teamOne = :t OR m.teamTwo = :t")
 	// public List<Match> getTeamMatches(Team t);
 
-    @Query("SELECT m FROM Match m WHERE (m.teamOne = :t OR m.teamTwo = :t) AND m.round != 0")
+    @Query("SELECT m FROM Match m WHERE (m.teamOne = :t OR m.teamTwo = :t) AND m.round != 0 ORDER BY id ASC")
 	public List<Match> getTeamMatches(Team t);
     
-    @Query("SELECT m FROM Match m WHERE (m.teamOne = :t OR m.teamTwo = :t) AND m.round = 0 AND m.tournament = :tour")
+    @Query("SELECT m FROM Match m WHERE (m.teamOne = :t OR m.teamTwo = :t) AND m.round = 0 AND m.tournament = :tour ORDER BY id ASC")
 	public List<Match> getTeamAuxMatches(Tournament tour, Team t);
     
 }

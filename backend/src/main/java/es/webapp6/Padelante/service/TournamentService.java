@@ -101,7 +101,7 @@ public class TournamentService {
 	public void addParticipant(Tournament tournament, Team team){
 		List<Match> auxMatches = matches.getAuxMatches(tournament);
 
-		if (!isAnyUserOfTeamInTournament(tournament, team)){
+		if (tournament.getNumSignedUp() < tournament.getNumParticipants() && !isAnyUserOfTeamInTournament(tournament, team)){
 			if (auxMatches.isEmpty() || !auxMatches.get(auxMatches.size()-1).getTeamTwo().isTbd()){
 				Team teamTBD = teams.getTBDTeam().get(0);
 				Match match = new Match(0, team, teamTBD, tournament);
@@ -137,14 +137,18 @@ public class TournamentService {
 	}
 
 	private static double log(double num, int base) {
-		return (Math.log10(num) / Math.log10(base));
+		if (num != 0){
+			return (Math.log10(num) / Math.log10(base));
+		} else {
+			return 0;
+		}
 	}
 
 	public static int calcSpotsRoundOne (Tournament tournament) {
-		int exponentN = (int) log(tournament.getNumSignedUp(), 2);
+		int exponentN = (int) log(tournament.getNumSignedUp() -1, 2);
 		int exponentK = (int) log(tournament.getNumParticipants(), 2);
 			
-		while (exponentN < exponentK - 1) {
+		while (exponentN < exponentK -1) {
 			exponentK --;
 		}
 		return (int) Math.pow(2, exponentK);
@@ -156,7 +160,7 @@ public class TournamentService {
 
 		int power = 0;
 		for (int i = rounds; i >= 1; i--) {
-			power = (int) Math.pow(2, i);
+			power = (int) Math.pow(2, i-1);
 			for (int j = 1; j <= power; j++) {
 				Team teamTBD = teams.getTBDTeam().get(0);
 				Match match = new Match(i, teamTBD, teamTBD, tournament);
@@ -178,7 +182,7 @@ public class TournamentService {
 			if (!teamOne.isTbd()){
 				teamsSignedUp.add(teamOne);
 			}
-			teamTwo = auxMatches.get(i).getTeamOne();
+			teamTwo = auxMatches.get(i).getTeamTwo();
 			if (!teamTwo.isTbd()){
 				teamsSignedUp.add(teamTwo);
 			}
@@ -197,21 +201,19 @@ public class TournamentService {
 			matches.save(startRound.get(i));
 		}
 
-		List<Team> teamsUp = teamsSignedUp.subList(0, (int) (teamsSignedUp.size()/2)+(1/2));
-		List<Team> teamsDown = teamsSignedUp.subList
-			((int) (teamsSignedUp.size()/2)+(1/2), (int) teamsSignedUp.size());
-
 		int i = 0;
-		while (!teamsUp.isEmpty()){
-			startRound.get(i).setTeamTwo(teamsUp.get(0));
-			teamsUp.remove(0);
+		int limit = (teamsSignedUp.size()+1)/2; 
+		while (i < limit){
+			startRound.get(i).setTeamTwo(teamsSignedUp.get(0));
+			teamsSignedUp.remove(0);
 			matches.save(startRound.get(i));
 			i++;
 		}
 		i = startRound.size()/2;
-		while (!teamsDown.isEmpty()){
-			startRound.get(i).setTeamTwo(teamsDown.get(0));
-			teamsDown.remove(0);
+		limit = teamsSignedUp.size() + i;
+		while (i < limit){
+			startRound.get(i).setTeamTwo(teamsSignedUp.get(0));
+			teamsSignedUp.remove(0);
 			matches.save(startRound.get(i));
 			i++;
 		}
@@ -222,14 +224,16 @@ public class TournamentService {
 		List<Match> nextRound = matches.getRoundMatches(tournament, match.getRound()-1);
 
 		int i=0;
-		while (matchRound.get(i).getId() != match.getId() && i<matchRound.size()){
+		while (!(matchRound.get(i).getId() == match.getId()) && i<matchRound.size()){
 			i++;
 		}
 		int numMatch = (int) i/2;
 		if (i%2 == 0) {
 			nextRound.get(numMatch).setTeamOne(winner);
+			matches.save(nextRound.get(numMatch));
 		} else {
 			nextRound.get(numMatch).setTeamTwo(winner);
+			matches.save(nextRound.get(numMatch));
 		}
 
 	}

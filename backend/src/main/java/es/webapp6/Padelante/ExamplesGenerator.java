@@ -56,6 +56,18 @@ public class ExamplesGenerator {
 		User user6 = new User("Ruben", passwordEncoder.encode("pass"),"ruben@correo.com","Ruben Catalan", "USER");
 		User user7 = new User("Silvia", passwordEncoder.encode("pass"),"silvia@correo.com","Silvia Ventura", "USER");
 		User user8 = new User("Alvaro", passwordEncoder.encode("pass"),"alvaro@correo.com","Alvaro Gonzalez", "USER");
+		User user9 = new User("Sara", passwordEncoder.encode("pass"),"sara@correo.com","Sara Gonzalez", "USER");
+		User user10 = new User("Diego", passwordEncoder.encode("pass"),"diego@correo.com","Diego del Amo", "USER");
+
+		User user11 = new User("Paco1", passwordEncoder.encode("pass"),"paco@correo.com","Paco Navarro", "USER");
+		User user12 = new User("KevinAnd1", passwordEncoder.encode("pass"),"kevinand@correo.com","Kevin Anderson", "USER");
+		User user13 = new User("Dani1", passwordEncoder.encode("pass"),"dani@correo.com","Daniel Haro", "USER");
+		User user14 = new User("Ruben1", passwordEncoder.encode("pass"),"ruben@correo.com","Ruben Catalan", "USER");
+		User user15 = new User("Silvia1", passwordEncoder.encode("pass"),"silvia@correo.com","Silvia Ventura", "USER");
+		User user16 = new User("Alvaro1", passwordEncoder.encode("pass"),"alvaro@correo.com","Alvaro Gonzalez", "USER");
+		User user17 = new User("Sara1", passwordEncoder.encode("pass"),"sara@correo.com","Sara Gonzalez", "USER");
+		User user18 = new User("Diego1", passwordEncoder.encode("pass"),"diego@correo.com","Diego del Amo", "USER");
+		
 
 		userRepository.save(userNone);
 		userRepository.save(user1);
@@ -66,32 +78,29 @@ public class ExamplesGenerator {
 		userRepository.save(user6);
 		userRepository.save(user7);
 		userRepository.save(user8);
+		userRepository.save(user9);
+		userRepository.save(user10);
+		userRepository.save(user11);
+		userRepository.save(user12);
+		userRepository.save(user13);
+		userRepository.save(user14);
+		userRepository.save(user15);
+		userRepository.save(user16);
+		userRepository.save(user17);
+		userRepository.save(user18);
 		
 		Team TBD = new Team(true, userNone, userNone);
-		Team t1 = new Team(false, userNone, userNone);
-		Team t2 = new Team(false, userNone, userNone);
-		Team t3 = new Team(false, userNone, userNone);
-		Team t4 = new Team(false, userNone, userNone);
-		Team t5 = new Team(false, userNone, userNone);
-		Team t6 = new Team(false, userNone, userNone);
-
-		t1.setUserA(user1);		
-		t1.setUserB(user2);
-
-		t2.setUserA(user3);		
-		t2.setUserB(user4);
-
-		t3.setUserA(user1);		
-		t3.setUserB(user4);
-
-		t4.setUserA(user1);
-		t4.setUserB(user3);
-
-		t5.setUserA(user5);
-		t5.setUserB(user6);
-
-		t6.setUserA(user7);
-		t6.setUserB(user8);
+		Team t1 = new Team(false, user1, user2);
+		Team t2 = new Team(false, user1, user3);
+		Team t3 = new Team(false, user1, user4);
+		Team t4 = new Team(false, user3, user4);
+		Team t5 = new Team(false, user5, user6);
+		Team t6 = new Team(false, user7, user8);
+		Team t7 = new Team(false, user9, user10);
+		Team t8 = new Team(false, user11, user12);
+		Team t9 = new Team(false, user13, user14);
+		Team t10 = new Team(false, user15, user16);
+		Team t11 = new Team(false, user17, user18);
 		
 		teamRepository.save(TBD);
 		teamRepository.save(t1);
@@ -100,6 +109,11 @@ public class ExamplesGenerator {
 		teamRepository.save(t4);
 		teamRepository.save(t5);
 		teamRepository.save(t6);
+		teamRepository.save(t7);
+		teamRepository.save(t8);
+		teamRepository.save(t9);
+		teamRepository.save(t10);
+		teamRepository.save(t11);
 
 		List<Team> teams = teamRepository.findAll();
 		System.out.println("Teams: "+teams);
@@ -127,16 +141,16 @@ public class ExamplesGenerator {
 		Date fecha1 = new Date("12/16/2022 16:00");
 		Date fecha2 = new Date("12/20/2022 17:00");
 		
-		Tournament tournament = new Tournament("Torneo 11", 5,"About5","RulesSet","Madrid11",fecha1,fecha2,"Format","user");
-        Tournament tournament1= new Tournament("Torneo 22", 5,"About6","RulesSet","Madrid12",fecha1,fecha2,"Format","user");
-        Tournament tournament2= new Tournament("Torneo 33", 6,"About7","RulesSet","Madrid13",fecha1,fecha2,"Format","user");
-        Tournament tournament3= new Tournament("Torneo 44", 7,"About8","RulesSet","Madrid14",fecha1,fecha2,"Format","user");
-        Tournament tournament4= new Tournament("Torneo 55", 8,"About9","RulesSet","Madrid15",fecha1,fecha2,"Format","user");
-		Tournament tournament5 = new Tournament("Torneo 66", 5,"About5","RulesSet","Madrid11",fecha1,fecha2,"Format","user");
-        Tournament tournament6= new Tournament("Torneo 77", 5,"About6","RulesSet","Madrid12",fecha1,fecha2,"Format","user");
-        Tournament tournament7= new Tournament("Torneo 88", 6,"About7","RulesSet","Madrid13",fecha1,fecha2,"Format","user");
-        Tournament tournament8= new Tournament("Torneo 99", 7,"About8","RulesSet","Madrid14",fecha1,fecha2,"Format","user");
-        Tournament tournament9= new Tournament("Torneo 100", 8,"About9","RulesSet","Madrid15",fecha1,fecha2,"Format","user");
+		Tournament tournament = new Tournament("Torneo 11", 8,"About1","Ruleset1","Madrid",fecha1,fecha2,"Simple Tournament","user");
+        Tournament tournament1= new Tournament("Torneo 22", 4,"About2","Ruleset2","Madrid",fecha1,fecha2,"Simple Tournament","user");
+        Tournament tournament2= new Tournament("Torneo 33", 4,"About3","Ruleset3","Madrid",fecha1,fecha2,"Simple Tournament","user");
+        Tournament tournament3= new Tournament("Torneo 44", 8,"About4","Ruleset4","Madrid",fecha1,fecha2,"Simple Tournament","user");
+        Tournament tournament4= new Tournament("Torneo 55", 8,"About5","Ruleset5","Madrid",fecha1,fecha2,"Simple Tournament","user");
+		Tournament tournament5 = new Tournament("Torneo 66", 8,"About6","Ruleset6","Madrid",fecha1,fecha2,"Simple Tournament","user");
+        Tournament tournament6= new Tournament("Torneo 77", 16,"About7","Ruleset7","Madrid",fecha1,fecha2,"Simple Tournament","user");
+        Tournament tournament7= new Tournament("Torneo 88", 16,"About8","Ruleset8","Madrid",fecha1,fecha2,"Simple Tournament","user");
+        Tournament tournament8= new Tournament("Torneo 99", 16,"About9","Ruleset9","Madrid",fecha1,fecha2,"Simple Tournament","user");
+        Tournament tournament9= new Tournament("Torneo 100", 2,"About10","Ruleset10","Madrid",fecha1,fecha2,"Simple Tournament","user");
 		
 		tournamentRepository.save(tournament);
         tournamentRepository.save(tournament1);
@@ -148,27 +162,48 @@ public class ExamplesGenerator {
         tournamentRepository.save(tournament7);
         tournamentRepository.save(tournament8);
         tournamentRepository.save(tournament9);
-		
-		Match m1 = new Match(1, t1, t2, tournament1);
-		
-		Match m2 = new Match(1, t2, t3, tournament1);
-		
-		Match m3 = new Match(2, t1, t3, tournament1);
-		
-		matchRepository.save(m1);
-		matchRepository.save(m2);
-		matchRepository.save(m3);
 				
 		List<Tournament> tournaments = tournamentRepository.getTeamTournaments(t1);
 		
 		System.out.println("Tournaments: "+tournaments);
 
 
+
+
 		Tournament tour = tournamentRepository.findByTournamentName("Torneo 11").get(0);
 
+		//Añadimos particpantes al torneo
 		tournamentService.addParticipant(tour, t1);
+
+		//Como el user1 está en t2 y t3 y ese usuario ya está inscrito con t1, no deja incribir a t2 y t3
 		tournamentService.addParticipant(tour, t2);
-		// tournamentService.addParticipant(tour, t3);
+		tournamentService.addParticipant(tour, t3);
+
+		//Añadimos mas particpantes al torneo
+		tournamentService.addParticipant(tour, t4);
+		tournamentService.addParticipant(tour, t5);
+		tournamentService.addParticipant(tour, t6);
+		tournamentService.addParticipant(tour, t7);
+		tournamentService.addParticipant(tour, t8);
+		tournamentService.addParticipant(tour, t9);
+		tournamentService.addParticipant(tour, t10);
+
+		// //Intentamos borrar un equipo no inscrito
+		// tournamentService.deleteParticipant(tour, t3);
+
+		// //Borramos un equipo inscrito
+		tournamentService.deleteParticipant(tour, t1);
+
+		// //Volvemos a inscribir al equipo que eliminado
+		tournamentService.addParticipant(tour, t1);
+
+		// //Intentamos inscribir más equipos de los que se permiten en el torneo (4)
+		tournamentService.addParticipant(tour, t11);
+
+		tournamentService.generateEmptyBracket(tour);
+		tournamentService.assignTeamsStart(tour);
+		tournamentService.setFreeWins(tour);
+		
 
 
 
