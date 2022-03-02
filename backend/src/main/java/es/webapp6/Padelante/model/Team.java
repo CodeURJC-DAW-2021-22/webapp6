@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 
 
@@ -23,10 +24,11 @@ public class Team {
 
 	private boolean tbd;
 
-	@ManyToMany
-	@JoinTable(name = "user_table_teams")
-	private List<User> players;
+	@ManyToOne
+	private User userA;
 
+	@ManyToOne
+	private User userB;
 
     private String data; //just to add and atributte and check the below methods
     
@@ -37,7 +39,14 @@ public class Team {
 	public Team(boolean tbd) {
 		super();
 		this.tbd = tbd;
-		this.players = new ArrayList<>();
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public boolean isTbd() {
@@ -48,12 +57,20 @@ public class Team {
 		this.tbd = tbd;
 	}
 
-	public void addPlayer(User u){
-		this.players.add(u);
+	public User getUserA() {
+		return userA;
 	}
 
-    public List<User> getPlayers() {
-		return players;
+	public void setUserA(User userA) {
+		this.userA = userA;
+	}
+
+	public User getUserB() {
+		return userB;
+	}
+
+	public void setUserB(User userB) {
+		this.userB = userB;
 	}
 
 	public String getData() {

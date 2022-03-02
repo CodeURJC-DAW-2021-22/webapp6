@@ -29,13 +29,6 @@ public class User {
 	private int numPlayed;
 	private int karma;
 
-	
-	// private List<Tournament> myTournaments;
-
-	@ManyToMany(mappedBy="players")
-	private List<Team> teams;
-
-
 	//Profile Img To Do
 
 	private String encodedPassword;
@@ -124,22 +117,6 @@ public class User {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
-	// public List<Tournament> getMyTournaments() {
-	// 	return myTournaments;
-	// }
-
-	// public void setMyTournaments(List<Tournament> myTournaments) {
-	// 	this.myTournaments = myTournaments;
-	// }
-
-	// public List<Team> getTeams() {
-	// 	return teams;
-	// }
-
-	// public void setMyPartners(List<Team> teams) {
-	// 	this.teams = teams;
-	// }
 
 	public int getNumWins() {
 		return numWins;

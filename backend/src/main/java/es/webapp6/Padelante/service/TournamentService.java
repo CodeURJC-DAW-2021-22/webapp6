@@ -76,15 +76,20 @@ public class TournamentService {
 
 	public boolean isAnyUserOfTeamInTournament(Tournament tournament, Team team){
 		List<Match> auxMatches = matches.getAuxMatches(tournament);
-		User member1 = team.getPlayers().get(0);
-		User member2 = team.getPlayers().get(1);
+		User member1 = team.getUserA();
+		User member2 = team.getUserB();
 
 		for (int i = 0; i < auxMatches.size(); i++){
-			List<User> playersTeamOne = auxMatches.get(i).getTeamOne().getPlayers();
-			List<User> playersTeamTwo = auxMatches.get(i).getTeamTwo().getPlayers();
-			if (playersTeamOne.get(0) == member1 || playersTeamOne.get(0) == member2 ||
-			playersTeamTwo.get(1) == member1 || playersTeamTwo.get(1) == member2){
+			Team teamOne = auxMatches.get(i).getTeamOne();
+			Team teamTwo = auxMatches.get(i).getTeamTwo();
+			if (teamOne.getUserA() == member1 || teamOne.getUserA() == member2 ||
+				teamOne.getUserB() == member1 || teamOne.getUserB() == member2){
 				return true;
+			} else {
+				if (teamTwo.getUserA() == member1 || teamTwo.getUserA() == member2 ||
+					teamTwo.getUserB() == member1 || teamTwo.getUserB() == member2){
+					return true;
+				}
 			}
 		}
 		return false;

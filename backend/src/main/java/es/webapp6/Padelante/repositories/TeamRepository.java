@@ -15,7 +15,7 @@ public interface TeamRepository  extends JpaRepository<Team,Long>{
 			+ "WHERE (m.teamOne = team OR m.teamTwo = team) AND  m.tournament = :t")
 	public List<Team> getTeams(Tournament t);
 
-	@Query("SELECT team FROM Team team WHERE :u IN team.players")
+	@Query("SELECT team FROM Team team WHERE (team.userA = :u OR team.userB = :u)")
 	public List<Team> getPlayerTeams(User u);
     
 }

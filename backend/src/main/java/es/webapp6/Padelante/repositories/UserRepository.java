@@ -18,10 +18,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
     // "(SELECT team FROM Team team WHERE :u IN team.players AND player IN team.players)")
 	// public List<User> getPlayerPairs2(User u);
 
-    
-
     // @Query("SELECT distinct player FROM User player WHERE t.players != :u)")
 	// public List<User> getPlayerPairsOLD(Team t, User u);
+
+    @Query("SELECT distinct u FROM UserTable u, Team t WHERE (t.userA = u AND t.userB = :user) OR (t.userB = u AND t.userA = :user)")
+	public List<User> findPairsOf(User user);
 
     Optional<User> findByName(String name);
 
