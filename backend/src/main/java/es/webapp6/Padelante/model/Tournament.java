@@ -140,23 +140,23 @@ public class Tournament {
     }
 
     public String getInscriptionDate() {
-        DateFormat formatter = new SimpleDateFormat("hh:mm  dd/MM/yyyy");
+        DateFormat formatter = new SimpleDateFormat("HH:mm  dd/MM/yyyy");
         return formatter.format(this.inscriptionDate);
     }
 
     public void setInscriptionDate(String inscriptionDate) throws ParseException {
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
         Date date = (Date)formatter.parse(inscriptionDate); 
         this.inscriptionDate = date;
     }
 
     public String getStartDate() {
-        DateFormat formatter = new SimpleDateFormat("hh:mm  dd/MM/yyyy");
+        DateFormat formatter = new SimpleDateFormat("HH:mm  dd/MM/yyyy");
         return formatter.format(this.startDate);
     }
 
     public void setStartDate(String startDate) throws ParseException {
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
         Date date = (Date)formatter.parse(startDate); 
         this.startDate = date;
     }
