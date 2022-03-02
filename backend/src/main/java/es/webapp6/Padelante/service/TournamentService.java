@@ -85,12 +85,12 @@ public class TournamentService {
 		for (int i = 0; i < auxMatches.size(); i++){
 			Team teamOne = auxMatches.get(i).getTeamOne();
 			Team teamTwo = auxMatches.get(i).getTeamTwo();
-			if (teamOne.getUserA() == member1 || teamOne.getUserA() == member2 ||
-				teamOne.getUserB() == member1 || teamOne.getUserB() == member2){
+			if (teamOne.getUserA().getId() == member1.getId() || teamOne.getUserA().getId() == member2.getId() ||
+				teamOne.getUserB().getId() == member1.getId() || teamOne.getUserB().getId() == member2.getId()){
 				return true;
 			} else {
-				if (teamTwo.getUserA() == member1 || teamTwo.getUserA() == member2 ||
-					teamTwo.getUserB() == member1 || teamTwo.getUserB() == member2){
+				if (teamTwo.getUserA().getId() == member1.getId() || teamTwo.getUserA().getId() == member2.getId() ||
+					teamTwo.getUserB().getId() == member1.getId() || teamTwo.getUserB().getId() == member2.getId()){
 					return true;
 				}
 			}
@@ -103,9 +103,8 @@ public class TournamentService {
 
 		if (!isAnyUserOfTeamInTournament(tournament, team)){
 			if (auxMatches.isEmpty() || !auxMatches.get(auxMatches.size()-1).getTeamTwo().isTbd()){
-				Team teamTwo = new Team(true, users.findByName("none").get(), users.findByName("none").get());
-				teams.save(teamTwo);
-				Match match = new Match(0, team, teamTwo, tournament);
+				Team teamTBD = teams.getTBDTeam().get(0);
+				Match match = new Match(0, team, teamTBD, tournament);
 				matches.save(match);
 			} else {
 				auxMatches.get(auxMatches.size()-1).setTeamTwo(team);
@@ -119,18 +118,16 @@ public class TournamentService {
 
 	public void deleteParticipant(Tournament tournament, Team team){
 		List<Match> auxMatches = matches.getTeamAuxMatches(tournament, team);
-		Team teamAux = new Team(true, users.findByName("none").get(), users.findByName("none").get());
+		Team teamTBD = teams.getTBDTeam().get(0);
 		for (int i = 0; i < auxMatches.size(); i++){
-			if (auxMatches.get(i).getTeamOne() == team) {
-				teams.save(teamAux);
-				auxMatches.get(i).setTeamOne(teamAux);
+			if (auxMatches.get(i).getTeamOne().getId() == team.getId()) {
+				auxMatches.get(i).setTeamOne(teamTBD);
 				tournament.setNumSignedUp(tournament.getNumSignedUp()-1);
 				matches.save(auxMatches.get(i));
 				tournaments.save(tournament);
 			} else{
-				if (auxMatches.get(i).getTeamTwo() == team) {
-					teams.save(teamAux);
-					auxMatches.get(i).setTeamTwo(teamAux);
+				if (auxMatches.get(i).getTeamTwo().getId() == team.getId()) {
+					auxMatches.get(i).setTeamTwo(teamTBD);
 					tournament.setNumSignedUp(tournament.getNumSignedUp()-1);
 					matches.save(auxMatches.get(i));
 					tournaments.save(tournament);
@@ -161,11 +158,8 @@ public class TournamentService {
 		for (int i = rounds; i >= 1; i--) {
 			power = (int) Math.pow(2, i);
 			for (int j = 1; j <= power; j++) {
-				Team teamOne = new Team(true, users.findByName("none").get(), users.findByName("none").get());
-				Team teamTwo = new Team(true, users.findByName("none").get(), users.findByName("none").get());
-				teams.save(teamOne);
-				teams.save(teamTwo);
-				Match match = new Match(i, teamOne, teamTwo, tournament);
+				Team teamTBD = teams.getTBDTeam().get(0);
+				Match match = new Match(i, teamTBD, teamTBD, tournament);
 				matches.save(match);
 			}
 		}
