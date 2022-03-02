@@ -62,6 +62,7 @@ public class indexController {
 		 model.addAttribute("nextpage", pageInt+1);
         return "main";
     }
+	
 
     @GetMapping("/create_tournament")
     public String createTournamentPage(Model model,HttpServletRequest request) {
@@ -172,6 +173,17 @@ public class indexController {
 		}
 
 	} 
+	@GetMapping("/users/{id}")
+	public String showUser(Model model, @PathVariable long id){
+		Optional<User> user = userService.findById(id);
+		if(user.isPresent()){
+			model.addAttribute("users", user.get());
+			return "user";
+		
+		}else{
+			return "error";
+		}
+	}
 
 //select player from player where team in 
 	@PostMapping("/update_tourns/{id}")
@@ -231,6 +243,21 @@ public class indexController {
 			return ResponseEntity.notFound().build();
 		}
 	}
+	// @GetMapping("/users/{id}/image")
+	// public ResponseEntity<Object> downloadImageUser(@PathVariable long id) throws SQLException {
+
+	// 	Optional<User> userss = userService.findById(id);
+	// 	if (userss.isPresent() && userss.get().getImageFile() != null) {
+
+	// 		Resource file = new InputStreamResource(userss.get().getImageFile().getBinaryStream());
+
+	// 		return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+	// 				.contentLength(userss.get().getImageFile().length()).body(file);
+
+	// 	} else {
+	// 		return ResponseEntity.notFound().build();
+	// 	}
+	// }
 
   
 
