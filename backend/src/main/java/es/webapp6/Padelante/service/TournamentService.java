@@ -223,9 +223,27 @@ public class TournamentService {
 		}
 	}
 
-	public void moveNextRound(Tournament tournament, Match match, Team team){
+	public void moveNextRound(Tournament tournament, Match match, Team winner){
 		List<Match> matchRound = matches.getRoundMatches(tournament, match.getRound());
 		List<Match> nextRound = matches.getRoundMatches(tournament, match.getRound()-1);
+
+		int i=0;
+		while (matchRound.get(i).getId() != match.getId() && i<matchRound.size()){
+			i++;
+		}
+		int numMatch = (int) i/2;
+		if (i%2 == 0) {
+			if (nextRound.get(numMatch).getTeamOne().isTbd()) {
+				teams.delete(nextRound.get(numMatch).getTeamOne());
+			}
+			nextRound.get(numMatch).setTeamOne(winner);
+		} else {
+			if (nextRound.get(numMatch).getTeamTwo().isTbd()) {
+				teams.delete(nextRound.get(numMatch).getTeamTwo());
+			}
+			nextRound.get(numMatch).setTeamTwo(winner);
+		}
+
 	}
 
 	public void setFreeWins(Tournament tournament){
