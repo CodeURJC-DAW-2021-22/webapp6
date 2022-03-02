@@ -131,26 +131,73 @@ public class indexController {
 		Principal principal = request.getUserPrincipal();
 		String userName = principal.getName();
 		Optional<User> user = userService.findByName(userName); //By ID??
-		
 		model.addAttribute("user", user.get());
 		//model.addAttribute("userCompleteName", user.get().getRealName());
         return "user_profile";
     }
 
-	@PostMapping("/update_userProfile")
-	public String updateProfile(Model model,@RequestParam String userN,@RequestParam String fullName,@RequestParam String location,
-	@RequestParam String country,@RequestParam String phone){
-		Optional<User> user = userService.findByName(userN); //By ID??
+	@GetMapping("/user/{id}/image")
+	public ResponseEntity<Object> downloadImageUser(@PathVariable long id) throws SQLException {
 
+		Optional<User> user = userService.findById(id);
+		if (user.isPresent() && user.get().getImageFile() != null) {
+
+			Resource file = new InputStreamResource(user.get().getImageFile().getBinaryStream());
+
+			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+					.contentLength(user.get().getImageFile().length()).body(file);
+
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+
+	@PostMapping("/update_userProfile/{id}")
+	public String updateProfile(Model model,@PathVariable long id ,@RequestParam String fullName,
+	@RequestParam String location, @RequestParam String country,@RequestParam String phone, 
+	boolean removeImage,  MultipartFile imageField)throws IOException, SQLException{
+
+		
+		
+		Optional<User> user = userService.findById(id); //By ID??
+		
+		if (user.isPresent()) {
+		updateImageProfile(user.get(), removeImage, imageField);
 		user.get().setLocation(location);
 		user.get().setCountry(country);
 		user.get().setPhone(phone);
 		user.get().setRealName(fullName);
 		userService.save(user.get());
+		return "redirect:/user_profile";
+		}else{
+			return "error";
+		}
         
 
-        return "redirect:user_profile";
+        
     }
+
+	//I know is a similar method of the update image for tournament, but i dont know how to do it
+	private void updateImageProfile(User user, boolean removeImage, MultipartFile imageField) throws IOException, SQLException {
+		
+		if (!imageField.isEmpty()) {
+			user.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
+			user.setImage(true);
+		} else {
+			if (removeImage) {
+				user.setImageFile(null);
+				user.setImage(false);
+			} else {
+				// Maintain the same image loading it before updating the book
+				User dbUser = userService.findById(user.getId()).orElseThrow();
+				if (dbUser.getImage()) {
+					user.setImageFile(BlobProxy.generateProxy(dbUser.getImageFile().getBinaryStream(),
+					dbUser.getImageFile().length()));
+						user.setImage(true);
+				}
+			}
+		}
+	}
 
     @GetMapping("/admin")
     public String admin(Model model, @RequestParam(required = false) Integer page  ) {       
@@ -173,17 +220,17 @@ public class indexController {
 		}
 
 	} 
-	@GetMapping("/users/{id}")
-	public String showUser(Model model, @PathVariable long id){
-		Optional<User> user = userService.findById(id);
-		if(user.isPresent()){
-			model.addAttribute("users", user.get());
-			return "user";
+	// @GetMapping("/users/{id}")
+	// public String showUser(Model model, @PathVariable long id){
+	// 	Optional<User> user = userService.findById(id);
+	// 	if(user.isPresent()){
+	// 		model.addAttribute("users", user.get());
+	// 		return "user";
 		
-		}else{
-			return "error";
-		}
-	}
+	// 	}else{
+	// 		return "error";
+	// 	}
+	// }
 
 //select player from player where team in 
 	@PostMapping("/update_tourns/{id}")
@@ -226,6 +273,7 @@ public class indexController {
 			}
 		}
 	}
+
 
 
 	@GetMapping("/tourns/{id}/image")

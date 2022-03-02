@@ -8,6 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Blob;
+import javax.persistence.Lob;
 
 
 @Entity(name = "UserTable")
@@ -28,6 +30,11 @@ public class User {
 	private int karma;
 
 	//Profile Img To Do
+	@Lob
+	private Blob imageFile;
+
+	private boolean image;
+
 
 	private String encodedPassword;
 
@@ -154,6 +161,23 @@ public class User {
 
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
+	}
+
+
+    public Blob getImageFile() {
+		return imageFile;
+	}
+
+	public void setImageFile(Blob image) {
+		this.imageFile = image;
+	}
+
+	public boolean getImage(){
+		return this.image;
+	}
+
+	public void setImage(boolean image){
+		this.image = image;
 	}
 
 	@Override

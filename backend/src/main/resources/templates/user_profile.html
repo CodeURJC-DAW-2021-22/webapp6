@@ -13,7 +13,15 @@
           <div class="card text-center">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="assets/images/profile-img.jpg" alt="Profile" class="rounded-circle border-green">
+              {{#user.image}}
+              <img src="/user/{{user.id}}/image" alt="Tournament Image" class="rounded-circle border-green bg-232323">
+              {{/user.image}}
+  
+              {{^user.image}}
+              <img src="/assets/images/no_profile_photo.jpg" alt="Tournament Image" class="rounded-circle border-green bg-232323">
+              {{/user.image}}
+
+              <!-- <img src="/assets/images/no_profile_photo.jpg" alt="Profile" class="rounded-circle border-green"> -->
               <h2>{{user.realName}}</h2>
               <h3 class="mt-1 color-green"><span class="fw-bold">@{{user.name}}</span></h3>
               <h3 class="my-2">Karma: <span class="color-green fw-bold">{{user.karma}} puntos</span></h3>
@@ -221,19 +229,33 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-                  <form action="update_userProfile" method="post">
+                  <form action="update_userProfile/{{user.id}}" method="post" enctype="multipart/form-data">
                     <div class="row mb-3">
-                      <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+                      <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Imagen de Perfil </label>
+                      
                       <div class="col-md-8 col-lg-9">
-                        <div class="profile-card">
-                          <img src="assets/images/profile-img.jpg" alt="Profile">
-                        </div>
-                        <div class="pt-2">
+                        <!-- <div class="profile-card"> -->
+                          {{#user.image}}
+                          <img src="/user/{{user.id}}/image"><br>
+                          <input type='checkbox' name='removeImage'> <label>Remove image</label><br>
+                        
+                          {{/user.image}}
+
+                          {{^user.image}}
+                          <img src="/assets/images/no_profile_photo.jpg"> <br>
+                          
+                          {{/user.image}}
+
+                      
+                          <input type='file' name='imageField' accept=".jpg, .jpeg" >
+                          <!-- <img src="assets/images/profile-img.jpg" alt="Profile"> -->
+                        <!-- </div> -->
+                        <!-- <div class="pt-2">
                           <a href="#" class="btn btn-green btn-sm" title="Upload new profile image"><i
                               class="ri-upload-2-fill"></i></a>
                           <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i
                               class="ri-delete-bin-fill"></i></a>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                     
@@ -241,7 +263,8 @@
                       <label for="username" class="col-md-4 col-lg-3 col-form-label">Usuario @</label>
                       <div class="col-md-8 col-lg-9"> 
                                  
-                        <input name="userN" type="text" class="form-control" id="username" value={{user.name}} >                        
+                        <input name="userN" type="text" class="form-control" id="username" value="{{user.name}}" disabled >
+                                             
                       </div>
                     </div>
 
@@ -311,12 +334,12 @@
                         <input name="linkedin" type="text" class="form-control" id="Linkedin" value="Kevin_And#1234">
                       </div>
                     </div> -->
-
+                    <input type="hidden" name="_csrf" value="{{token}}"/>
                     <div class="text-center">
                       <button class="btn btn-green fw-bold" type="submit">Guardar cambios</button>
                     </div>
 
-                    <input type="hidden" name="_csrf" value="{{token}}"/>
+                    
                   </form><!-- End Profile Edit Form -->
 
                 </div>
