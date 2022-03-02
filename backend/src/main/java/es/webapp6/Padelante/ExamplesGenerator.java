@@ -67,7 +67,8 @@ public class ExamplesGenerator {
 		User user16 = new User("Alvaro1", passwordEncoder.encode("pass"),"alvaro@correo.com","Alvaro Gonzalez", "USER");
 		User user17 = new User("Sara1", passwordEncoder.encode("pass"),"sara@correo.com","Sara Gonzalez", "USER");
 		User user18 = new User("Diego1", passwordEncoder.encode("pass"),"diego@correo.com","Diego del Amo", "USER");
-		
+		user1.setNumWins(10);
+		user1.setNumLoses(5);
 
 		userRepository.save(userNone);
 		userRepository.save(user1);
