@@ -73,14 +73,7 @@
                 </div>  
               </div>
 
-              <div class="center">
-                <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#" class="active">1</a>
-                <a href="#" >2</a>
-                <a href="#">&raquo;</a>
-                </div>
-              </div>
+              
             </div>
           </div>
 
@@ -89,36 +82,53 @@
             <div class="card text-center">
               <div class="card-body profile-card pt-2 d-flex flex-column justify-content-center">
                 <h2 class="mt-2 mb-1">Torneos encontrados</h2>
-
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="d-flex lineTournament">
-                      <div><img src="assets/images/copa-default.jpg" alt="Torunament" class="tournamentFinder "></div>
-                      <span class="d-flex align-items-center partner-name">Copa piston</span>
-                      <a href="#" class="btn btn-danger binTournament"  title="Perma delate tournament"><i class="ri-delete-bin-fill" ></i></a>
-                    </div>
+                
+                <div class="row" id="elements">
+                  {{#tourns}}               
+                  <div class="col-md-4">
+                      <div class="product-item">
+                          <!-- select image from DB when necessary-->  
+                                          
+                          <a href="/tourns/{{id}}">
+                              <!-- <img class="img-lista-torneos" src="assets/images/product_01.jpg" alt=""> -->
+                              {{#image}}
+                              <img class="img-lista-torneos" src="/tourns/{{id}}/image">
+                              {{/image}}
+                  
+                              {{^image}}
+                              <img class="img-lista-torneos" src="/assets/images/product_02.jpg">
+                              {{/image}}
+                          </a>
+                  
+                          <div class="down-content text-center">
+                              <a href="/tourns/{{id}}">
+                                  <h4>{{tournamentName}}</h4> <!-- tournamentName-->
+                              </a>
+                              <p>{{inscriptionDate}}</p>                           
+                              <span>{{numParticipants}} equipos</span> <!-- numParticipants-->
+                              
+                          </div>
+                      </div>
                   </div>
-                </div>
+                  {{/tourns}}
+                
+                
+                  <div id="loadArea-{{nextpage}}">
 
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="d-flex lineTournament">
-                      <div><img src="assets/images/copa-default.jpg" alt="Torunament" class="tournamentFinder "></div>
-                      <span class="d-flex align-items-center partner-name">Copa Arcoiris</span>
-                      <a href="#" class="btn btn-danger binTournament"  title="Perma delate tournament"><i class="ri-delete-bin-fill" ></i></a>
-                    </div>
                   </div>
-                </div>
+               
+                
+
+                  
+                  <row>
+                      <col-md-12 class="d-flex justify-content-center">
+                          <button class="cargar-mas mb-5" id="loadMore" onclick="loadMore()">Cargar más</button>
+                      </col-md-12>
+              
+                  </row>
 
 
-              <div class="center">
-                <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#" class="active">1</a>
-                <a href="#" >2</a>
-                <a href="#">&raquo;</a>
-                </div>
-              </div>
+              
             </div>
           </div>
           </div>
