@@ -574,17 +574,39 @@
           <div class="tab-pane fade profile-edit pt-3" id="tournament-settings">
 
             <!-- Tournament Settings Admin -->
-            <form action="/update_tourns/{{tourns.id}}" method="post">
+            <form action="/update_tourns/{{tourns.id}}" method="post" enctype="multipart/form-data">
+              
               <div class="row mb-3">
                 <label for="tournamentImage" class="col-md-4 col-lg-3 col-form-label">Imagen del torneo</label>
                 <div class="col-md-8 col-lg-9 tournament-img">
-                  <img src="/assets/images/icon.png" alt="tournamentImage">
+                 
+                  <!-- <img src="/assets/images/icon.png" alt="tournamentImage">
                   <div class="pt-2">
+
                     <a href="#" class="btn btn-green btn-sm" title="Upload new profile image"><i
                         class="ri-upload-2-fill"></i></a>
                     <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i
                         class="ri-delete-bin-fill"></i></a>
-                  </div>
+
+                      
+                        
+
+                  </div> -->
+
+                      {{#tourns.image}}
+                      <img src="/tourns/{{tourns.id}}/image"><br>
+                      <input type='checkbox' name='removeImage'> <label>Remove image</label><br>
+                     
+                      {{/tourns.image}}
+
+                      {{^tourns.image}}
+                      <img src="/assets/images/product_02.jpg"><br>
+                      
+                      {{/tourns.image}}
+
+                      
+                      <input type='file' name='imageField' accept=".jpg, .jpeg" >
+
                 </div>
               </div>
 
@@ -684,14 +706,16 @@
 
 
 
-
-
-
+             
+              <input type="hidden" name="_csrf" value="{{token}}"/>
+             
               <div class="text-center">
+                <!-- Cancel botton didnt work -->
+                <!-- <button class="btn btn-green fw-bold" onclick="location.href='/tourns/{{tourns.id}}'; return false;">Cancel</button> -->
                 <button class="btn btn-green fw-bold" type="submit">Guardar cambios</button>
               </div>
 
-              <input type="hidden" name="_csrf" value="{{token}}"/>
+              
             </form><!-- End Profile Edit Form -->
 
           </div>
