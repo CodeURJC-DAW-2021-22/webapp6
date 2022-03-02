@@ -1,8 +1,10 @@
-{{>stylesheets}} <!-- Css imports and more -->
+{{>stylesheets}}
+<!-- Css imports and more -->
 
 <body class="bg-232323">
 
-  {{>header}} <!--Header-->
+  {{>header}}
+  <!--Header-->
 
   <main class="container main-profile">
 
@@ -16,9 +18,10 @@
               {{#user.image}}
               <img src="/user/{{user.id}}/image" alt="Tournament Image" class="rounded-circle border-green bg-232323">
               {{/user.image}}
-  
+
               {{^user.image}}
-              <img src="/assets/images/no_profile_photo.jpg" alt="Tournament Image" class="rounded-circle border-green bg-232323">
+              <img src="/assets/images/no_profile_photo.jpg" alt="Tournament Image"
+                class="rounded-circle border-green bg-232323">
               {{/user.image}}
 
               <!-- <img src="/assets/images/no_profile_photo.jpg" alt="Profile" class="rounded-circle border-green"> -->
@@ -102,7 +105,7 @@
               <div class="tab-content pt-2">
 
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                  
+
                   <div class="card">
                     <div class="card-body pb-0">
                       <h5 class="card-title pb-0 mb-0">Victorias - Derrotas</h5>
@@ -110,51 +113,11 @@
                       <!-- Donut Chart -->
                       <div id="donutChart" style="min-height: 250px;" class="echart d-flex align-items-center"></div>
 
-                      <script>
-                        document.addEventListener("DOMContentLoaded", () => {
-                          echarts.init(document.querySelector("#donutChart")).setOption({
-                            color: ['#67d400', '#121212'],
-                            tooltip: {
-                              trigger: 'item'
-                            },
-                            legend: {
-                              top: '5%',
-                              left: 'center'
-                            },
-                            series: [{
-                              name: 'Victorias - Derrotas',
-                              type: 'pie',
-                              radius: ['40%', '70%'],
-                              avoidLabelOverlap: false,
-                              label: {
-                                show: false,
-                                position: 'center'
-                              },
-                              emphasis: {
-                                label: {
-                                  show: true,
-                                  fontSize: '18',
-                                  fontWeight: 'bold'
-                                }
-                              },
-                              labelLine: {
-                                show: false
-                              },
-                              data: [{
-                                value: 1048,
-                                name: 'Victorias',
-                              },
-                              {
-                                value: 735,
-                                name: 'Derrotas'
-                              }
-                              ]
-                            }]
-                          });
-                        });
-                      </script>
-                      <!-- End Donut Chart -->
+                      <div hidden id="numWins">{{user.numWins}}</div>
+                      <div hidden id="numLoses">{{user.numLoses}}</div>
+                      <script src="/assets/js/stats.js"></script>
 
+                      <!-- Donut Chart End -->
                     </div>
                   </div>
 
@@ -197,13 +160,15 @@
                     <a class="d-flex justify-content-between" href="/tournament">
                       <div class="d-flex flex-row">
                         <div class="tournament-img p-3 me-2">
-                          <img src="assets/images/icon.png" alt="Tournament Image" class="rounded-circle border-green bg-232323">
+                          <img src="assets/images/icon.png" alt="Tournament Image"
+                            class="rounded-circle border-green bg-232323">
                         </div>
                         <div class="d-flex align-items-center ps-2">
                           <div>
                             <h3 class="mt-0 fw-bold">eGrillos Cup</h3>
                             <div class="progress my-3">
-                              <div class="progress-bar bg-green" role="progressbar" style="width: 12.5%" aria-valuenow="4" aria-valuemin="0" aria-valuemax="32"></div>
+                              <div class="progress-bar bg-green" role="progressbar" style="width: 12.5%"
+                                aria-valuenow="4" aria-valuemin="0" aria-valuemax="32"></div>
                             </div>
                             <h6>Participantes: 4/32<span class="ps-5">Madrid</span></h6>
                           </div>
@@ -221,7 +186,7 @@
                           <h6 class="pt-1"><em>21/02/2022 17:00</em></h6>
                         </div>
                       </div>
-                      
+
                     </a>
                   </section>
                 </div>
@@ -232,23 +197,23 @@
                   <form action="update_userProfile/{{user.id}}" method="post" enctype="multipart/form-data">
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Imagen de Perfil </label>
-                      
+
                       <div class="col-md-8 col-lg-9">
                         <!-- <div class="profile-card"> -->
-                          {{#user.image}}
-                          <img src="/user/{{user.id}}/image"><br>
-                          <input type='checkbox' name='removeImage'> <label>Remove image</label><br>
-                        
-                          {{/user.image}}
+                        {{#user.image}}
+                        <img src="/user/{{user.id}}/image"><br>
+                        <input type='checkbox' name='removeImage'> <label>Remove image</label><br>
 
-                          {{^user.image}}
-                          <img src="/assets/images/no_profile_photo.jpg"> <br>
-                          
-                          {{/user.image}}
+                        {{/user.image}}
 
-                      
-                          <input type='file' name='imageField' accept=".jpg, .jpeg" >
-                          <!-- <img src="assets/images/profile-img.jpg" alt="Profile"> -->
+                        {{^user.image}}
+                        <img src="/assets/images/no_profile_photo.jpg"> <br>
+
+                        {{/user.image}}
+
+
+                        <input type='file' name='imageField' accept=".jpg, .jpeg">
+                        <!-- <img src="assets/images/profile-img.jpg" alt="Profile"> -->
                         <!-- </div> -->
                         <!-- <div class="pt-2">
                           <a href="#" class="btn btn-green btn-sm" title="Upload new profile image"><i
@@ -258,13 +223,14 @@
                         </div> -->
                       </div>
                     </div>
-                    
+
                     <div class="row mb-3">
                       <label for="username" class="col-md-4 col-lg-3 col-form-label">Usuario @</label>
-                      <div class="col-md-8 col-lg-9"> 
-                                 
-                        <input name="userN" type="text" class="form-control" id="username" value="{{user.name}}" disabled >
-                                             
+                      <div class="col-md-8 col-lg-9">
+
+                        <input name="userN" type="text" class="form-control" id="username" value="{{user.name}}"
+                          disabled>
+
                       </div>
                     </div>
 
@@ -285,15 +251,17 @@
 
                     <div class="row mb-3">
                       <label for="location" class="col-md-4 col-lg-3 col-form-label">Localidad</label>
-                      <div class="col-md-8 col-lg-9">                        
-                        <input name="location" type="text" placeholder="Introduce tu localidad" class="form-control" id="location" value="{{user.location}}">
+                      <div class="col-md-8 col-lg-9">
+                        <input name="location" type="text" placeholder="Introduce tu localidad" class="form-control"
+                          id="location" value="{{user.location}}">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Country" class="col-md-4 col-lg-3 col-form-label">País</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="country" type="text" placeholder="Introduce tu país" class="form-control" id="Country" value="{{user.country}}">
+                        <input name="country" type="text" placeholder="Introduce tu país" class="form-control"
+                          id="Country" value="{{user.country}}">
                       </div>
                     </div>
 
@@ -308,7 +276,8 @@
                     <div class="row mb-3">
                       <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Teléfono</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="phone" type="text" placeholder="Introduce tu teléfono" class="form-control" id="Phone" value="{{user.phone}}">
+                        <input name="phone" type="text" placeholder="Introduce tu teléfono" class="form-control"
+                          id="Phone" value="{{user.phone}}">
                       </div>
                     </div>
 
@@ -334,12 +303,12 @@
                         <input name="linkedin" type="text" class="form-control" id="Linkedin" value="Kevin_And#1234">
                       </div>
                     </div> -->
-                    <input type="hidden" name="_csrf" value="{{token}}"/>
+                    <input type="hidden" name="_csrf" value="{{token}}" />
                     <div class="text-center">
                       <button class="btn btn-green fw-bold" type="submit">Guardar cambios</button>
                     </div>
 
-                    
+
                   </form><!-- End Profile Edit Form -->
 
                 </div>
@@ -397,7 +366,7 @@
                       <button type="submit" class="btn btn-green fw-bold">Guardar cambios</button>
                     </div>
                   </form>
-                  
+
                   <!-- End settings Form -->
 
                 </div>
@@ -447,4 +416,5 @@
 
   </main><!-- End #main -->
 
-{{>javascripts}} <!-- JS and scripts -->
+  {{>javascripts}}
+  <!-- JS and scripts -->
