@@ -36,8 +36,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/login").permitAll();
         //http.authorizeRequests().antMatchers("/loginerror").permitAll();
         http.authorizeRequests().antMatchers("/logout").permitAll();
+        http.authorizeRequests().antMatchers("/register").permitAll();
+        http.authorizeRequests().antMatchers("/tourns/{id}").permitAll();
 
         // Private pages
+        http.authorizeRequests().antMatchers("/create_tournament").hasAnyRole("USER","ADMIN");
+        http.authorizeRequests().antMatchers("/user_profile").hasAnyRole("USER","ADMIN");
+        http.authorizeRequests().antMatchers("/user/{id}/image").hasAnyRole("USER","ADMIN");
+        http.authorizeRequests().antMatchers("/admin").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/tourns/{id}/image").hasAnyRole("USER","ADMIN");
         // http.authorizeRequests().antMatchers("/newbook").hasAnyRole("USER");
         // http.authorizeRequests().antMatchers("/editbook/*").hasAnyRole("USER");
         // http.authorizeRequests().antMatchers("/removebook/*").hasAnyRole("ADMIN");
