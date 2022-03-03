@@ -25,6 +25,7 @@ public interface MatchRepository extends JpaRepository<Match,Long> {
     @Query("SELECT m FROM Match m WHERE (m.teamOne = :t OR m.teamTwo = :t) AND m.round != 0 ORDER BY id ASC")
 	public List<Match> getTeamMatches(Team t);
 
+    //to get all the matches I have
     @Query("SELECT m FROM Match m WHERE (m.teamOne.userA = :user OR m.teamOne.userB = :user OR m.teamTwo.userA = :user OR m.teamTwo.userB = :user) AND m.round != 0 ORDER BY id ASC")
 	public List<Match> getUserMatches(User user);
     

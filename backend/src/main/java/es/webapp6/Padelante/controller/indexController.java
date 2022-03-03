@@ -3,6 +3,7 @@ package es.webapp6.Padelante.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Optional;
 
 
@@ -23,7 +24,7 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 
-
+import es.webapp6.Padelante.model.Match;
 import es.webapp6.Padelante.model.Tournament;
 import es.webapp6.Padelante.model.User;
 import es.webapp6.Padelante.service.MatchService;
@@ -65,7 +66,14 @@ public class indexController {
 		int pageInt = page == null? 0: page; 
 		if (principal != null) {
 			model.addAttribute("mytourns", tournamentService.getUserTournaments(userService.findByName(principal.getName()).get())); 
+			
+		String userName = principal.getName();
+		Optional<User> user = userService.findByName(userName); //By ID??
+		model.addAttribute("maches", matchService.getUserMatches(user.get()));
 		}
+
+		
+
 		model.addAttribute("tourns",tournamentService.getTournaments(pageInt).getContent());
 		model.addAttribute("nextpage", pageInt+1);
         return "main";
@@ -90,11 +98,7 @@ public class indexController {
 		}        
     }
 
-    // @PostMapping("/create_tournament")
-    // public String createTournament(@RequestParam String tournamentName, @RequestParam int numParticipants){
-    //     tournamentService.createTournament(tournamentName, numParticipants);    
-    //     return "redirect:/";
-    // }
+    
 
 
 	@PostMapping("/create_tournament")
@@ -119,10 +123,37 @@ public class indexController {
     }
 
 
-    @GetMapping("/match")
-    public String match(Model model) {
+    @GetMapping("/match/{id}")
+    public String match(Model model,@PathVariable long id,HttpServletRequest request) {
+		// Principal principal = request.getUserPrincipal();
+		// String userName = principal.getName();
+		// Optional<User> user = userService.findByName(userName); //By ID??
+		model.addAttribute("maches",matchService.findById(id).get());
+		
         return "match";
     }
+
+	@PostMapping("/resultMach/{id}")
+    public String resultMatch(Model model, @PathVariable long id,@RequestParam String sets1,@RequestParam String sets2,@RequestParam String sets3,
+	@RequestParam String sets4,@RequestParam String sets5,@RequestParam String sets6){
+        Match match = matchService.findById(id).get();
+		
+		boolean cheked = matchService.checkResult(sets1, sets2, sets3, sets4, sets5, sets6, match);
+
+		if(cheked){
+			model.addAttribute("maches",matchService.findById(id).get());
+			return "redirect:/match/{id}";
+		}else{
+			return "matchResulterror";
+		}
+		
+		
+		
+
+        
+    }
+
+
 
     @GetMapping("/register")
     public String register(Model model) {

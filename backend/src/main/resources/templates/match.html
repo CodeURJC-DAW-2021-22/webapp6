@@ -1,8 +1,10 @@
-{{>stylesheets}} <!-- Css imports and more -->
+{{>stylesheets}}
+<!-- Css imports and more -->
 
 <body class="bg-232323">
 
-    {{>header}} <!--Header-->
+    {{>header}}
+    <!--Header-->
 
     <!-- Page Content -->
 
@@ -12,31 +14,50 @@
             <div class="d-flex justify-content-between">
                 <div class="d-flex flex-row">
                     <div class="tournament-img p-3">
-                        <img src="assets/images/profile-img.jpg" alt="Tournament Image"
-                            class="rounded-circle border-green">
+                        {{#maches.tournament.image}}
+                        <img src="/tourns/{{tourns.id}}/image" alt="Tournament Image"
+                            class="rounded-circle border-green bg-232323">
+                        {{/maches.tournament.image}}
+
+                        {{^maches.tournament.image}}
+                        <img src="/assets/images/product_02.jpg" alt="Tournament Image"
+                            class="rounded-circle border-green bg-232323">
+                        {{/maches.tournament.image}}
                     </div>
                     <div class="d-flex align-items-center ps-2">
                         <div>
-                            <h2 class="mt-0">eGrillos Cup</h2>
-                            <h3 class="d-flex align-items-center pt-2"><em>Organizador:</em>
-                                <img src="assets/images/profile-img.jpg" alt="Profile"
-                                    class="tournament-img rounded-circle border-green-tiny small ms-2 me-1">
-                                Kevin Anderson
+                            <h2 class="mt-0"></h2>
+
+                            <h3 class="d-flex align-items-center pt-2"><em>Organizador: </em> 
+                                {{#maches.tournament.owner.image}}
+                                <img src="/user/{{user.id}}/image" alt="Tournament Image"
+                                class="partner-img rounded-circle border-green-tiny small me-2">
+                                {{/maches.tournament.owner.image}}
+
+                                {{^maches.tournament.owner.image}}
+                                <img src="/assets/images/no_profile_photo.jpg" alt="Tournament Image"
+                                class="partner-img rounded-circle border-green-tiny small me-2" style="margin-left: 15px;">
+                                {{/maches.tournament.owner.image}}
+
+                                {{maches.tournament.owner}}
+                                
                             </h3>
+                            
                             <div class="progress my-2">
                                 <div class="progress-bar bg-green" role="progressbar" style="width: 25%"
                                     aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
-                            <h5>Participantes: 8/32</h5>
+                            <h5>Participantes: {{maches.tournament.numSignedUp}}/{{maches.tournament.numParticipants}}
+                            </h5>
                         </div>
                     </div>
                 </div>
                 <div class="d-flex align-items-center justify-content-center p-2 me-5">
                     <div class="text-center">
                         <h3 class="py-1 date-title">Fin de inscripciones</h3>
-                        <h3 class="py-1"><em>20/02/2022 17:00</em></h3>
+                        <h3 class="py-1"><em>{{maches.tournament.inscriptionDate}}</em></h3>
                         <h3 class="py-1 date-title">Inicio del torneo</h3>
-                        <h3 class="py-1"><em>21/02/2022 17:00</em></h3>
+                        <h3 class="py-1"><em>{{maches.tournament.startDate}}</em></h3>
                     </div>
                 </div>
                 <!-- <div class="d-flex align-items-center justify-content-end p-2 pe-3">
@@ -57,6 +78,7 @@
         </section>
 
         <!--Section add results-->
+
         <section>
             <div class="container">
                 <div class="row">
@@ -64,17 +86,20 @@
                     <div class="col-md-4 ps-0">
                         <div class="card h-100">
                             <div class="card-header text-center date-title">
-                                <span> PEPE/RAMÓN </span>
+                                <span> {{maches.teamOne.userA.name}}/{{maches.teamOne.userB.name}}</span>
+
+                                
                             </div>
                             <div
                                 class="card-body profile-card pt-2 d-flex flex-column justify-content-center align-items-center">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="d-flex justify-content-start align-middle mt-2">
-                                            <div><img src="assets/images/profile-img.jpg" alt="Profile"
+                                            <!-- <div><img src="assets/images/profile-img.jpg" alt="Profile"
                                                     class="partner-img rounded-circle border-green-tiny small me-2">
-                                            </div>
-                                            <span class="d-flex align-items-center partner-name">Pepe Marín</span>
+                                            </div> -->
+                                            <span class="d-flex align-items-center partner-name">
+                                                {{maches.teamOne.userA.realName}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -82,10 +107,11 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="d-flex justify-content-start align-middle mt-2">
-                                            <div><img src="assets/images/team_01.jpg" alt="Profile"
+                                            <!-- <div><img src="assets/images/team_01.jpg" alt="Profile"
                                                     class="partner-img rounded-circle border-green-tiny small me-2">
-                                            </div>
-                                            <span class="d-flex align-items-center partner-name">Ramón Tadito</span>
+                                            </div> -->
+                                            <span class="d-flex align-items-center partner-name">
+                                                {{maches.teamOne.userB.realName}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -95,17 +121,21 @@
 
                     <!-- Results -->
                     <!-- Compress width of inputs -->
+                    
                     <div class="col-md-4">
-                        <div class="card h-100">
+                        <form action="/resultMach/{{maches.id}}" method="post">
+                             <div class="card h-100">
                             <div class="card-header text-center date-title">
                                 <span> RESULTADOS </span>
+                                {{maches.result}}
                             </div>
                             <div
                                 class="card-body profile-card pt-2 pb-0 d-flex flex-column justify-content-center align-items-center">
                                 <!--Primer set-->
                                 <div class="row my-1">
                                     <div class="col-sm">
-                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="sets1" id="sets1">
+                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="sets1"
+                                            id="sets1" >
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -113,14 +143,15 @@
                                             <option value="4">4</option>
                                             <option value="5">5</option>
                                             <option value="6">6</option>
-                                            <option value="6">7</option>
+                                            <option value="7">7</option>
                                         </select>
                                     </div>
                                     <div class="col-sm">
                                         <span>_______</span>
                                     </div>
                                     <div class="col-sm">
-                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="sets2" id="sets2">
+                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="sets2"
+                                            id="sets2">
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -128,14 +159,15 @@
                                             <option value="4">4</option>
                                             <option value="5">5</option>
                                             <option value="6">6</option>
-                                            <option value="6">7</option>
+                                            <option value="7">7</option>
                                         </select>
                                     </div>
                                 </div>
                                 <!--Segundo set-->
                                 <div class="row my-1">
                                     <div class="col-sm">
-                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="sets3" id="sets3">
+                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="sets3"
+                                            id="sets3">
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -143,14 +175,15 @@
                                             <option value="4">4</option>
                                             <option value="5">5</option>
                                             <option value="6">6</option>
-                                            <option value="6">7</option>
+                                            <option value="7">7</option>
                                         </select>
                                     </div>
                                     <div class="col-sm">
                                         <span>_______</span>
                                     </div>
                                     <div class="col-sm">
-                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="sets4" id="sets4">
+                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="sets4"
+                                            id="sets4">
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -158,14 +191,15 @@
                                             <option value="4">4</option>
                                             <option value="5">5</option>
                                             <option value="6">6</option>
-                                            <option value="6">7</option>
+                                            <option value="7">7</option>
                                         </select>
                                     </div>
                                 </div>
                                 <!--Tercer set-->
                                 <div class="row my-1">
                                     <div class="col-sm">
-                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="sets5" id="sets5">
+                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="sets5"
+                                            id="sets5">
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -173,14 +207,15 @@
                                             <option value="4">4</option>
                                             <option value="5">5</option>
                                             <option value="6">6</option>
-                                            <option value="6">7</option>
+                                            <option value="7">7</option>
                                         </select>
                                     </div>
                                     <div class="col-sm">
                                         <span>_______</span>
                                     </div>
                                     <div class="col-sm">
-                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="sets6" id="sets6">
+                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="sets6"
+                                            id="sets6">
                                             <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -188,23 +223,32 @@
                                             <option value="4">4</option>
                                             <option value="5">5</option>
                                             <option value="6">6</option>
-                                            <option value="6">7</option>
+                                            <option value="7">7</option>
                                         </select>
                                     </div>
                                 </div>
                                 <!--Guardar resultados-->
+                               
+
                                 <div class="row my-1">
-                                    <button class="btn bg-green color-121212 fw-bold upper-text mt-3">Guardar resultado</button>
+                                    <button class="btn btn-green fw-bold" type="submit">Guardar
+                                        resultado</button>
                                 </div>
-                            </div>
-                        </div>
+                                <input type="hidden" name="_csrf" value="{{token}}"/>
+                                  
+                                
+
+                             </div>
+                           </div>
+                        </form>
                     </div>
+                    
 
                     <!-- Second pair-->
                     <div class="col-md-4 pe-0">
                         <div class="card h-100">
                             <div class="card-header text-center date-title">
-                                <span> JUAN/ÁLVARO </span>
+                                <span> {{maches.teamTwo.userA.name}}/{{maches.teamTwo.userB.name}}</span>
                             </div>
                             <div
                                 class="card-body profile-card pt-2 d-flex flex-column justify-content-center align-items-center">
@@ -212,10 +256,11 @@
                                     <div class="col-md-12">
                                         <div class="d-flex justify-content-start align-middle mt-2">
 
-                                            <div><img src="assets/images/profile-img.jpg" alt="Profile"
+                                            <!-- <div><img src="assets/images/profile-img.jpg" alt="Profile"
                                                     class="partner-img rounded-circle border-green-tiny small me-2">
-                                            </div>
-                                            <span class="d-flex align-items-center partner-name">Juan Jurado</span>
+                                            </div> -->
+                                            <span
+                                                class="d-flex align-items-center partner-name">{{maches.teamTwo.userA.realName}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -223,10 +268,11 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="d-flex justify-content-start align-middle mt-2">
-                                            <div><img src="assets/images/team_01.jpg" alt="Profile"
+                                            <!-- <div><img src="assets/images/team_01.jpg" alt="Profile"
                                                     class="partner-img rounded-circle border-green-tiny small me-2">
-                                            </div>
-                                            <span class="d-flex align-items-center partner-name">Álvaro González</span>
+                                            </div> -->
+                                            <span
+                                                class="d-flex align-items-center partner-name">{{maches.teamTwo.userB.realName}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -237,6 +283,8 @@
                 <!--end row-->
             </div>
         </section>
+
     </main>
 
-{{>javascripts}} <!-- JS and scripts -->
+    {{>javascripts}}
+    <!-- JS and scripts -->
