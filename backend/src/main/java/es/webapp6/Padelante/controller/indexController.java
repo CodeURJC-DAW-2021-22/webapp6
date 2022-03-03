@@ -26,6 +26,7 @@ import org.springframework.http.HttpHeaders;
 
 import es.webapp6.Padelante.model.Tournament;
 import es.webapp6.Padelante.model.User;
+import es.webapp6.Padelante.service.MatchService;
 import es.webapp6.Padelante.service.TournamentService;
 import es.webapp6.Padelante.service.UserService;
 
@@ -36,6 +37,9 @@ public class indexController {
 
     @Autowired
 	private UserService userService;	
+
+	@Autowired
+	private MatchService matchService;	
 
     @ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -222,6 +226,40 @@ public class indexController {
 		
 
 		if (tournament.isPresent()) {
+			int numRound = tournament.get().getRounds();
+			boolean r1=false;
+			boolean r2=false;
+			boolean r3=false;
+			boolean r4=false;
+
+			if(numRound==1){
+				r1=true;
+			}else if(numRound==2){
+				r1=true;
+				r2=true;
+			}else if(numRound==3){
+				r1=true;
+				r2=true;
+				r3=true;
+			}else if (numRound==4){
+				r1=true;
+				r2=true;
+				r3=true;
+				r4=true;
+			}
+			
+			model.addAttribute("hasr1", r1);
+			model.addAttribute("hasr2", r2);
+			model.addAttribute("hasr3", r3);
+			model.addAttribute("hasr4", r4);
+
+			model.addAttribute("roundFour", matchService.getRoundMatches(tournament.get(),4));
+			model.addAttribute("roundTres", matchService.getRoundMatches(tournament.get(),3));
+			model.addAttribute("roundTwo",matchService.getRoundMatches(tournament.get(),2));
+			model.addAttribute("roundOne",matchService.getRoundMatches(tournament.get(),1));
+			model.addAttribute("roundCero",matchService.getRoundMatches(tournament.get(),0));
+			
+
 			model.addAttribute("tourns", tournament.get());
 			if(principal!=null){
 				String userName = principal.getName();

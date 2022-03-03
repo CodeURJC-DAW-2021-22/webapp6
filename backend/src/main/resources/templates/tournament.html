@@ -21,7 +21,8 @@
             {{/tourns.image}}
 
             {{^tourns.image}}
-            <img src="/assets/images/product_02.jpg" alt="Tournament Image" class="rounded-circle border-green bg-232323">
+            <img src="/assets/images/product_02.jpg" alt="Tournament Image"
+              class="rounded-circle border-green bg-232323">
             {{/tourns.image}}
 
 
@@ -33,13 +34,15 @@
               <h3 class="d-flex align-items-center pt-2"><em>Organizador:</em>
                 <img src="/assets/images/profile-img.jpg" alt="Profile"
                   class="tournament-img rounded-circle border-green-tiny small ms-2 me-1">
-                  {{tourns.owner}}
+                {{tourns.owner}}
               </h3>
-              <div class="progress my-2">
-                <div class="progress-bar bg-green" role="progressbar" style="width: 12.5%" aria-valuenow="4"
-                  aria-valuemin="0" aria-valuemax="32"></div>
+              
+              <div>
+                <!-- <div class="progress-bar bg-green" role="progressbar" style="width: 50%" aria-valuenow="{{tourns.numParticipants}}"
+                  aria-valuemin="0" aria-valuemax="32"></div> -->
+                  <div> <progress class="progress-bar" value="{{tourns.numSignedUp}}" max="{{tourns.numParticipants}}"> </progress></div>
               </div>
-              <h5>Participantes: 0/{{tourns.numParticipants}}<span class="ps-5">{{tourns.location}}</span></h5>
+              <h5>Participantes: {{tourns.numSignedUp}}/{{tourns.numParticipants}}<span class="ps-5">{{tourns.location}}</span></h5>
             </div>
           </div>
         </div>
@@ -82,7 +85,8 @@
                       <div class="search-bar">
 
                         <form class="search-form d-flex align-items-center" method="POST" action="sing_up_tournament">
-                          <input type="text" name="searchTeamMate" placeholder="Introducir usuario" title="Introducir usuario">
+                          <input type="text" name="searchTeamMate" placeholder="Introducir usuario"
+                            title="Introducir usuario">
                           <button type="submit" title="Search"><i class="ri-search-line"></i></button>
                         </form>
 
@@ -131,15 +135,15 @@
               data-bs-target="#tournament-bracket"><i class="ri-organization-chart pe-2"></i>Bracket</button>
           </li>
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <button class="nav-link d-flex align-items-center" data-bs-toggle="tab" data-bs-target="#league-matches"><i
                 class="ri-organization-chart pe-2"></i>Jornadas</button>
-          </li>
+          </li> -->
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <button class="nav-link d-flex align-items-center" data-bs-toggle="tab"
               data-bs-target="#league-clasification"><i class="ri-organization-chart pe-2"></i>Clasificación</button>
-          </li>
+          </li> -->
 
           {{#owner}}
           <li class="nav-item">
@@ -164,16 +168,36 @@
 
             <h5 class="card-title pb-1">Participantes</h5>
 
+            {{#roundCero}}
             <div class="row py-2 pair-tournament">
               <div class="col-md-11 d-flex justify-content-start align-items-center">
                 <div class="pe-2">
-                  <img src="/assets/images/profile-img.jpg" alt="Profile"
-                    class="partner-img rounded-circle border-green-tiny small me-2">Kevin Ander
+                  <!-- <img src="/assets/images/profile-img.jpg" alt="Profile"
+                    class="partner-img rounded-circle border-green-tiny small me-2"> -->
+
+                 
+
+
+                  {{#teamOne.tbd}}
+                  tbd
+                  {{/teamOne.tbd}}
+
+                  {{^teamOne.tbd}}
+                  {{teamOne.userA.name}}
+                  {{/teamOne.tbd}}
+
                 </div>
                 <i class="ri-arrow-left-right-fill"></i>
                 <div class="ps-2">
-                  <img src="/assets/images/team_01.jpg" alt="Profile"
-                    class="partner-img rounded-circle border-green-tiny small me-2">Paco Navarrito
+                  
+
+                  {{#teamOne.tbd}}
+                  tbd
+                  {{/teamOne.tbd}}
+
+                  {{^teamOne.tbd}}
+                  {{teamOne.userB.name}}
+                  {{/teamOne.tbd}}
                 </div>
               </div>
               {{#owner}}
@@ -183,246 +207,261 @@
               </div>
               {{/owner}}
             </div>
+            {{/roundCero}}
 
-          
+            {{#roundCero}}
+            <div class="row py-2 pair-tournament">
+              <div class="col-md-11 d-flex justify-content-start align-items-center">
+                <div class="pe-2">
+
+                  {{#teamTwo.tbd}}
+                  tbd
+                  {{/teamTwo.tbd}}
+
+                  {{^teamTwo.tbd}}
+                  {{teamTwo.userA.name}}
+                  {{/teamTwo.tbd}}
+
+                </div>
+                <i class="ri-arrow-left-right-fill"></i>
+                <div class="ps-2">
+                  
+                  {{#teamTwo.tbd}}
+                  tbd
+                  {{/teamTwo.tbd}}
+
+                  {{^teamTwo.tbd}}
+                  {{teamTwo.userB.name}}
+                  {{/teamTwo.tbd}}
+                </div>
+              </div>
+              {{#owner}}
+              <div class="col-md-1 d-flex justify-content-end align-items-center">
+                <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i
+                    class="ri-delete-bin-fill"></i></a>
+              </div>
+              {{/owner}}
+            </div>
+            {{/roundCero}}
+
+
+
           </div>
 
           <div class="tab-pane fade pt-3" id="tournament-bracket">
             <!-- Tournament Bracket -->
             <div class="container pb-2">
               <div class="tournament-bracket tournament-bracket--rounded">
-                <div class="tournament-bracket__round tournament-bracket__round--quarterfinals">
-                  <h3 class="tournament-bracket__round-title">Cuartos de final</h3>
+
+                {{#hasr4}}
+                <div class="tournament-bracket__round tournament-bracket__round--semifinals">
+                  <h3 class="tournament-bracket__round-title">Octavos de final</h3>
                   <ul class="tournament-bracket__list">
+                    {{#roundFour}}
                     <li class="tournament-bracket__item">
                       <div class="tournament-bracket__match" tabindex="0">
                         <table class="tournament-bracket__table">
-                          <caption class="tournament-bracket__caption">
-                            <time datetime="1998-02-18">18 February 1998</time>
-                          </caption>
-                          <tbody class="tournament-bracket__content">
-                            <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                              <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">CAN</abbr>
-                              </td>
-                              <td class="tournament-bracket__score">
-                                <span class="tournament-bracket__number">4</span>
-                              </td>
-                            </tr>
-                            <tr class="tournament-bracket__team">
-                              <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">KAZ</abbr>
-                              </td>
-                              <td class="tournament-bracket__score">
-                                <span class="tournament-bracket__number">1</span>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </li>
 
-                    <li class="tournament-bracket__item">
-                      <div class="tournament-bracket__match" tabindex="0">
-                        <table class="tournament-bracket__table">
-                          <caption class="tournament-bracket__caption">
-                            <time datetime="1998-02-18">18 February 1998</time>
-                          </caption>
                           <tbody class="tournament-bracket__content">
-                            <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                              <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">CZE</abbr>
-                              </td>
-                              <td class="tournament-bracket__score">
-                                <span class="tournament-bracket__number">4</span>
-                              </td>
-                            </tr>
                             <tr class="tournament-bracket__team">
                               <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">USA</abbr>
-                              </td>
-                              <td class="tournament-bracket__score">
-                                <span class="tournament-bracket__number">1</span>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </li>
-                    <li class="tournament-bracket__item">
-                      <div class="tournament-bracket__match" tabindex="0">
-                        <table class="tournament-bracket__table">
-                          <caption class="tournament-bracket__caption">
-                            <time datetime="1998-02-18">18 February 1998</time>
-                          </caption>
-                          <tbody class="tournament-bracket__content">
-                            <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                              <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">FIN</abbr>
-                              </td>
-                              <td class="tournament-bracket__score">
-                                <span class="tournament-bracket__number">2</span>
-                              </td>
-                            </tr>
-                            <tr class="tournament-bracket__team">
-                              <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">SVE</abbr>
-                              </td>
-                              <td class="tournament-bracket__score">
-                                <span class="tournament-bracket__number">1</span>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </li>
+                                <abbr class="tournament-bracket__code">
 
-                    <li class="tournament-bracket__item">
-                      <div class="tournament-bracket__match" tabindex="0">
-                        <table class="tournament-bracket__table">
-                          <caption class="tournament-bracket__caption">
-                            <time datetime="1998-02-18">18 February 1998</time>
-                          </caption>
-                          <tbody class="tournament-bracket__content">
-                            <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                              <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">RUS</abbr>
+                                  {{#teamOne.tbd}}
+                                  tbd
+                                  {{/teamOne.tbd}}
+
+                                  {{^teamOne.tbd}}
+                                  {{teamOne.userA.name}},{{teamOne.userB.name}}
+                                  {{/teamOne.tbd}}
+
+                                </abbr>
                               </td>
                               <td class="tournament-bracket__score">
-                                <span class="tournament-bracket__number">4</span>
+                                <span class="tournament-bracket__number">0</span>
                               </td>
                             </tr>
-                            <tr class="tournament-bracket__team">
+                            <tr class="tournament-bracket__team tournament-bracket__team--winner">
                               <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">BEL</abbr>
+                                <abbr class="tournament-bracket__code">
+
+                                  {{#teamTwo.tbd}}
+                                  tbd
+                                  {{/teamTwo.tbd}}
+
+                                  {{^teamTwo.tbd}}
+                                  {{teamTwo.userA.name}},{{teamTwo.userB.name}}
+                                  {{/teamTwo.tbd}}
+                                </abbr>
                               </td>
                               <td class="tournament-bracket__score">
-                                <span class="tournament-bracket__number">1</span>
+                                <span class="tournament-bracket__number">0</span>
                               </td>
                             </tr>
                           </tbody>
                         </table>
                       </div>
                     </li>
+                    {{/roundFour}}
+
+
                   </ul>
                 </div>
+                {{/hasr4}}
+
+                {{#hasr3}}
+                <div class="tournament-bracket__round tournament-bracket__round--quarterfinals">
+                  <h3 class="tournament-bracket__round-title">Cuartos de final</h3>
+
+                  <ul class="tournament-bracket__list">
+                    {{#roundTres}}
+                    <li class="tournament-bracket__item">
+                      <div class="tournament-bracket__match" tabindex="0">
+                        <table class="tournament-bracket__table">
+                          <caption class="tournament-bracket__caption">
+                            <!-- <time datetime="1998-02-18">18 February 1998</time> -->
+                          </caption>
+                          <tbody class="tournament-bracket__content">
+                            <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                              <td class="tournament-bracket__team-name">
+                                <abbr class="tournament-bracket__code">
+                                  {{#teamOne.tbd}}
+                                  tbd
+                                  {{/teamOne.tbd}}
+
+                                  {{^teamOne.tbd}}
+                                  {{teamOne.userA.name}},{{teamOne.userB.name}}
+                                  {{/teamOne.tbd}}
+                                </abbr>
+                              </td>
+                              <td class="tournament-bracket__score">
+                                <span class="tournament-bracket__number">0</span>
+                              </td>
+                            </tr>
+                            <tr class="tournament-bracket__team">
+                              <td class="tournament-bracket__team-name">
+                                <abbr class="tournament-bracket__code">
+                                  {{#teamTwo.tbd}}
+                                  tbd
+                                  {{/teamTwo.tbd}}
+
+                                  {{^teamTwo.tbd}}
+                                  {{teamTwo.userA.name}},{{teamTwo.userB.name}}
+                                  {{/teamTwo.tbd}}
+                                </abbr>
+                              </td>
+                              <td class="tournament-bracket__score">
+                                <span class="tournament-bracket__number">0</span>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </li>
+                    {{/roundTres}}
+                  </ul>
+                </div>
+                {{/hasr3}}
+
+                {{#hasr2}}
                 <div class="tournament-bracket__round tournament-bracket__round--semifinals">
                   <h3 class="tournament-bracket__round-title">Semifinales</h3>
                   <ul class="tournament-bracket__list">
+                    {{#roundTwo}}
                     <li class="tournament-bracket__item">
                       <div class="tournament-bracket__match" tabindex="0">
                         <table class="tournament-bracket__table">
-                          <caption class="tournament-bracket__caption">
-                            <time datetime="1998-02-20">20 February 1998</time>
-                          </caption>
-                          <tbody class="tournament-bracket__content">
-                            <tr class="tournament-bracket__team">
-                              <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">CAN</abbr>
-                              </td>
-                              <td class="tournament-bracket__score">
-                                <span class="tournament-bracket__number">1</span>
-                              </td>
-                            </tr>
-                            <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                              <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">CZE</abbr>
-                              </td>
-                              <td class="tournament-bracket__score">
-                                <span class="tournament-bracket__number">2</span>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </li>
 
-                    <li class="tournament-bracket__item">
-                      <div class="tournament-bracket__match" tabindex="0">
-                        <table class="tournament-bracket__table">
-                          <caption class="tournament-bracket__caption">
-                            <time datetime="1998-02-20">20 February 1998</time>
-                          </caption>
                           <tbody class="tournament-bracket__content">
                             <tr class="tournament-bracket__team">
                               <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">FIN</abbr>
+                                <abbr class="tournament-bracket__code">
+
+                                  {{#teamOne.tbd}}
+                                  tbd
+                                  {{/teamOne.tbd}}
+
+                                  {{^teamOne.tbd}}
+                                  {{teamOne.userA.name}},{{teamOne.userB.name}}
+                                  {{/teamOne.tbd}}
+
+                                </abbr>
                               </td>
                               <td class="tournament-bracket__score">
-                                <span class="tournament-bracket__number">4</span>
+                                <span class="tournament-bracket__number">0</span>
                               </td>
                             </tr>
                             <tr class="tournament-bracket__team tournament-bracket__team--winner">
                               <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">RUS</abbr>
+                                <abbr class="tournament-bracket__code">
+
+                                  {{#teamTwo.tbd}}
+                                  tbd
+                                  {{/teamTwo.tbd}}
+
+                                  {{^teamTwo.tbd}}
+                                  {{teamTwo.userA.name}},{{teamTwo.userB.name}}
+                                  {{/teamTwo.tbd}}
+                                </abbr>
                               </td>
                               <td class="tournament-bracket__score">
-                                <span class="tournament-bracket__number">7</span>
+                                <span class="tournament-bracket__number">0</span>
                               </td>
                             </tr>
                           </tbody>
                         </table>
                       </div>
                     </li>
+                    {{/roundTwo}}
+
+
                   </ul>
                 </div>
-                <div class="tournament-bracket__round tournament-bracket__round--bronze">
-                  <h3 class="tournament-bracket__round-title">Tercer-cuarto puesto</h3>
-                  <ul class="tournament-bracket__list">
-                    <li class="tournament-bracket__item">
-                      <div class="tournament-bracket__match" tabindex="0">
-                        <table class="tournament-bracket__table">
-                          <caption class="tournament-bracket__caption">
-                            <time datetime="1998-02-21">21 February 1998</time>
-                          </caption>
-                          <tbody class="tournament-bracket__content">
-                            <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                              <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">FIN</abbr>
-                              </td>
-                              <td class="tournament-bracket__score">
-                                <span class="tournament-bracket__number">3</span>
-                                <span class="tournament-bracket__medal tournament-bracket__medal--bronze fa fa-trophy"
-                                  aria-label="Bronze medal"></span>
-                              </td>
-                            </tr>
-                            <tr class="tournament-bracket__team">
-                              <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">CAN</abbr>
-                              </td>
-                              <td class="tournament-bracket__score">
-                                <span class="tournament-bracket__number">2</span>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
+                {{/hasr2}}
+
+                {{#hasr1}}
                 <div class="tournament-bracket__round tournament-bracket__round--gold">
                   <h3 class="tournament-bracket__round-title">Final</h3>
                   <ul class="tournament-bracket__list">
+                    {{#roundOne}}
                     <li class="tournament-bracket__item">
                       <div class="tournament-bracket__match" tabindex="0">
                         <table class="tournament-bracket__table">
-                          <caption class="tournament-bracket__caption">
-                            <time datetime="1998-02-22">22 February 1998</time>
-                          </caption>
+
                           <tbody class="tournament-bracket__content">
                             <tr class="tournament-bracket__team tournament-bracket__team--winner">
                               <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">CZE</abbr>
+                                <abbr class="tournament-bracket__code">
+
+                                  {{#teamOne.tbd}}
+                                  tbd
+                                  {{/teamOne.tbd}}
+
+                                  {{^teamOne.tbd}}
+                                  {{teamOne.userA.name}},{{teamOne.userB.name}}
+                                  {{/teamOne.tbd}}
+
+                                </abbr>
                               </td>
                               <td class="tournament-bracket__score">
-                                <span class="tournament-bracket__number">1</span>
+                                <span class="tournament-bracket__number">0</span>
                                 <span class="tournament-bracket__medal tournament-bracket__medal--gold fa fa-trophy"
                                   aria-label="Gold medal"></span>
                               </td>
                             </tr>
                             <tr class="tournament-bracket__team">
                               <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">RUS</abbr>
+                                <abbr class="tournament-bracket__code">
+
+                                  {{#teamTwo.tbd}}
+                                  tbd
+                                  {{/teamTwo.tbd}}
+
+                                  {{^teamTwo.tbd}}
+                                  {{teamTwo.userA.name}},{{teamTwo.userB.name}}
+                                  {{/teamTwo.tbd}}
+
+                                </abbr>
                               </td>
                               <td class="tournament-bracket__score">
                                 <span class="tournament-bracket__number">0</span>
@@ -434,8 +473,10 @@
                         </table>
                       </div>
                     </li>
+                    {{/roundOne}}
                   </ul>
                 </div>
+                {{/hasr1}}
               </div>
             </div>
 
@@ -529,11 +570,11 @@
 
             <!-- Tournament Settings Admin -->
             <form action="/update_tourns/{{tourns.id}}" method="post" enctype="multipart/form-data">
-              
+
               <div class="row mb-3">
                 <label for="tournamentImage" class="col-md-4 col-lg-3 col-form-label">Imagen del torneo</label>
                 <div class="col-md-8 col-lg-9 tournament-img">
-                 
+
                   <!-- <img src="/assets/images/icon.png" alt="tournamentImage">
                   <div class="pt-2">
 
@@ -547,19 +588,19 @@
 
                   </div> -->
 
-                      {{#tourns.image}}
-                      <img src="/tourns/{{tourns.id}}/image"><br>
-                      <input type='checkbox' name='removeImage'> <label>Remove image</label><br>
-                     
-                      {{/tourns.image}}
+                  {{#tourns.image}}
+                  <img src="/tourns/{{tourns.id}}/image"><br>
+                  <input type='checkbox' name='removeImage'> <label>Remove image</label><br>
 
-                      {{^tourns.image}}
-                      <img src="/assets/images/product_02.jpg"><br>
-                      
-                      {{/tourns.image}}
+                  {{/tourns.image}}
 
-                      
-                      <input type='file' name='imageField' accept=".jpg, .jpeg" >
+                  {{^tourns.image}}
+                  <img src="/assets/images/product_02.jpg"><br>
+
+                  {{/tourns.image}}
+
+
+                  <input type='file' name='imageField' accept=".jpg, .jpeg">
 
                 </div>
               </div>
@@ -574,16 +615,16 @@
               <div class="row mb-3">
                 <label for="about" class="col-md-4 col-lg-3 col-form-label">Sobre el torneo</label>
                 <div class="col-md-8 col-lg-9">
-                  <textarea name="about" class="form-control" id="about"
-                    style="height: 100px" value="{{tourns.about}}">{{tourns.about}}</textarea>
+                  <textarea name="about" class="form-control" id="about" style="height: 100px"
+                    value="{{tourns.about}}">{{tourns.about}}</textarea>
                 </div>
               </div>
 
               <div class="row mb-3">
                 <label for="ruleset" class="col-md-4 col-lg-3 col-form-label">Reglamento</label>
                 <div class="col-md-8 col-lg-9">
-                  <textarea name="ruleset" class="form-control" id="ruleset"
-                    style="height: 100px" value="{{tourns.ruleset}}">{{tourns.ruleset}}
+                  <textarea name="ruleset" class="form-control" id="ruleset" style="height: 100px"
+                    value="{{tourns.ruleset}}">{{tourns.ruleset}}
                   </textarea>
                 </div>
               </div>
@@ -660,24 +701,24 @@
 
 
 
-             
-              <input type="hidden" name="_csrf" value="{{token}}"/>
-             
+
+              <input type="hidden" name="_csrf" value="{{token}}" />
+
               <div class="text-center">
                 <!-- Cancel botton didnt work -->
                 <!-- <button class="btn btn-green fw-bold" onclick="location.href='/tourns/{{tourns.id}}'; return false;">Cancel</button> -->
                 <button class="btn btn-green fw-bold" type="submit">Guardar cambios</button>
               </div>
 
-              
+
             </form><!-- End Profile Edit Form -->
             <br>
             {{#admin}}
             <div class="text-center">
-                  <button class="btn btn-green fw-bold" >Eliminar torneo</button>
+              <button class="btn btn-green fw-bold">Eliminar torneo</button>
             </div>
             {{/admin}}
-           
+
           </div>
 
         </div><!-- End Bordered Tabs -->
