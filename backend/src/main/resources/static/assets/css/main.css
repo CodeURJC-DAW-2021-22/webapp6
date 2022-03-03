@@ -1193,3 +1193,28 @@ Admin search
     padding: 0.1rem 0.4rem;
     background-color: #121212;
 }
+
+
+progress {
+    margin-top: 5px;
+    border: none;
+    width: 200px;
+    height: 15px;
+    background: #67d400;
+  }
+  
+  progress {
+    color: lightblue;
+  }
+  
+  progress::-moz-progress-bar {
+    background: lightcolor;
+  }
+  
+  progress::-webkit-progress-value {
+    background: #67d400;
+  }
+  
+  progress::-webkit-progress-bar {
+    background: blue;
+  }
