@@ -29,12 +29,13 @@
     <div class="lista-torneos">
         <div class="container">
             <div class="row">
+                {{#mytourns}}
                 <div class="col-md-12">
                     <div class="section-heading">
                         <h2>Mis torneos</h2>
                     </div>
                 </div>
-                {{#tourns}}
+                
                 <div class="col-md-4">
                     <div class="product-item">
                         <a href="/tourns/{{id}}">
@@ -56,7 +57,7 @@
                         </div>
                     </div>
                 </div>
-                {{/tourns}}
+                {{/mytourns}}
             </div>
 
             <!-- <row>
@@ -107,24 +108,17 @@
                         </div>
                     </div>
                     {{/tourns}}
-                    <div id="loadArea-{{nextpage}}">
-
-                    </div>
-
+                    <div id="loadArea-{{nextpage}}"></div>
                 </div>
                     
-                    <row>
-                        <col-md-12 class="d-flex justify-content-center">
-                            <button class="cargar-mas mb-5" id="loadMore" onclick="loadMore()">Cargar más</button>
-                        </col-md-12>
-                
-                    </row>
-                </div>
+                <row>
+                    <col-md-12 class="d-flex justify-content-center">
+                        <button class="cargar-mas mb-5" id="loadMore" onclick="loadMore()">Cargar más</button>
+                    </col-md-12>
+            
+                </row>
             </div>
         </div>
-    </div>
-    
-
-   
+    </div>   
 
 {{>javascripts}} <!-- JS and scripts -->

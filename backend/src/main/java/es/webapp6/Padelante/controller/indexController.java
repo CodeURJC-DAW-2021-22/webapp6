@@ -56,13 +56,24 @@ public class indexController {
 	
 	
      @GetMapping("/")
-     public String greeting(Model model, @RequestParam(required = false) Integer page) {       
-		 int pageInt = page == null? 0: page;  
-         model.addAttribute("tourns",tournamentService.getTournaments(pageInt).getContent());
-		 model.addAttribute("nextpage", pageInt+1);
+     public String greeting(Model model, HttpServletRequest request, @RequestParam(required = false) Integer page) { 
+		Principal principal = request.getUserPrincipal();      
+		int pageInt = page == null? 0: page; 
+		if (principal != null) {
+			model.addAttribute("mytourns", tournamentService.getUserTournaments(userService.findByName(principal.getName()).get())); 
+		}
+		model.addAttribute("tourns",tournamentService.getTournaments(pageInt).getContent());
+		model.addAttribute("nextpage", pageInt+1);
         return "main";
     }
 	
+	@GetMapping("/admin")
+    public String admin(Model model, @RequestParam(required = false) Integer page) {       
+		int pageInt = page == null? 0: page;  
+		model.addAttribute("adminTourns",tournamentService.getTournaments(pageInt).getContent());
+		model.addAttribute("adminnextpage", pageInt+1);
+		return "admin";
+    }
 
     @GetMapping("/create_tournament")
     public String createTournamentPage(Model model,HttpServletRequest request) {
@@ -200,14 +211,6 @@ public class indexController {
 			}
 		}
 	}
-
-    @GetMapping("/admin")
-    public String admin(Model model, @RequestParam(required = false) Integer page  ) {       
-		int pageInt = page == null? 0: page;  
-		model.addAttribute("tourns",tournamentService.getTournaments(pageInt).getContent());
-		model.addAttribute("nextpage", pageInt+1);
-		return "admin";
-    }
 
 
     @GetMapping("/tourns/{id}")

@@ -77,6 +77,11 @@ public class TournamentService {
         tournaments.save(t1);
     }
 
+	public List<Tournament> getUserTournaments(User user){
+		return tournaments.getUserTournaments(user);
+	}
+
+
 	public boolean isAnyUserOfTeamInTournament(Tournament tournament, Team team){
 		List<Match> auxMatches = matches.getAuxMatches(tournament);
 		User member1 = team.getUserA();
