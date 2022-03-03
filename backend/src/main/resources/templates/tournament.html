@@ -56,12 +56,14 @@
             <!-- <div class="d-flex justify-content-end">
               <a class="button btn-tournament upper-text my-1" href="#"><i class="ri-heart-3-fill pe-1"></i> Seguir</a>
             </div> -->
+            {{#logged}}
             <div class="d-flex justify-content-end">
               <a class="d-inline button btn-tournament upper-text my-1" href="#" data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop">
                 <i class="ri-edit-fill pe-1"></i> Incribirse
               </a>
             </div>
+            {{/logged}}
             <!-- <div class="d-flex justify-content-end">
               <a class="button btn-tournament upper-text my-1" href="#"><i class="ri-tools-fill pe-1"></i> Admin</a>
             </div> -->
@@ -139,10 +141,12 @@
               data-bs-target="#league-clasification"><i class="ri-organization-chart pe-2"></i>Clasificación</button>
           </li>
 
+          {{#owner}}
           <li class="nav-item">
             <button class="nav-link d-flex align-items-center" data-bs-toggle="tab"
               data-bs-target="#tournament-settings"><i class="ri-settings-3-fill pe-2"></i>Ajustes admin</button>
           </li>
+          {{/owner}}
 
         </ul>
         <div class="tab-content pt-2">

@@ -122,7 +122,9 @@ public class indexController {
     }
 
     @GetMapping("/tournament")
-    public String tournament(Model model) {
+    public String tournament(Model model, HttpServletRequest request) {
+		
+		
         return "tournament";
     }
 
@@ -209,11 +211,28 @@ public class indexController {
 
 
     @GetMapping("/tourns/{id}")
-	public String showTournament(Model model, @PathVariable long id) {
-
+	public String showTournament(Model model, @PathVariable long id,HttpServletRequest request) {
+		
+		Principal principal = request.getUserPrincipal();
 		Optional<Tournament> tournament = tournamentService.findById(id);
+
+		
+
 		if (tournament.isPresent()) {
 			model.addAttribute("tourns", tournament.get());
+			if(principal!=null){
+				String userName = principal.getName();
+				String ownerTournament=tournament.get().getOwner();
+				Boolean owner = ownerTournament.equals(userName);
+				if(owner){
+					model.addAttribute("owner", true);
+				}else{
+					model.addAttribute("owner", true);
+				}
+			}else{
+				model.addAttribute("owner", false);
+			}
+
 			return "tournament";
 		} else {
 			return "error";

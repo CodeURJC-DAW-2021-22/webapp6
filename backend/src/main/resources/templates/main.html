@@ -92,78 +92,29 @@
                         <h2>Últimos Torneos</h2>
                     </div>
                 </div>
+                {{#tourns}}
                 <div class="col-md-4">
                     <div class="product-item">
-                        <a href="/tournament"><img class="img-lista-torneos" src="assets/images/product_01.jpg" alt=""></a>
+                        <a href="/tourns/{{id}}">
+                            <!-- <img class="img-lista-torneos" src="assets/images/product_01.jpg" alt=""> -->
+                            {{#image}}
+                            <img class="img-lista-torneos" src="/tourns/{{id}}/image">
+                            {{/image}}
+                
+                            {{^image}}
+                            <img class="img-lista-torneos" src="/assets/images/product_02.jpg">
+                            {{/image}}
+                        </a>
                         <div class="down-content text-center">
-                            <a href="/tournament">
-                                <h4>eGrillos Cup</h4>
+                            <a href="/tourns/{{id}}">
+                                <h4>{{tournamentName}}</h4>
                             </a>
-                            <p>16/02/2022</p>
-                            <span>25/32 equipos</span>
+                            <p>{{inscriptionDate}}</p>
+                            <span>{{numParticipants}} equipos</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="product-item">
-                        <a href="/tournament"><img class="img-lista-torneos" src="assets/images/product_02.jpg" alt=""></a>
-                        <div class="down-content text-center">
-                            <a href="/tournament">
-                                <h4>Chikopa</h4>
-                            </a>
-                            <p>16/02/2022</p>
-                            <span>10/32 equipos</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="product-item">
-                        <a href="/tournament"><img class="img-lista-torneos" src="assets/images/product_03.jpg" alt=""></a>
-                        <div class="down-content text-center">
-                            <a href="/tournament">
-                                <h4>Otaku Champion</h4>
-                            </a>
-                            <p>16/02/2022</p>
-                            <span>10/32 equipos</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="product-item">
-                        <a href="/tournament"><img class="img-lista-torneos" src="assets/images/product_04.jpg" alt=""></a>
-                        <div class="down-content text-center">
-                            <a href="/tournament">
-                                <h4>Pachanga de la urba</h4>
-                            </a>
-                            <p>16/02/2022</p>
-                            <span>10/32 equipos</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="product-item">
-                        <a href="/tournament"><img class="img-lista-torneos" src="assets/images/product_05.jpg" alt=""></a>
-                        <div class="down-content text-center">
-                            <a href="/tournament">
-                                <h4>10distintos</h4>
-                            </a>
-                            <p>16/02/2022</p>
-                            <span>30/32 equipos</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="product-item">
-                        <a href="/tournament"><img class="img-lista-torneos" src="assets/images/product_06.jpg" alt=""></a>
-                        <div class="down-content text-center">
-                            <a href="/tournament">
-                                <h4>Copa Pistón</h4>
-                            </a>
-                            <p>16/02/2022</p>
-                            <span>10/32 equipos</span>
-                        </div>
-                    </div>
-                </div>
+                {{/tourns}}
             </div>
 
             <row>
