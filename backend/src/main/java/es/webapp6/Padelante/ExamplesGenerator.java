@@ -40,6 +40,7 @@ public class ExamplesGenerator {
 		//
 
 		User userNone = new User("none", passwordEncoder.encode("pass"),"none@correo.com","None", "USER");
+		userNone.setStatus(false);
 
 		User user1 = new User("user", passwordEncoder.encode("pass"),"user@correo.com","User", "USER");
 		User user2 = new User("admin", passwordEncoder.encode("adminpass"),"admin@correo.com","Admin", "USER", "ADMIN");

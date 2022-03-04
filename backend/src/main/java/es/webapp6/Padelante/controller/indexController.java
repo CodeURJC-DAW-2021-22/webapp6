@@ -247,12 +247,14 @@ public class indexController {
 	public String removeUser(Model model, @PathVariable long id) {
 
 		Optional<User> user = userService.findById(id);
-		if (user.isPresent()) {
-			model.addAttribute("removedUser", user.get());
-			userService.delete(id);
+		if (user.isPresent() && user.get().getStatus()) {
+			user.get().setStatus(false);
+			userService.save(user.get());
+			//model.addAttribute("removedUser", user.get());
+			//userService.delete(id);
 			//model.addAttribute("userDelate", user.get());
 		}
-		return "removeUser";
+		return "redirect:/admin";
 	}
 
 	//I know is a similar method of the update image for tournament, but i dont know how to do it

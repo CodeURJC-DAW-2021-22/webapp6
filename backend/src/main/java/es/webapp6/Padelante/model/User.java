@@ -28,6 +28,7 @@ public class User {
 	private int numLoses;
 	private int numPlayed;
 	private int karma;
+	private boolean status;
 
 	//Profile Img To Do
 	@Lob
@@ -56,6 +57,7 @@ public class User {
 		this.numLoses=0;
 		this.numPlayed=0;
 		this.karma=500;
+		this.status=true;
 		this.roles = List.of(roles);
 	}
 
@@ -89,6 +91,14 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public void setStatus(Boolean bol){
+		this.status=bol;
+	}
+
+	public boolean getStatus(){
+		return status;
 	}
 
 	public String getRealName() {
