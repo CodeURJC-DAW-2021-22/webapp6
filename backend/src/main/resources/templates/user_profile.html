@@ -156,39 +156,51 @@
 
                 <div class="tab-pane fade pt-3" id="show-tournaments">
                   <!-- Show tournaments -->
-                  <section class="card tournament-card">
-                    <a class="d-flex justify-content-between" href="/tournament">
-                      <div class="d-flex flex-row">
-                        <div class="tournament-img p-3 me-2">
-                          <img src="assets/images/icon.png" alt="Tournament Image"
-                            class="rounded-circle border-green bg-232323">
-                        </div>
-                        <div class="d-flex align-items-center ps-2">
-                          <div>
-                            <h3 class="mt-0 fw-bold">eGrillos Cup</h3>
-                            <div class="progress my-3">
-                              <div class="progress-bar bg-green" role="progressbar" style="width: 12.5%"
-                                aria-valuenow="4" aria-valuemin="0" aria-valuemax="32"></div>
+                  <span id="elements"></span>
+                    {{#userTourns}}
+                    <section class="card tournament-card">
+                      <a class="d-flex justify-content-between" href="/tourns/{{id}}">
+                        <div class="d-flex flex-row">
+                          <div class="tournament-img p-3 me-2">
+                            {{#image}}
+                            <img class="rounded-circle border-green bg-232323" src="/tourns/{{id}}/image">
+                            {{/image}}
+                
+                            {{^image}}
+                            <img class="rounded-circle border-green bg-232323" src="/assets/images/product_02.jpg">
+                            {{/image}}
+                          </div>
+                          <div class="d-flex align-items-center ps-2">
+                            <div>
+                              <h3 class="mt-0 fw-bold">{{tournamentName}}</h3>
+                              <h6>Participantes: {{numSignedUp}}/{{numParticipants}}<span class="ps-5">{{location}}</span></h6>
                             </div>
-                            <h6>Participantes: 4/32<span class="ps-5">Madrid</span></h6>
                           </div>
                         </div>
-                      </div>
-                      <div class="d-flex align-items-center justify-content-center p-2 pe-0 ms-5">
-                        <div class="text-center">
-                          <h6 class="pb-1 date-title">Fin de inscripciones</h6>
-                          <h6 class="pt-1"><em>20/02/2022 17:00</em></h6>
+                        <div class="d-flex align-items-center justify-content-center p-2 pe-0 ms-5">
+                          <div class="text-center">
+                            <h6 class="pb-1 date-title">Fin de inscripciones</h6>
+                            <h6 class="pt-1"><em>{{inscriptionDate}}</em></h6>
+                          </div>
                         </div>
-                      </div>
-                      <div class="d-flex align-items-center justify-content-center p-2 ps-0 me-4">
-                        <div class="text-center">
-                          <h6 class="py-1 date-title">Inicio del torneo</h6>
-                          <h6 class="pt-1"><em>21/02/2022 17:00</em></h6>
+                        <div class="d-flex align-items-center justify-content-center p-2 ps-0 me-4">
+                          <div class="text-center">
+                            <h6 class="py-1 date-title">Inicio del torneo</h6>
+                            <h6 class="pt-1"><em>{{startDate}}</em></h6>
+                          </div>
                         </div>
-                      </div>
 
-                    </a>
-                  </section>
+                      </a>
+                    </section>
+                    {{/userTourns}}
+                    <div id="loadArea-{{nextpage}}"></div>
+                  </span>
+
+                  <row>
+                    <col-md-12 class="d-flex justify-content-center">
+                        <button class="cargar-mas mb-5" id="loadMore" onclick="loadMoreTournsUser()">Cargar más</button>
+                    </col-md-12>
+                  </row>
                 </div>
 
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">

@@ -146,14 +146,7 @@ public class indexController {
 		}else{
 			return "matchResulterror";
 		}
-		
-		
-		
-
-        
     }
-
-
 
     @GetMapping("/register")
     public String register(Model model) {
@@ -175,12 +168,18 @@ public class indexController {
     }
 
     @GetMapping("/user_profile")
-    public String user_profile(Model model, HttpServletRequest request) {
+    public String user_profile(Model model, HttpServletRequest request,
+	@RequestParam(required = false) Integer page) {
 		Principal principal = request.getUserPrincipal();
 		String userName = principal.getName();
 		Optional<User> user = userService.findByName(userName); //By ID??
 		model.addAttribute("user", user.get());
 		//model.addAttribute("userCompleteName", user.get().getRealName());
+
+		int pageInt = page == null? 0: page;  
+		model.addAttribute("userTourns",tournamentService.findUserTournaments(pageInt, user.get()).getContent());
+		model.addAttribute("nextpage", pageInt+1);
+		
         return "user_profile";
     }
 
@@ -299,7 +298,7 @@ public class indexController {
 				if(owner){
 					model.addAttribute("owner", true);
 				}else{
-					model.addAttribute("owner", true);
+					model.addAttribute("owner", false);
 				}
 			}else{
 				model.addAttribute("owner", false);

@@ -77,6 +77,9 @@ public class TournamentService {
 		return tournaments.getUserTournaments(user);
 	}
 
+	public Page<Tournament> findUserTournaments(int page, User user){
+		return tournaments.findUserTournaments(PageRequest.of(page, 3), user);
+	}
 
 	public boolean isAnyUserOfTeamInTournament(Tournament tournament, Team team){
 		List<Match> auxMatches = matches.getAuxMatches(tournament);

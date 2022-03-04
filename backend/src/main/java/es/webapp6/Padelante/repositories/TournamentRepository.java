@@ -29,5 +29,9 @@ public interface TournamentRepository extends JpaRepository<Tournament, Long> {
 
   @Query("SELECT distinct t FROM Tournament t ORDER BY id ASC")
   public Page<Tournament> findAllTournaments(Pageable pageable);
+
+  @Query("SELECT distinct t FROM Match m JOIN m.tournament t " +
+      "WHERE m.teamOne.userA = :user OR m.teamOne.userB = :user OR m.teamTwo.userA = :user OR m.teamTwo.userB = :user ORDER by t.id ASC")
+  public Page<Tournament> findUserTournaments(Pageable pageable, User user);
   
 }

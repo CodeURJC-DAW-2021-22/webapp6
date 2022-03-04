@@ -21,3 +21,10 @@ function loadMoreUsersAdmin(){
     $('#loadArea2-'+pageNumber2).load('/admin?page='+pageNumber2+' #elements2');
     pageNumber2 ++;
 }
+
+function loadMoreTournsUser(){
+   
+    console.log("pageNumber="+pageNumber);
+    $('#loadArea-'+pageNumber).load('/admin?page='+pageNumber+' #elements');
+    pageNumber ++;
+}
