@@ -175,25 +175,28 @@
                   <!-- <img src="/assets/images/profile-img.jpg" alt="Profile"
                     class="partner-img rounded-circle border-green-tiny small me-2"> -->
                     {{#userA.status}}
-                  {{userA.name}}
-                  {{/userA.status}}
-                  {{^userA.status}}
+                      {{userA.name}}
+                    {{/userA.status}}
+                    
+                    {{^userA.status}}
                       none
-                  {{/userA.status}}
+                    {{/userA.status}}
                 </div>
                 <i class="ri-arrow-left-right-fill"></i>
                 <div class="ps-2">
-                  {{#userB.status}}
-                  {{userB.name}}
-                  {{/userB.status}}
-                  {{^userB.status}}
-                      none
-                  {{/userB.status}}
+                  
+                    {{#userB.status}}
+                      {{userB.name}}
+                    {{/userB.status}}
+
+                    {{^userB.status}}
+                        none
+                    {{/userB.status}}
                 </div>
               </div>
               {{#owner}}
               <div class="col-md-1 d-flex justify-content-end align-items-center">
-                <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i
+                <a href="/delateTourParticipant/{{tourns.id}}/{{id}}" class="btn btn-danger btn-sm" title="Remove my profile image"><i
                     class="ri-delete-bin-fill"></i></a>
               </div>
               {{/owner}}

@@ -3,6 +3,8 @@ package es.webapp6.Padelante.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +25,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 
 import es.webapp6.Padelante.model.Match;
+import es.webapp6.Padelante.model.Team;
 import es.webapp6.Padelante.model.Tournament;
 import es.webapp6.Padelante.model.User;
 import es.webapp6.Padelante.service.MatchService;
@@ -323,7 +326,22 @@ public class indexController {
 			model.addAttribute("roundTwo",matchService.getRoundMatches(tournament.get(),2));
 			model.addAttribute("roundOne",matchService.getRoundMatches(tournament.get(),1));
 
-			model.addAttribute("participants", teamService.getParticipantsOfTournament(tournament.get()));	
+			
+			ArrayList <Team> teams = new ArrayList<>();
+			List<Match> roundMatches = matchService.getRoundMatches(tournament.get(), 0);
+			for(int i = 0; i <roundMatches.size();i++){
+					if(roundMatches.get(i).getTeamOne().getId()!=20){
+						teams.add( roundMatches.get(i).getTeamOne());
+					}
+					if(roundMatches.get(i).getTeamTwo().getId()!=20){
+						teams.add( roundMatches.get(i).getTeamTwo());
+					}
+
+			}
+
+
+			model.addAttribute("participants", teams);
+			//model.addAttribute("participants", teamService.getParticipantsOfTournament(tournament.get()));	
 
 			model.addAttribute("tourns", tournament.get());
 			if(principal!=null){
@@ -345,6 +363,20 @@ public class indexController {
 		}
 
 	} 
+
+	@GetMapping("/delateTourParticipant/{tourid}/{teamid}")
+	public String delateTournParticipan(Model model, @PathVariable long tourid, @PathVariable long teamid){
+		Optional<Tournament> tournament = tournamentService.findById(tourid);
+		Optional<Team> team = teamService.findById(teamid);
+
+		if(tournament.isPresent() && team.isPresent()){
+			tournamentService.deleteParticipant(tournament.get(), team.get());
+			tournamentService.save(tournament.get());
+		}
+
+
+		return "redirect:/tourns/{tourid}";
+	}
 
 	@GetMapping("/removeTournament/{id}")
 	public String removeTournament(Model model, @PathVariable long id) {
