@@ -41,10 +41,10 @@ public class UserService {
 	}
 
     public Page<User> listUserPageable(){
-        return userRepository.findAll(PageRequest.of(0, 3));
+        return userRepository.findAllUsers(PageRequest.of(0, 3));
     }
 
 	public Page<User> getUsers(int page) {
-		return userRepository.findAll(PageRequest.of(page, 3));
+		return userRepository.findAllUsers(PageRequest.of(page, 3));
 	}
 }
