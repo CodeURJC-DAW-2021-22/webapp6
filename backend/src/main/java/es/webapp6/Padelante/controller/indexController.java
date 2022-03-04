@@ -128,6 +128,15 @@ public class indexController {
 		// Principal principal = request.getUserPrincipal();
 		// String userName = principal.getName();
 		// Optional<User> user = userService.findByName(userName); //By ID??
+		Match match = matchService.findById(id).get();
+		
+		if(match.getResult().get(0)==0 && match.getResult().get(1)==0){
+			model.addAttribute("isCheked", false);
+
+		}
+		else{
+			model.addAttribute("isCheked", true);
+		}
 		model.addAttribute("maches",matchService.findById(id).get());
 		
         return "match";
@@ -141,6 +150,7 @@ public class indexController {
 		boolean cheked = matchService.checkResult(sets1, sets2, sets3, sets4, sets5, sets6, match);
 
 		if(cheked){
+			// model.addAttribute("isCheked", true);
 			model.addAttribute("maches",matchService.findById(id).get());
 			return "redirect:/match/{id}";
 		}else{
