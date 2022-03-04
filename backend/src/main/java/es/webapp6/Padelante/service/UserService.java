@@ -1,5 +1,6 @@
 package es.webapp6.Padelante.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import es.webapp6.Padelante.model.Team;
 import es.webapp6.Padelante.model.User;
 import es.webapp6.Padelante.repositories.UserRepository;
 
@@ -19,6 +21,9 @@ public class UserService {
 
     @Autowired
 	private PasswordEncoder passwordEncoder;
+
+    @Autowired
+	private TeamService teamService;
 
 
 
@@ -34,6 +39,18 @@ public class UserService {
 
     public Optional<User> findByName(String name) {
 		return userRepository.findByName(name);
+	}
+
+    public void delete(long id) {
+        Optional<User> user = userRepository.findById(id);
+        List<Team> playerTeams = teamService.getPlayerTeams(user.get());
+			for(int i = 0; i<playerTeams.size();i++){
+				//for the moment i take null, maybe delate this team
+				playerTeams.get(i).setUserA(userRepository.findByName("none").get());
+				playerTeams.get(i).setUserB(userRepository.findByName("none").get());
+				teamService.save(playerTeams.get(i));
+			}
+		userRepository.deleteById(id);
 	}
     
     public Optional<User> findById(long id) {

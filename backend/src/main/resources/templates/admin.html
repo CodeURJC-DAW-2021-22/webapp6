@@ -64,7 +64,11 @@
                           <img class="userFinder" src="/assets/images/no_profile_photo.jpg">
                           {{/image}}</div>
                         <span class="d-flex align-items-center partner-name">{{name}}</span>
-                        <a href="#" class="btn btn-danger binUsers"  title="Perma delate users"><i class="ri-delete-bin-fill" ></i></a>
+
+                        <button class="btn btn-danger binUsers"  title="Perma delate users"
+                         onclick="location.href='/removeUser/{{id}}'">Remove</button>
+                        
+                        <!-- <a href="#" class="btn btn-danger binUsers"  title="Perma delate users"><i class="ri-delete-bin-fill" ></i></a> -->
                       </div>
                     </div>
                   </div>
@@ -104,7 +108,9 @@
                           <img class="tournamentFinder" src="/assets/images/product_02.jpg">
                           {{/image}}</div>
                         <span class="d-flex align-items-center partner-name">{{tournamentName}}</span>
-                        <a href="#" class="btn btn-danger binTournament"  title="Perma delate tournament"><i class="ri-delete-bin-fill" ></i></a>
+                        <button class="btn btn-danger binUsers"  title="Perma delate users"
+                        onclick="location.href='/removeTournament/{{id}}'">Remove</button>
+                       
                       </div>
                     </div>
                   </div>             

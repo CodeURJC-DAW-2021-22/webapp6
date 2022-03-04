@@ -3,6 +3,7 @@ package es.webapp6.Padelante.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -24,9 +25,12 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 
 import es.webapp6.Padelante.model.Match;
+import es.webapp6.Padelante.model.Team;
 import es.webapp6.Padelante.model.Tournament;
 import es.webapp6.Padelante.model.User;
+import es.webapp6.Padelante.repositories.TeamRepository;
 import es.webapp6.Padelante.service.MatchService;
+import es.webapp6.Padelante.service.TeamService;
 import es.webapp6.Padelante.service.TournamentService;
 import es.webapp6.Padelante.service.UserService;
 
@@ -40,6 +44,10 @@ public class indexController {
 
 	@Autowired
 	private MatchService matchService;	
+
+	@Autowired
+	private TeamService teamService;	
+
 
     @ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -228,11 +236,20 @@ public class indexController {
 		return "redirect:/user_profile";
 		}else{
 			return "error";
-		}
-        
-
-        
+		} 
     }
+
+	@GetMapping("/removeUser/{id}")
+	public String removeUser(Model model, @PathVariable long id) {
+
+		Optional<User> user = userService.findById(id);
+		if (user.isPresent()) {
+			model.addAttribute("removedUser", user.get());
+			userService.delete(id);
+			//model.addAttribute("userDelate", user.get());
+		}
+		return "removeUser";
+	}
 
 	//I know is a similar method of the update image for tournament, but i dont know how to do it
 	private void updateImageProfile(User user, boolean removeImage, MultipartFile imageField) throws IOException, SQLException {
@@ -305,7 +322,7 @@ public class indexController {
 				String userName = principal.getName();
 				String ownerTournament=tournament.get().getOwner();
 				Boolean owner = ownerTournament.equals(userName);
-				if(owner){
+				if(owner || userService.findByName(userName).get().getRoles().contains("ADMIN")){
 					model.addAttribute("owner", true);
 				}else{
 					model.addAttribute("owner", false);
@@ -320,17 +337,18 @@ public class indexController {
 		}
 
 	} 
-	// @GetMapping("/users/{id}")
-	// public String showUser(Model model, @PathVariable long id){
-	// 	Optional<User> user = userService.findById(id);
-	// 	if(user.isPresent()){
-	// 		model.addAttribute("users", user.get());
-	// 		return "user";
-		
-	// 	}else{
-	// 		return "error";
-	// 	}
-	// }
+
+	@GetMapping("/removeTournament/{id}")
+	public String removeTournament(Model model, @PathVariable long id) {
+
+		Optional<Tournament> tourn = tournamentService.findById(id);
+		if (tourn.isPresent()) {
+			model.addAttribute("removedTournament", tourn.get());
+			tournamentService.delete(id);
+			
+		}
+		return "removeTournament";
+	}
 
 //select player from player where team in 
 	@PostMapping("/update_tourns/{id}")

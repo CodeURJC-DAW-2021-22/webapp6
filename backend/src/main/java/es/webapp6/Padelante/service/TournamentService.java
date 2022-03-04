@@ -33,6 +33,9 @@ public class TournamentService {
 	@Autowired
 	private TeamRepository teams;
 
+	@Autowired
+	private MatchService matchService;
+
 	public Page<Tournament> listTournamentPageable(){
 		return tournaments.findAllTournaments(PageRequest.of(0, 3));
 	}
@@ -63,6 +66,13 @@ public class TournamentService {
 	}
 
 	public void delete(long id) {
+		Optional<Tournament> tourn = tournaments.findById(id);
+		List<Match> tournamentMatches = matchService.getTournamentMatches(tourn.get());
+			
+			for(int i = 0; i<tournamentMatches.size();i++){
+				matchService.delete( tournamentMatches.get(i).getId());
+
+			}
 		tournaments.deleteById(id);
 	}
 
