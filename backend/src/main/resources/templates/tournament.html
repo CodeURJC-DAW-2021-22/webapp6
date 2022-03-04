@@ -174,11 +174,21 @@
                 <div class="pe-2">
                   <!-- <img src="/assets/images/profile-img.jpg" alt="Profile"
                     class="partner-img rounded-circle border-green-tiny small me-2"> -->
+                    {{#userA.status}}
                   {{userA.name}}
+                  {{/userA.status}}
+                  {{^userA.status}}
+                      none
+                  {{/userA.status}}
                 </div>
                 <i class="ri-arrow-left-right-fill"></i>
                 <div class="ps-2">
+                  {{#userB.status}}
                   {{userB.name}}
+                  {{/userB.status}}
+                  {{^userB.status}}
+                      none
+                  {{/userB.status}}
                 </div>
               </div>
               {{#owner}}
