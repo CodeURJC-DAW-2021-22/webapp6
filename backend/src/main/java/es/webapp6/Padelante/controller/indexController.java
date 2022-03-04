@@ -3,7 +3,6 @@ package es.webapp6.Padelante.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -25,12 +24,9 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 
 import es.webapp6.Padelante.model.Match;
-import es.webapp6.Padelante.model.Team;
 import es.webapp6.Padelante.model.Tournament;
 import es.webapp6.Padelante.model.User;
-import es.webapp6.Padelante.repositories.TeamRepository;
 import es.webapp6.Padelante.service.MatchService;
-import es.webapp6.Padelante.service.TeamService;
 import es.webapp6.Padelante.service.TournamentService;
 import es.webapp6.Padelante.service.UserService;
 
@@ -45,8 +41,7 @@ public class indexController {
 	@Autowired
 	private MatchService matchService;	
 
-	@Autowired
-	private TeamService teamService;	
+
 
 
     @ModelAttribute
@@ -174,8 +169,17 @@ public class indexController {
     @PostMapping("/register")
     public String newRegister(Model model, @RequestParam String name, @RequestParam String encodedPassword,@RequestParam String email,
 	@RequestParam String realName){
-        userService.registerNewUser(name, encodedPassword,email,realName);
-        return "redirect:/";
+		
+		if(userService.findByName(name).isPresent()){
+			model.addAttribute("u", name);
+			return "registerError";
+			
+		}else{
+			model.addAttribute("existUser", false);
+			userService.registerNewUser(name, encodedPassword,email,realName);
+			return "redirect:/";
+		}
+       
     }
 
     @GetMapping("/tournament")
