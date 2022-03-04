@@ -35,8 +35,15 @@
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
                         <input type="text" name="name" class="form-control" id="username" required>
                         <div class="invalid-feedback">Introduce el usuario.</div>
-                      </div>
+                        
                     </div>
+                    {{^u}}
+                        
+                        <div style="color: red; font-size: 10px;">
+                          Nombre de usuario en uso
+                        </div>   
+                        {{/u}}
+                      </div>
 
                     <div class="col-12">
                       <label for="realName" class="form-label">Nombre completo</label>
