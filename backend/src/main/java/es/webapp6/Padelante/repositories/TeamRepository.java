@@ -20,4 +20,8 @@ public interface TeamRepository  extends JpaRepository<Team,Long>{
 
 	@Query("SELECT team FROM Team team WHERE team.tbd = TRUE")
 	public List<Team> getTBDTeam();    
+
+	@Query("SELECT distinct team FROM Match m, Team team "
+	+ "WHERE (m.teamOne = team OR m.teamTwo = team) AND team.tbd = FALSE AND  m.tournament = :t")
+	public List<Team> getParticipantsOfTournament(Tournament t);  
 }
