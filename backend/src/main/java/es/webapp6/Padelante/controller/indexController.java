@@ -162,8 +162,17 @@ public class indexController {
     @PostMapping("/register")
     public String newRegister(Model model, @RequestParam String name, @RequestParam String encodedPassword,@RequestParam String email,
 	@RequestParam String realName){
-        userService.registerNewUser(name, encodedPassword,email,realName);
-        return "redirect:/";
+		
+		if(userService.findByName(name).isPresent()){
+			model.addAttribute("u", name);
+			return "registerError";
+			
+		}else{
+			model.addAttribute("existUser", false);
+			userService.registerNewUser(name, encodedPassword,email,realName);
+			return "redirect:/";
+		}
+       
     }
 
     @GetMapping("/tournament")
@@ -224,6 +233,18 @@ public class indexController {
 			return "error";
 		}
     }
+
+	@GetMapping("/removeUser/{id}")
+	public String removeUser(Model model, @PathVariable long id) {
+
+		Optional<User> user = userService.findById(id);
+		if (user.isPresent()) {
+			model.addAttribute("removedUser", user.get());
+			userService.delete(id);
+			//model.addAttribute("userDelate", user.get());
+		}
+		return "removeUser";
+	}
 
 	//I know is a similar method of the update image for tournament, but i dont know how to do it
 	private void updateImageProfile(User user, boolean removeImage, MultipartFile imageField) throws IOException, SQLException {
@@ -293,7 +314,7 @@ public class indexController {
 				String userName = principal.getName();
 				String ownerTournament=tournament.get().getOwner();
 				Boolean owner = ownerTournament.equals(userName);
-				if(owner){
+				if(owner || userService.findByName(userName).get().getRoles().contains("ADMIN")){
 					model.addAttribute("owner", true);
 				}else{
 					model.addAttribute("owner", false);
@@ -308,6 +329,18 @@ public class indexController {
 		}
 
 	} 
+
+	@GetMapping("/removeTournament/{id}")
+	public String removeTournament(Model model, @PathVariable long id) {
+
+		Optional<Tournament> tourn = tournamentService.findById(id);
+		if (tourn.isPresent()) {
+			model.addAttribute("removedTournament", tourn.get());
+			tournamentService.delete(id);
+			
+		}
+		return "removeTournament";
+	}
 
 	@PostMapping("/update_tourns/{id}")
 	public String updateTournament(Model model, @PathVariable long id , @RequestParam String name, @RequestParam String about,
