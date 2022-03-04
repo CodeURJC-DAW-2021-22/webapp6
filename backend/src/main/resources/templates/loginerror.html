@@ -2,28 +2,82 @@
 
 <body>
 
-    <main class="bg-232323">
+  <main class="bg-232323">
+    <div class="container">
+
+      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
-            <section class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center">
-                
-                <h2>Algo fue mal al introducir los datos de usuario o el usuario no existe</h2>
-                <h3> Asegurate de que san correcots</h3>
-                <a class="btnBackE404" href="/login">Back to login</a>
-                <img src="/assets/images/not-found.svg" class="img-fluid py-5" alt="Page Not Found">
+              <div class="d-flex justify-content-center pt-2 pb-3">
+                <a href="/">
+                  <h6 class="upper-text color-fff text-center"><i class="ri-arrow-left-fill pr-2"></i> Volver a</h6></p>
+                  <div class="navbar-brand m-0">
+                    <p class="text-center"><h2><em>Padel</em>ante</h2></p>
+                  </div>
+                </a>
+              </div><!-- End Logo -->
 
-            </section>
+              <div class="card mb-3 login">
 
+                <div class="card-body">
+
+                  <div class="card-intro py-3">
+                    <h5 class="upper-text text-center pb-0 fw-bold">Inicia sesión en tu cuenta</h5>
+                  </div>
+
+                  <form class="row g-3 needs-validation" novalidate action="/login" method="post">
+
+                    <div class="col-12">
+                      <label for="username" class="form-label">Usuario</label>
+                      <div class="input-group has-validation">
+                        <span class="input-group-text" id="inputGroupPrepend">@</span>
+                        <input type="text" name="username" class="form-control" id="username" value="user" required>
+                        <div class="invalid-feedback">Introduce el usuario.</div>
+                      </div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="password" class="form-label">Contraseña</label>
+                      <input type="password" name="password" class="form-control" id="password" value="pass" required>
+                      <div class="invalid-feedback">Introduce la contraseña.</div>
+                    </div>
+
+                    <div style="color:red; font-size: 10px;">Usuario o contraseñas erroneos, pruebe otra vez </div>
+                    <div class="col-12">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
+                        <label class="form-check-label" for="rememberMe">Recuérdame</label>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <button class="btn btn-login upper-text w-100" type="submit">Iniciar sesión</button>
+                    </div>
+
+                    <input type="hidden" name="_csrf" value="{{token}}"/>
+
+
+                    <div class="col-12 pt-2">
+                      <p class="small mb-0 text-center">¿No tienes cuenta?</p>
+                    </div>
+                    <div class="col-12 mt-1">
+                        <a class="button btn-login upper-text w-100" href="/register">Registrarse</a>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
-    </main>
-    <!-- End #main -->
 
+      </section>
 
+    </div>
+  </main><!-- End #main -->
 
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-    <!-- Template Main JS File -->
-    <script src="/assets/js/main.js"></script>
-
-</body>
-
-</html>
+{{>javascripts}} <!-- JS and scripts -->

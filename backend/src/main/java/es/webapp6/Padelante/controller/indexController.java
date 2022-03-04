@@ -88,6 +88,8 @@ public class indexController {
 		return "admin";
     }
 
+	
+
     @GetMapping("/create_tournament")
     public String createTournamentPage(Model model,HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
@@ -133,6 +135,7 @@ public class indexController {
 		else{
 			model.addAttribute("isCheked", true);
 		}
+		model.addAttribute("goodResult", true);
 		model.addAttribute("maches",matchService.findById(id).get());
 		
         return "match";
@@ -146,16 +149,24 @@ public class indexController {
 		boolean cheked = matchService.checkResult(sets1, sets2, sets3, sets4, sets5, sets6, match);
 
 		if(cheked){
-			// model.addAttribute("isCheked", true);
+			model.addAttribute("isCheked", true);
 			model.addAttribute("maches",matchService.findById(id).get());
+			model.addAttribute("goodResult", true);
 			return "redirect:/match/{id}";
+			
 		}else{
-			return "matchResulterror";
+			model.addAttribute("maches",matchService.findById(id).get());
+			model.addAttribute("isCheked", false);
+			model.addAttribute("goodResult", false);
+			return "match";
+			
 		}
+		
     }
 
     @GetMapping("/register")
     public String register(Model model) {
+		model.addAttribute("u", true);
         return "register";
     }
 
@@ -164,14 +175,17 @@ public class indexController {
 	@RequestParam String realName){
 		
 		if(userService.findByName(name).isPresent()){
-			model.addAttribute("u", name);
-			return "registerError";
+			model.addAttribute("u", false);
+			return "register";
+			
 			
 		}else{
-			model.addAttribute("existUser", false);
+			
 			userService.registerNewUser(name, encodedPassword,email,realName);
 			return "redirect:/";
+			
 		}
+		
        
     }
 
@@ -341,7 +355,7 @@ public class indexController {
 			tournamentService.delete(id);
 			
 		}
-		return "removeTournament";
+		return "redirect:/admin";
 	}
 
 	@PostMapping("/update_tourns/{id}")
