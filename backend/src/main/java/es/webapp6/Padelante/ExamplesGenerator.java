@@ -141,12 +141,12 @@ public class ExamplesGenerator {
         Tournament tournament1= new Tournament("Torneo 22", 4,"About2","Ruleset2","Madrid",fecha1,fecha2,"Simple Tournament","user");
         Tournament tournament2= new Tournament("Torneo 33", 4,"About3","Ruleset3","Madrid",fecha1,fecha2,"Simple Tournament","user");
         Tournament tournament3= new Tournament("Torneo 44", 8,"About4","Ruleset4","Madrid",fecha1,fecha2,"Simple Tournament","user");
-        Tournament tournament4= new Tournament("Torneo 55", 8,"About5","Ruleset5","Madrid",fecha1,fecha2,"Simple Tournament","user");
-		Tournament tournament5 = new Tournament("Torneo 66", 8,"About6","Ruleset6","Madrid",fecha1,fecha2,"Simple Tournament","user");
-        Tournament tournament6= new Tournament("Torneo 77", 16,"About7","Ruleset7","Madrid",fecha1,fecha2,"Simple Tournament","user");
-        Tournament tournament7= new Tournament("Torneo 88", 16,"About8","Ruleset8","Madrid",fecha1,fecha2,"Simple Tournament","user");
-        Tournament tournament8= new Tournament("Torneo 99", 16,"About9","Ruleset9","Madrid",fecha1,fecha2,"Simple Tournament","user");
-        Tournament tournament9= new Tournament("Torneo 100", 2,"About10","Ruleset10","Madrid",fecha1,fecha2,"Simple Tournament","user");
+        Tournament tournament4= new Tournament("Torneo 55", 8,"About5","Ruleset5","Madrid",fecha1,fecha2,"Simple Tournament","admin");
+		Tournament tournament5 = new Tournament("Torneo 66", 8,"About6","Ruleset6","Madrid",fecha1,fecha2,"Simple Tournament","admin");
+        Tournament tournament6= new Tournament("Torneo 77", 16,"About7","Ruleset7","Madrid",fecha1,fecha2,"Simple Tournament","admin");
+        Tournament tournament7= new Tournament("Torneo 88", 16,"About8","Ruleset8","Madrid",fecha1,fecha2,"Simple Tournament","admin");
+        Tournament tournament8= new Tournament("Torneo 99", 16,"About9","Ruleset9","Madrid",fecha1,fecha2,"Simple Tournament","admin");
+        Tournament tournament9= new Tournament("Torneo 100", 2,"About10","Ruleset10","Madrid",fecha1,fecha2,"Simple Tournament","admin");
 		
 		tournamentRepository.save(tournament);
         tournamentRepository.save(tournament1);

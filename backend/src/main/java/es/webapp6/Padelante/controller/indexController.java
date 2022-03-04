@@ -5,7 +5,6 @@ import java.security.Principal;
 import java.sql.SQLException;
 import java.util.Optional;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.engine.jdbc.BlobProxy;
@@ -27,6 +26,7 @@ import es.webapp6.Padelante.model.Match;
 import es.webapp6.Padelante.model.Tournament;
 import es.webapp6.Padelante.model.User;
 import es.webapp6.Padelante.service.MatchService;
+import es.webapp6.Padelante.service.TeamService;
 import es.webapp6.Padelante.service.TournamentService;
 import es.webapp6.Padelante.service.UserService;
 
@@ -40,6 +40,9 @@ public class indexController {
 
 	@Autowired
 	private MatchService matchService;	
+
+	@Autowired
+	private TeamService teamService;	
 
     @ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -57,8 +60,6 @@ public class indexController {
 		}
 	}
 
-	
-	
      @GetMapping("/")
      public String greeting(Model model, HttpServletRequest request, @RequestParam(required = false) Integer page) { 
 		Principal principal = request.getUserPrincipal();      
@@ -98,9 +99,6 @@ public class indexController {
 		}        
     }
 
-    
-
-
 	@PostMapping("/create_tournament")
 	public String newTournamentProcess(Model model, Tournament tourna, MultipartFile imageField, HttpServletRequest request) throws IOException {
 		if (!imageField.isEmpty()) {
@@ -114,8 +112,6 @@ public class indexController {
 		tournamentService.save(tourna);
 		return "redirect:/";
 	}
-   
-
 
     @GetMapping("/errorPage")
     public String errorPage(Model model) {
@@ -214,8 +210,6 @@ public class indexController {
 	@RequestParam String location, @RequestParam String country,@RequestParam String phone, 
 	boolean removeImage,  MultipartFile imageField)throws IOException, SQLException{
 
-		
-		
 		Optional<User> user = userService.findById(id); //By ID??
 		
 		if (user.isPresent()) {
@@ -229,9 +223,6 @@ public class indexController {
 		}else{
 			return "error";
 		}
-        
-
-        
     }
 
 	//I know is a similar method of the update image for tournament, but i dont know how to do it
@@ -245,7 +236,6 @@ public class indexController {
 				user.setImageFile(null);
 				user.setImage(false);
 			} else {
-				// Maintain the same image loading it before updating the book
 				User dbUser = userService.findById(user.getId()).orElseThrow();
 				if (dbUser.getImage()) {
 					user.setImageFile(BlobProxy.generateProxy(dbUser.getImageFile().getBinaryStream(),
@@ -262,8 +252,6 @@ public class indexController {
 		
 		Principal principal = request.getUserPrincipal();
 		Optional<Tournament> tournament = tournamentService.findById(id);
-
-		
 
 		if (tournament.isPresent()) {
 			int numRound = tournament.get().getRounds();
@@ -297,8 +285,8 @@ public class indexController {
 			model.addAttribute("roundTres", matchService.getRoundMatches(tournament.get(),3));
 			model.addAttribute("roundTwo",matchService.getRoundMatches(tournament.get(),2));
 			model.addAttribute("roundOne",matchService.getRoundMatches(tournament.get(),1));
-			model.addAttribute("roundCero",matchService.getRoundMatches(tournament.get(),0));
-			
+
+			model.addAttribute("participants", teamService.getParticipantsOfTournament(tournament.get()));	
 
 			model.addAttribute("tourns", tournament.get());
 			if(principal!=null){
@@ -320,19 +308,7 @@ public class indexController {
 		}
 
 	} 
-	// @GetMapping("/users/{id}")
-	// public String showUser(Model model, @PathVariable long id){
-	// 	Optional<User> user = userService.findById(id);
-	// 	if(user.isPresent()){
-	// 		model.addAttribute("users", user.get());
-	// 		return "user";
-		
-	// 	}else{
-	// 		return "error";
-	// 	}
-	// }
 
-//select player from player where team in 
 	@PostMapping("/update_tourns/{id}")
 	public String updateTournament(Model model, @PathVariable long id , @RequestParam String name, @RequestParam String about,
 	@RequestParam String ruleset, @RequestParam String location, boolean removeImage, 

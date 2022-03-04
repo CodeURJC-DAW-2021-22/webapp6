@@ -36,4 +36,8 @@ public class TeamService {
     public List<Team> getTBDTeam(){
         return teamRepository.getTBDTeam();
     }
+
+    public List<Team> getParticipantsOfTournament(Tournament t){
+        return teamRepository.getParticipantsOfTournament(t);
+    }
 }

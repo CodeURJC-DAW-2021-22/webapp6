@@ -52,9 +52,9 @@ public class Tournament {
                 this.numParticipants = numParticipants;
                 this.numSignedUp = 0;
                 this.rounds = 0;
-                this.about="";
-                this.ruleset = "";
-                this.location= "";
+                this.about=about;
+                this.ruleset = ruleset;
+                this.location= location;
                 this.inscriptionDate=inscriptionDate;
                 this.startDate=startDate;
                 this.format=format;

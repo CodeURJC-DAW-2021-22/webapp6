@@ -40,7 +40,7 @@
               <div>
                 <!-- <div class="progress-bar bg-green" role="progressbar" style="width: 50%" aria-valuenow="{{tourns.numParticipants}}"
                   aria-valuemin="0" aria-valuemax="32"></div> -->
-                  <div> <progress class="progress-bar" value="{{tourns.numSignedUp}}" max="{{tourns.numParticipants}}"> </progress></div>
+                  <div> <progress class="progress-bar round mb-1" value="{{tourns.numSignedUp}}" max="{{tourns.numParticipants}}"> </progress></div>
               </div>
               <h5>Participantes: {{tourns.numSignedUp}}/{{tourns.numParticipants}}<span class="ps-5">{{tourns.location}}</span></h5>
             </div>
@@ -168,36 +168,17 @@
 
             <h5 class="card-title pb-1">Participantes</h5>
 
-            {{#roundCero}}
+            {{#participants}}
             <div class="row py-2 pair-tournament">
               <div class="col-md-11 d-flex justify-content-start align-items-center">
                 <div class="pe-2">
                   <!-- <img src="/assets/images/profile-img.jpg" alt="Profile"
                     class="partner-img rounded-circle border-green-tiny small me-2"> -->
-
-                 
-
-
-                  {{#teamOne.tbd}}
-                  tbd
-                  {{/teamOne.tbd}}
-
-                  {{^teamOne.tbd}}
-                  {{teamOne.userA.name}}
-                  {{/teamOne.tbd}}
-
+                  {{userA.name}}
                 </div>
                 <i class="ri-arrow-left-right-fill"></i>
                 <div class="ps-2">
-                  
-
-                  {{#teamOne.tbd}}
-                  tbd
-                  {{/teamOne.tbd}}
-
-                  {{^teamOne.tbd}}
-                  {{teamOne.userB.name}}
-                  {{/teamOne.tbd}}
+                  {{userB.name}}
                 </div>
               </div>
               {{#owner}}
@@ -207,44 +188,7 @@
               </div>
               {{/owner}}
             </div>
-            {{/roundCero}}
-
-            {{#roundCero}}
-            <div class="row py-2 pair-tournament">
-              <div class="col-md-11 d-flex justify-content-start align-items-center">
-                <div class="pe-2">
-
-                  {{#teamTwo.tbd}}
-                  tbd
-                  {{/teamTwo.tbd}}
-
-                  {{^teamTwo.tbd}}
-                  {{teamTwo.userA.name}}
-                  {{/teamTwo.tbd}}
-
-                </div>
-                <i class="ri-arrow-left-right-fill"></i>
-                <div class="ps-2">
-                  
-                  {{#teamTwo.tbd}}
-                  tbd
-                  {{/teamTwo.tbd}}
-
-                  {{^teamTwo.tbd}}
-                  {{teamTwo.userB.name}}
-                  {{/teamTwo.tbd}}
-                </div>
-              </div>
-              {{#owner}}
-              <div class="col-md-1 d-flex justify-content-end align-items-center">
-                <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i
-                    class="ri-delete-bin-fill"></i></a>
-              </div>
-              {{/owner}}
-            </div>
-            {{/roundCero}}
-
-
+            {{/participants}}
 
           </div>
 
