@@ -40,4 +40,19 @@ public class TeamService {
     public List<Team> getParticipantsOfTournament(Tournament t){
         return teamRepository.getParticipantsOfTournament(t);
     }
+
+    public List<Team> getPlayersTeams(User u1, User u2){
+        return getPlayersTeams(u1, u2);
+    }
+
+    public Team makeTeam (User u1, User u2){
+        List<Team> teams = teamRepository.getPlayersTeams(u1, u2);
+        if (teams.size() > 0){
+            return teams.get(0);
+        } else {
+            Team newteam = new Team(false, u1, u2);
+            teamRepository.save(newteam);
+            return newteam;
+        }
+    }
 }

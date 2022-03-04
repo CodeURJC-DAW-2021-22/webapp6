@@ -28,3 +28,9 @@ function loadMoreTournsUser(){
     $('#loadArea-'+pageNumber).load('/admin?page='+pageNumber+' #elements');
     pageNumber ++;
 }
+
+function loadMoreInscription(){
+    console.log("pageNumber="+pageNumber);
+    $('#loadArea-'+pageNumber).load('/tourns/[0-9]?page='+pageNumber+' #elements');
+    pageNumber ++;
+}
