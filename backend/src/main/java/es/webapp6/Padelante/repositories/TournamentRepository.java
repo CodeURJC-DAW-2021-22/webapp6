@@ -25,5 +25,9 @@ public interface TournamentRepository extends JpaRepository<Tournament, Long> {
 
   List<Tournament> findByTournamentName(String tournamentName); 
 
-  Page<Tournament> findAll(Pageable pageable);
+  // Page<Tournament> findAll(Pageable pageable);
+
+  @Query("SELECT distinct t FROM Tournament t ORDER BY id ASC")
+  public Page<Tournament> findAllTournaments(Pageable pageable);
+  
 }

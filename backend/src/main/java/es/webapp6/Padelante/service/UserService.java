@@ -3,6 +3,8 @@ package es.webapp6.Padelante.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -36,5 +38,13 @@ public class UserService {
     
     public Optional<User> findById(long id) {
 		return userRepository.findById(id);
+	}
+
+    public Page<User> listUserPageable(){
+        return userRepository.findAll(PageRequest.of(0, 3));
+    }
+
+	public Page<User> getUsers(int page) {
+		return userRepository.findAll(PageRequest.of(page, 3));
 	}
 }

@@ -19,7 +19,6 @@ import es.webapp6.Padelante.model.User;
 import es.webapp6.Padelante.repositories.MatchRepository;
 import es.webapp6.Padelante.repositories.TeamRepository;
 import es.webapp6.Padelante.repositories.TournamentRepository;
-import es.webapp6.Padelante.repositories.UserRepository;
 
 
 @Service
@@ -34,16 +33,13 @@ public class TournamentService {
 	@Autowired
 	private TeamRepository teams;
 
-	@Autowired
-	private UserRepository users;
-
 	public Page<Tournament> listTournamentPageable(){
-		return tournaments.findAll(PageRequest.of(0, 3));
+		return tournaments.findAllTournaments(PageRequest.of(0, 3));
 	}
 
 
 	public Page<Tournament> getTournaments(int page) {
-		return tournaments.findAll(PageRequest.of(page, 3));
+		return tournaments.findAllTournaments(PageRequest.of(page, 3));
 	}
 
 	public List<Tournament> getTeamTournaments(Team team){

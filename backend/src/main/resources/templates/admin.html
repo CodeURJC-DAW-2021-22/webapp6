@@ -51,26 +51,34 @@
             <div class="card text-center">
               <div class="card-body profile-card pt-2 d-flex flex-column justify-content-center">
                 <h2 class="mt-2 mb-1">Usuarios encontrados</h2>
-
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="d-flex lineUser">
-                      <div><img src="assets/images/profile-img.jpg" alt="Profile" class="userFinder "></div>
-                      <span class="d-flex align-items-center partner-name">Kevin Anderson</span>
-                      <a href="#" class="btn btn-danger binUsers"  title="Perma delate users"><i class="ri-delete-bin-fill" ></i></a>
+                <span id="elements2">
+                  {{#adminUsers}}
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="d-flex lineUser">
+                        <div>{{#image}}
+                          <img class="userFinder" src="/user/{id}/image">
+                          {{/image}}
+              
+                          {{^image}}
+                          <img class="userFinder" src="/assets/images/no_profile_photo.jpg">
+                          {{/image}}</div>
+                        <span class="d-flex align-items-center partner-name">{{name}}</span>
+                        <a href="#" class="btn btn-danger binUsers"  title="Perma delate users"><i class="ri-delete-bin-fill" ></i></a>
+                      </div>
                     </div>
                   </div>
-                </div>
+                  {{/adminUsers}}
 
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="d-flex lineUser">
-                      <div ><img src="assets/images/team_01.jpg" alt="Profile" class="userFinder"></div>
-                      <span class="d-flex align-items-center partner-name">Paco Navarro</span>
-                      <a href="#" class="btn btn-danger binUsers"  title="Perma delate users"><i class="ri-delete-bin-fill" ></i></a>
-                    </div>
-                  </div>
-                </div>  
+                  <div id="loadArea2-{{adminnextpage}}"></div>
+                </span>
+
+                <row>
+                  <col-md-12 class="d-flex justify-content-center">
+                      <button class="cargar-mas mb-5" id="loadMore" onclick="loadMoreUsersAdmin()">Cargar más</button>
+                  </col-md-12>
+                </row>
+
               </div>
 
               
@@ -83,7 +91,7 @@
               <div class="card-body profile-card pt-2 d-flex flex-column justify-content-center">
                 <h2 class="mt-2 mb-1">Torneos encontrados</h2>
                 
-                <div class="row" id="elements">
+                <span id="elements">
                   {{#adminTourns}}
                   <div class="row">
                     <div class="col-md-12">
@@ -102,16 +110,14 @@
                   </div>             
                   {{/adminTourns}}
                 
-                
                   <div id="loadArea-{{adminnextpage}}"></div>
-                </div>
+                </span>
                 
-                  
-                  <row>
-                    <col-md-12 class="d-flex justify-content-center">
-                        <button class="cargar-mas mb-5" id="loadMore" onclick="loadMore()">Cargar más</button>
-                    </col-md-12>
-                  </row>
+                <row>
+                  <col-md-12 class="d-flex justify-content-center">
+                      <button class="cargar-mas mb-5" id="loadMore" onclick="loadMoreTournsAdmin()">Cargar más</button>
+                  </col-md-12>
+                </row>
               
               </div>
             </div>

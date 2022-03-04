@@ -3,7 +3,6 @@ package es.webapp6.Padelante.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Optional;
 
 
@@ -83,6 +82,7 @@ public class indexController {
     public String admin(Model model, @RequestParam(required = false) Integer page) {       
 		int pageInt = page == null? 0: page;  
 		model.addAttribute("adminTourns",tournamentService.getTournaments(pageInt).getContent());
+		model.addAttribute("adminUsers", userService.getUsers(pageInt).getContent());
 		model.addAttribute("adminnextpage", pageInt+1);
 		return "admin";
     }

@@ -6,11 +6,9 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import es.webapp6.Padelante.model.Match;
 import es.webapp6.Padelante.model.Team;
 import es.webapp6.Padelante.model.Tournament;
 import es.webapp6.Padelante.model.User;
-import es.webapp6.Padelante.repositories.MatchRepository;
 import es.webapp6.Padelante.repositories.TeamRepository;
 import es.webapp6.Padelante.repositories.TournamentRepository;
 import es.webapp6.Padelante.repositories.UserRepository;
@@ -24,9 +22,6 @@ public class ExamplesGenerator {
 
 	@Autowired
 	private UserRepository userRepository;
-	
-	@Autowired
-	private MatchRepository matchRepository;
 	
 	@Autowired
 	private TeamRepository teamRepository;
