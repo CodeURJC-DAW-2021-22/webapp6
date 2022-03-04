@@ -1194,6 +1194,10 @@ Admin search
     background-color: #121212;
 }
 
+.addUser:hover{
+    color:#fff;
+}
+
 
 progress {
     margin-top: 5px;

@@ -81,7 +81,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <div class="d-flex justify-content-center mb-2">
+                    <!-- <div class="d-flex justify-content-center mb-2">
                       <div class="search-bar">
 
                         <form class="search-form d-flex align-items-center" method="POST" action="sing_up_tournament">
@@ -91,24 +91,44 @@
                         </form>
 
                       </div>
-                    </div>
+                    </div> -->
+                    <span id="elements">
+                      {{#userlist}}
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="d-flex align-items-center justify-content-between lineUser">
+                            <div class="pe-2">
+                              {{#image}}
+                              <img class="partner-img rounded-circle border-green-tiny small me-2" src="/user/{{id}}/image">
+                              {{/image}}
+                  
+                              {{^image}}
+                              <img class="partner-img rounded-circle border-green-tiny small me-2" src="/assets/images/no_profile_photo.jpg">
+                              {{/image}}
 
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="d-flex align-items-center justify-content-between lineUser">
-                          <div class="pe-2">
-                            <img src="/assets/images/profile-img.jpg" alt="Profile"
-                              class="partner-img rounded-circle border-green-tiny small me-2">Kevin Ander
+                              {{name}}
+                            </div>
+                            <button class="button-no-format" onclick="location.href='/inscription/{{id}}/{{tourns.id}}'">
+                              <a href="#" class="btn addUser me-2 fw-bold" title="add partner">
+                                <i class="ri-add-line"></i></a>
+                              </button>
                           </div>
-                          <a href="#" class="btn addUser me-2 fw-bold" title="add partner"><i
-                              class="ri-add-line"></i></a>
                         </div>
                       </div>
-                    </div>
+                      {{/userlist}}
+
+                      <div id="loadArea-{{nextpage}}"></div>
+                    </span>
+
+                    <row>
+                      <col-md-12 class="d-flex justify-content-center">
+                          <button class="cargar-mas" id="loadMore" onclick="loadMoreInscription()">Cargar más</button>
+                      </col-md-12>
+                    </row>
+
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn bg-232323 color-fff fw-bold" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-green color-121212 fw-bold">Accept</button>
+                    <button type="button" class="btn btn-green color-121212 fw-bold" data-bs-dismiss="modal">Close</button>
                   </div>
                 </div>
               </div>
@@ -536,10 +556,6 @@
                         class="ri-upload-2-fill"></i></a>
                     <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i
                         class="ri-delete-bin-fill"></i></a>
-
-                      
-                        
-
                   </div> -->
 
                   {{#tourns.image}}

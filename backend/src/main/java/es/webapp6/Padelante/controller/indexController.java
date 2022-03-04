@@ -23,8 +23,10 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 
 import es.webapp6.Padelante.model.Match;
+import es.webapp6.Padelante.model.Team;
 import es.webapp6.Padelante.model.Tournament;
 import es.webapp6.Padelante.model.User;
+import es.webapp6.Padelante.repositories.TournamentRepository;
 import es.webapp6.Padelante.service.MatchService;
 import es.webapp6.Padelante.service.TeamService;
 import es.webapp6.Padelante.service.TournamentService;
@@ -271,7 +273,7 @@ public class indexController {
 
 
     @GetMapping("/tourns/{id}")
-	public String showTournament(Model model, @PathVariable long id,HttpServletRequest request) {
+	public String showTournament(Model model, @PathVariable long id, @RequestParam(required = false) Integer page, HttpServletRequest request) {
 		
 		Principal principal = request.getUserPrincipal();
 		Optional<Tournament> tournament = tournamentService.findById(id);
@@ -312,6 +314,11 @@ public class indexController {
 			model.addAttribute("participants", teamService.getParticipantsOfTournament(tournament.get()));	
 
 			model.addAttribute("tourns", tournament.get());
+
+			int pageInt = page == null? 0: page;  
+			model.addAttribute("userlist", userService.getUsers(pageInt).getContent());
+			model.addAttribute("nextpage", pageInt+1);
+
 			if(principal!=null){
 				String userName = principal.getName();
 				String ownerTournament=tournament.get().getOwner();
@@ -385,8 +392,6 @@ public class indexController {
 		}
 	}
 
-
-
 	@GetMapping("/tourns/{id}/image")
 	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
 
@@ -402,23 +407,22 @@ public class indexController {
 			return ResponseEntity.notFound().build();
 		}
 	}
-	// @GetMapping("/users/{id}/image")
-	// public ResponseEntity<Object> downloadImageUser(@PathVariable long id) throws SQLException {
 
-	// 	Optional<User> userss = userService.findById(id);
-	// 	if (userss.isPresent() && userss.get().getImageFile() != null) {
+	@GetMapping("/inscription/{id}/{idtourn}")
+	public String inscriptionTournament (Model model, @PathVariable long id, @PathVariable long idtourn, HttpServletRequest request) {
+		Principal principal = request.getUserPrincipal();
+		User partner = userService.findById(id).get();
 
-	// 		Resource file = new InputStreamResource(userss.get().getImageFile().getBinaryStream());
-
-	// 		return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
-	// 				.contentLength(userss.get().getImageFile().length()).body(file);
-
-	// 	} else {
-	// 		return ResponseEntity.notFound().build();
-	// 	}
-	// }
-
-  
+		if (principal != null) {
+			User user = userService.findByName(principal.getName()).get();
+			Tournament tournament = tournamentService.findById(idtourn).get();
+			tournamentService.addParticipant(tournament, teamService.makeTeam(user, partner));
+			tournamentService.save(tournament);
+			return "redirect:/tourns/{idtourn}";
+		}
+		
+		return "redirect:/tourns/{idtourn}";
+	}
 
     
 

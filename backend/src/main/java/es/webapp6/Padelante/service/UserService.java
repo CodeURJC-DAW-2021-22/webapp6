@@ -66,4 +66,8 @@ public class UserService {
 	public Page<User> getUsers(int page) {
 		return userRepository.findAllUsers(PageRequest.of(page, 3));
 	}
+
+	public List<User> findPairsOf(User user){
+		return userRepository.findPairsOf(user);
+	}
 }
