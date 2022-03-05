@@ -5,10 +5,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class errorController {
+public class ErrorController {
     
     @GetMapping(value = "/error")
     public String handleError(HttpServletRequest request) {
@@ -27,5 +28,10 @@ public class errorController {
             }
         }
         return "error";
+    }
+
+    @GetMapping("/errorPage")
+    public String errorPage(Model model) {
+        return "errorPage";
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import es.webapp6.Padelante.repositories.MatchRepository;
 import es.webapp6.Padelante.model.Match;
+import es.webapp6.Padelante.model.Team;
 import es.webapp6.Padelante.model.Tournament;
 import es.webapp6.Padelante.model.User;
 
@@ -111,9 +112,15 @@ public class MatchService {
 		return cheked;
 
 	}
+
+	public Team getWinner(Match match){
+		ArrayList<Integer> result = match.getResult();
+		Team team = new Team();
+		return team;
+		
+	}
+
     //Asigne Teams al partido, eliminando de la BBDD a los teams que fueran TBD
     
     //Dar victoria al ganador
-
-    //Dar free win si hay TBD
 }
