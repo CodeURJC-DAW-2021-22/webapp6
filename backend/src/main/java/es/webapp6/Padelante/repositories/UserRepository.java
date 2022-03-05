@@ -21,6 +21,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByName(String name);
 
     @Query("SELECT distinct u FROM UserTable u WHERE u.status = TRUE AND u.name <> 'admin' ORDER BY id ASC")
+    public Page<User> findAllUsersNoAdmin(Pageable pageable);
+
+    @Query("SELECT distinct u FROM UserTable u WHERE u.status = TRUE ORDER BY id ASC")
     public Page<User> findAllUsers(Pageable pageable);
 
     // @Query("SELECT distinct u FROM UserTable u WHERE u.name <> 'none' AND u.name <> 'admin' ORDER BY id ASC")

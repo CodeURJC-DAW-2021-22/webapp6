@@ -60,11 +60,15 @@ public class UserService {
     
 
     public Page<User> listUserPageable(){
-        return userRepository.findAllUsers(PageRequest.of(0, 3));
+        return userRepository.findAllUsers(PageRequest.of(0, 6));
     }
 
 	public Page<User> getUsers(int page) {
-		return userRepository.findAllUsers(PageRequest.of(page, 3));
+		return userRepository.findAllUsers(PageRequest.of(page, 6));
+	}
+
+	public Page<User> getUsersNoAdmin(int page) {
+		return userRepository.findAllUsersNoAdmin(PageRequest.of(page, 6));
 	}
 
 	public List<User> findPairsOf(User user){

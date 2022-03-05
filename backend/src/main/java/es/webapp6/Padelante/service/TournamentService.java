@@ -37,12 +37,12 @@ public class TournamentService {
 	private MatchService matchService;
 
 	public Page<Tournament> listTournamentPageable(){
-		return tournaments.findAllTournaments(PageRequest.of(0, 3));
+		return tournaments.findAllTournaments(PageRequest.of(0, 6));
 	}
 
 
 	public Page<Tournament> getTournaments(int page) {
-		return tournaments.findAllTournaments(PageRequest.of(page, 3));
+		return tournaments.findAllTournaments(PageRequest.of(page, 6));
 	}
 
 	public List<Tournament> getTeamTournaments(Team team){
@@ -88,7 +88,7 @@ public class TournamentService {
 	}
 
 	public Page<Tournament> findUserTournaments(int page, User user){
-		return tournaments.findUserTournaments(PageRequest.of(page, 3), user);
+		return tournaments.findUserTournaments(PageRequest.of(page, 6), user);
 	}
 
 	public boolean isAnyUserOfTeamInTournament(Tournament tournament, Team team){

@@ -87,7 +87,7 @@ public class indexController {
     public String admin(Model model, @RequestParam(required = false) Integer page) {       
 		int pageInt = page == null? 0: page;  
 		model.addAttribute("adminTourns",tournamentService.getTournaments(pageInt).getContent());
-		model.addAttribute("adminUsers", userService.getUsers(pageInt).getContent());
+		model.addAttribute("adminUsers", userService.getUsersNoAdmin(pageInt).getContent());
 		model.addAttribute("adminnextpage", pageInt+1);
 		return "admin";
     }
@@ -463,7 +463,6 @@ public class indexController {
 			Tournament tournament = tournamentService.findById(idtourn).get();
 			tournamentService.addParticipant(tournament, teamService.makeTeam(user, partner));
 			tournamentService.save(tournament);
-			return "redirect:/tourns/{idtourn}";
 		}
 		
 		return "redirect:/tourns/{idtourn}";

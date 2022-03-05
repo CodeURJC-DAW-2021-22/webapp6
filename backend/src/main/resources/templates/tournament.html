@@ -31,9 +31,9 @@
           <div class="d-flex align-items-center ps-2">
             <div>
               <h2 class="mt-0">{{tourns.tournamentName}}</h2>
-              <h3 class="d-flex align-items-center pt-2"><em>Organizador:</em>
-                <img src="/assets/images/profile-img.jpg" alt="Profile"
-                  class="tournament-img rounded-circle border-green-tiny small ms-2 me-1">
+              <h3 class="d-flex align-items-center pt-2"><em class="me-2">Organizador:</em>
+                <!-- <img src="/assets/images/profile-img.jpg" alt="Profile"
+                  class="tournament-img rounded-circle border-green-tiny small ms-2 me-1"> -->
                 {{tourns.owner}}
               </h3>
               
@@ -108,10 +108,12 @@
 
                               {{name}}
                             </div>
-                            <button class="button-no-format" onclick="location.href='/inscription/{{id}}/{{tourns.id}}'">
-                              <a href="#" class="btn addUser me-2 fw-bold" title="add partner">
-                                <i class="ri-add-line"></i></a>
+                            <div class="me-2">
+                              <button class="button-no-format" onclick="location.href='/inscription/{{id}}/{{tourns.id}}'">
+                                <a href="#" class="btn addUser fw-bold" title="add partner">
+                                  <i class="ri-add-line"></i></a>
                               </button>
+                            </div>
                           </div>
                         </div>
                       </div>
