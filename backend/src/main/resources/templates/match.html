@@ -11,8 +11,8 @@
     <main class="container main-tournament tournament">
 
         <section class="card tournament-card">
-            <a href="/tourns/{{actualMatch.tournament.id}}">
-                <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between">
+                <a href="/tourns/{{actualMatch.tournament.id}}">
                     <div class="d-flex flex-row">
                         <div class="tournament-img p-3">
                             {{#actualMatch.tournament.image}}
@@ -35,34 +35,21 @@
                                 
                                 <div> <progress class="progress-bar round mb-1" value="{{actualMatch.tournament.numSignedUp}}" max="{{actualMatch.tournament.numParticipants}}"> </progress></div>
                                 <h5>Participantes: {{actualMatch.tournament.numSignedUp}}/{{actualMatch.tournament.numParticipants}}
+                                    <span class="ps-5">{{actualMatch.tournament.location}}</span>
                                 </h5>
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center justify-content-center p-2 me-5">
-                        <div class="text-center">
-                            <h3 class="py-1 date-title">Fin de inscripciones</h3>
-                            <h3 class="py-1"><em>{{actualMatch.tournament.inscriptionDate}}</em></h3>
-                            <h3 class="py-1 date-title">Inicio del torneo</h3>
-                            <h3 class="py-1"><em>{{actualMatch.tournament.startDate}}</em></h3>
-                        </div>
+                </a>
+                <div class="d-flex align-items-center justify-content-center p-2 me-5">
+                    <div class="text-center">
+                        <h3 class="py-1 date-title">Fin de inscripciones</h3>
+                        <h3 class="py-1"><em>{{actualMatch.tournament.inscriptionDate}}</em></h3>
+                        <h3 class="py-1 date-title">Inicio del torneo</h3>
+                        <h3 class="py-1"><em>{{actualMatch.tournament.startDate}}</em></h3>
                     </div>
-                    <!-- <div class="d-flex align-items-center justify-content-end p-2 pe-3">
-                        <div>
-                            <div class="d-flex justify-content-end">
-                                <a class="button btn-tournament upper-text my-1" href="#"><i class="ri-heart-3-fill pe-1"></i> Seguir</a>
-                            </div>
-                            <div class="d-flex justify-content-end">
-                    
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <a class="button btn-tournament upper-text my-1" href="#"><i class="ri-tools-fill pe-1"></i>
-                                    Admin</a>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
-            </a>
+            </div>
         </section>
 
         <!--Section add results-->
