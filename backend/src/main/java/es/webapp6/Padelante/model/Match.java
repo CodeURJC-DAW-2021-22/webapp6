@@ -22,6 +22,11 @@ public class Match {
 
     private int round;
     private ArrayList<Integer> result;
+    private int setsTeamOne;
+    private int setsTeamTwo;
+    private boolean hasWinner;
+    private boolean winnerTeamOne;
+    private boolean winnerTeamTwo;
 
     @ManyToOne 
     private Team teamOne;
@@ -30,14 +35,7 @@ public class Match {
     private Team teamTwo;
 
     @ManyToOne
-    Tournament tournament; // Needs to be in Constructor?
-    
-
-    //this var commented, if I descommented the project doesnt work
-    //private ArrayList<Integer> result; //To be defined correctly   
-    //private Date dateOfMatch;
-    //private Team winnerTeam; 
-    private String data; //just to try easily, in the future it can be eliminated
+    Tournament tournament;
 
     public Match() {
 		super();
@@ -49,9 +47,14 @@ public class Match {
         this.teamTwo = teamTwo;
         this.tournament = tournament;
         this.result = new ArrayList<>();
-        for (int i = 0; i < 6; i = i + 1) {
+        for (int i = 0; i < 6; i++) {
             this.result.add(0);
         }
+        this.setsTeamOne = 0;
+        this.setsTeamTwo = 0;
+        this.hasWinner = false;
+        this.winnerTeamOne = false;
+        this.winnerTeamTwo = false;
     }
 
     public long getId() {
@@ -102,27 +105,43 @@ public class Match {
 		this.tournament = tournament;
 	}
 
-    //just to make ir easier, i commment dateofmatch 
-    // public Date getDateOfMatch() {
-    //     return dateOfMatch;
-    // }
+    public boolean isHasWinner() {
+        return hasWinner;
+    }
 
-    // public void setDateOfMatch(Date dateOfMatch) {
-    //     this.dateOfMatch = dateOfMatch;
-    // }
+    public void setHasWinner(boolean hasWinner) {
+        this.hasWinner = hasWinner;
+    }
 
-    //at the momment of create o match we dont have a winner, is this ok?
-    // public Team getWinnerTeam() {
-    //     return winnerTeam;
-    // }
+    public int getSetsTeamOne() {
+        return setsTeamOne;
+    }
 
-    // public void setWinnerTeam(Team winnerTeam) {
-    //     this.winnerTeam = winnerTeam;
-    // }
+    public void setSetsTeamOne(int setsTeamOne) {
+        this.setsTeamOne = setsTeamOne;
+    }
 
+    public int getSetsTeamTwo() {
+        return setsTeamTwo;
+    }
 
-    @Override
-	public String toString() {
-		return "Match [id=" + id + ", data=" + data + "]";
-	}
+    public void setSetsTeamTwo(int setsTeamTwo) {
+        this.setsTeamTwo = setsTeamTwo;
+    }
+
+    public boolean isWinnerTeamOne() {
+        return winnerTeamOne;
+    }
+
+    public void setWinnerTeamOne(boolean winnerTeamOne) {
+        this.winnerTeamOne = winnerTeamOne;
+    }
+
+    public boolean isWinnerTeamTwo() {
+        return winnerTeamTwo;
+    }
+
+    public void setWinnerTeamTwo(boolean winnerTeamTwo) {
+        this.winnerTeamTwo = winnerTeamTwo;
+    }
 }

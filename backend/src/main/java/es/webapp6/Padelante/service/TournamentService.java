@@ -32,9 +32,7 @@ public class TournamentService {
 	
 	@Autowired
 	private TeamRepository teams;
-
-	@Autowired
-	private MatchService matchService;
+	
 
 	public Page<Tournament> listTournamentPageable(){
 		return tournaments.findAllTournaments(PageRequest.of(0, 6));
@@ -67,11 +65,10 @@ public class TournamentService {
 
 	public void delete(long id) {
 		Optional<Tournament> tourn = tournaments.findById(id);
-		List<Match> tournamentMatches = matchService.getTournamentMatches(tourn.get());
+		List<Match> tournamentMatches = matches.getMatches(tourn.get());
 			
 			for(int i = 0; i<tournamentMatches.size();i++){
-				matchService.delete( tournamentMatches.get(i).getId());
-
+				matches.deleteById(tournamentMatches.get(i).getId());
 			}
 		tournaments.deleteById(id);
 	}
@@ -244,11 +241,10 @@ public class TournamentService {
 		int numMatch = (int) i/2;
 		if (i%2 == 0) {
 			nextRound.get(numMatch).setTeamOne(winner);
-			matches.save(nextRound.get(numMatch));
 		} else {
 			nextRound.get(numMatch).setTeamTwo(winner);
-			matches.save(nextRound.get(numMatch));
 		}
+		matches.save(nextRound.get(numMatch));
 
 	}
 

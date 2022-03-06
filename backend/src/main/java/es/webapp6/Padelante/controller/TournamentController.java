@@ -160,6 +160,8 @@ public class TournamentController {
 				}else{
 					model.addAttribute("owner", false);
 				}
+				Optional<User> user = userService.findByName(userName);		
+				model.addAttribute("matches", matchService.getUserMatches(user.get()));
 			}else{
 				model.addAttribute("owner", false);
 			}

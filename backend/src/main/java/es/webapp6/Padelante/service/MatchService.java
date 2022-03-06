@@ -19,6 +19,9 @@ public class MatchService {
     @Autowired
 	private MatchRepository matches;
 
+	@Autowired
+	private TournamentService tournamentService;
+
     public List<Match> getMatches() {
 		return matches.findAll();
 	}
@@ -106,10 +109,51 @@ public class MatchService {
 
 		if(cheked){
 			match.setResult(result);
+			ArrayList<Integer> sets = calculateSets(match, games1, games2, games3, games4, games5, games6);
+			match.setSetsTeamOne((int) sets.get(0));
+			match.setSetsTeamTwo((int) sets.get(1));
+			match.setHasWinner(true);
+			if (sets.get(0)>sets.get(1)){
+				tournamentService.moveNextRound(match.getTournament(), match, match.getTeamOne());
+				match.setWinnerTeamOne(true);
+			} else {
+				tournamentService.moveNextRound(match.getTournament(), match, match.getTeamTwo());
+				match.setWinnerTeamTwo(true);
+			}
 			matches.save(match);
 		}
 
 		return cheked;
+
+	}
+
+	private ArrayList<Integer> calculateSets (Match match, int games1, int games2, int games3, int games4, int games5, int games6){
+		Integer teamOne = 0;
+		Integer teamTwo = 0;
+		if (games1>games2){
+			teamOne++;
+		} else {
+			teamTwo++;
+		}
+		if (games3>games4){
+			teamOne++;
+		} else {
+			teamTwo++;
+		}
+		if (games5 != 0 && games6 != 0){
+			if (games5>games6){
+				teamOne++;
+			} else {
+				teamTwo++;
+			}
+		}
+		ArrayList<Integer> sets = new ArrayList<>();
+		sets.add(teamOne);
+		sets.add(teamTwo);
+		return sets;
+	}
+
+	public void setWinner (){
 
 	}
 
