@@ -1,5 +1,6 @@
 package es.webapp6.Padelante.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -26,11 +27,12 @@ public class User {
 	private String phone;
 	private int numWins;
 	private int numLoses;
-	private int numPlayed;
-	private int karma;
+	private double numMatchesPlayed; // Double cause it will have to be the argument of Math.log(Double a)
+	private double karma; // Double
+	private ArrayList<Integer> historicalKarma = new ArrayList<>(); // Integer because karma will be truncated before added to the list
 	private boolean status;
 
-	//Profile Img To Do
+	//Profile Img To Do	
 	@Lob
 	private Blob imageFile;
 
@@ -55,7 +57,7 @@ public class User {
 		this.phone = "";
 		this.numWins=0;
 		this.numLoses=0;
-		this.numPlayed=0;
+		this.numMatchesPlayed=0;
 		this.karma=500;
 		this.status=true;
 		this.roles = List.of(roles);
@@ -153,16 +155,17 @@ public class User {
 		this.numLoses = numLoses;
 	}
 
-	public int getNumPlayed() {
-		return numPlayed;
+	public double getNumMatchesPlayed() {
+		return numMatchesPlayed;
 	}
 
-	public void setNumPlayed(int numPlayed) {
-		this.numPlayed = numPlayed;
+	// It should only increment by one each time
+	public void setNumMatchesPlayed(int numPlayed) {
+		this.numMatchesPlayed = numPlayed;
 	}
 
 	public int getKarma() {
-		return karma;
+		return (int) Math.round(this.karma);
 	}
 
 	public void setKarma(int karma) {
@@ -192,6 +195,14 @@ public class User {
 
 	public void setImage(boolean image){
 		this.image = image;
+	}
+
+	public ArrayList<Integer> getHistoricalKarma() {
+		return historicalKarma;
+	}
+
+	public void setHistoricalKarma(ArrayList<Integer> historicalKarma) {
+		this.historicalKarma = historicalKarma;
 	}
 
 	@Override
