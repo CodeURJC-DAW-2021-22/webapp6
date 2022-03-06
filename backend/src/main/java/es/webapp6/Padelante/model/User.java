@@ -62,7 +62,11 @@ public class User {
 	}
 
 	public String getName() {
-		return name;
+		if (this.status){
+			return name;
+		} else{
+			return "none";
+		}
 	}
 
 	public void setName(String name) {

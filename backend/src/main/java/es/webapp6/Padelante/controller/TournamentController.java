@@ -127,6 +127,9 @@ public class TournamentController {
 			model.addAttribute("roundTwo",matchService.getRoundMatches(tournament.get(),2));
 			model.addAttribute("roundOne",matchService.getRoundMatches(tournament.get(),1));
 
+			boolean hasStarted = matchService.getRoundMatches(tournament.get(),1).size()!=0;
+			model.addAttribute("hasStarted", hasStarted);
+
 			ArrayList <Team> teams = new ArrayList<>();
 			List<Match> roundMatches = matchService.getRoundMatches(tournament.get(), 0);
 			for(int i = 0; i <roundMatches.size();i++){
