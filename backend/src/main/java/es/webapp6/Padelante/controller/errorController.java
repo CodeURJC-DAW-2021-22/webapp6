@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class ErrorController {
+public class errorController {
     
     @GetMapping(value = "/error")
     public String handleError(HttpServletRequest request) {

@@ -18,7 +18,7 @@ import es.webapp6.Padelante.service.TournamentService;
 import es.webapp6.Padelante.service.UserService;
 
 @Controller
-public class IndexController {
+public class indexController {
     @Autowired
 	private TournamentService tournamentService;	
 
