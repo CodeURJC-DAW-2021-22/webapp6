@@ -194,7 +194,7 @@ public class TournamentController {
 
 				
 			}
-
+			// tournamentService.save(tournament.get());
 			
 		}
 		return "redirect:/tourns/{tourid}";
@@ -281,6 +281,8 @@ public class TournamentController {
 
 				
 			}
+			//tournamentService.save(tournament);
+			
 			
 		}
 		return "redirect:/tourns/{idtourn}";
