@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import es.webapp6.Padelante.model.Tournament;
 import es.webapp6.Padelante.model.User;
+import es.webapp6.Padelante.service.MatchService;
 import es.webapp6.Padelante.service.TournamentService;
 import es.webapp6.Padelante.service.UserService;
 
@@ -22,6 +23,9 @@ import es.webapp6.Padelante.service.UserService;
 public class AdminController {
     @Autowired
 	private TournamentService tournamentService;	
+
+	@Autowired
+	private MatchService matchService;
 
     @Autowired
 	private UserService userService;
@@ -42,7 +46,14 @@ public class AdminController {
 	}
 
     @GetMapping("/admin")
-    public String admin(Model model, @RequestParam(required = false) Integer page) {       
+    public String admin(Model model, HttpServletRequest request, @RequestParam(required = false) Integer page) {      
+		Principal principal = request.getUserPrincipal();
+		if (principal != null) {				
+			String userName = principal.getName();
+			Optional<User> user = userService.findByName(userName);
+			model.addAttribute("matches", matchService.getUserMatches(user.get()));
+		}
+		
 		int pageInt = page == null? 0: page;  
 		model.addAttribute("adminTourns",tournamentService.getTournaments(pageInt).getContent());
 		model.addAttribute("adminUsers", userService.getUsersNoAdmin(pageInt).getContent());

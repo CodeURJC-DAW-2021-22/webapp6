@@ -11,67 +11,58 @@
     <main class="container main-tournament tournament">
 
         <section class="card tournament-card">
-            <div class="d-flex justify-content-between">
-                <div class="d-flex flex-row">
-                    <div class="tournament-img p-3">
-                        {{#maches.tournament.image}}
-                        <img src="/tourns/{{tourns.id}}/image" alt="Tournament Image"
-                            class="rounded-circle border-green bg-232323">
-                        {{/maches.tournament.image}}
+            <a href="/tourns/{{actualMatch.tournament.id}}">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-row">
+                        <div class="tournament-img p-3">
+                            {{#actualMatch.tournament.image}}
+                            <img src="/tourns/{{tourns.id}}/image" alt="Tournament Image"
+                                class="rounded-circle border-green bg-232323">
+                            {{/actualMatch.tournament.image}}
 
-                        {{^maches.tournament.image}}
-                        <img src="/assets/images/product_02.jpg" alt="Tournament Image"
-                            class="rounded-circle border-green bg-232323">
-                        {{/maches.tournament.image}}
-                    </div>
-                    <div class="d-flex align-items-center ps-2">
-                        <div>
-                            <h2 class="mt-0"></h2>
-
-                            <h3 class="d-flex align-items-center pt-2"><em>Organizador: </em> 
-                                {{#maches.tournament.owner.image}}
-                                <img src="/user/{{user.id}}/image" alt="Tournament Image"
-                                class="partner-img rounded-circle border-green-tiny small me-2">
-                                {{/maches.tournament.owner.image}}
-
-                                {{^maches.tournament.owner.image}}
-                                <img src="/assets/images/no_profile_photo.jpg" alt="Tournament Image"
-                                class="partner-img rounded-circle border-green-tiny small me-2" style="margin-left: 15px;">
-                                {{/maches.tournament.owner.image}}
-
-                                {{maches.tournament.owner}}
+                            {{^actualMatch.tournament.image}}
+                            <img src="/assets/images/product_02.jpg" alt="Tournament Image"
+                                class="rounded-circle border-green bg-232323">
+                            {{/actualMatch.tournament.image}}
+                        </div>
+                        <div class="d-flex align-items-center ps-2">
+                            <div>
+                                <h2 class="mt-0">{{actualMatch.tournament.tournamentName}}</h2>
                                 
-                            </h3>
-                            
-                            <div> <progress class="progress-bar round mb-1" value="{{maches.tournament.numSignedUp}}" max="{{maches.tournament.numParticipants}}"> </progress></div>
-                            <h5>Participantes: {{maches.tournament.numSignedUp}}/{{maches.tournament.numParticipants}}
-                            </h5>
+                                <h3 class="d-flex align-items-center pt-2"><em class="me-2">Organizador: </em> 
+                                    {{actualMatch.tournament.owner}}
+                                </h3>
+                                
+                                <div> <progress class="progress-bar round mb-1" value="{{actualMatch.tournament.numSignedUp}}" max="{{actualMatch.tournament.numParticipants}}"> </progress></div>
+                                <h5>Participantes: {{actualMatch.tournament.numSignedUp}}/{{actualMatch.tournament.numParticipants}}
+                                </h5>
+                            </div>
                         </div>
                     </div>
+                    <div class="d-flex align-items-center justify-content-center p-2 me-5">
+                        <div class="text-center">
+                            <h3 class="py-1 date-title">Fin de inscripciones</h3>
+                            <h3 class="py-1"><em>{{actualMatch.tournament.inscriptionDate}}</em></h3>
+                            <h3 class="py-1 date-title">Inicio del torneo</h3>
+                            <h3 class="py-1"><em>{{actualMatch.tournament.startDate}}</em></h3>
+                        </div>
+                    </div>
+                    <!-- <div class="d-flex align-items-center justify-content-end p-2 pe-3">
+                        <div>
+                            <div class="d-flex justify-content-end">
+                                <a class="button btn-tournament upper-text my-1" href="#"><i class="ri-heart-3-fill pe-1"></i> Seguir</a>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                    
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <a class="button btn-tournament upper-text my-1" href="#"><i class="ri-tools-fill pe-1"></i>
+                                    Admin</a>
+                            </div>
+                        </div>
+                    </div> -->
                 </div>
-                <div class="d-flex align-items-center justify-content-center p-2 me-5">
-                    <div class="text-center">
-                        <h3 class="py-1 date-title">Fin de inscripciones</h3>
-                        <h3 class="py-1"><em>{{maches.tournament.inscriptionDate}}</em></h3>
-                        <h3 class="py-1 date-title">Inicio del torneo</h3>
-                        <h3 class="py-1"><em>{{maches.tournament.startDate}}</em></h3>
-                    </div>
-                </div>
-                <!-- <div class="d-flex align-items-center justify-content-end p-2 pe-3">
-                    <div>
-                        <div class="d-flex justify-content-end">
-                            <a class="button btn-tournament upper-text my-1" href="#"><i class="ri-heart-3-fill pe-1"></i> Seguir</a>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <a class="button btn-tournament upper-text my-1" href="#"><i class="ri-tools-fill pe-1"></i>
-                                Admin</a>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
+            </a>
         </section>
 
         <!--Section add results-->
@@ -83,7 +74,7 @@
                     <div class="col-md-4 ps-0">
                         <div class="card h-100">
                             <div class="card-header text-center date-title">
-                                <span> {{maches.teamOne.userA.name}}/{{maches.teamOne.userB.name}}</span>
+                                <span> {{actualMatch.teamOne.userA.name}}/{{actualMatch.teamOne.userB.name}}</span>
 
                                 
                             </div>
@@ -96,7 +87,7 @@
                                                     class="partner-img rounded-circle border-green-tiny small me-2">
                                             </div> -->
                                             <span class="d-flex align-items-center partner-name">
-                                                {{maches.teamOne.userA.realName}}</span>
+                                                {{actualMatch.teamOne.userA.realName}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -108,7 +99,7 @@
                                                     class="partner-img rounded-circle border-green-tiny small me-2">
                                             </div> -->
                                             <span class="d-flex align-items-center partner-name">
-                                                {{maches.teamOne.userB.realName}}</span>
+                                                {{actualMatch.teamOne.userB.realName}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -120,7 +111,7 @@
                     <!-- Compress width of inputs -->
                     {{^isCheked}}
                     <div class="col-md-4">
-                        <form action="/resultMach/{{maches.id}}" method="post">
+                        <form action="/resultMach/{{actualMatch.id}}" method="post">
                              <div class="card h-100">
                             <div class="card-header text-center date-title">
                                 <span> RESULTADOS </span>
@@ -258,7 +249,7 @@
                                     <div class="col-sm">
                                         <select class="form-select bg-232323 color-fff fw-bold px-1" name="sets1"
                                             id="sets1"  style="color: black;"disabled>
-                                            <option value="0" >{{maches.result.0}}</option>
+                                            <option value="0" >{{actualMatch.result.0}}</option>
                                         </select>
                                     </div>
                                     <div class="col-sm">
@@ -267,7 +258,7 @@
                                     <div class="col-sm">
                                         <select class="form-select bg-232323 color-fff fw-bold px-1" name="sets2"
                                             id="sets2" style="color: black;" disabled>
-                                            <option value="0" >{{maches.result.1}}</option>
+                                            <option value="0" >{{actualMatch.result.1}}</option>
                                             
                                         </select>
                                     </div>
@@ -277,7 +268,7 @@
                                     <div class="col-sm">
                                         <select class="form-select bg-232323 color-fff fw-bold px-1" name="sets3"
                                             id="sets3" style="color: black;"disabled>
-                                            <option value="0">{{maches.result.2}}</option>
+                                            <option value="0">{{actualMatch.result.2}}</option>
                                            
                                         </select>
                                     </div>
@@ -287,7 +278,7 @@
                                     <div class="col-sm">
                                         <select class="form-select bg-232323 color-fff fw-bold px-1" name="sets4"
                                             id="sets4"  style="color: black;"disabled>
-                                            <option value="0">{{maches.result.3}}</option>
+                                            <option value="0">{{actualMatch.result.3}}</option>
                                           
                                         </select>
                                     </div>
@@ -297,7 +288,7 @@
                                     <div class="col-sm">
                                         <select class="form-select bg-232323 color-fff fw-bold px-1" name="sets5"
                                             id="sets5"  style="color: black;"disabled>
-                                            <option value="0">{{maches.result.4}}</option>
+                                            <option value="0">{{actualMatch.result.4}}</option>
                                        
                                         </select>
                                     </div>
@@ -307,7 +298,7 @@
                                     <div class="col-sm">
                                         <select class="form-select bg-232323 color-fff fw-bold px-1" name="sets6"
                                             id="sets6"  style="color: black;"disabled>
-                                            <option value="0">{{maches.result.5}}</option>
+                                            <option value="0">{{actualMatch.result.5}}</option>
                                             
                                         </select>
                                     </div>
@@ -325,7 +316,7 @@
                     <div class="col-md-4 pe-0">
                         <div class="card h-100">
                             <div class="card-header text-center date-title">
-                                <span> {{maches.teamTwo.userA.name}}/{{maches.teamTwo.userB.name}}</span>
+                                <span> {{actualMatch.teamTwo.userA.name}}/{{actualMatch.teamTwo.userB.name}}</span>
                             </div>
                             <div
                                 class="card-body profile-card pt-2 d-flex flex-column justify-content-center align-items-center">
@@ -337,7 +328,7 @@
                                                     class="partner-img rounded-circle border-green-tiny small me-2">
                                             </div> -->
                                             <span
-                                                class="d-flex align-items-center partner-name">{{maches.teamTwo.userA.realName}}</span>
+                                                class="d-flex align-items-center partner-name">{{actualMatch.teamTwo.userA.realName}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -349,7 +340,7 @@
                                                     class="partner-img rounded-circle border-green-tiny small me-2">
                                             </div> -->
                                             <span
-                                                class="d-flex align-items-center partner-name">{{maches.teamTwo.userB.realName}}</span>
+                                                class="d-flex align-items-center partner-name">{{actualMatch.teamTwo.userB.realName}}</span>
                                         </div>
                                     </div>
                                 </div>

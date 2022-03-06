@@ -23,6 +23,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 
 import es.webapp6.Padelante.model.User;
+import es.webapp6.Padelante.service.MatchService;
 import es.webapp6.Padelante.service.TournamentService;
 import es.webapp6.Padelante.service.UserService;
 
@@ -30,6 +31,9 @@ import es.webapp6.Padelante.service.UserService;
 public class UserController {
     @Autowired
 	private TournamentService tournamentService;	
+
+	@Autowired
+	private MatchService matchService;
 
     @Autowired
 	private UserService userService;
@@ -57,6 +61,7 @@ public class UserController {
 		String userName = principal.getName();
 		Optional<User> user = userService.findByName(userName); //By ID??
 		model.addAttribute("user", user.get());
+		model.addAttribute("matches", matchService.getUserMatches(user.get()));
 		//model.addAttribute("userCompleteName", user.get().getRealName());
 
 		int pageInt = page == null? 0: page;  

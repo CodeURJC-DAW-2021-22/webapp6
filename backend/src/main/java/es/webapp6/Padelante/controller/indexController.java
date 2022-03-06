@@ -49,10 +49,10 @@ public class IndexController {
 		int pageInt = page == null? 0: page; 
 		if (principal != null) {
 			model.addAttribute("mytourns", tournamentService.getUserTournaments(userService.findByName(principal.getName()).get())); 
-			
-		String userName = principal.getName();
-		Optional<User> user = userService.findByName(userName); //By ID??
-		model.addAttribute("maches", matchService.getUserMatches(user.get()));
+				
+			String userName = principal.getName();
+			Optional<User> user = userService.findByName(userName);
+			model.addAttribute("matches", matchService.getUserMatches(user.get()));
 		}
 
 		model.addAttribute("tourns",tournamentService.getTournaments(pageInt).getContent());

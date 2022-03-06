@@ -151,6 +151,7 @@ public class TournamentController {
 			model.addAttribute("nextpage", pageInt+1);
 
 			if(principal!=null){
+
 				String userName = principal.getName();
 				String ownerTournament=tournament.get().getOwner();
 				Boolean owner = ownerTournament.equals(userName);
@@ -159,6 +160,9 @@ public class TournamentController {
 				}else{
 					model.addAttribute("owner", false);
 				}
+
+				Optional<User> user = userService.findByName(userName);
+				model.addAttribute("matches", matchService.getUserMatches(user.get()));
 			}else{
 				model.addAttribute("owner", false);
 			}
