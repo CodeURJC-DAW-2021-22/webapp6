@@ -171,9 +171,9 @@ public class TournamentController {
 		}
 	} 
 
-	@GetMapping("/deleteTourParticipant/{tourid}/{teamid}")
-	public String deleteTournParticipan(Model model, @PathVariable long tourid, @PathVariable long teamid) throws SQLException{
-		Optional<Tournament> tournament = tournamentService.findById(tourid);
+	@PostMapping("/deleteTourParticipant/{tournid}")
+	public String deleteTournParticipant(Model model, @PathVariable long tournid, @RequestParam long teamid) throws SQLException{
+		Optional<Tournament> tournament = tournamentService.findById(tournid);
 		Optional<Team> team = teamService.findById(teamid);
 
 		if(tournament.isPresent() && team.isPresent()){
@@ -191,13 +191,9 @@ public class TournamentController {
 				  catch (Exception e){
 					
 				   }
-
-				
 			}
-			// tournamentService.save(tournament.get());
-			
 		}
-		return "redirect:/tourns/{tourid}";
+		return "redirect:/tourns/{tournid}";
 	}
 
 	@PostMapping("/update_tourns/{id}")
@@ -256,8 +252,8 @@ public class TournamentController {
 		}
 	}
 
-	@GetMapping("/inscription/{id}/{idtourn}")
-	public String inscriptionTournament (Model model, @PathVariable long id, @PathVariable long idtourn, HttpServletRequest request) {
+	@PostMapping("/inscription/{idtourn}")
+	public String inscriptionTournament (Model model, @PathVariable long idtourn, @RequestParam long id, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
 		User partner = userService.findById(id).get();
 
@@ -272,18 +268,12 @@ public class TournamentController {
 					InputStream binaryStream = dbTournament.getImageFile().getBinaryStream();
 					long length = dbTournament.getImageFile().length();
 					tournament.setImageFile(BlobProxy.generateProxy(binaryStream,length));
-						tournament.setImage(true);
-						tournamentService.save(tournament);
-				   }
-				  catch (Exception e){
-					
-				   }
-
-				
+					tournament.setImage(true);
+					tournamentService.save(tournament);
+				}
+				catch (Exception e){
+				}
 			}
-			//tournamentService.save(tournament);
-			
-			
 		}
 		return "redirect:/tourns/{idtourn}";
 	}

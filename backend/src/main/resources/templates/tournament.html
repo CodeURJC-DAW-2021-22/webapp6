@@ -109,10 +109,16 @@
                               {{name}}
                             </div>
                             <div class="me-2">
-                              <button class="button-no-format" onclick="location.href='/inscription/{{id}}/{{tourns.id}}'">
-                                <a href="#" class="btn addUser fw-bold" title="add partner">
-                                  <i class="ri-add-line"></i></a>
-                              </button>
+                              <form action="/inscription/{{tourns.id}}" method="post">
+                                <input type="hidden" name="id" value="{{id}}" />
+                                <button class="button-no-format" type="submit">
+                                    <span  class="btn addUser fw-bold" title="Add partner"> 
+                                      <i class="ri-add-line"></i>
+                                    </span>
+                                </button>
+              
+                                <input type="hidden" name="_csrf" value="{{token}}" />
+                              </form>
                             </div>
                           </div>
                         </div>
@@ -206,8 +212,16 @@
               {{#owner}}
               {{^hasStarted}}
               <div class="col-md-1 d-flex justify-content-end align-items-center">
-                <a href="/deleteTourParticipant/{{tourns.id}}/{{id}}" class="btn btn-danger btn-sm" title="Remove my profile image"><i
-                    class="ri-delete-bin-fill"></i></a>
+                <form action="/deleteTourParticipant/{{tourns.id}}" method="post">
+                  <input type="hidden" name="teamid" value="{{id}}" />
+                  <button class="button-no-format" type="submit">
+                      <span class="btn btn-danger btn-sm" title="Remove my profile image"> 
+                        <i class="ri-delete-bin-fill"></i>
+                      </span>
+                  </button>
+
+                  <input type="hidden" name="_csrf" value="{{token}}" />
+                </form>
               </div>
               {{/hasStarted}}
               {{/owner}}
