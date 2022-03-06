@@ -1,6 +1,7 @@
 package es.webapp6.Padelante.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -151,7 +152,6 @@ public class TournamentController {
 			model.addAttribute("nextpage", pageInt+1);
 
 			if(principal!=null){
-
 				String userName = principal.getName();
 				String ownerTournament=tournament.get().getOwner();
 				Boolean owner = ownerTournament.equals(userName);
@@ -160,9 +160,6 @@ public class TournamentController {
 				}else{
 					model.addAttribute("owner", false);
 				}
-
-				Optional<User> user = userService.findByName(userName);
-				model.addAttribute("matches", matchService.getUserMatches(user.get()));
 			}else{
 				model.addAttribute("owner", false);
 			}
@@ -173,13 +170,30 @@ public class TournamentController {
 	} 
 
 	@GetMapping("/deleteTourParticipant/{tourid}/{teamid}")
-	public String deleteTournParticipan(Model model, @PathVariable long tourid, @PathVariable long teamid){
+	public String deleteTournParticipan(Model model, @PathVariable long tourid, @PathVariable long teamid) throws SQLException{
 		Optional<Tournament> tournament = tournamentService.findById(tourid);
 		Optional<Team> team = teamService.findById(teamid);
 
 		if(tournament.isPresent() && team.isPresent()){
 			tournamentService.deleteParticipant(tournament.get(), team.get());
-			tournamentService.save(tournament.get());
+
+			Tournament dbTournament = tournamentService.findById(tournament.get().getId()).orElseThrow();
+			if (dbTournament.getImage()) {
+				try{
+					InputStream binaryStream = dbTournament.getImageFile().getBinaryStream();
+					long length = dbTournament.getImageFile().length();
+					tournament.get().setImageFile(BlobProxy.generateProxy(binaryStream,length));
+						tournament.get().setImage(true);
+						tournamentService.save(tournament.get());
+				   }
+				  catch (Exception e){
+					
+				   }
+
+				
+			}
+
+			
 		}
 		return "redirect:/tourns/{tourid}";
 	}
@@ -249,7 +263,23 @@ public class TournamentController {
 			User user = userService.findByName(principal.getName()).get();
 			Tournament tournament = tournamentService.findById(idtourn).get();
 			tournamentService.addParticipant(tournament, teamService.makeTeam(user, partner));
-			tournamentService.save(tournament);
+
+			Tournament dbTournament = tournamentService.findById(tournament.getId()).orElseThrow();
+			if (dbTournament.getImage()) {
+				try{
+					InputStream binaryStream = dbTournament.getImageFile().getBinaryStream();
+					long length = dbTournament.getImageFile().length();
+					tournament.setImageFile(BlobProxy.generateProxy(binaryStream,length));
+						tournament.setImage(true);
+						tournamentService.save(tournament);
+				   }
+				  catch (Exception e){
+					
+				   }
+
+				
+			}
+			
 		}
 		return "redirect:/tourns/{idtourn}";
 	}
