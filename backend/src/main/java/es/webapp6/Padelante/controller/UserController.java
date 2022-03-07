@@ -3,6 +3,7 @@ package es.webapp6.Padelante.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 
+import es.webapp6.Padelante.model.Match;
 import es.webapp6.Padelante.model.User;
 import es.webapp6.Padelante.service.MatchService;
 import es.webapp6.Padelante.service.TournamentService;
@@ -61,8 +63,9 @@ public class UserController {
 		String userName = principal.getName();
 		Optional<User> user = userService.findByName(userName); //By ID??
 		model.addAttribute("user", user.get());
-		model.addAttribute("matches", matchService.getUserMatches(user.get()));
-		//model.addAttribute("userCompleteName", user.get().getRealName());
+		List<Match> matches = matchService.getUserMatches(user.get());
+		model.addAttribute("matches", matches);
+		model.addAttribute("numMatches", matches.size());
 
 		int pageInt = page == null? 0: page;  
 		model.addAttribute("userTourns",tournamentService.findUserTournaments(pageInt, user.get()).getContent());

@@ -155,7 +155,9 @@ public class TournamentController {
 					model.addAttribute("owner", false);
 				}
 				Optional<User> user = userService.findByName(userName);		
-				model.addAttribute("matches", matchService.getUserMatches(user.get()));
+				List<Match> matches = matchService.getUserMatches(user.get());
+				model.addAttribute("matches", matches);
+				model.addAttribute("numMatches", matches.size());
 			}else{
 				model.addAttribute("owner", false);
 			}

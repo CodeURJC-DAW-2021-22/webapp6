@@ -1,6 +1,7 @@
 package es.webapp6.Padelante.controller;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import es.webapp6.Padelante.model.Match;
 import es.webapp6.Padelante.model.Tournament;
 import es.webapp6.Padelante.model.User;
 import es.webapp6.Padelante.service.MatchService;
@@ -51,7 +53,9 @@ public class AdminController {
 		if (principal != null) {				
 			String userName = principal.getName();
 			Optional<User> user = userService.findByName(userName);
-			model.addAttribute("matches", matchService.getUserMatches(user.get()));
+			List<Match> matches = matchService.getUserMatches(user.get());
+			model.addAttribute("matches", matches);
+			model.addAttribute("numMatches", matches.size());
 		}
 		
 		int pageInt = page == null? 0: page;  

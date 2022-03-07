@@ -662,6 +662,31 @@ Admin search
 
 
 /*--------------------------------------------------------------
+# Scrollbar format
+--------------------------------------------------------------*/
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #232323;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #67d400;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #fff;
+  }
+
+
+/*--------------------------------------------------------------
 # Dropdown
 --------------------------------------------------------------*/
 
@@ -677,6 +702,8 @@ Admin search
     border: 2px solid #67d400;
     background-color: #232323;
     box-shadow: 0 5px 30px 0 rgba(82, 63, 105, 0.2);
+    max-height: 400px;
+    overflow-y: auto;
 }
 
 .dropdown-menu .dropdown-header,
