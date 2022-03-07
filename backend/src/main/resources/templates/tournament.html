@@ -66,6 +66,24 @@
                 <i class="ri-edit-fill pe-1"></i> Incribirse
               </a>
             </div>
+            {{#owner}}
+            {{^hasStarted}}
+            {{#hasParticipants}}
+            <div class="d-flex justify-content-end">
+              <form action="/startTournament/{{tourns.id}}" method="post">
+                <input type="hidden" name="teamid" value="{{id}}" />
+                <button class="button-no-format" type="submit">
+                    <span class="button btn-tournament upper-text my-1" title="Start Tournament"> 
+                      <i class="ri-play-fill"></i> Iniciar torneo
+                    </span>
+                </button>
+
+                <input type="hidden" name="_csrf" value="{{token}}" />
+              </form>
+            </div>
+            {{/hasParticipants}}
+            {{/hasStarted}}
+            {{/owner}}
             {{/logged}}
             <!-- <div class="d-flex justify-content-end">
               <a class="button btn-tournament upper-text my-1" href="#"><i class="ri-tools-fill pe-1"></i> Admin</a>
@@ -130,6 +148,7 @@
 
                     <row>
                       <col-md-12 class="d-flex justify-content-center">
+                          <div hidden id="tournId">{{tourns.id}}</div>
                           <button class="cargar-mas" id="loadMore" onclick="loadMoreInscription()">Cargar más</button>
                       </col-md-12>
                     </row>

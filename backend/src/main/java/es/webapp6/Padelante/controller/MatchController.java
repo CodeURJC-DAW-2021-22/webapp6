@@ -1,6 +1,7 @@
 package es.webapp6.Padelante.controller;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -50,7 +51,9 @@ public class MatchController {
 		if (principal != null) {
 			String userName = principal.getName();
 			Optional<User> user = userService.findByName(userName);		
-			model.addAttribute("matches", matchService.getUserMatches(user.get()));
+			List<Match> matches = matchService.getUserMatches(user.get());
+			model.addAttribute("matches", matches);
+			model.addAttribute("numMatches", matches.size());
 		}
 
 		Match match = matchService.findById(id).get();
@@ -87,7 +90,9 @@ public class MatchController {
 			if (principal != null) {
 				String userName = principal.getName();
 				Optional<User> user = userService.findByName(userName);		
-				model.addAttribute("matches", matchService.getUserMatches(user.get()));
+				List<Match> matches = matchService.getUserMatches(user.get());
+				model.addAttribute("matches", matches);
+				model.addAttribute("numMatches", matches.size());
 			}
 
 			model.addAttribute("actualMatch",matchService.findById(id).get());

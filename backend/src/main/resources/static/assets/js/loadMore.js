@@ -25,12 +25,13 @@ function loadMoreUsersAdmin(){
 function loadMoreTournsUser(){
    
     console.log("pageNumber="+pageNumber);
-    $('#loadArea-'+pageNumber).load('/admin?page='+pageNumber+' #elements');
+    $('#loadArea-'+pageNumber).load('/user_profile?page='+pageNumber+' #elements');
     pageNumber ++;
 }
 
-function loadMoreInscription(){
+function loadMoreInscription(tournId){
+    var tournId = document.querySelector("#tournId").textContent;
     console.log("pageNumber="+pageNumber);
-    $('#loadArea-'+pageNumber).load('/tourns/[0-9]?page='+pageNumber+' #elements');
+    $('#loadArea-'+pageNumber).load('/tourns/'+tournId+'?page='+pageNumber+' #elements');
     pageNumber ++;
 }

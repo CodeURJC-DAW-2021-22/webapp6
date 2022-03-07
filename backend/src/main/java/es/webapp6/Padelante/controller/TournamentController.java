@@ -1,10 +1,8 @@
 package es.webapp6.Padelante.controller;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.security.Principal;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -131,19 +129,13 @@ public class TournamentController {
 			boolean hasStarted = matchService.getRoundMatches(tournament.get(),1).size()!=0;
 			model.addAttribute("hasStarted", hasStarted);
 
-			ArrayList <Team> teams = new ArrayList<>();
-			List<Match> roundMatches = matchService.getRoundMatches(tournament.get(), 0);
-			for(int i = 0; i <roundMatches.size();i++){
-					if(roundMatches.get(i).getTeamOne().getId()!=20){
-						teams.add( roundMatches.get(i).getTeamOne());
-					}
-					if(roundMatches.get(i).getTeamTwo().getId()!=20){
-						teams.add( roundMatches.get(i).getTeamTwo());
-					}
-			}
-
+			List<Team> teams = tournamentService.getTeamsSignedUp(tournament.get());
 			model.addAttribute("participants", teams);
-			//model.addAttribute("participants", teamService.getParticipantsOfTournament(tournament.get()));	
+			if (teams.size()<2){
+				model.addAttribute("hasParticipants", false);
+			} else {
+				model.addAttribute("hasParticipants", true);
+			}	
 
 			model.addAttribute("tourns", tournament.get());
 
@@ -161,7 +153,9 @@ public class TournamentController {
 					model.addAttribute("owner", false);
 				}
 				Optional<User> user = userService.findByName(userName);		
-				model.addAttribute("matches", matchService.getUserMatches(user.get()));
+				List<Match> matches = matchService.getUserMatches(user.get());
+				model.addAttribute("matches", matches);
+				model.addAttribute("numMatches", matches.size());
 			}else{
 				model.addAttribute("owner", false);
 			}
@@ -172,26 +166,12 @@ public class TournamentController {
 	} 
 
 	@PostMapping("/deleteTourParticipant/{tournid}")
-	public String deleteTournParticipant(Model model, @PathVariable long tournid, @RequestParam long teamid) throws SQLException{
+	public String deleteTournParticipant(Model model, @PathVariable long tournid, @RequestParam long teamid){
 		Optional<Tournament> tournament = tournamentService.findById(tournid);
 		Optional<Team> team = teamService.findById(teamid);
 
 		if(tournament.isPresent() && team.isPresent()){
 			tournamentService.deleteParticipant(tournament.get(), team.get());
-
-			Tournament dbTournament = tournamentService.findById(tournament.get().getId()).orElseThrow();
-			if (dbTournament.getImage()) {
-				try{
-					InputStream binaryStream = dbTournament.getImageFile().getBinaryStream();
-					long length = dbTournament.getImageFile().length();
-					tournament.get().setImageFile(BlobProxy.generateProxy(binaryStream,length));
-						tournament.get().setImage(true);
-						tournamentService.save(tournament.get());
-				   }
-				  catch (Exception e){
-					
-				   }
-			}
 		}
 		return "redirect:/tourns/{tournid}";
 	}
@@ -261,20 +241,17 @@ public class TournamentController {
 			User user = userService.findByName(principal.getName()).get();
 			Tournament tournament = tournamentService.findById(idtourn).get();
 			tournamentService.addParticipant(tournament, teamService.makeTeam(user, partner));
-
-			Tournament dbTournament = tournamentService.findById(tournament.getId()).orElseThrow();
-			if (dbTournament.getImage()) {
-				try{
-					InputStream binaryStream = dbTournament.getImageFile().getBinaryStream();
-					long length = dbTournament.getImageFile().length();
-					tournament.setImageFile(BlobProxy.generateProxy(binaryStream,length));
-					tournament.setImage(true);
-					tournamentService.save(tournament);
-				}
-				catch (Exception e){
-				}
-			}
 		}
 		return "redirect:/tourns/{idtourn}";
+	}
+
+	@PostMapping("/startTournament/{tournid}")
+	public String startTournament(Model model, @PathVariable long tournid){
+		Tournament tournament = tournamentService.findById(tournid).get();
+		tournamentService.generateEmptyBracket(tournament);
+		tournamentService.assignTeamsStart(tournament);
+		tournamentService.setFreeWins(tournament);
+		
+		return "redirect:/tourns/{tournid}";
 	}
 }
