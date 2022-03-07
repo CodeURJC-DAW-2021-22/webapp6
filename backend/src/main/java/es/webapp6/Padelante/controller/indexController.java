@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import es.webapp6.Padelante.model.Match;
+import es.webapp6.Padelante.model.Tournament;
 import es.webapp6.Padelante.model.User;
 import es.webapp6.Padelante.service.MatchService;
 import es.webapp6.Padelante.service.TournamentService;
@@ -50,7 +52,10 @@ public class indexController {
 		Principal principal = request.getUserPrincipal();      
 		int pageInt = page == null? 0: page; 
 		if (principal != null) {
-			model.addAttribute("mytourns", tournamentService.getUserTournaments(userService.findByName(principal.getName()).get())); 
+			Page<Tournament> mytourns = tournamentService.findUserTournaments(pageInt, userService.findByName(principal.getName()).get());
+			model.addAttribute("mytourns", mytourns);
+			model.addAttribute("nextpage2", pageInt+1);
+			model.addAttribute("numMyTourns", mytourns.getTotalPages()>1);
 				
 			String userName = principal.getName();
 			Optional<User> user = userService.findByName(userName);
@@ -59,8 +64,10 @@ public class indexController {
 			model.addAttribute("numMatches", matches.size());
 		}
 
-		model.addAttribute("tourns",tournamentService.getTournaments(pageInt).getContent());
+		Page<Tournament> tourns = tournamentService.getTournaments(pageInt);
+		model.addAttribute("tourns", tourns);
 		model.addAttribute("nextpage", pageInt+1);
+		model.addAttribute("numTourns", tourns.getTotalPages()>1);
         return "main";
     }
 }

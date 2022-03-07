@@ -1,7 +1,6 @@
 package es.webapp6.Padelante;
 
 import java.util.Date;
-import java.util.List;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -110,23 +109,6 @@ public class ExamplesGenerator {
 		teamRepository.save(t10);
 		teamRepository.save(t11);
 
-		List<Team> teams = teamRepository.findAll();
-		System.out.println("Teams: "+teams);
-		
-		List<User> users1 = userRepository.findPairsOf(user1);
-		System.out.println("Pairs of User1: "+users1);
-		
-		List<User> users2 = userRepository.findPairsOf(user2);
-		System.out.println("Pairs of User2: "+users2);
-		
-		List<User> users3 = userRepository.findPairsOf(user3);
-		System.out.println("Pairs of User3: "+users3);
-		
-		List<User> users4 = userRepository.findPairsOf(user4);
-		System.out.println("Pairs of User4: "+users4);
-
-
-
 
 
 		//
@@ -136,7 +118,7 @@ public class ExamplesGenerator {
 		Date fecha1 = new Date("12/16/2022 16:00");
 		Date fecha2 = new Date("12/20/2022 17:00");
 		
-		Tournament tournament = new Tournament("Torneo 11", 8,"About1","Ruleset1","Madrid",fecha1,fecha2,"Simple Tournament","user");
+		Tournament tournament = new Tournament("Torneo 11", 16,"About1","Ruleset1","Madrid",fecha1,fecha2,"Simple Tournament","user");
         Tournament tournament1= new Tournament("Torneo 22", 4,"About2","Ruleset2","Madrid",fecha1,fecha2,"Simple Tournament","user");
         Tournament tournament2= new Tournament("Torneo 33", 4,"About3","Ruleset3","Madrid",fecha1,fecha2,"Simple Tournament","user");
         Tournament tournament3= new Tournament("Torneo 44", 8,"About4","Ruleset4","Madrid",fecha1,fecha2,"Simple Tournament","user");
@@ -157,12 +139,6 @@ public class ExamplesGenerator {
         tournamentRepository.save(tournament7);
         tournamentRepository.save(tournament8);
         tournamentRepository.save(tournament9);
-				
-		List<Tournament> tournaments = tournamentRepository.getTeamTournaments(t1);
-		
-		System.out.println("Tournaments: "+tournaments);
-
-
 
 
 		Tournament tour = tournamentRepository.findByTournamentName("Torneo 11").get(0);
@@ -182,35 +158,7 @@ public class ExamplesGenerator {
 		tournamentService.addParticipant(tour, t8);
 		tournamentService.addParticipant(tour, t9);
 		tournamentService.addParticipant(tour, t10);
-
-		// //Intentamos borrar un equipo no inscrito
-		// tournamentService.deleteParticipant(tour, t3);
-
-		// //Borramos un equipo inscrito
-		tournamentService.deleteParticipant(tour, t1);
-
-		// //Volvemos a inscribir al equipo que eliminado
-		tournamentService.addParticipant(tour, t1);
-
-		// //Intentamos inscribir más equipos de los que se permiten en el torneo (4)
 		tournamentService.addParticipant(tour, t11);
-		
-
-
-
-		
-
-		// List<User> players = userRepository.getPlayerPairs(u1);
-
-		// System.out.println("Players: "+players);
-		
-		// List<Match> matches = matchRepository.getMatches(tournament);
-		
-		// System.out.println("Matches: "+matches);
-		
-		// List<Team> teams = teamRepository.getTeams(tournament);
-		
-		// System.out.println("Teams: "+teams);
 	}
     
 }

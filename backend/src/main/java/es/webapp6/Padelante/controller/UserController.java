@@ -21,9 +21,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 
 import es.webapp6.Padelante.model.Match;
+import es.webapp6.Padelante.model.Tournament;
 import es.webapp6.Padelante.model.User;
 import es.webapp6.Padelante.service.MatchService;
 import es.webapp6.Padelante.service.TournamentService;
@@ -68,8 +70,15 @@ public class UserController {
 		model.addAttribute("numMatches", matches.size());
 
 		int pageInt = page == null? 0: page;  
-		model.addAttribute("userTourns",tournamentService.findUserTournaments(pageInt, user.get()).getContent());
+		Page<Tournament> userTourns = tournamentService.findUserTournaments(pageInt, user.get());
+		model.addAttribute("userTourns", userTourns);
+		model.addAttribute("numUserTourns", userTourns.getTotalPages()>1);
 		model.addAttribute("nextpage", pageInt+1);
+
+		Page<User> userPairs = userService.findPairsOf(pageInt, user.get());
+		model.addAttribute("userPairs", userPairs);
+		model.addAttribute("numUserPairs", userPairs.getTotalPages()>1);
+		model.addAttribute("nextpage2", pageInt+1);
 		
         return "user_profile";
     }

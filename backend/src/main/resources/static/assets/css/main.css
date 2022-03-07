@@ -56,6 +56,15 @@
     cursor: pointer;
 }
 
+.cargar-mas-mini {
+    align-items: center;
+    font-style: normal;
+    color: #67d400;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
 .cargar-mas:hover {
     color: #67d400;
 }
