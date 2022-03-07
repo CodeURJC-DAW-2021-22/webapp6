@@ -29,7 +29,7 @@ public class Match {
     private boolean winnerTeamTwo;
     //New. Necessary to calculate Karma
     private double matchKarmaFactor;
-    private Team favourite;
+    // private Team favourite;
 
     @ManyToOne 
     private Team teamOne;
@@ -152,7 +152,7 @@ public class Match {
         return matchKarmaFactor;
     }
 
-    public Team getFavorite() {
-        return favourite;
-    }
+    // public Team getFavorite() {
+    //     return favourite;
+    // }
 }
