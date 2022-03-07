@@ -1,10 +1,8 @@
 package es.webapp6.Padelante.controller;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.security.Principal;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

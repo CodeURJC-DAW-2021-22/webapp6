@@ -53,6 +53,7 @@
     color: #67d400;
     font-size: 20px;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .cargar-mas:hover {
@@ -174,7 +175,7 @@ button.button-no-format{
     display: inherit;
     text-align: inherit;
     align-items: inherit;
-    cursor: default;
+    cursor: inherit;
     box-sizing: border-box;
     background-color: inherit;
     margin: 0;
