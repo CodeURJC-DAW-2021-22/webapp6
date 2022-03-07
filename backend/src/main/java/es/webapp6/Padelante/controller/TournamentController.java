@@ -178,20 +178,6 @@ public class TournamentController {
 
 		if(tournament.isPresent() && team.isPresent()){
 			tournamentService.deleteParticipant(tournament.get(), team.get());
-
-			Tournament dbTournament = tournamentService.findById(tournament.get().getId()).orElseThrow();
-			if (dbTournament.getImage()) {
-				try{
-					InputStream binaryStream = dbTournament.getImageFile().getBinaryStream();
-					long length = dbTournament.getImageFile().length();
-					tournament.get().setImageFile(BlobProxy.generateProxy(binaryStream,length));
-						tournament.get().setImage(true);
-						tournamentService.save(tournament.get());
-				   }
-				  catch (Exception e){
-					
-				   }
-			}
 		}
 		return "redirect:/tourns/{tournid}";
 	}
@@ -261,19 +247,6 @@ public class TournamentController {
 			User user = userService.findByName(principal.getName()).get();
 			Tournament tournament = tournamentService.findById(idtourn).get();
 			tournamentService.addParticipant(tournament, teamService.makeTeam(user, partner));
-
-			Tournament dbTournament = tournamentService.findById(tournament.getId()).orElseThrow();
-			if (dbTournament.getImage()) {
-				try{
-					InputStream binaryStream = dbTournament.getImageFile().getBinaryStream();
-					long length = dbTournament.getImageFile().length();
-					tournament.setImageFile(BlobProxy.generateProxy(binaryStream,length));
-					tournament.setImage(true);
-					tournamentService.save(tournament);
-				}
-				catch (Exception e){
-				}
-			}
 		}
 		return "redirect:/tourns/{idtourn}";
 	}
