@@ -257,9 +257,19 @@ public class TournamentService {
 			teamTwo = startRound.get(i).getTeamTwo();
 			if (teamOne.isTbd()){
 				moveNextRound(tournament, startRound.get(i), teamTwo);
+				Match match = startRound.get(i);
+				match.setWinnerTeamTwo(true);
+				match.setSetsTeamTwo(2);
+				match.setHasWinner(true);
+				matches.save(match);
 			} else {
 				if (teamTwo.isTbd()){
 					moveNextRound(tournament, startRound.get(i), teamOne);
+					Match match = startRound.get(i);
+					match.setWinnerTeamOne(true);
+					match.setSetsTeamOne(2);
+					match.setHasWinner(true);
+					matches.save(match);
 				}
 			}
 		}

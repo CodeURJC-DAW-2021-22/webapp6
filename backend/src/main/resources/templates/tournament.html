@@ -264,7 +264,12 @@
                         <table class="tournament-bracket__table">
 
                           <tbody class="tournament-bracket__content">
+                            {{#winnerTeamOne}}
+                            <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                            {{/winnerTeamOne}}
+                            {{^winnerTeamOne}}
                             <tr class="tournament-bracket__team">
+                            {{/winnerTeamOne}}
                               <td class="tournament-bracket__team-name">
                                 <abbr class="tournament-bracket__code">
 
@@ -282,7 +287,12 @@
                                 <span class="tournament-bracket__number">{{setsTeamOne}}</span>
                               </td>
                             </tr>
+                            {{#winnerTeamTwo}}
                             <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                            {{/winnerTeamTwo}}
+                            {{^winnerTeamTwo}}
+                            <tr class="tournament-bracket__team">
+                            {{/winnerTeamTwo}}
                               <td class="tournament-bracket__team-name">
                                 <abbr class="tournament-bracket__code">
 
