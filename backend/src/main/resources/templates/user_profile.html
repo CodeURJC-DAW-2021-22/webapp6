@@ -43,26 +43,37 @@
             <div class="card-body profile-card pt-2 d-flex flex-column justify-content-center align-items-center">
               <h2 class="mb-1">Tus parejas</h2>
 
-              <div class="row">
+              <div class="row" id="elements2">
+                {{#userPairs}}
                 <div class="col-md-12">
                   <div class="d-flex justify-content-start align-middle mt-2">
-                    <div><img src="assets/images/profile-img.jpg" alt="Profile"
-                        class="partner-img rounded-circle border-green-tiny small me-2"></div>
-                    <span class="d-flex align-items-center partner-name">Kevin Anderson</span>
+                    <div>
+                      {{#image}}
+                      <img src="/user/{{id}}/image" alt="User Image" class="partner-img rounded-circle border-green-tiny small me-2">
+                      {{/image}}
+        
+                      {{^image}}
+                      <img src="/assets/images/no_profile_photo.jpg" alt="User Image"
+                        class="partner-img rounded-circle border-green-tiny small me-2">
+                      {{/image}}
+                      </div>
+                    <span class="d-flex align-items-center partner-name">{{name}}</span>
                   </div>
                 </div>
+                {{/userPairs}}
+                <div id="loadArea2-{{nextpage2}}"></div>
               </div>
-
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="d-flex justify-content-start align-middle mt-2">
-                    <div><img src="assets/images/team_01.jpg" alt="Profile"
-                        class="partner-img rounded-circle border-green-tiny small me-2"></div>
-                    <span class="d-flex align-items-center partner-name">Paco Navarro</span>
-                  </div>
-                </div>
-              </div>
-
+              {{#numUserPairs}}
+              <row>
+                  <col-md-12 class="d-flex justify-content-center">
+                  <div>
+                      <button class="button-no-format" id="loadMore" onclick="loadMoreUserPairs()">
+                          <p class="cargar-mas-mini">Cargar más</p>
+                      </button>
+                  </div>  
+                  </col-md-12>
+              </row>
+              {{/numUserPairs}}
             </div>
           </div>
 
@@ -89,18 +100,6 @@
                   <button class="nav-link d-flex align-items-center" data-bs-toggle="tab"
                     data-bs-target="#profile-edit"><i class="ri-edit-2-fill pe-2"></i>Editar Perfil</button>
                 </li>
-
-                <li class="nav-item">
-                  <button class="nav-link d-flex align-items-center" data-bs-toggle="tab"
-                    data-bs-target="#profile-settings"><i class="ri-settings-3-fill pe-2"></i>Ajustes</button>
-                </li>
-
-                <li class="nav-item">
-                  <button class="nav-link d-flex align-items-center" data-bs-toggle="tab"
-                    data-bs-target="#profile-change-password"><i class="ri-lock-fill pe-2"></i>Cambiar
-                    Contraseña</button>
-                </li>
-
               </ul>
               <div class="tab-content pt-2">
 
@@ -156,7 +155,7 @@
 
                 <div class="tab-pane fade pt-3" id="show-tournaments">
                   <!-- Show tournaments -->
-                  <span id="elements"></span>
+                  <span id="elements">
                     {{#userTourns}}
                     <section class="card tournament-card mb-2">
                       <a class="d-flex justify-content-between" href="/tourns/{{id}}">
@@ -198,12 +197,13 @@
                     {{/userTourns}}
                     <div id="loadArea-{{nextpage}}"></div>
                   </span>
-
+                  {{#numUserTourns}}
                   <row>
                     <col-md-12 class="d-flex justify-content-center">
                         <button class="cargar-mas mb-2" id="loadMore" onclick="loadMoreTournsUser()">Cargar más</button>
                     </col-md-12>
                   </row>
+                  {{/numUserTourns}}
                 </div>
 
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
@@ -296,28 +296,6 @@
                       </div>
                     </div>
 
-                    <!-- <div class="row mb-3">
-                      <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="twitter" type="text" class="form-control" id="Twitter"
-                          value="https://twitter.com/#">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="instagram" type="text" class="form-control" id="Instagram"
-                          value="https://instagram.com/#">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Discord</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="linkedin" type="text" class="form-control" id="Linkedin" value="Kevin_And#1234">
-                      </div>
-                    </div> -->
                     <input type="hidden" name="_csrf" value="{{token}}" />
                     <div class="text-center">
                       <button class="btn btn-green fw-bold" type="submit">Guardar cambios</button>
@@ -326,97 +304,7 @@
 
                   </form><!-- End Profile Edit Form -->
 
-                </div>
-
-                <div class="tab-pane fade pt-3" id="profile-settings">
-
-                  <!-- Settings Form -->
-                  <form>
-
-                    <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Notificaciones por correo
-                        electrónico</label>
-                      <div class="col-md-8 col-lg-9">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="changesMade" checked>
-                          <label class="form-check-label" for="changesMade">
-                            Cambios hechos en tu cuenta
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="newProducts">
-                          <label class="form-check-label" for="newProducts">
-                            Información de nuevos torneos
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="securityNotify" checked disabled>
-                          <label class="form-check-label" for="securityNotify">
-                            Alertas de seguridad
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="notifications" class="col-md-4 col-lg-3 col-form-label">Notificaciones en
-                        Padelante</label>
-                      <div class="col-md-8 col-lg-9">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="changesMade" checked>
-                          <label class="form-check-label" for="changesMade">
-                            Inicio de torneos donde estoy inscrito
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="newProducts">
-                          <label class="form-check-label" for="newProducts">
-                            Menos de 24h para el cierre de inscripciones de un torneo que sigo
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="text-center">
-                      <button type="submit" class="btn btn-green fw-bold">Guardar cambios</button>
-                    </div>
-                  </form>
-
-                  <!-- End settings Form -->
-
-                </div>
-
-                <div class="tab-pane fade pt-3" id="profile-change-password">
-                  <!-- Change Password Form -->
-                  <form>
-
-                    <div class="row mb-3">
-                      <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Contraseña actual</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="password" type="password" class="form-control" id="currentPassword">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Contraseña nueva</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="newpassword" type="password" class="form-control" id="newPassword">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Contraseña nueva</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="renewpassword" type="password" class="form-control" id="renewPassword">
-                      </div>
-                    </div>
-
-                    <div class="text-center">
-                      <button type="submit" class="btn btn-green fw-bold">Cambiar contraseña</button>
-                    </div>
-                  </form><!-- End Change Password Form -->
-
-                </div>
+                </div>  
 
               </div><!-- End Bordered Tabs -->
 

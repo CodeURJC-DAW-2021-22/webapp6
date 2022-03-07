@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.webapp6.Padelante.repositories.MatchRepository;
+import es.webapp6.Padelante.repositories.UserRepository;
 import es.webapp6.Padelante.model.Match;
 import es.webapp6.Padelante.model.Team;
 import es.webapp6.Padelante.model.Tournament;
@@ -16,8 +17,14 @@ import es.webapp6.Padelante.model.User;
 @Service
 public class MatchService {
     
+	@Autowired
+	private TournamentService tournamentService;
+
     @Autowired
 	private MatchRepository matches;
+
+	@Autowired
+	private UserRepository users;
 
     public List<Match> getMatches() {
 		return matches.findAll();
@@ -106,12 +113,91 @@ public class MatchService {
 
 		if(cheked){
 			match.setResult(result);
-			matches.save(match);
+			ArrayList<Integer> sets = calculateSets(match, games1, games2, games3, games4, games5, games6);
+			match.setSetsTeamOne((int) sets.get(0));
+			match.setSetsTeamTwo((int) sets.get(1));
+			match.setHasWinner(true);
+
+			setWinnerNormalMatch(match, sets);
 		}
-
 		return cheked;
-
 	}
+
+	private ArrayList<Integer> calculateSets (Match match, int games1, int games2, int games3, int games4, int games5, int games6){
+		Integer teamOne = 0;
+		Integer teamTwo = 0;
+		if (games1>games2){
+			teamOne++;
+		} else {
+			teamTwo++;
+		}
+		if (games3>games4){
+			teamOne++;
+		} else {
+			teamTwo++;
+		}
+		if (games5 != 0 && games6 != 0){
+			if (games5>games6){
+				teamOne++;
+			} else {
+				teamTwo++;
+			}
+		}
+		ArrayList<Integer> sets = new ArrayList<>();
+		sets.add(teamOne);
+		sets.add(teamTwo);
+		return sets;
+	}
+
+	public void setWinnerNormalMatch (Match match, ArrayList<Integer> sets){
+		User teamOneUserA = match.getTeamOne().getUserA();
+		User teamOneUserB = match.getTeamOne().getUserB();
+		User teamTwoUserA = match.getTeamTwo().getUserA();
+		User teamTwoUserB = match.getTeamTwo().getUserB();
+
+		if (sets.get(0)>sets.get(1)){
+			match.setWinnerTeamOne(true);
+
+			teamOneUserA.setNumWins(teamOneUserA.getNumWins()+1);
+			teamOneUserA.setNumMatchesPlayed(teamOneUserA.getNumMatchesPlayed()+1);
+			teamOneUserB.setNumWins(teamOneUserB.getNumWins()+1);
+			teamOneUserB.setNumMatchesPlayed(teamOneUserB.getNumMatchesPlayed()+1);
+			teamTwoUserA.setNumLoses(teamTwoUserA.getNumLoses()+1);
+			teamTwoUserA.setNumMatchesPlayed(teamTwoUserA.getNumMatchesPlayed()+1);
+			teamTwoUserB.setNumLoses(teamTwoUserB.getNumLoses()+1);
+			teamTwoUserB.setNumMatchesPlayed(teamTwoUserB.getNumMatchesPlayed()+1);
+
+			//METER AQUI LO DE LA SUMA DEL KARMA
+
+			if (match.getRound()!=1){
+				tournamentService.moveNextRound(match.getTournament(), match, match.getTeamOne());
+			}
+
+		} else {
+			match.setWinnerTeamTwo(true);
+
+			teamOneUserA.setNumLoses(teamOneUserA.getNumLoses()+1);
+			teamOneUserA.setNumMatchesPlayed(teamOneUserA.getNumMatchesPlayed()+1);
+			teamOneUserB.setNumLoses(teamOneUserB.getNumLoses()+1);
+			teamOneUserB.setNumMatchesPlayed(teamOneUserB.getNumMatchesPlayed()+1);
+			teamTwoUserA.setNumWins(teamTwoUserA.getNumWins()+1);
+			teamTwoUserA.setNumMatchesPlayed(teamTwoUserA.getNumMatchesPlayed()+1);
+			teamTwoUserB.setNumWins(teamTwoUserB.getNumWins()+1);
+			teamTwoUserB.setNumMatchesPlayed(teamTwoUserB.getNumMatchesPlayed()+1);
+
+			//METER AQUI LO DE LA SUMA DEL KARMA
+
+			if (match.getRound()!=1){
+				tournamentService.moveNextRound(match.getTournament(), match, match.getTeamTwo());
+			}
+		}
+		matches.save(match);
+		users.save(teamOneUserA);
+		users.save(teamOneUserB);
+		users.save(teamTwoUserA);
+		users.save(teamTwoUserB);
+	}
+
 
 	public Team getWinner(Match match){
 		ArrayList<Integer> result = match.getResult();
@@ -119,8 +205,4 @@ public class MatchService {
 		return team;
 		
 	}
-
-    //Asigne Teams al partido, eliminando de la BBDD a los teams que fueran TBD
-    
-    //Dar victoria al ganador
 }

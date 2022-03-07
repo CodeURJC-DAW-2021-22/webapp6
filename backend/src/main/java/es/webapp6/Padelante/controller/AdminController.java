@@ -1,11 +1,13 @@
 package es.webapp6.Padelante.controller;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import es.webapp6.Padelante.model.Match;
 import es.webapp6.Padelante.model.Tournament;
 import es.webapp6.Padelante.model.User;
 import es.webapp6.Padelante.service.MatchService;
@@ -51,12 +54,19 @@ public class AdminController {
 		if (principal != null) {				
 			String userName = principal.getName();
 			Optional<User> user = userService.findByName(userName);
-			model.addAttribute("matches", matchService.getUserMatches(user.get()));
+			List<Match> matches = matchService.getUserMatches(user.get());
+			model.addAttribute("matches", matches);
+			model.addAttribute("numMatches", matches.size());
 		}
 		
-		int pageInt = page == null? 0: page;  
-		model.addAttribute("adminTourns",tournamentService.getTournaments(pageInt).getContent());
-		model.addAttribute("adminUsers", userService.getUsersNoAdmin(pageInt).getContent());
+		int pageInt = page == null? 0: page; 
+		Page<Tournament> adminTourns = tournamentService.getTournaments(pageInt);
+		model.addAttribute("adminTourns", adminTourns);
+		model.addAttribute("numAdminTourns", adminTourns.getTotalPages()>1);
+
+		Page<User> adminUsers = userService.getUsersNoAdmin(pageInt);
+		model.addAttribute("adminUsers", adminUsers);
+		model.addAttribute("numAdminUsers", adminUsers.getTotalPages()>1);
 		model.addAttribute("adminnextpage", pageInt+1);
 		return "admin";
     }

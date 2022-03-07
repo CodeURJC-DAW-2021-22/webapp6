@@ -23,37 +23,36 @@
         <ul class="nav nav-tabs nav-tabs-bordered">
 
           <li class="nav-item">
-            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Jugadores</button>
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#players">Jugadores</button>
           </li>
 
           <li class="nav-item">
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Torneos</button>
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tournaments">Torneos</button>
           </li>
 
 
 
         </ul>
 
-        <div class="topnav d-flex justify-content-center">
+        <!-- <div class="topnav d-flex justify-content-center">
           <div class="search-container">
             <form action="/action_page.php">
               <input type="text" placeholder="Search.." name="search">
               <button type="submit"><i class="ri-search-line"></i></button>
             </form>
           </div>
-        </div>
+        </div> -->
         
         <div class="tab-content pt-2">
 
           <!--Player finder-->
-          <div class="tab-pane fade show active profile-overview" id="profile-overview">
+          <div class="tab-pane fade show active profile-edit pt-3" id="players">
 
             <div class="card text-center">
               <div class="card-body profile-card pt-2 d-flex flex-column justify-content-center">
                 <h2 class="mt-2 mb-1">Usuarios encontrados</h2>
                 <span id="elements2">
                   {{#adminUsers}}
-                  
                   <div class="row">
                     <div class="col-md-12">
                       <div class="d-flex lineUser">
@@ -74,16 +73,19 @@
                     </div>
                   </div>
                   {{/adminUsers}}
-
                   <div id="loadArea2-{{adminnextpage}}"></div>
                 </span>
-
+                {{#numAdminUsers}}
                 <row>
-                  <col-md-12 class="d-flex justify-content-center">
-                      <button class="cargar-mas mb-5" id="loadMore" onclick="loadMoreUsersAdmin()">Cargar más</button>
-                  </col-md-12>
+                    <col-md-12 class="d-flex justify-content-center">
+                    <div>
+                        <button class="button-no-format" id="loadMore" onclick="loadMoreUsersAdmin()">
+                            <p class="cargar-mas">Cargar más</p>
+                        </button>
+                    </div>  
+                    </col-md-12>
                 </row>
-
+                {{/numAdminUsers}}
               </div>
 
               
@@ -91,7 +93,7 @@
           </div>
 
           <!--Tournament finder-->
-          <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+          <div class="tab-pane fade profile-edit pt-3" id="tournaments">
             <div class="card text-center">
               <div class="card-body profile-card pt-2 d-flex flex-column justify-content-center">
                 <h2 class="mt-2 mb-1">Torneos encontrados</h2>
@@ -119,13 +121,17 @@
                 
                   <div id="loadArea-{{adminnextpage}}"></div>
                 </span>
-                
+                {{#numAdminTourns}}
                 <row>
-                  <col-md-12 class="d-flex justify-content-center">
-                      <button class="cargar-mas mb-5" id="loadMore" onclick="loadMoreTournsAdmin()">Cargar más</button>
-                  </col-md-12>
+                    <col-md-12 class="d-flex justify-content-center">
+                    <div>
+                        <button class="button-no-format" id="loadMore" onclick="loadMoreTournsAdmin()">
+                            <p class="cargar-mas">Cargar más</p>
+                        </button>
+                    </div>  
+                    </col-md-12>
                 </row>
-              
+                {{/numAdminTourns}}
               </div>
             </div>
           </div>

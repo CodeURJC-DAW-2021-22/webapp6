@@ -1,6 +1,7 @@
 package es.webapp6.Padelante.controller;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -50,16 +51,18 @@ public class MatchController {
 		if (principal != null) {
 			String userName = principal.getName();
 			Optional<User> user = userService.findByName(userName);		
-			model.addAttribute("matches", matchService.getUserMatches(user.get()));
+			List<Match> matches = matchService.getUserMatches(user.get());
+			model.addAttribute("matches", matches);
+			model.addAttribute("numMatches", matches.size());
 		}
 
 		Match match = matchService.findById(id).get();
 		
-		if(match.getResult().get(0)==0 && match.getResult().get(1)==0){
-			model.addAttribute("isCheked", false);
+		if(match.isHasWinner()){
+			model.addAttribute("isCheked", true);
 		}
 		else{
-			model.addAttribute("isCheked", true);
+			model.addAttribute("isCheked", false);
 		}
 		model.addAttribute("goodResult", true);
 		model.addAttribute("actualMatch",matchService.findById(id).get());
@@ -68,13 +71,14 @@ public class MatchController {
     }
 
 	@PostMapping("/resultMach/{id}")
-    public String resultMatch(Model model, HttpServletRequest request, @PathVariable long id,@RequestParam String sets1,@RequestParam String sets2,@RequestParam String sets3,
-	@RequestParam String sets4,@RequestParam String sets5,@RequestParam String sets6){
+    public String resultMatch(Model model, HttpServletRequest request, @PathVariable long id,@RequestParam String games1,@RequestParam String games2,@RequestParam String games3,
+	@RequestParam String games4,@RequestParam String games5,@RequestParam String games6){
         Match match = matchService.findById(id).get();
 		
-		boolean cheked = matchService.checkResult(sets1, sets2, sets3, sets4, sets5, sets6, match);
+		boolean cheked = matchService.checkResult(games1, games2, games3, games4, games5, games6, match);
 
 		if(cheked){
+			
 			model.addAttribute("isCheked", true);
 			model.addAttribute("actualMatch",matchService.findById(id).get());
 			model.addAttribute("goodResult", true);
@@ -86,7 +90,9 @@ public class MatchController {
 			if (principal != null) {
 				String userName = principal.getName();
 				Optional<User> user = userService.findByName(userName);		
-				model.addAttribute("matches", matchService.getUserMatches(user.get()));
+				List<Match> matches = matchService.getUserMatches(user.get());
+				model.addAttribute("matches", matches);
+				model.addAttribute("numMatches", matches.size());
 			}
 
 			model.addAttribute("actualMatch",matchService.findById(id).get());

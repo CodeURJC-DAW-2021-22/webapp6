@@ -64,14 +64,14 @@ public class UserService {
     }
 
 	public Page<User> getUsers(int page) {
-		return userRepository.findAllUsers(PageRequest.of(page, 6));
+		return userRepository.findAllUsers(PageRequest.of(page, 4));
 	}
 
 	public Page<User> getUsersNoAdmin(int page) {
 		return userRepository.findAllUsersNoAdmin(PageRequest.of(page, 6));
 	}
 
-	public List<User> findPairsOf(User user){
-		return userRepository.findPairsOf(user);
+	public Page<User> findPairsOf(int page, User user){
+		return userRepository.findPairsOf(PageRequest.of(page, 4), user);
 	}
 }

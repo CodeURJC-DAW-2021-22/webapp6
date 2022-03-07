@@ -40,27 +40,27 @@
 
                             <a class="nav-link nav-icon" data-bs-toggle="dropdown">
                                 <i class="ri-dribbble-line"></i>
-                                <span class="badge bg-danger badge-number">1</span>
+                                <span class="badge bg-danger badge-number">{{numMatches}}</span>
                             </a>
                             <!-- End Matchs Icon -->
 
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages pb-0">
-                                <!-- <li class="dropdown-header">
-                                        Tienes 1 mensaje nuevo
-                                        <a href="#"><span class="badge rounded-pill p-2 ms-2">Leer todo</span></a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li> -->
                                 {{#matches}}
                                 <li class="message-item">
-                                    <a href="/match/{{id}}">
-                                        <div class="text-center">
-                                            <h4>{{tournament.tournamentName}}</h4>
-                                            <p>Te toca jugar un partido nuevamente</p>
-                                            <!-- <p class="mt-1 text-muted">Hace 4 horas</p> -->
-                                        </div>
-                                    </a>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="/match/{{id}}">
+                                            <div class="text-center">
+                                                <h4>{{tournament.tournamentName}}</h4>
+                                                <p>{{teamOne.userA.name}} / {{teamOne.userB.name}}</p>
+                                                <p>vs</p>
+                                                <p>{{teamTwo.userA.name}} / {{teamTwo.userB.name}}</p>
+                                                <!-- <p class="mt-1 text-muted">Hace 4 horas</p> -->
+                                            </div>
+                                        </a> 
+                                    </div>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
                                 </li>
                                 {{/matches}}
 
@@ -75,10 +75,6 @@
                                     
                                 </li>
                                 {{/matches}}
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-
                             </ul>
                             <!-- End Matchs Dropdown Items -->
 
