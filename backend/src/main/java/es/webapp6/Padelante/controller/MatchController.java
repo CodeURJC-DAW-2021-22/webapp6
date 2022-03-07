@@ -90,7 +90,9 @@ public class MatchController {
 			if (principal != null) {
 				String userName = principal.getName();
 				Optional<User> user = userService.findByName(userName);		
-				model.addAttribute("matches", matchService.getUserMatches(user.get()));
+				List<Match> matches = matchService.getUserMatches(user.get());
+				model.addAttribute("matches", matches);
+				model.addAttribute("numMatches", matches.size());
 			}
 
 			model.addAttribute("actualMatch",matchService.findById(id).get());
