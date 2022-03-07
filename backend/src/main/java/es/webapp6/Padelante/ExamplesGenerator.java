@@ -196,10 +196,6 @@ public class ExamplesGenerator {
 
 		// //Intentamos inscribir más equipos de los que se permiten en el torneo (4)
 		tournamentService.addParticipant(tour, t11);
-
-		tournamentService.generateEmptyBracket(tour);
-		tournamentService.assignTeamsStart(tour);
-		tournamentService.setFreeWins(tour);
 		
 
 

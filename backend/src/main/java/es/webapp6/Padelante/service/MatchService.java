@@ -114,11 +114,15 @@ public class MatchService {
 			match.setSetsTeamTwo((int) sets.get(1));
 			match.setHasWinner(true);
 			if (sets.get(0)>sets.get(1)){
-				tournamentService.moveNextRound(match.getTournament(), match, match.getTeamOne());
 				match.setWinnerTeamOne(true);
+				if (match.getRound()!=1){
+					tournamentService.moveNextRound(match.getTournament(), match, match.getTeamOne());
+				}
 			} else {
-				tournamentService.moveNextRound(match.getTournament(), match, match.getTeamTwo());
 				match.setWinnerTeamTwo(true);
+				if (match.getRound()!=1){
+					tournamentService.moveNextRound(match.getTournament(), match, match.getTeamTwo());
+				}
 			}
 			matches.save(match);
 		}
