@@ -30,7 +30,7 @@
           </div>
           <div class="d-flex align-items-center ps-2">
             <div>
-              <h2 class="mt-0">{{tourns.tournamentName}}</h2>
+              <h2 class="mt-0" id="tournamentNamePDF">{{tourns.tournamentName}}</h2>
               <h3 class="d-flex align-items-center pt-2"><em class="me-2">Organizador:</em>
                 <!-- <img src="/assets/images/profile-img.jpg" alt="Profile"
                   class="tournament-img rounded-circle border-green-tiny small ms-2 me-1"> -->
@@ -66,6 +66,15 @@
                 <i class="ri-edit-fill pe-1"></i> Incribirse
               </a>
             </div>
+
+            <div class="d-flex justify-content-end">
+              <!-- <a class="d-inline button btn-tournament upper-text my-1" href="#" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop">
+                <i class="ri-edit-fill pe-1"></i> Generar PDF
+              </a> -->
+              <button class="generarPDF d-inline button btn-tournament upper-text my-1" id="PDFWinner" onclick="listPDF()">Descargar PDF</button>
+            </div>
+           
             {{/logged}}
             <!-- <div class="d-flex justify-content-end">
               <a class="button btn-tournament upper-text my-1" href="#"><i class="ri-tools-fill pe-1"></i> Admin</a>
