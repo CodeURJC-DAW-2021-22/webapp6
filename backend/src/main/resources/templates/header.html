@@ -54,13 +54,17 @@
                                     </li> -->
                                 {{#matches}}
                                 <li class="message-item">
-                                    <a href="/match/{{id}}">
-                                        <div class="text-center">
-                                            <h4>{{tournament.tournamentName}}</h4>
-                                            <p>Te toca jugar un partido nuevamente</p>
-                                            <!-- <p class="mt-1 text-muted">Hace 4 horas</p> -->
-                                        </div>
-                                    </a>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="/match/{{id}}">
+                                            <div class="text-center">
+                                                <h4>{{tournament.tournamentName}}</h4>
+                                                <p>{{teamOne.userA.name}} / {{teamOne.userB.name}}</p>
+                                                <p>vs</p>
+                                                <p>{{teamTwo.userA.name}} / {{teamTwo.userB.name}}</p>
+                                                <!-- <p class="mt-1 text-muted">Hace 4 horas</p> -->
+                                            </div>
+                                        </a> 
+                                    </div>
                                 </li>
                                 {{/matches}}
 
