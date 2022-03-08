@@ -200,9 +200,14 @@ public class MatchService {
 
 
 	public Team getWinner(Match match){
-		ArrayList<Integer> result = match.getResult();
-		Team team = new Team();
-		return team;
-		
+		if (match.isHasWinner()){
+			if (match.isWinnerTeamOne()){
+				return match.getTeamOne();
+			} else {
+				return match.getTeamTwo();
+			}
+		} else {
+			return null;
+		}
 	}
 }
