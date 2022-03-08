@@ -1,5 +1,6 @@
 package es.webapp6.Padelante;
 
+import java.io.IOException;
 import java.util.Date;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,14 @@ import es.webapp6.Padelante.repositories.TournamentRepository;
 import es.webapp6.Padelante.repositories.UserRepository;
 import es.webapp6.Padelante.service.TournamentService;
 
+import org.hibernate.engine.jdbc.BlobProxy;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import java.net.URISyntaxException;
+
+
+
+
 @Component
 public class ExamplesGenerator {
 
@@ -21,7 +30,7 @@ public class ExamplesGenerator {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private TeamRepository teamRepository;
 
@@ -31,37 +40,43 @@ public class ExamplesGenerator {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-    @PostConstruct
-	public void init() {
+	@PostConstruct
+	public void init() throws IOException,URISyntaxException{
 
 		//
 		// ------ USERS AND TEAMS ------
 		//
 
-		User userNone = new User("none", passwordEncoder.encode("pass"),"none@correo.com","None", "USER");
+		User userNone = new User("none", passwordEncoder.encode("pass"), "none@correo.com", "None", "USER");
 		userNone.setStatus(false);
 
-		User user1 = new User("user", passwordEncoder.encode("pass"),"user@correo.com","User", "USER");
-		User user2 = new User("admin", passwordEncoder.encode("adminpass"),"admin@correo.com","Admin", "USER", "ADMIN");
+		User user1 = new User("user", passwordEncoder.encode("pass"), "user@correo.com", "User", "USER");
+		User user2 = new User("admin", passwordEncoder.encode("adminpass"), "admin@correo.com", "Admin", "USER",
+				"ADMIN");
 
-		//Creo que se pedian solo 2 usuarios, asi que estos habria que borrarlos despues si es asi
-		User user3 = new User("Paco", passwordEncoder.encode("pass"),"paco@correo.com","Paco Navarro", "USER");
-		User user4 = new User("KevinAnd", passwordEncoder.encode("pass"),"kevinand@correo.com","Kevin Anderson", "USER");
-		User user5 = new User("Dani", passwordEncoder.encode("pass"),"dani@correo.com","Daniel Haro", "USER");
-		User user6 = new User("Ruben", passwordEncoder.encode("pass"),"ruben@correo.com","Ruben Catalan", "USER");
-		User user7 = new User("Silvia", passwordEncoder.encode("pass"),"silvia@correo.com","Silvia Ventura", "USER");
-		User user8 = new User("Alvaro", passwordEncoder.encode("pass"),"alvaro@correo.com","Alvaro Gonzalez", "USER");
-		User user9 = new User("Sara", passwordEncoder.encode("pass"),"sara@correo.com","Sara Gonzalez", "USER");
-		User user10 = new User("Diego", passwordEncoder.encode("pass"),"diego@correo.com","Diego del Amo", "USER");
+		// Creo que se pedian solo 2 usuarios, asi que estos habria que borrarlos
+		// despues si es asi
+		User user3 = new User("Paco", passwordEncoder.encode("pass"), "paco@correo.com", "Paco Navarro", "USER");
+		User user4 = new User("KevinAnd", passwordEncoder.encode("pass"), "kevinand@correo.com", "Kevin Anderson",
+				"USER");
+		User user5 = new User("Dani", passwordEncoder.encode("pass"), "dani@correo.com", "Daniel Haro", "USER");
+		User user6 = new User("Ruben", passwordEncoder.encode("pass"), "ruben@correo.com", "Ruben Catalan", "USER");
+		User user7 = new User("Silvia", passwordEncoder.encode("pass"), "silvia@correo.com", "Silvia Ventura", "USER");
+		User user8 = new User("Alvaro", passwordEncoder.encode("pass"), "alvaro@correo.com", "Alvaro Gonzalez", "USER");
+		User user9 = new User("Sara", passwordEncoder.encode("pass"), "sara@correo.com", "Sara Gonzalez", "USER");
+		User user10 = new User("Diego", passwordEncoder.encode("pass"), "diego@correo.com", "Diego del Amo", "USER");
 
-		User user11 = new User("Paco1", passwordEncoder.encode("pass"),"paco@correo.com","Paco Navarro", "USER");
-		User user12 = new User("KevinAnd1", passwordEncoder.encode("pass"),"kevinand@correo.com","Kevin Anderson", "USER");
-		User user13 = new User("Dani1", passwordEncoder.encode("pass"),"dani@correo.com","Daniel Haro", "USER");
-		User user14 = new User("Ruben1", passwordEncoder.encode("pass"),"ruben@correo.com","Ruben Catalan", "USER");
-		User user15 = new User("Silvia1", passwordEncoder.encode("pass"),"silvia@correo.com","Silvia Ventura", "USER");
-		User user16 = new User("Alvaro1", passwordEncoder.encode("pass"),"alvaro@correo.com","Alvaro Gonzalez", "USER");
-		User user17 = new User("Sara1", passwordEncoder.encode("pass"),"sara@correo.com","Sara Gonzalez", "USER");
-		User user18 = new User("Diego1", passwordEncoder.encode("pass"),"diego@correo.com","Diego del Amo", "USER");
+		User user11 = new User("Paco1", passwordEncoder.encode("pass"), "paco@correo.com", "Paco Navarro", "USER");
+		User user12 = new User("KevinAnd1", passwordEncoder.encode("pass"), "kevinand@correo.com", "Kevin Anderson",
+				"USER");
+		User user13 = new User("Dani1", passwordEncoder.encode("pass"), "dani@correo.com", "Daniel Haro", "USER");
+		User user14 = new User("Ruben1", passwordEncoder.encode("pass"), "ruben@correo.com", "Ruben Catalan", "USER");
+		User user15 = new User("Silvia1", passwordEncoder.encode("pass"), "silvia@correo.com", "Silvia Ventura",
+				"USER");
+		User user16 = new User("Alvaro1", passwordEncoder.encode("pass"), "alvaro@correo.com", "Alvaro Gonzalez",
+				"USER");
+		User user17 = new User("Sara1", passwordEncoder.encode("pass"), "sara@correo.com", "Sara Gonzalez", "USER");
+		User user18 = new User("Diego1", passwordEncoder.encode("pass"), "diego@correo.com", "Diego del Amo", "USER");
 
 		userRepository.save(userNone);
 		userRepository.save(user1);
@@ -82,7 +97,7 @@ public class ExamplesGenerator {
 		userRepository.save(user16);
 		userRepository.save(user17);
 		userRepository.save(user18);
-		
+
 		Team TBD = new Team(true, userNone, userNone);
 		Team t1 = new Team(false, user1, user2);
 		Team t2 = new Team(false, user1, user3);
@@ -95,7 +110,7 @@ public class ExamplesGenerator {
 		Team t9 = new Team(false, user13, user14);
 		Team t10 = new Team(false, user15, user16);
 		Team t11 = new Team(false, user17, user18);
-		
+
 		teamRepository.save(TBD);
 		teamRepository.save(t1);
 		teamRepository.save(t2);
@@ -109,48 +124,81 @@ public class ExamplesGenerator {
 		teamRepository.save(t10);
 		teamRepository.save(t11);
 
-
-
 		//
 		// ------ TOURNAMENTS AND MATCHES ------
 		//
-		
+
 		Date fecha1 = new Date("12/16/2022 16:00");
 		Date fecha2 = new Date("12/20/2022 17:00");
+
+		Date fecha3 = new Date("10/08/2022 17:00");
+		Date fecha4 = new Date("10/30/2022 18:00");
+
+		Date fecha5 = new Date("08/10/2022 18:00");
+		Date fecha6 = new Date("08/20/2022 19:00");
+
+		Tournament tournament = new Tournament("Torneo la turra", 16,
+				"Participa en el torneo de la turra y gana el prestigioso torneo donde se apuntan los mejores padeleros del momento",
+				"Este torneo sigue las reglas oficiales del padel", "Madrid", fecha1, fecha2, "Simple Tournament",
+				"user");
+		Tournament tournament1 = new Tournament("Torneo Iberian Cup", 4, "Torneo peninsular donde juegan los mejores",
+				"Este torneo sigue las reglas oficiales del padel español", "Mostoles", fecha3, fecha4,
+				"Simple Tournament", "user");
+		Tournament tournament2 = new Tournament("Torneo la Lora", 4, "Ven y juega",
+				"Este torneo sigue las reglas oficiales del padel", "Sevilla", fecha5, fecha6, "Simple Tournament",
+				"user");
+		Tournament tournament3 = new Tournament("Copa Pistón", 8, "Ven y juega las icónica copa de Cars, la película",
+				"Este torneo sigue las reglas oficiales del padel español", "Valencia", fecha1, fecha2,
+				"Simple Tournament", "user");
+		Tournament tournament4 = new Tournament("Copa Arcoirirs", 16, "Ven y enfrentate a nuestros rivales en la copa más colorida",
+				"Este torneo sigue las reglas oficiales del padel español", "Madrid", fecha3, fecha4,
+				"Simple Tournament", "admin");
+		Tournament tournament5 = new Tournament("Copa Alonso", 8, "Copa a toda velocidad, copa Alonso. Patrocinada por Fernando Alonso",
+				"Este torneo sigue las reglas oficiales del padel español", "Ciudad Real", fecha5, fecha6,
+				"Simple Tournament", "admin");
+		Tournament tournament6 = new Tournament("Copa de vino", 16, "Ven a jugar y disfruta después de una cata de vinos",
+				"Este torneo sigue las reglas oficiales del padel español", "La Rioja", fecha1, fecha2,
+				"Simple Tournament", "admin");
+		Tournament tournament7 = new Tournament("Copa aquí copa allá", 16,
+				"Este torneo sigue las reglas oficiales del padel español", "Y mírate y mírate...", "Almeria", fecha3, fecha4,
+				"Simple Tournament", "admin");
+		Tournament tournament8 = new Tournament("Torneo benefico XIX", 16,
+				"Este torneo sigue las reglas oficiales del padel español", "Torneo con causa benefica, todos los ingresos genereados serán donados",
+				 "Barcelona", fecha5, fecha6,"Simple Tournament", "admin");
+		Tournament tournament9 = new Tournament("Copa caliz de fuego", 2, "Solo podrán participar los mayores de 16, aquellos que ganen conseguirán la fama eterna.", 
+				"Este torneo sigue las reglas oficiales del padel español", "Vitoria", fecha1, fecha2,
+				"Simple Tournament", "admin");
+
+		setTournamentImage(tournament, "/examples/copaTurra.jpg");
+		setTournamentImage(tournament1, "/examples/iberianCup.jpg");
+		setTournamentImage(tournament3, "/examples/copaPiston.jpg");
+		setTournamentImage(tournament4, "/examples/copaArcoiris.jpg");
+		setTournamentImage(tournament6, "/examples/copaVino.jpg");
+		setTournamentImage(tournament9, "/examples/copaCalizFuego.jpg");
 		
-		Tournament tournament = new Tournament("Torneo 11", 16,"About1","Ruleset1","Madrid",fecha1,fecha2,"Simple Tournament","user");
-        Tournament tournament1= new Tournament("Torneo 22", 4,"About2","Ruleset2","Madrid",fecha1,fecha2,"Simple Tournament","user");
-        Tournament tournament2= new Tournament("Torneo 33", 4,"About3","Ruleset3","Madrid",fecha1,fecha2,"Simple Tournament","user");
-        Tournament tournament3= new Tournament("Torneo 44", 8,"About4","Ruleset4","Madrid",fecha1,fecha2,"Simple Tournament","user");
-        Tournament tournament4= new Tournament("Torneo 55", 8,"About5","Ruleset5","Madrid",fecha1,fecha2,"Simple Tournament","admin");
-		Tournament tournament5 = new Tournament("Torneo 66", 8,"About6","Ruleset6","Madrid",fecha1,fecha2,"Simple Tournament","admin");
-        Tournament tournament6= new Tournament("Torneo 77", 16,"About7","Ruleset7","Madrid",fecha1,fecha2,"Simple Tournament","admin");
-        Tournament tournament7= new Tournament("Torneo 88", 16,"About8","Ruleset8","Madrid",fecha1,fecha2,"Simple Tournament","admin");
-        Tournament tournament8= new Tournament("Torneo 99", 16,"About9","Ruleset9","Madrid",fecha1,fecha2,"Simple Tournament","admin");
-        Tournament tournament9= new Tournament("Torneo 100", 2,"About10","Ruleset10","Madrid",fecha1,fecha2,"Simple Tournament","admin");
-		
+
 		tournamentRepository.save(tournament);
-        tournamentRepository.save(tournament1);
-        tournamentRepository.save(tournament2);
-        tournamentRepository.save(tournament3);
-        tournamentRepository.save(tournament4);
+		tournamentRepository.save(tournament1);
+		tournamentRepository.save(tournament2);
+		tournamentRepository.save(tournament3);
+		tournamentRepository.save(tournament4);
 		tournamentRepository.save(tournament5);
-        tournamentRepository.save(tournament6);
-        tournamentRepository.save(tournament7);
-        tournamentRepository.save(tournament8);
-        tournamentRepository.save(tournament9);
+		tournamentRepository.save(tournament6);
+		tournamentRepository.save(tournament7);
+		tournamentRepository.save(tournament8);
+		tournamentRepository.save(tournament9);
 
+		Tournament tour = tournamentRepository.findByTournamentName("Torneo la turra").get(0);
 
-		Tournament tour = tournamentRepository.findByTournamentName("Torneo 11").get(0);
-
-		//Añadimos particpantes al torneo
+		// Añadimos particpantes al torneo
 		tournamentService.addParticipant(tour, t1);
 
-		//Como el user1 está en t2 y t3 y ese usuario ya está inscrito con t1, no deja incribir a t2 y t3
+		// Como el user1 está en t2 y t3 y ese usuario ya está inscrito con t1, no deja
+		// incribir a t2 y t3
 		tournamentService.addParticipant(tour, t2);
 		tournamentService.addParticipant(tour, t3);
 
-		//Añadimos mas particpantes al torneo
+		// Añadimos mas particpantes al torneo
 		tournamentService.addParticipant(tour, t4);
 		tournamentService.addParticipant(tour, t5);
 		tournamentService.addParticipant(tour, t6);
@@ -160,5 +208,10 @@ public class ExamplesGenerator {
 		tournamentService.addParticipant(tour, t10);
 		tournamentService.addParticipant(tour, t11);
 	}
-    
+		public void setTournamentImage(Tournament tournament, String classpathResource) throws IOException {
+			tournament.setImage(true);
+		Resource image = new ClassPathResource(classpathResource);
+		tournament.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
+	}
+
 }
