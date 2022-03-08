@@ -26,11 +26,17 @@ public interface MatchRepository extends JpaRepository<Match,Long> {
 	public List<Match> getTeamMatches(Team t);
 
     //to get all the matches I have
-    @Query("SELECT m FROM Match m WHERE (m.teamOne.userA = :user OR m.teamOne.userB = :user OR m.teamTwo.userA = :user OR m.teamTwo.userB = :user) AND m.round != 0 AND m.hasWinner = FALSE ORDER BY id ASC")
+    @Query("""
+        SELECT m FROM Match m WHERE (m.teamOne.userA = :user OR m.teamOne.userB = :user
+        OR m.teamTwo.userA = :user OR m.teamTwo.userB = :user)AND m.round != 0 AND m.hasWinner = FALSE
+        AND m.teamOne.tbd = FALSE AND m.teamTwo.tbd = FALSE ORDER BY id ASC
+     """)
 	public List<Match> getUserMatches(User user);
-    //AND m.teamOne.tbd = FALSE AND m.teamTwo.tbd = FALSE
     
-    @Query("SELECT m FROM Match m WHERE (m.teamOne = :t OR m.teamTwo = :t) AND m.round = 0 AND m.tournament = :tour ORDER BY id ASC")
+    @Query("""
+        SELECT m FROM Match m WHERE (m.teamOne = :t OR m.teamTwo = :t) AND m.round = 0
+        AND m.tournament = :tour ORDER BY id ASC
+        """)
 	public List<Match> getTeamAuxMatches(Tournament tour, Team t);
     
 }

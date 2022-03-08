@@ -69,7 +69,9 @@
             {{#hasStarted}}
             {{#canDownloadPDF}}
             <div class="d-flex justify-content-end">
-              <button class="generarPDF d-inline button btn-tournament upper-text my-1" id="PDFWinner" onclick="genPdf()">Descargar PDF</button>
+              <button class="generarPDF d-inline button btn-tournament upper-text my-1" id="PDFWinner" onclick="genPdf()">
+                <i class="ri-file-download-fill"></i> Descargar PDF
+              </button>
             </div>
             {{/canDownloadPDF}}
             {{/hasStarted}}
@@ -260,268 +262,270 @@
           <div class="tab-pane fade pt-3" id="tournament-bracket">
             <!-- Tournament Bracket -->
             <div class="container pb-2">
-              <div class="tournament-bracket tournament-bracket--rounded">
+              <div class="d-flex flex-row flex-nowrap overflow-auto">
+                <div class="tournament-bracket tournament-bracket--rounded">
 
-                {{#hasr4}}
-                <div class="tournament-bracket__round tournament-bracket__round--semifinals">
-                  <h3 class="tournament-bracket__round-title">Octavos de final</h3>
-                  <ul class="tournament-bracket__list">
-                    {{#roundFour}}
-                    <li class="tournament-bracket__item">
-                      <div class="tournament-bracket__match" tabindex="0">
-                        <table class="tournament-bracket__table">
+                  {{#hasr4}}
+                  <div class="tournament-bracket__round tournament-bracket__round--semifinals">
+                    <h3 class="tournament-bracket__round-title">Octavos de final</h3>
+                    <ul class="tournament-bracket__list">
+                      {{#roundFour}}
+                      <li class="tournament-bracket__item">
+                        <div class="tournament-bracket__match" tabindex="0">
+                          <table class="tournament-bracket__table">
 
-                          <tbody class="tournament-bracket__content">
-                            {{#winnerTeamOne}}
-                            <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                            {{/winnerTeamOne}}
-                            {{^winnerTeamOne}}
-                            <tr class="tournament-bracket__team">
-                            {{/winnerTeamOne}}
-                              <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">
+                            <tbody class="tournament-bracket__content">
+                              {{#winnerTeamOne}}
+                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                              {{/winnerTeamOne}}
+                              {{^winnerTeamOne}}
+                              <tr class="tournament-bracket__team">
+                              {{/winnerTeamOne}}
+                                <td class="tournament-bracket__team-name">
+                                  <abbr class="tournament-bracket__code">
 
-                                  {{#teamOne.tbd}}
-                                  tbd
-                                  {{/teamOne.tbd}}
+                                    {{#teamOne.tbd}}
+                                    tbd
+                                    {{/teamOne.tbd}}
 
-                                  {{^teamOne.tbd}}
-                                  {{teamOne.userA.name}},{{teamOne.userB.name}}
-                                  {{/teamOne.tbd}}
+                                    {{^teamOne.tbd}}
+                                    {{teamOne.userA.name}},{{teamOne.userB.name}}
+                                    {{/teamOne.tbd}}
 
-                                </abbr>
-                              </td>
-                              <td class="tournament-bracket__score">
-                                <span class="tournament-bracket__number">{{setsTeamOne}}</span>
-                              </td>
-                            </tr>
-                            {{#winnerTeamTwo}}
-                            <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                            {{/winnerTeamTwo}}
-                            {{^winnerTeamTwo}}
-                            <tr class="tournament-bracket__team">
-                            {{/winnerTeamTwo}}
-                              <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">
+                                  </abbr>
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{setsTeamOne}}</span>
+                                </td>
+                              </tr>
+                              {{#winnerTeamTwo}}
+                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                              {{/winnerTeamTwo}}
+                              {{^winnerTeamTwo}}
+                              <tr class="tournament-bracket__team">
+                              {{/winnerTeamTwo}}
+                                <td class="tournament-bracket__team-name">
+                                  <abbr class="tournament-bracket__code">
 
-                                  {{#teamTwo.tbd}}
-                                  tbd
-                                  {{/teamTwo.tbd}}
+                                    {{#teamTwo.tbd}}
+                                    tbd
+                                    {{/teamTwo.tbd}}
 
-                                  {{^teamTwo.tbd}}
-                                  {{teamTwo.userA.name}},{{teamTwo.userB.name}}
-                                  {{/teamTwo.tbd}}
-                                </abbr>
-                              </td>
-                              <td class="tournament-bracket__score">
-                                <span class="tournament-bracket__number">{{setsTeamTwo}}</span>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </li>
-                    {{/roundFour}}
+                                    {{^teamTwo.tbd}}
+                                    {{teamTwo.userA.name}},{{teamTwo.userB.name}}
+                                    {{/teamTwo.tbd}}
+                                  </abbr>
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{setsTeamTwo}}</span>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </li>
+                      {{/roundFour}}
 
 
-                  </ul>
+                    </ul>
+                  </div>
+                  {{/hasr4}}
+
+                  {{#hasr3}}
+                  <div class="tournament-bracket__round tournament-bracket__round--quarterfinals">
+                    <h3 class="tournament-bracket__round-title">Cuartos de final</h3>
+
+                    <ul class="tournament-bracket__list">
+                      {{#roundTres}}
+                      <li class="tournament-bracket__item">
+                        <div class="tournament-bracket__match" tabindex="0">
+                          <table class="tournament-bracket__table">
+                            <caption class="tournament-bracket__caption">
+                              <!-- <time datetime="1998-02-18">18 February 1998</time> -->
+                            </caption>
+                            <tbody class="tournament-bracket__content">
+                              {{#winnerTeamOne}}
+                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                              {{/winnerTeamOne}}
+                              {{^winnerTeamOne}}
+                              <tr class="tournament-bracket__team">
+                              {{/winnerTeamOne}}
+                                <td class="tournament-bracket__team-name">
+                                  <abbr class="tournament-bracket__code">
+                                    {{#teamOne.tbd}}
+                                    tbd
+                                    {{/teamOne.tbd}}
+
+                                    {{^teamOne.tbd}}
+                                    {{teamOne.userA.name}},{{teamOne.userB.name}}
+                                    {{/teamOne.tbd}}
+                                  </abbr>
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{setsTeamOne}}</span>
+                                </td>
+                              </tr>
+                              {{#winnerTeamTwo}}
+                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                              {{/winnerTeamTwo}}
+                              {{^winnerTeamTwo}}
+                              <tr class="tournament-bracket__team">
+                              {{/winnerTeamTwo}}
+                                <td class="tournament-bracket__team-name">
+                                  <abbr class="tournament-bracket__code">
+                                    {{#teamTwo.tbd}}
+                                    tbd
+                                    {{/teamTwo.tbd}}
+
+                                    {{^teamTwo.tbd}}
+                                    {{teamTwo.userA.name}},{{teamTwo.userB.name}}
+                                    {{/teamTwo.tbd}}
+                                  </abbr>
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{setsTeamTwo}}</span>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </li>
+                      {{/roundTres}}
+                    </ul>
+                  </div>
+                  {{/hasr3}}
+
+                  {{#hasr2}}
+                  <div class="tournament-bracket__round tournament-bracket__round--semifinals">
+                    <h3 class="tournament-bracket__round-title">Semifinales</h3>
+                    <ul class="tournament-bracket__list">
+                      {{#roundTwo}}
+                      <li class="tournament-bracket__item">
+                        <div class="tournament-bracket__match" tabindex="0">
+                          <table class="tournament-bracket__table">
+
+                            <tbody class="tournament-bracket__content">
+                              {{#winnerTeamOne}}
+                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                              {{/winnerTeamOne}}
+                              {{^winnerTeamOne}}
+                              <tr class="tournament-bracket__team">
+                              {{/winnerTeamOne}}
+                                <td class="tournament-bracket__team-name">
+                                  <abbr class="tournament-bracket__code">
+
+                                    {{#teamOne.tbd}}
+                                    tbd
+                                    {{/teamOne.tbd}}
+
+                                    {{^teamOne.tbd}}
+                                    {{teamOne.userA.name}},{{teamOne.userB.name}}
+                                    {{/teamOne.tbd}}
+
+                                  </abbr>
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{setsTeamOne}}</span>
+                                </td>
+                              </tr>
+                              {{#winnerTeamTwo}}
+                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                              {{/winnerTeamTwo}}
+                              {{^winnerTeamTwo}}
+                              <tr class="tournament-bracket__team">
+                              {{/winnerTeamTwo}}
+                                <td class="tournament-bracket__team-name">
+                                  <abbr class="tournament-bracket__code">
+
+                                    {{#teamTwo.tbd}}
+                                    tbd
+                                    {{/teamTwo.tbd}}
+
+                                    {{^teamTwo.tbd}}
+                                    {{teamTwo.userA.name}},{{teamTwo.userB.name}}
+                                    {{/teamTwo.tbd}}
+                                  </abbr>
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{setsTeamTwo}}</span>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </li>
+                      {{/roundTwo}}
+
+
+                    </ul>
+                  </div>
+                  {{/hasr2}}
+
+                  {{#hasr1}}
+                  <div class="tournament-bracket__round tournament-bracket__round--gold">
+                    <h3 class="tournament-bracket__round-title">Final</h3>
+                    <ul class="tournament-bracket__list">
+                      {{#roundOne}}
+                      <li class="tournament-bracket__item">
+                        <div class="tournament-bracket__match" tabindex="0">
+                          <table class="tournament-bracket__table">
+
+                            <tbody class="tournament-bracket__content">
+                              {{#winnerTeamOne}}
+                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                              {{/winnerTeamOne}}
+                              {{^winnerTeamOne}}
+                              <tr class="tournament-bracket__team">
+                              {{/winnerTeamOne}}
+                                <td class="tournament-bracket__team-name">
+                                  <abbr class="tournament-bracket__code">
+
+                                    {{#teamOne.tbd}}
+                                    tbd
+                                    {{/teamOne.tbd}}
+
+                                    {{^teamOne.tbd}}
+                                    {{teamOne.userA.name}},{{teamOne.userB.name}}
+                                    {{/teamOne.tbd}}
+
+                                  </abbr>
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{setsTeamOne}}</span>
+                                </td>
+                              </tr>
+                              {{#winnerTeamTwo}}
+                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                              {{/winnerTeamTwo}}
+                              {{^winnerTeamTwo}}
+                              <tr class="tournament-bracket__team">
+                              {{/winnerTeamTwo}}
+                                <td class="tournament-bracket__team-name">
+                                  <abbr class="tournament-bracket__code">
+
+                                    {{#teamTwo.tbd}}
+                                    tbd
+                                    {{/teamTwo.tbd}}
+
+                                    {{^teamTwo.tbd}}
+                                    {{teamTwo.userA.name}},{{teamTwo.userB.name}}
+                                    {{/teamTwo.tbd}}
+
+                                  </abbr>
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{setsTeamTwo}}</span>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </li>
+                      {{/roundOne}}
+                    </ul>
+                  </div>
+                  {{/hasr1}}
                 </div>
-                {{/hasr4}}
-
-                {{#hasr3}}
-                <div class="tournament-bracket__round tournament-bracket__round--quarterfinals">
-                  <h3 class="tournament-bracket__round-title">Cuartos de final</h3>
-
-                  <ul class="tournament-bracket__list">
-                    {{#roundTres}}
-                    <li class="tournament-bracket__item">
-                      <div class="tournament-bracket__match" tabindex="0">
-                        <table class="tournament-bracket__table">
-                          <caption class="tournament-bracket__caption">
-                            <!-- <time datetime="1998-02-18">18 February 1998</time> -->
-                          </caption>
-                          <tbody class="tournament-bracket__content">
-                            {{#winnerTeamOne}}
-                            <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                            {{/winnerTeamOne}}
-                            {{^winnerTeamOne}}
-                            <tr class="tournament-bracket__team">
-                            {{/winnerTeamOne}}
-                              <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">
-                                  {{#teamOne.tbd}}
-                                  tbd
-                                  {{/teamOne.tbd}}
-
-                                  {{^teamOne.tbd}}
-                                  {{teamOne.userA.name}},{{teamOne.userB.name}}
-                                  {{/teamOne.tbd}}
-                                </abbr>
-                              </td>
-                              <td class="tournament-bracket__score">
-                                <span class="tournament-bracket__number">{{setsTeamOne}}</span>
-                              </td>
-                            </tr>
-                            {{#winnerTeamTwo}}
-                            <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                            {{/winnerTeamTwo}}
-                            {{^winnerTeamTwo}}
-                            <tr class="tournament-bracket__team">
-                            {{/winnerTeamTwo}}
-                              <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">
-                                  {{#teamTwo.tbd}}
-                                  tbd
-                                  {{/teamTwo.tbd}}
-
-                                  {{^teamTwo.tbd}}
-                                  {{teamTwo.userA.name}},{{teamTwo.userB.name}}
-                                  {{/teamTwo.tbd}}
-                                </abbr>
-                              </td>
-                              <td class="tournament-bracket__score">
-                                <span class="tournament-bracket__number">{{setsTeamTwo}}</span>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </li>
-                    {{/roundTres}}
-                  </ul>
-                </div>
-                {{/hasr3}}
-
-                {{#hasr2}}
-                <div class="tournament-bracket__round tournament-bracket__round--semifinals">
-                  <h3 class="tournament-bracket__round-title">Semifinales</h3>
-                  <ul class="tournament-bracket__list">
-                    {{#roundTwo}}
-                    <li class="tournament-bracket__item">
-                      <div class="tournament-bracket__match" tabindex="0">
-                        <table class="tournament-bracket__table">
-
-                          <tbody class="tournament-bracket__content">
-                            {{#winnerTeamOne}}
-                            <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                            {{/winnerTeamOne}}
-                            {{^winnerTeamOne}}
-                            <tr class="tournament-bracket__team">
-                            {{/winnerTeamOne}}
-                              <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">
-
-                                  {{#teamOne.tbd}}
-                                  tbd
-                                  {{/teamOne.tbd}}
-
-                                  {{^teamOne.tbd}}
-                                  {{teamOne.userA.name}},{{teamOne.userB.name}}
-                                  {{/teamOne.tbd}}
-
-                                </abbr>
-                              </td>
-                              <td class="tournament-bracket__score">
-                                <span class="tournament-bracket__number">{{setsTeamOne}}</span>
-                              </td>
-                            </tr>
-                            {{#winnerTeamTwo}}
-                            <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                            {{/winnerTeamTwo}}
-                            {{^winnerTeamTwo}}
-                            <tr class="tournament-bracket__team">
-                            {{/winnerTeamTwo}}
-                              <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">
-
-                                  {{#teamTwo.tbd}}
-                                  tbd
-                                  {{/teamTwo.tbd}}
-
-                                  {{^teamTwo.tbd}}
-                                  {{teamTwo.userA.name}},{{teamTwo.userB.name}}
-                                  {{/teamTwo.tbd}}
-                                </abbr>
-                              </td>
-                              <td class="tournament-bracket__score">
-                                <span class="tournament-bracket__number">{{setsTeamTwo}}</span>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </li>
-                    {{/roundTwo}}
-
-
-                  </ul>
-                </div>
-                {{/hasr2}}
-
-                {{#hasr1}}
-                <div class="tournament-bracket__round tournament-bracket__round--gold">
-                  <h3 class="tournament-bracket__round-title">Final</h3>
-                  <ul class="tournament-bracket__list">
-                    {{#roundOne}}
-                    <li class="tournament-bracket__item">
-                      <div class="tournament-bracket__match" tabindex="0">
-                        <table class="tournament-bracket__table">
-
-                          <tbody class="tournament-bracket__content">
-                            {{#winnerTeamOne}}
-                            <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                            {{/winnerTeamOne}}
-                            {{^winnerTeamOne}}
-                            <tr class="tournament-bracket__team">
-                            {{/winnerTeamOne}}
-                              <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">
-
-                                  {{#teamOne.tbd}}
-                                  tbd
-                                  {{/teamOne.tbd}}
-
-                                  {{^teamOne.tbd}}
-                                  {{teamOne.userA.name}},{{teamOne.userB.name}}
-                                  {{/teamOne.tbd}}
-
-                                </abbr>
-                              </td>
-                              <td class="tournament-bracket__score">
-                                <span class="tournament-bracket__number">{{setsTeamOne}}</span>
-                              </td>
-                            </tr>
-                            {{#winnerTeamTwo}}
-                            <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                            {{/winnerTeamTwo}}
-                            {{^winnerTeamTwo}}
-                            <tr class="tournament-bracket__team">
-                            {{/winnerTeamTwo}}
-                              <td class="tournament-bracket__team-name">
-                                <abbr class="tournament-bracket__code">
-
-                                  {{#teamTwo.tbd}}
-                                  tbd
-                                  {{/teamTwo.tbd}}
-
-                                  {{^teamTwo.tbd}}
-                                  {{teamTwo.userA.name}},{{teamTwo.userB.name}}
-                                  {{/teamTwo.tbd}}
-
-                                </abbr>
-                              </td>
-                              <td class="tournament-bracket__score">
-                                <span class="tournament-bracket__number">{{setsTeamTwo}}</span>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </li>
-                    {{/roundOne}}
-                  </ul>
-                </div>
-                {{/hasr1}}
               </div>
             </div>
 
