@@ -129,6 +129,8 @@ public class TournamentController {
 			boolean hasStarted = matchService.getRoundMatches(tournament.get(),1).size()!=0;
 			model.addAttribute("hasStarted", hasStarted);
 
+			
+
 			List<Team> teams = tournamentService.getTeamsSignedUp(tournament.get());
 			model.addAttribute("participants", teams);
 			if (teams.size()<2){
@@ -154,6 +156,15 @@ public class TournamentController {
 				}
 				Optional<User> user = userService.findByName(userName);		
 				List<Match> matches = matchService.getUserMatches(user.get());
+
+				List<Tournament> userTournaments = tournamentService.getUserTournaments(user.get());
+				if(userTournaments.contains(tournament.get())){
+					model.addAttribute("canDownloadPDF", true);
+	
+				}else{
+					model.addAttribute("canDownloadPDF", false);
+				}
+
 				model.addAttribute("matches", matches);
 				model.addAttribute("numMatches", matches.size());
 			}else{
