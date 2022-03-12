@@ -114,6 +114,7 @@
 
                       <div hidden id="numWins">{{user.numWins}}</div>
                       <div hidden id="numLoses">{{user.numLoses}}</div>
+                      
                       <script src="/assets/js/stats.js"></script>
 
                       <!-- Donut Chart End -->
@@ -123,23 +124,32 @@
                   <div class="card">
                     <div class="card-body pb-0">
                       <h5 class="card-title pb-0 mb-0">Karma</h5>
+                      <div hidden id="historicalKarma">{{user.historicalKarma}}</div>
 
                       <!-- Line Chart -->
                       <div id="lineChart" style="min-height: 400px;" class="echart d-flex align-items-center"></div>
 
                       <script>
+                        var historicalKarmaRaw = document.querySelector("#historicalKarma").textContent;
+                        let historicalKarmaString = historicalKarmaRaw.replace("[","").replace("]","")
+                        let historicalKarmaArray= historicalKarmaString.split(",")
+
                         document.addEventListener("DOMContentLoaded", () => {
                           echarts.init(document.querySelector("#lineChart")).setOption({
                             xAxis: {
                               type: 'category',
-                              data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                              data: ['', '', '', '', '', '', '', '', '', '']
                             },
                             yAxis: {
                               type: 'value'
                             },
                             color: ['#67d400', '#121212', '#fac858', '#ee6666', '#73c0de', '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc'],
                             series: [{
-                              data: [150, 230, 224, 218, 135, 147, 260],
+                              data: [
+                              historicalKarmaArray[0], historicalKarmaArray[1], historicalKarmaArray[2], historicalKarmaArray[3],
+                              historicalKarmaArray[4], historicalKarmaArray[5], historicalKarmaArray[6], historicalKarmaArray[7],
+                              historicalKarmaArray[8], historicalKarmaArray[9]
+                              ],
                               type: 'line',
                               smooth: true
                             }]
