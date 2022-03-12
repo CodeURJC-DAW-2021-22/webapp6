@@ -62,6 +62,7 @@ public class indexController {
 			List<Match> matches = matchService.getUserMatches(user.get());
 			model.addAttribute("matches", matches);
 			model.addAttribute("numMatches", matches.size());
+			model.addAttribute("showMatches", matches.size()>0);
 		}
 
 		Page<Tournament> tourns = tournamentService.getTournaments(pageInt);
