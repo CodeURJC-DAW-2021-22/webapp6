@@ -26,6 +26,9 @@ public class MatchService {
 	@Autowired
 	private UserRepository users;
 
+	@Autowired
+	private UserService userService;
+
     public List<Match> getMatches() {
 		return matches.findAll();
 	}
@@ -167,7 +170,7 @@ public class MatchService {
 			teamTwoUserB.setNumLoses(teamTwoUserB.getNumLoses()+1);
 			teamTwoUserB.setNumMatchesPlayed(teamTwoUserB.getNumMatchesPlayed()+1);
 
-			//METER AQUI LO DE LA SUMA DEL KARMA
+			
 
 			if (match.getRound()!=1){
 				tournamentService.moveNextRound(match.getTournament(), match, match.getTeamOne());
@@ -183,14 +186,14 @@ public class MatchService {
 			teamTwoUserA.setNumWins(teamTwoUserA.getNumWins()+1);
 			teamTwoUserA.setNumMatchesPlayed(teamTwoUserA.getNumMatchesPlayed()+1);
 			teamTwoUserB.setNumWins(teamTwoUserB.getNumWins()+1);
-			teamTwoUserB.setNumMatchesPlayed(teamTwoUserB.getNumMatchesPlayed()+1);
-
-			//METER AQUI LO DE LA SUMA DEL KARMA
+			teamTwoUserB.setNumMatchesPlayed(teamTwoUserB.getNumMatchesPlayed()+1);			
 
 			if (match.getRound()!=1){
 				tournamentService.moveNextRound(match.getTournament(), match, match.getTeamTwo());
 			}
 		}
+
+		assignKarma(getWinner(match), match);
 		matches.save(match);
 		users.save(teamOneUserA);
 		users.save(teamOneUserB);
@@ -210,4 +213,65 @@ public class MatchService {
 			return null;
 		}
 	}
+
+	private double generateAvgPairKarma(Team team) {
+        double karmaPlayer1 = team.getUserA().getKarma();
+        double karmaPlayer2 = team.getUserB().getKarma();
+
+        return (karmaPlayer1 + karmaPlayer2) / 2;
+    }
+
+
+
+	private double calculateMatchKarmaFactor(Match match) {
+        if (generateAvgPairKarma(match.getTeamOne()) >= generateAvgPairKarma(match.getTeamTwo())) {
+            return generateAvgPairKarma(match.getTeamOne()) / generateAvgPairKarma(match.getTeamTwo());
+        } else {
+            return generateAvgPairKarma(match.getTeamTwo()) / generateAvgPairKarma(match.getTeamOne());
+        }
+    }
+
+	private Team calculateFavorite(Match match) {
+        if (generateAvgPairKarma(match.getTeamOne()) >= generateAvgPairKarma(match.getTeamTwo())) {
+            return match.getTeamOne();
+        } else {
+            return match.getTeamTwo();
+        }
+    }
+
+	public void assignKarma(Team winner, Match match) {
+
+		Team favorite = calculateFavorite(match);
+		double matchKarmaFactor = calculateMatchKarmaFactor(match);
+		User userATeam1 = match.getTeamOne().getUserA();
+		User userBTeam1 = match.getTeamOne().getUserB();
+		User userATeam2 = match.getTeamTwo().getUserA();
+		User userBTeam2 = match.getTeamTwo().getUserB();
+
+        if (winner.getId() == match.getTeamOne().getId()) { //TeamOne is winner
+            if (favorite.getId() == match.getTeamOne().getId()) { // TeamOne is favourite
+                userService.calculateKarma(1 / matchKarmaFactor, true, userATeam1);
+                userService.calculateKarma(1 / matchKarmaFactor, true, userBTeam1);
+                userService.calculateKarma((1 / matchKarmaFactor), false, userATeam2);
+                userService.calculateKarma((1 / matchKarmaFactor), false, userBTeam2);
+            } else { // Team 2 is favourite
+                userService.calculateKarma(matchKarmaFactor, true, userATeam1);
+                userService.calculateKarma(matchKarmaFactor, true, userBTeam1);
+                userService.calculateKarma(matchKarmaFactor, false, userATeam2);
+                userService.calculateKarma(matchKarmaFactor, false, userBTeam2);
+            }
+        } else { // TeamTwo is winner
+            if (match.getTeamTwo().equals(favorite)) { // TeamTwo is favourite
+                userService.calculateKarma(1 / matchKarmaFactor, true, userATeam2);
+                userService.calculateKarma(1 / matchKarmaFactor, true, userBTeam2);
+                userService.calculateKarma((1 / matchKarmaFactor), false, userATeam1);
+                userService.calculateKarma((1 / matchKarmaFactor), false, userBTeam1);
+            } else { // Team 1 is favourtie
+                userService.calculateKarma(matchKarmaFactor, true, userATeam2);
+                userService.calculateKarma(matchKarmaFactor, true, userBTeam2);
+                userService.calculateKarma(matchKarmaFactor, false, userATeam1);
+                userService.calculateKarma(matchKarmaFactor, false, userBTeam1);
+            }
+        }
+    }
 }

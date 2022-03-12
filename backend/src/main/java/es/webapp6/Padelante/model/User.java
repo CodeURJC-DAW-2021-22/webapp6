@@ -28,7 +28,7 @@ public class User {
 	private int numWins;
 	private int numLoses;
 	private double numMatchesPlayed; // Double cause it will have to be the argument of Math.log(Double a)
-	private double karma; // Double
+	//private double karma; // Double
 	private ArrayList<Integer> historicalKarma = new ArrayList<>(); // Integer because karma will be truncated before added to the list
 	private boolean status;
 
@@ -58,7 +58,7 @@ public class User {
 		this.numWins=0;
 		this.numLoses=0;
 		this.numMatchesPlayed=0;
-		this.karma=500;
+		this.historicalKarma.add(500);
 		this.status=true;
 		this.roles = List.of(roles);
 	}
@@ -165,12 +165,12 @@ public class User {
 	}
 
 	public int getKarma() {
-		return (int) Math.round(this.karma);
+		return historicalKarma.get(historicalKarma.size()-1);
 	}
 
-	public void setKarma(int karma) {
-		this.karma = karma;
-	}
+	// public void setKarma(int karma) {
+	// 	this.karma = karma;
+	// }
 
 	public List<String> getRoles() {
 		return roles;

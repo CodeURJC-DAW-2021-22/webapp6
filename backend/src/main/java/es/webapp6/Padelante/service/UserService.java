@@ -1,5 +1,6 @@
 package es.webapp6.Padelante.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,6 +53,33 @@ public class UserService {
 			}
 		userRepository.deleteById(id);
 	}
+
+	public void calculateKarma(double karmaFromMatch, boolean winner, User user) {        
+        int truncatedKarma; 
+		double karma;  
+		ArrayList<Integer> arrayKarma = user.getHistoricalKarma();     
+
+        if(winner){
+			karma = user.getKarma() + karmaFromMatch + calculateNumPlayedGamesFactor(user);            
+        } else{
+            karma = user.getKarma() - karmaFromMatch - calculateNumPlayedGamesFactor(user);
+        }        
+        truncatedKarma = (int) Math.round(karma);
+		System.out.println("KarmaPrint: " + truncatedKarma);
+		arrayKarma.add(truncatedKarma);
+		user.setHistoricalKarma(arrayKarma);
+		
+		userRepository.save(user);
+    }
+
+	private double calculateNumPlayedGamesFactor(User user){
+        if(user.getNumMatchesPlayed() == 1){
+            return  1/Math.log(1.5) * 10;
+        }
+        else{
+            return  1/Math.log(user.getNumMatchesPlayed()) * 10;
+        }
+    }
     
     public Optional<User> findById(long id) {
 		return userRepository.findById(id);

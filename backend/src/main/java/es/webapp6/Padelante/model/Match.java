@@ -22,7 +22,7 @@ public class Match {
     private boolean winnerTeamOne;
     private boolean winnerTeamTwo;
     //New. Necessary to calculate Karma
-    private double matchKarmaFactor;
+    //private double matchKarmaFactor;
     // private Team favourite;
 
     @ManyToOne 
@@ -142,9 +142,9 @@ public class Match {
         this.winnerTeamTwo = winnerTeamTwo;
     }
 
-    public double getMatchKarmaFactor() {
-        return matchKarmaFactor;
-    }
+    // public double getMatchKarmaFactor() {
+    //     return matchKarmaFactor;
+    // }
 
     // public Team getFavorite() {
     //     return favourite;
