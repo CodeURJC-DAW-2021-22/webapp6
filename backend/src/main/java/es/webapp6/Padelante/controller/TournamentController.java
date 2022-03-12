@@ -165,6 +165,7 @@ public class TournamentController {
 
 				model.addAttribute("matches", matches);
 				model.addAttribute("numMatches", matches.size());
+				model.addAttribute("showMatches", matches.size()>0);
 			}else{
 				model.addAttribute("owner", false);
 			}
