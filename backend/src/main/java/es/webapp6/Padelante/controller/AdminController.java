@@ -78,9 +78,6 @@ public class AdminController {
 		if (user.isPresent() && user.get().getStatus()) {
 			user.get().setStatus(false);
 			userService.save(user.get());
-			//model.addAttribute("removedUser", user.get());
-			//userService.delete(id);
-			//model.addAttribute("userDelate", user.get());
 		}
 		return "redirect:/admin";
 	}

@@ -129,8 +129,6 @@ public class TournamentController {
 			boolean hasStarted = matchService.getRoundMatches(tournament.get(),1).size()!=0;
 			model.addAttribute("hasStarted", hasStarted);
 
-			
-
 			List<Team> teams = tournamentService.getTeamsSignedUp(tournament.get());
 			model.addAttribute("participants", teams);
 			if (teams.size()<2){

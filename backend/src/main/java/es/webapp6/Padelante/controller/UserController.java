@@ -63,7 +63,7 @@ public class UserController {
 	@RequestParam(required = false) Integer page) {
 		Principal principal = request.getUserPrincipal();
 		String userName = principal.getName();
-		Optional<User> user = userService.findByName(userName); //By ID??
+		Optional<User> user = userService.findByName(userName);
 		model.addAttribute("user", user.get());
 		List<Match> matches = matchService.getUserMatches(user.get());
 		model.addAttribute("matches", matches);
@@ -104,7 +104,7 @@ public class UserController {
 	@RequestParam String location, @RequestParam String country,@RequestParam String phone, 
 	boolean removeImage,  MultipartFile imageField)throws IOException, SQLException{
 
-		Optional<User> user = userService.findById(id); //By ID??
+		Optional<User> user = userService.findById(id);
 		
 		if (user.isPresent()) {
 		updateImageProfile(user.get(), removeImage, imageField);
@@ -119,7 +119,6 @@ public class UserController {
 		}
     }
 
-	//I know is a similar method of the update image for tournament, but i dont know how to do it
 	private void updateImageProfile(User user, boolean removeImage, MultipartFile imageField) throws IOException, SQLException {
 		
 		if (!imageField.isEmpty()) {

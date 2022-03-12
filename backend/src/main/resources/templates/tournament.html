@@ -262,8 +262,8 @@
           <div class="tab-pane fade pt-3" id="tournament-bracket">
             <!-- Tournament Bracket -->
             <div class="container pb-2">
-              <div class="d-flex flex-row flex-nowrap overflow-auto">
-                <div class="tournament-bracket tournament-bracket--rounded">
+              <div class="bracket d-flex flex-row flex-nowrap overflow-auto">
+                <div class="tournament-bracket tournament-bracket--rounded mb-5">
 
                   {{#hasr4}}
                   <div class="tournament-bracket__round tournament-bracket__round--semifinals">
@@ -462,7 +462,7 @@
                   {{/hasr2}}
 
                   {{#hasr1}}
-                  <div class="tournament-bracket__round tournament-bracket__round--gold">
+                  <div class="tournament-bracket__round tournament-bracket__round--bronze">
                     <h3 class="tournament-bracket__round-title">Final</h3>
                     <ul class="tournament-bracket__list">
                       {{#roundOne}}

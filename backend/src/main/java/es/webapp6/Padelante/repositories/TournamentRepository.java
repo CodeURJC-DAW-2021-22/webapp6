@@ -14,7 +14,6 @@ import es.webapp6.Padelante.model.User;
 
 public interface TournamentRepository extends JpaRepository<Tournament, Long> {
 
-  //give a list of tournament where the team plays
   @Query("SELECT distinct t FROM Match m JOIN m.tournament t " +
       "WHERE m.teamOne = :team OR m.teamTwo = :team")
   public List<Tournament> getTeamTournaments(Team team);
@@ -24,8 +23,6 @@ public interface TournamentRepository extends JpaRepository<Tournament, Long> {
   public List<Tournament> getUserTournaments(User user);
 
   List<Tournament> findByTournamentName(String tournamentName); 
-
-  // Page<Tournament> findAll(Pageable pageable);
 
   @Query("SELECT distinct t FROM Tournament t ORDER BY id ASC")
   public Page<Tournament> findAllTournaments(Pageable pageable);
