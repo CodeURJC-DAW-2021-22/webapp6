@@ -28,7 +28,6 @@ public class User {
 	private int numWins;
 	private int numLoses;
 	private double numMatchesPlayed; // Double cause it will have to be the argument of Math.log(Double a)
-	//private double karma; // Double
 	private ArrayList<Integer> historicalKarma = new ArrayList<>(); // Integer because karma will be truncated before added to the list
 	private boolean status;
 
@@ -159,7 +158,6 @@ public class User {
 		return numMatchesPlayed;
 	}
 
-	// It should only increment by one each time
 	public void setNumMatchesPlayed(double numPlayed) {
 		this.numMatchesPlayed = numPlayed;
 	}
@@ -168,10 +166,6 @@ public class User {
 		return historicalKarma.get(historicalKarma.size()-1);
 	}
 
-	// public void setKarma(int karma) {
-	// 	this.karma = karma;
-	// }
-
 	public List<String> getRoles() {
 		return roles;
 	}
@@ -179,7 +173,6 @@ public class User {
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
-
 
     public Blob getImageFile() {
 		return imageFile;
@@ -204,10 +197,4 @@ public class User {
 	public void setHistoricalKarma(ArrayList<Integer> historicalKarma) {
 		this.historicalKarma = historicalKarma;
 	}
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", realName="+realName+ "]";
-	}
-
 }

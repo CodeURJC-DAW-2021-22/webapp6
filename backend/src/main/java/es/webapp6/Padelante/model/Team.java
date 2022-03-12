@@ -22,8 +22,6 @@ public class Team {
 
 	@ManyToOne
 	private User userB;
-
-    private String data; //just to add and atributte and check the below methods
     
     public Team() {
 		super();
@@ -67,14 +65,4 @@ public class Team {
 	public void setUserB(User userB) {
 		this.userB = userB;
 	}
-
-	public String getData() {
-		return data;
-	}
-
-	@Override
-	public String toString() {
-		return "Team [id=" + id + ", data=" + data + "]";
-	}
-    
 }

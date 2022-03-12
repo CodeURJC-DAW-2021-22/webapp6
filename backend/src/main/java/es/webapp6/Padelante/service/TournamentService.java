@@ -181,8 +181,6 @@ public class TournamentService {
 		tournaments.save(tournament);
 	}
 
-	//Revisar saves
-
 	public List<Team> getTeamsSignedUp(Tournament tournament){
 		List<Match> auxMatches = matches.getAuxMatches(tournament);
 		List<Team> teamsSignedUp = new ArrayList<Team>();
@@ -273,54 +271,5 @@ public class TournamentService {
 				}
 			}
 		}
-	}
-
-	// public ResponseEntity<Tournament> getTournament(@PathVariable long id) {
-
-	// 	Optional<Tournament> tournament = tournaments.findById(id);
-
-	// 	if (tournament.isPresent()) {
-	// 		return ResponseEntity.ok(tournament.get());
-	// 	} else {
-	// 		return ResponseEntity.notFound().build();
-	// 	}
-	// }    
-
-
-	// public ResponseEntity<Tournament> createTournament(@RequestBody Tournament tournament) {
-
-	// 	tournaments.save(tournament);
-
-	// 	URI location = fromCurrentRequest().path("/{id}").buildAndExpand(tournament.getId()).toUri();
-
-	// 	return ResponseEntity.created(location).body(tournament);
-	// }
-
-
-	// public ResponseEntity<Tournament> replaceTournament(@PathVariable long id, @RequestBody Tournament newTournament) {
-
-	// 	if (tournaments.existsById(id)) {
-
-	// 		newTournament.setId(id);
-	// 		tournaments.save(newTournament);
-
-	// 		return ResponseEntity.ok(newTournament);
-	// 	} else {
-	// 		return ResponseEntity.notFound().build();
-	// 	}
-	// }
-
-
-	// public ResponseEntity<Tournament> deleteTournament(@PathVariable long id) {
-
-	// 	Optional<Tournament> tournament = tournaments.findById(id);
-
-	// 	if (tournament.isPresent()) {
-	// 		tournaments.deleteById(id);
-	// 		return ResponseEntity.ok(tournament.get());
-	// 	} else {
-	// 		return ResponseEntity.notFound().build();
-	// 	}
-	// }
-    
+	}    
 }

@@ -46,7 +46,6 @@ public class UserService {
         Optional<User> user = userRepository.findById(id);
         List<Team> playerTeams = teamService.getPlayerTeams(user.get());
 			for(int i = 0; i<playerTeams.size();i++){
-				//for the moment i take null, maybe delate this team
 				playerTeams.get(i).setUserA(userRepository.findByName("none").get());
 				playerTeams.get(i).setUserB(userRepository.findByName("none").get());
 				teamService.save(playerTeams.get(i));

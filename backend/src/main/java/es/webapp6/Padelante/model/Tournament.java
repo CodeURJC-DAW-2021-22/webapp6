@@ -30,13 +30,10 @@ public class Tournament {
     private Date startDate;
     private String format;
    
-
     @Lob
 	private Blob imageFile;
 
 	private boolean image;
-
-    
 
 
     public Tournament() {
@@ -61,11 +58,6 @@ public class Tournament {
                 this.owner = owner;
               
     }
-
-    @Override
-	public String toString() {
-		return "Tournament [id=" + id + ", tournamentName=" + tournamentName + ", numParticipants="+numParticipants+ "]";
-	}
 
     public long getId() {
         return id;
