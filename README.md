@@ -81,8 +81,14 @@
 **Navegation Map**
 
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/NavegationMap.png" width="1000"></img>
+
 **Class Diagram**
+
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/ClassDiagram.png" width="1000"></img>
+
+**Database Diagram**
+
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/ERDDiagram.png" width="1000"></img>
 
 <!-- ESTO SERIA USANDO MARKDOWN PERO NO HE PODIDO HACER LAS IMAGENES MAS PEQUEÑAS, POR ESO HE USADO HTML
 
