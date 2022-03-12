@@ -1,6 +1,7 @@
 package es.webapp6.Padelante;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,7 @@ public class ExamplesGenerator {
 		User userNone = new User("none", passwordEncoder.encode("pass"), "none@correo.com", "None", "USER");
 		userNone.setStatus(false);
 
-		User user1 = new User("user", passwordEncoder.encode("pass"), "user@correo.com", "User", "USER");
+		User user1 = new User("user", passwordEncoder.encode("pass"), "user@correo.com", "User", "USER");		
 		User user2 = new User("admin", passwordEncoder.encode("adminpass"), "admin@correo.com", "Admin", "USER",
 				"ADMIN");
 
@@ -75,6 +76,18 @@ public class ExamplesGenerator {
 				"USER");
 		User user17 = new User("Sara1", passwordEncoder.encode("pass"), "sara@correo.com", "Sara Gonzalez", "USER");
 		User user18 = new User("Diego1", passwordEncoder.encode("pass"), "diego@correo.com", "Diego del Amo", "USER");
+
+		ArrayList<Integer> array = user1.getHistoricalKarma();
+		array.add(600);
+		array.add(400);
+		array.add(525);
+		array.add(369);
+		array.add(400);
+		array.add(450);
+		array.add(500);
+		array.add(523);
+		array.add(560);
+		user1.setHistoricalKarma(array);
 
 		userRepository.save(userNone);
 		userRepository.save(user1);

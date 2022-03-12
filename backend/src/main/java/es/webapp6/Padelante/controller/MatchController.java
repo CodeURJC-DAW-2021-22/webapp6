@@ -54,6 +54,7 @@ public class MatchController {
 			List<Match> matches = matchService.getUserMatches(user.get());
 			model.addAttribute("matches", matches);
 			model.addAttribute("numMatches", matches.size());
+			model.addAttribute("showMatches", matches.size()>0);
 		}
 
 		Match match = matchService.findById(id).get();

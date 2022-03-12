@@ -68,6 +68,7 @@ public class UserController {
 		List<Match> matches = matchService.getUserMatches(user.get());
 		model.addAttribute("matches", matches);
 		model.addAttribute("numMatches", matches.size());
+		model.addAttribute("showMatches", matches.size()>0);
 
 		int pageInt = page == null? 0: page;  
 		Page<Tournament> userTourns = tournamentService.findUserTournaments(pageInt, user.get());
