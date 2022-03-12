@@ -44,6 +44,7 @@
 
 # FASE 1
 
+## Pantallas
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Login.png" align="center"  width="300"></img>
 <p>Un usuario puede hacer Login o Registrarse</p>
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Register.png" width="300"></img>
@@ -78,7 +79,7 @@
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/TournamentEdit.png" width="300"></img>
 <p>El creador del torneo podrá cambiar diferentes ajustes y datos relativos al mismo</p>
 
-**Navegation Map**
+## Navegation Map
 
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/NavegationMap.png" width="1000"></img>
 
@@ -94,11 +95,16 @@
 
 ## Participación de los miembros
 
+  _**Nota:** En los Controller aparece que Rubén ha hecho todo, pero realmente separó lo que teniamos en un único Controller en varios, por lo que es un copy-paste. Para ver la autoría a grandes rasgos de cada Controller, se debe acceder al fichero previo a esa separación:_
+
+  https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/4ffae254ca09287f931b915cb4e7f4a2c5aef10b/backend/src/main/java/es/webapp6/Padelante/controller/indexController.java
+
+
 - **Rubén Catalán:**
 
   - Descripción de tareas:
     
-    En lo que respecta a los HTML, me he encargado de la mayor parte de ediciones de HTML referentes al formato en CSS, de la creacion de HTMLs especificos para los JS y el header, de añadir los elementos necesarios en Mustache para mostrar los datos que iba creando en los Controllers y de los AJAX en la pantalla de admin, perfil del usuario y usuarios a la hora de inscribirse en un torneo.
+    En lo que respecta a los HTML, me he encargado de la mayor parte de ediciones de HTML referentes al formato en CSS, de la creacion de HTMLs especificos para los import de JS, de añadir los elementos necesarios en Mustache para mostrar los datos que iba creando en los Controllers y de los AJAX en la pantalla de admin, perfil del usuario y usuarios a la hora de inscribirse en un torneo.
     
     En lo referente a java, me he encargado de toda la lógica sobre creación, bracket e inscripción de los torneos, así como la creación de equipos al inscribirse, dar como ganador a un equipo, pasar a un equipo de ronda, el acceso de los usuarios a sus partidos correspondientes y el almacenamiento de datos de los usuarios tras los partidos como sus victorias, resultados, sets, ... Además, he hecho la mayor parte de las llamadas JPQL en los repositorios, la migración de H2 a PosgreSQL, el correcto tratamiento de los datos del tipo Date de los formularios y pequeños arreglos cuando era necesario.
 
@@ -118,7 +124,15 @@
 
   - Ficheros más relevantes:
     
-
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/Padelante/service/TournamentService.java
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/Padelante/service/MatchService.java
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/Padelante/service/TeamService.java
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/Padelante/model/Match.java
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/Padelante/model/Team.java
 
 - **Álvaro González:**
 
@@ -161,39 +175,3 @@
   - Ficheros más relevantes:
     
     
-
-
-
-
-
-
-
-<!-- ESTO SERIA USANDO MARKDOWN PERO NO HE PODIDO HACER LAS IMAGENES MAS PEQUEÑAS, POR ESO HE USADO HTML
-
-![Login](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Login.png)
-![Registrate](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Resgistrate.png)
-![Main1](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Main1.png)
-![Main3](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Main3.png)
-![AdminPage](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/AdminPage.png)
-![ErrorPage](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/ErrorPage.png)
-![MesangeNotification](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/MensageNotification.png)
-![Notification](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Notifications.png)
-![UserOpctions](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/UserOpctions.png)
-![PRofileDAtes](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/ProfileDates.png)
-![EditProfile](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/EditProfile.png)
-![EditProfile2](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/EditProfile2.png)
-![Adjust](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Adjust.png)
-![ChangePassword](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/ChangePassword.png)
-![MyTournaments](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/MyTournaments.png)
-![TournamentsTemplate](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/TournamentTemplate.png)
-![Bracket](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Bracket.png)
-![Bracket2](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Bracket2.png)
-![AdminAdjust](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/AdminAdjust.png)
-![AdminAdjust2](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/AdminAdjust2.png)
-![CreateTournament1](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/CreateTournament1.png)
-![CreateTournament2](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/CreateTournamente2.png)
-![Navegation 2](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Navegation 2.png)
-![Navegation 1](https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Navegation 1.png)-->
-
-
-
