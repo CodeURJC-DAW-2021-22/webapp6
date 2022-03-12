@@ -95,7 +95,7 @@
 
 ## Participación de los miembros
 
-  _**Nota:** En los Controller aparece que Rubén ha hecho todo, pero realmente separó lo que teniamos en un único Controller en varios, por lo que es un copy-paste. Para ver la autoría a grandes rasgos de cada Controller, se debe acceder al fichero previo a esa separación:_
+  _**Nota:** En los Controller aparece que Rubén ha hecho todo, pero realmente separó en varios Controller lo que teníamos en uno único, por lo que es un copy-paste. Para ver la autoría a grandes rasgos de cada Controller, se debe acceder al fichero previo a esa separación:_
 
   https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/4ffae254ca09287f931b915cb4e7f4a2c5aef10b/backend/src/main/java/es/webapp6/Padelante/controller/indexController.java
 
