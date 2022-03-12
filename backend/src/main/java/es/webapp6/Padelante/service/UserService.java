@@ -65,8 +65,13 @@ public class UserService {
             karma = user.getKarma() - karmaFromMatch - calculateNumPlayedGamesFactor(user);
         }        
         truncatedKarma = (int) Math.round(karma);
+
 		System.out.println("KarmaPrint: " + truncatedKarma);
+
 		arrayKarma.add(truncatedKarma);
+		if (arrayKarma.size() > 10){
+			arrayKarma.remove(0);
+		}
 		user.setHistoricalKarma(arrayKarma);
 		
 		userRepository.save(user);
