@@ -78,7 +78,7 @@
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/TournamentEdit.png" width="300"></img>
 <p>El creador del torneo podrá cambiar diferentes ajustes y datos relativos al mismo</p>
 
-**Navegation Photos**
+**Navegation Map**
 
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/NavegationMap.png" width="1000"></img>
 
