@@ -14,9 +14,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT distinct u FROM UserTable u, Team t WHERE (t.userA = u AND t.userB = :user) OR (t.userB = u AND t.userA = :user) AND u.status = TRUE")
 	public Page<User> findPairsOf(Pageable pageable, User user);
     
-    // @Query("SELECT distinct u FROM UserTable u, Team t WHERE (t.userA = u AND t.userB = :user) OR (t.userB = u AND t.userA = :user)")
-	// public List<User> findPairsOf(User user);
-
     Optional<User> findByName(String name);
 
     @Query("SELECT distinct u FROM UserTable u WHERE u.status = TRUE AND u.name <> 'admin' ORDER BY id ASC")
@@ -24,9 +21,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("SELECT distinct u FROM UserTable u WHERE u.status = TRUE ORDER BY id ASC")
     public Page<User> findAllUsers(Pageable pageable);
-
-    // @Query("SELECT distinct u FROM UserTable u WHERE u.name <> 'none' AND u.name <> 'admin' ORDER BY id ASC")
-    // public Page<User> findAllUsers(Pageable pageable);
 
     Page<User> findAll(Pageable pageable);
     

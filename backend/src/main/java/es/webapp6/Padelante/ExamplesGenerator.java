@@ -54,8 +54,6 @@ public class ExamplesGenerator {
 		User user2 = new User("admin", passwordEncoder.encode("adminpass"), "admin@correo.com", "Admin", "USER",
 				"ADMIN");
 
-		// Creo que se pedian solo 2 usuarios, asi que estos habria que borrarlos
-		// despues si es asi
 		User user3 = new User("Paco", passwordEncoder.encode("pass"), "paco@correo.com", "Paco Navarro", "USER");
 		User user4 = new User("KevinAnd", passwordEncoder.encode("pass"), "kevinand@correo.com", "Kevin Anderson",
 				"USER");
@@ -190,15 +188,15 @@ public class ExamplesGenerator {
 
 		Tournament tour = tournamentRepository.findByTournamentName("Torneo la turra").get(0);
 
-		// Añadimos particpantes al torneo
+		// Add a team to the tournament
 		tournamentService.addParticipant(tour, t1);
 
-		// Como el user1 está en t2 y t3 y ese usuario ya está inscrito con t1, no deja
-		// incribir a t2 y t3
+		// As user1 is also in t2 y t3 and this user is already inscripted with t1, it doesnt
+		// let t2 or t3 join the tournament
 		tournamentService.addParticipant(tour, t2);
 		tournamentService.addParticipant(tour, t3);
 
-		// Añadimos mas particpantes al torneo
+		// Add more teams to the tournament
 		tournamentService.addParticipant(tour, t4);
 		tournamentService.addParticipant(tour, t5);
 		tournamentService.addParticipant(tour, t6);
@@ -208,8 +206,9 @@ public class ExamplesGenerator {
 		tournamentService.addParticipant(tour, t10);
 		tournamentService.addParticipant(tour, t11);
 	}
-		public void setTournamentImage(Tournament tournament, String classpathResource) throws IOException {
-			tournament.setImage(true);
+	
+	private void setTournamentImage(Tournament tournament, String classpathResource) throws IOException {
+		tournament.setImage(true);
 		Resource image = new ClassPathResource(classpathResource);
 		tournament.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
 	}
