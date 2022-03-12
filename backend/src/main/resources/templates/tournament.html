@@ -26,20 +26,17 @@
             {{/tourns.image}}
 
 
-            <!-- <img src="/assets/images/icon.png" alt="Tournament Image" class="rounded-circle border-green bg-232323"> -->
           </div>
           <div class="d-flex align-items-center ps-2">
             <div>
               <h2 class="mt-0" id="tournamentNamePDF">{{tourns.tournamentName}}</h2>
               <h3 class="d-flex align-items-center pt-2"><em class="me-2">Organizador:</em>
-                <!-- <img src="/assets/images/profile-img.jpg" alt="Profile"
-                  class="tournament-img rounded-circle border-green-tiny small ms-2 me-1"> -->
+
                 {{tourns.owner}}
               </h3>
               
               <div>
-                <!-- <div class="progress-bar bg-green" role="progressbar" style="width: 50%" aria-valuenow="{{tourns.numParticipants}}"
-                  aria-valuemin="0" aria-valuemax="32"></div> -->
+
                   <div> <progress class="progress-bar round mb-1" value="{{tourns.numSignedUp}}" max="{{tourns.numParticipants}}"> </progress></div>
               </div>
               <h5>Participantes: {{tourns.numSignedUp}}/{{tourns.numParticipants}}<span class="ps-5">{{tourns.location}}</span></h5>
@@ -95,9 +92,6 @@
             {{/hasStarted}}
             {{/owner}}
             {{/logged}}
-            <!-- <div class="d-flex justify-content-end">
-              <a class="button btn-tournament upper-text my-1" href="#"><i class="ri-tools-fill pe-1"></i> Admin</a>
-            </div> -->
 
             <!-- Pop Up Inscriptions -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -196,16 +190,6 @@
               data-bs-target="#tournament-bracket"><i class="ri-organization-chart pe-2"></i>Bracket</button>
           </li>
 
-          <!-- <li class="nav-item">
-            <button class="nav-link d-flex align-items-center" data-bs-toggle="tab" data-bs-target="#league-matches"><i
-                class="ri-organization-chart pe-2"></i>Jornadas</button>
-          </li> -->
-
-          <!-- <li class="nav-item">
-            <button class="nav-link d-flex align-items-center" data-bs-toggle="tab"
-              data-bs-target="#league-clasification"><i class="ri-organization-chart pe-2"></i>Clasificación</button>
-          </li> -->
-
           {{#owner}}
           <li class="nav-item">
             <button class="nav-link d-flex align-items-center" data-bs-toggle="tab"
@@ -233,8 +217,6 @@
             <div class="row py-2 pair-tournament">
               <div class="col-md-11 d-flex justify-content-start align-items-center">
                 <div class="pe-2">
-                  <!-- <img src="/assets/images/profile-img.jpg" alt="Profile"
-                    class="partner-img rounded-circle border-green-tiny small me-2"> -->
                       {{userA.name}}
                 </div>
                 <i class="ri-arrow-left-right-fill"></i>
@@ -345,7 +327,6 @@
                         <div class="tournament-bracket__match" tabindex="0">
                           <table class="tournament-bracket__table">
                             <caption class="tournament-bracket__caption">
-                              <!-- <time datetime="1998-02-18">18 February 1998</time> -->
                             </caption>
                             <tbody class="tournament-bracket__content">
                               {{#winnerTeamOne}}
@@ -627,16 +608,6 @@
               <div class="row mb-3">
                 <label for="tournamentImage" class="col-md-4 col-lg-3 col-form-label">Imagen del torneo</label>
                 <div class="col-md-8 col-lg-9 tournament-img">
-
-                  <!-- <img src="/assets/images/icon.png" alt="tournamentImage">
-                  <div class="pt-2">
-
-                    <a href="#" class="btn btn-green btn-sm" title="Upload new profile image"><i
-                        class="ri-upload-2-fill"></i></a>
-                    <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i
-                        class="ri-delete-bin-fill"></i></a>
-                  </div> -->
-
                   {{#tourns.image}}
                   <img src="/tourns/{{tourns.id}}/image"><br>
                   <input type='checkbox' name='removeImage'> <label>Remove image</label><br>
@@ -736,26 +707,9 @@
                 </div>
               </div>
 
-              <!-- <div class="row mb-3">
-                <label for="invite" class="col-md-4 col-lg-3 col-form-label">Invitar participantes</label>
-                <div class="col-md-8 col-lg-9">
-                  <div class="search-bar">
-                    <form class="search-form d-flex align-items-center" method="POST" action="#">
-                      <input type="text" name="invite" placeholder="Introducir usuario" title="Introducir usuario" id="invite">
-                      <button type="submit" title="Search"><i class="ri-search-line"></i></button>
-                    </form>
-                  </div>
-                </div>
-              </div> -->
-
-
-
-
               <input type="hidden" name="_csrf" value="{{token}}" />
 
               <div class="text-center">
-                <!-- Cancel botton didnt work -->
-                <!-- <button class="btn btn-green fw-bold" onclick="location.href='/tourns/{{tourns.id}}'; return false;">Cancel</button> -->
                 <button class="btn btn-green fw-bold" type="submit">Guardar cambios</button>
               </div>
 

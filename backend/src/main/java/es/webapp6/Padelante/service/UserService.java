@@ -66,7 +66,6 @@ public class UserService {
         }        
         truncatedKarma = (int) Math.round(karma);
 
-		System.out.println("KarmaPrint: " + truncatedKarma);
 
 		arrayKarma.add(truncatedKarma);
 		if (arrayKarma.size() > 10){

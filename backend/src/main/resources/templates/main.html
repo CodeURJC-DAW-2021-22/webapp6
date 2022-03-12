@@ -13,15 +13,6 @@
     </div>
     <!-- Banner Ends Here -->
 
-    <!-- <div class="topnav nav justify-content-center">
-        <div class="search-container">
-            <form action="/action_page.php">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><i class="ri-search-line"></i></button>
-            </form>
-        </div>
-    </div> -->
-
     <!-- My tournaments. Only for logged users-->
     {{#logged}}
     <div class="lista-torneos">
@@ -37,7 +28,6 @@
                     <div class="col-md-4">
                         <div class="product-item">
                             <a href="/tourns/{{id}}">
-                                <!-- <img class="img-lista-torneos" src="assets/images/product_01.jpg" alt=""> -->
                                 {{#image}}
                                 <img class="img-lista-torneos" src="/tourns/{{id}}/image">
                                 {{/image}}
@@ -90,7 +80,6 @@
                             <!-- select image from DB when necessary-->  
                                             
                             <a href="/tourns/{{id}}">
-                                <!-- <img class="img-lista-torneos" src="assets/images/product_01.jpg" alt=""> -->
                                 {{#image}}
                                 <img class="img-lista-torneos" src="/tourns/{{id}}/image">
                                 {{/image}}

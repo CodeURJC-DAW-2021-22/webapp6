@@ -82,6 +82,91 @@
 
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/NavegationMap.png" width="1000"></img>
 
+# FASE 2
+
+## Class and Templates Diagram
+
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/ClassDiagram.png" width="1000"></img>
+
+## Database Diagram
+
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/ERDDiagram1.png" width="1000"></img>
+
+## Participación de los miembros
+
+- **Rubén Catalán:**
+
+  - Descripción de tareas:
+    
+    En lo que respecta a los HTML, me he encargado de la mayor parte de ediciones de HTML referentes al formato en CSS, de la creacion de HTMLs especificos para los JS y el header, de añadir los elementos necesarios en Mustache para mostrar los datos que iba creando en los Controllers y de los AJAX en la pantalla de admin, perfil del usuario y usuarios a la hora de inscribirse en un torneo.
+    
+    En lo referente a java, me he encargado de toda la lógica sobre creación, bracket e inscripción de los torneos, así como la creación de equipos al inscribirse, dar como ganador a un equipo, pasar a un equipo de ronda, el acceso de los usuarios a sus partidos correspondientes y el almacenamiento de datos de los usuarios tras los partidos como sus victorias, resultados, sets, ... Además, he hecho la mayor parte de las llamadas JPQL en los repositorios, la migración de H2 a PosgreSQL, el correcto tratamiento de los datos del tipo Date de los formularios y pequeños arreglos cuando era necesario.
+
+    Por último, me he encargado de actualizar las fotos de las pantallas y el Navegation Map de la fase anterior.
+
+  - Commits más significativos:
+  
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/9a3273eb9ea11614d7ec4872153c232e33b1437d
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/c44ca988c1b7dea1a1ae283dd72013966ce48a35
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/c740379c83d0dc78099161788416a1fa963987f8
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/8a3e48d255f236ce9004d8f4b8f72572746bd0b8
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/c7b47b6682e35d8e3370323d0d20f056c617e240
+
+  - Ficheros más relevantes:
+    
+
+
+- **Álvaro González:**
+
+  - Descripción de tareas:
+    
+    
+
+  - Commits más significativos:
+    
+    
+
+  - Ficheros más relevantes:
+    
+    
+
+- **Daniel Haro:**
+
+  - Descripción de tareas:
+    
+    
+
+  - Commits más significativos:
+    
+    
+
+  - Ficheros más relevantes:
+    
+    
+
+- **Silvia Ventura:**
+
+  - Descripción de tareas:
+    
+    
+
+  - Commits más significativos:
+    
+    
+
+  - Ficheros más relevantes:
+    
+    
+
+
+
+
+
+
 
 <!-- ESTO SERIA USANDO MARKDOWN PERO NO HE PODIDO HACER LAS IMAGENES MAS PEQUEÑAS, POR ESO HE USADO HTML
 
