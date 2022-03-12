@@ -23,7 +23,7 @@ function genPdf() {
     doc.setTextColor(255,255,255)
     doc.text("Torneo organizado por PADELANTE",64,70)
    
-    doc.save("test.pdf");
+    doc.save("participacionTorneo.pdf");
 }
 
 
