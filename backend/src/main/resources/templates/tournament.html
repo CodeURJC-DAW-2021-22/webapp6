@@ -157,9 +157,13 @@
                     </span>
 
                     <row>
-                      <col-md-12 class="d-flex justify-content-center">
+                      <col-md-12 class="d-flex justify-content-center mt-3">
+                      <div>
                           <div hidden id="tournId">{{tourns.id}}</div>
-                          <button class="cargar-mas" id="loadMore" onclick="loadMoreInscription()">Cargar más</button>
+                          <button class="button-no-format" id="loadMore" onclick="loadMoreInscription()">
+                              <p class="cargar-mas">Cargar más</p>
+                          </button>
+                      </div>  
                       </col-md-12>
                     </row>
 
@@ -312,7 +316,7 @@
                                     {{/teamTwo.tbd}}
 
                                     {{^teamTwo.tbd}}
-                                    {{teamTwo.userA.name}},{{teamTwo.userB.name}}
+                                    {{teamTwo.userA.name}}, {{teamTwo.userB.name}}
                                     {{/teamTwo.tbd}}
                                   </abbr>
                                 </td>
@@ -357,7 +361,7 @@
                                     {{/teamOne.tbd}}
 
                                     {{^teamOne.tbd}}
-                                    {{teamOne.userA.name}},{{teamOne.userB.name}}
+                                    {{teamOne.userA.name}}, {{teamOne.userB.name}}
                                     {{/teamOne.tbd}}
                                   </abbr>
                                 </td>
@@ -378,7 +382,7 @@
                                     {{/teamTwo.tbd}}
 
                                     {{^teamTwo.tbd}}
-                                    {{teamTwo.userA.name}},{{teamTwo.userB.name}}
+                                    {{teamTwo.userA.name}}, {{teamTwo.userB.name}}
                                     {{/teamTwo.tbd}}
                                   </abbr>
                                 </td>
@@ -419,7 +423,7 @@
                                     {{/teamOne.tbd}}
 
                                     {{^teamOne.tbd}}
-                                    {{teamOne.userA.name}},{{teamOne.userB.name}}
+                                    {{teamOne.userA.name}}, {{teamOne.userB.name}}
                                     {{/teamOne.tbd}}
 
                                   </abbr>
@@ -442,7 +446,7 @@
                                     {{/teamTwo.tbd}}
 
                                     {{^teamTwo.tbd}}
-                                    {{teamTwo.userA.name}},{{teamTwo.userB.name}}
+                                    {{teamTwo.userA.name}}, {{teamTwo.userB.name}}
                                     {{/teamTwo.tbd}}
                                   </abbr>
                                 </td>
@@ -485,7 +489,7 @@
                                     {{/teamOne.tbd}}
 
                                     {{^teamOne.tbd}}
-                                    {{teamOne.userA.name}},{{teamOne.userB.name}}
+                                    {{teamOne.userA.name}}, {{teamOne.userB.name}}
                                     {{/teamOne.tbd}}
 
                                   </abbr>
@@ -508,7 +512,7 @@
                                     {{/teamTwo.tbd}}
 
                                     {{^teamTwo.tbd}}
-                                    {{teamTwo.userA.name}},{{teamTwo.userB.name}}
+                                    {{teamTwo.userA.name}}, {{teamTwo.userB.name}}
                                     {{/teamTwo.tbd}}
 
                                   </abbr>
