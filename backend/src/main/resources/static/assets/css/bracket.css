@@ -63,9 +63,9 @@
     border-bottom: 0;
   }
 }
-.tournament-bracket__round:last-child .tournament-bracket__list {
+/* .tournament-bracket__round:last-child .tournament-bracket__list {
   border: 0;
-}
+} */
 .tournament-bracket__item {
   display: flex;
   flex: 0 1 auto;
@@ -139,10 +139,10 @@
   .tournament-bracket__round:last-child .tournament-bracket__item::after {
     display: none;
   }
-  .tournament-bracket__round:nth-last-child(2) .tournament-bracket__item::after {
+  /* .tournament-bracket__round:nth-last-child(2) .tournament-bracket__item::after {
     border-radius: 0;
     border-right: 0;
-  }
+  } */
 }
 @media (min-width: 72em) {
   .tournament-bracket__item {
@@ -220,7 +220,7 @@
     transform: translate(0, -1px);
   }
 }
-.tournament-bracket__round:last-child .tournament-bracket__match::before,
+/* .tournament-bracket__round:last-child .tournament-bracket__match::before,
 .tournament-bracket__round:last-child .tournament-bracket__match::after {
   border-left: 0;
 }
@@ -229,7 +229,7 @@
 }
 .tournament-bracket__round:last-child .tournament-bracket__match::after {
   display: none;
-}
+} */
 .tournament-bracket__round:first-child .tournament-bracket__match::before,
 .tournament-bracket__round:first-child .tournament-bracket__match::after {
   display: none;
