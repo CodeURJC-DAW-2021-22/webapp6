@@ -102,7 +102,7 @@
     
     En lo referente a java, me he encargado de toda la lógica sobre creación, bracket e inscripción de los torneos, así como la creación de equipos al inscribirse, dar como ganador a un equipo, pasar a un equipo de ronda, el acceso de los usuarios a sus partidos correspondientes y el almacenamiento de datos de los usuarios tras los partidos como sus victorias, resultados, sets, ... Además, he hecho la mayor parte de las llamadas JPQL en los repositorios, la migración de H2 a PosgreSQL, el correcto tratamiento de los datos del tipo Date de los formularios y pequeños arreglos cuando era necesario.
 
-Por último, me he encargado de actualizar las fotos de las pantallas y el Navegation Map de la fase anterior.
+  Por último, me he encargado de actualizar las fotos de las pantallas y el Navegation Map de la fase anterior.
 
   - Commits más significativos:
   
