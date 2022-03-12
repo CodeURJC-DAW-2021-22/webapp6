@@ -1,6 +1,5 @@
 package es.webapp6.Padelante.repositories;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -13,7 +12,7 @@ import es.webapp6.Padelante.model.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("SELECT distinct u FROM UserTable u, Team t WHERE (t.userA = u AND t.userB = :user) OR (t.userB = u AND t.userA = :user) AND u.status = TRUE")
-	public List<User> findPairsOf(User user);
+	public Page<User> findPairsOf(Pageable pageable, User user);
     
     // @Query("SELECT distinct u FROM UserTable u, Team t WHERE (t.userA = u AND t.userB = :user) OR (t.userB = u AND t.userA = :user)")
 	// public List<User> findPairsOf(User user);

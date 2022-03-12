@@ -160,7 +160,7 @@ public class User {
 	}
 
 	// It should only increment by one each time
-	public void setNumMatchesPlayed(int numPlayed) {
+	public void setNumMatchesPlayed(double numPlayed) {
 		this.numMatchesPlayed = numPlayed;
 	}
 

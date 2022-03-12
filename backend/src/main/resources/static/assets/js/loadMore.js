@@ -8,6 +8,13 @@ function loadMoreTournsMain(){
     pageNumber ++;
 }
 
+function loadMoreMyTournsMain(){
+   
+    console.log("pageNumber="+pageNumber2);
+    $('#loadArea2-'+pageNumber2).load('/?page='+pageNumber2+' #elements2');
+    pageNumber2 ++;
+}
+
 function loadMoreTournsAdmin(){
    
     console.log("pageNumber="+pageNumber);
@@ -27,6 +34,13 @@ function loadMoreTournsUser(){
     console.log("pageNumber="+pageNumber);
     $('#loadArea-'+pageNumber).load('/user_profile?page='+pageNumber+' #elements');
     pageNumber ++;
+}
+
+function loadMoreUserPairs(){
+   
+    console.log("pageNumber="+pageNumber2);
+    $('#loadArea2-'+pageNumber2).load('/user_profile?page='+pageNumber2+' #elements2');
+    pageNumber2 ++;
 }
 
 function loadMoreInscription(tournId){
