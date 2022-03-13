@@ -233,7 +233,7 @@
 ## Intrucciones de ejecución
 
   Para la apliación se usa:
-  - Java ```15```
+  - Java ```17```
   - PostgreSQL ```14.2``` 
   - SpringBoot ```2.6.3```
 
