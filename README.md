@@ -138,7 +138,7 @@
 
   - Descripción de tareas:
   
-    En los HTML, me he encargado de incorporar la notación Mustache en aquellos sitios en los que correspondía. También, me he encargado del procesado de imágenes, así como de las tareas relaccionadas con dichas imágenes como puede ser la actualización, borrado o subida de imágenes. Por otro lado, también me he encargado de controlar la validez de los resultados que los usuarios metían en los partidos y de los formularios de actualización de datos de torneos y usuarios. A su vez, me encargué de la implementación de la página de error.
+    En los HTML, me he encargado de incorporar la notación Mustache en aquellos sitios en los que correspondía. También, me he encargado del procesado de imágenes, así como de las tareas relaccionadas con dichas imágenes como puede ser la actualización, borrado o subida de imágenes. Por otro lado, también me he encargado de controlar la validez de los resultados que los usuarios metían en los partidos y de los formularios de actualización de datos de torneos y usuarios. A su vez, me encargué de la implementación de las páginas de error.
     
     En cuanto a los gráficos, me he encargado del correspondiente al número de victorias y derrotas, haciendo para ello uso de JavaScript. Por último, he sido el encargado de implementar la generación de un PDF para aquellos usuarios que participasen en un torneo.
     
@@ -170,9 +170,7 @@
 
   - Descripción de tareas:
     
-    Fui el responsable de crear la página HTML del partido, donde cualquier jugador puede introducir un resultado.También me encargué de la pestaña "Mis torneos" del perfil, donde un usuario registrado puede ver los torneos a los que está apuntado.
-    
-    A nivel de Backend, implementé las clases iniciales de Torneo, Equipo y partido, así como sus repositorios. Implementé la clase que genera los datos de ejemplo para poder probar la aplicación. Fui, a su vez, responsable de la creación del algoritmo de puntuación de jugadores, conocido como karma, que se va modificando en función del nivel de los rivales contra los que se pierde o gana, así como del número de partidos que un jugador lleva. Asociado a la lógica del karma, también me encargue de la visualización del histórico del karma en el perfil del usuario.    
+    A nivel de Backend, implementé las clases iniciales de Torneo, Equipo y Partido, así como sus repositorios con las funcionalidades básicas. Implementé la clase que genera los datos de ejemplo para poder probar la aplicación. Fui, a su vez, responsable de la creación del algoritmo de puntuación de jugadores, conocido como karma, que se va modificando en función del nivel de los rivales contra los que se pierde o gana, así como del número de partidos que un jugador lleva. Asociado a la lógica del karma, también me encargue de la visualización del histórico del karma en el perfil del usuario.    
 
   - Commits más significativos:
   
