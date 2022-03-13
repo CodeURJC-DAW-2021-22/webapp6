@@ -218,12 +218,13 @@
     ## Intrucciones de ejecución
 
   Para la apliación se usa:
-  - Java ```17```
-  - PostgreSQL: ```14.2``` 
-  - SpringBoot: ```2.6.3```
+  - Java ```15```
+  - PostgreSQL ```14.2``` 
+  - SpringBoot ```2.6.3```
 
 
   Para clonar el repositorio de git, se debe de usar la siguiente sentencia.
+  
   ```$ git clone https://github.com/CodeURJC-DAW-2021-22/webapp6```
 
   Por defecto el proyecto require una base de datos PostgreSQL disponible en localhost con la siguiente configuración:
@@ -232,9 +233,18 @@
   - Contaseña:```password ```
   
   Se puede arrancar usando docker con el comando:
+  
   ```$ docker run --rm -e POSTGRES_PASSWORD=password -e POSTGRES_DB=padelante -p 5432:5432 -d postgres:14.2```
   
   La apliación se ejecuta con el comando:
+  
+  ```mvn spring-boot:run```
+  
+  Si queremos ejecutar la app web con el .jar, debemos tener instaldo un java JRA y usar el siguiente comando desde la carpeta target:
+  
+  ```$ java -jar Padelante-0.0.1-SNAPSHOT.jar```
+  Para finalizar la aplicación ejecutar Ctrl+C en la consola
+  
   ```mvn spring-boot:run```
   
   Los usuarios principales son:
