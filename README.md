@@ -215,3 +215,29 @@
     
     https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/Padelante/controller/indexController.java
     
+    ## Intrucciones de ejecución
+
+  Para la apliación se usa:
+  - Java ```17```
+  - PostgreSQL: ```14.2``` 
+  - SpringBoot: ```2.6.3```
+
+
+  Para clonar el repositorio de git, se debe de usar la siguiente sentencia.
+  ```$ git clone https://github.com/CodeURJC-DAW-2021-22/webapp6```
+
+  Por defecto el proyecto require una base de datos PostgreSQL disponible en localhost con la siguiente configuración:
+  - Esquema: ```padelante ```
+  - Usuario: ```postgres ```
+  - Contaseña:```password ```
+  
+  Se puede arrancar usando docker con el comando:
+  ```$ docker run --rm -e POSTGRES_PASSWORD=password -e POSTGRES_DB=padelante -p 5432:5432 -d postgres:14.2```
+  
+  La apliación se ejecuta con el comando:
+  ```mvn spring-boot:run```
+  
+  Los usuarios principales son:
+  - Usuario: ```user```, Contraseña: ```pass```
+  - Usuario: ```admin```, Contraseña: ```adminpass```
+    
