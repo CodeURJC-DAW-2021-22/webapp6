@@ -4,7 +4,7 @@
 
 |**Nombre y Apellidos**|**Correo**|**Usuario Github**|
 |:-----------------:|:-----:|:-------------:|
-|Rubén Catalán Medina|r.catalanmedina.2018@alumnos.urjc.es|Ruben-urjc|
+|Rubén Catalán Medina|r.catalan.2018@alumnos.urjc.es|Ruben-urjc|
 |Álvaro González Aroas | a.gonzalezar.2018@alumnos.urjc.es|alvaroga2175|
 |Daniel Haro Murcia|d.haro.2018@alumnos.urjc.es|DaniURJC|
 |Silvia Ventura Cabreja|s.ventura.2018@alumnos.urjc.es|Silvia-vcp|
