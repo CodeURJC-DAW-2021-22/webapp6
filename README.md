@@ -184,14 +184,26 @@
 
 - **Silvia Ventura:**
 
-  - Descripción de tareas:
+ - Descripción de tareas:
+  Me he encargado de la parte inicial de seguridad de la aplicación, creando todos los ficheros necesarios y modificando lo necesario.En los HTML, he implementado AJAX en la parte de mostrar mis torneos en la página de usuario y la de mostrar los torneos en la página de admin.
+  En lo que respecta a los diagramas, he hecho el diagrama con las entidades de la base datos y el diagrama de clases y templates.
+  
     
     
 
   - Commits más significativos:
-    
+     https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/51bc98d927cbc98eec443a711408ac56b654ab91
+     https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/e86ebebd7ce58cec31a28554cbea1e62b200b9be
+     https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/0b60d98071603ac9096c06050bf869853d8cc8c2
+     https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/941d340390899c1e38c65a7dcf0d2af7462a0802
+      https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/305221ad6bcee372f3cc1245d78fc689b29a2430
+     
     
 
   - Ficheros más relevantes:
-    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/java/es/webapp6/Padelante/security/CSRFHandlerConfiguration.java
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/java/es/webapp6/Padelante/security/RepositoryUserDetailsService.java
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/java/es/webapp6/Padelante/security/WebSecurityConfig.java
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/java/es/webapp6/Padelante/service/TournamentService.java
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/Padelante/controller/indexController.java
     
