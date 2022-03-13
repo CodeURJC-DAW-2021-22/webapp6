@@ -187,7 +187,7 @@
 
   - Descripción de tareas:
  
-    Me he encargado de la parte inicial de seguridad de la aplicación, creando todos los ficheros necesarios y modificando lo necesario.En los HTML, he implementado AJAX en la parte de mostrar mis torneos en la página de usuario y la de mostrar los torneos en la página de admin.
+    Me he encargado de la parte inicial de seguridad de la aplicación, creando todos los ficheros necesarios y modificando lo necesario. En los HTML, he implementado AJAX en la parte de mostrar mis torneos en la página de usuario y la de mostrar los torneos en la página de admin.
     
     En lo que respecta a los diagramas, he hecho el diagrama con las entidades de la base datos y el diagrama de clases y templates.
 
@@ -215,19 +215,18 @@
     
     https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/Padelante/controller/indexController.java
     
-    ## Intrucciones de ejecución
+## Intrucciones de ejecución
 
   Para la apliación se usa:
   - Java ```15```
   - PostgreSQL ```14.2``` 
   - SpringBoot ```2.6.3```
 
-
-  Para clonar el repositorio de git, se debe de usar la siguiente sentencia.
+  Para clonar el repositorio de git, se debe de usar la siguiente sentencia:
   
   ```$ git clone https://github.com/CodeURJC-DAW-2021-22/webapp6```
 
-  Por defecto el proyecto require una base de datos PostgreSQL disponible en localhost con la siguiente configuración:
+  Por defecto, el proyecto require una base de datos PostgreSQL disponible en localhost con la siguiente configuración:
   - Esquema: ```padelante ```
   - Usuario: ```postgres ```
   - Contaseña:```password ```
@@ -236,18 +235,10 @@
   
   ```$ docker run --rm -e POSTGRES_PASSWORD=password -e POSTGRES_DB=padelante -p 5432:5432 -d postgres:14.2```
   
-  La apliación se ejecuta con el comando:
+  La aplicación se ejecuta con el comando:
   
-  ```mvn spring-boot:run```
-  
- <!-- Si queremos ejecutar la app web con el .jar, debemos tener instaldo un java JRA y usar el siguiente comando desde la carpeta target:
-  
-  ```$ java -jar Padelante-0.0.1-SNAPSHOT.jar```
-  
-  Para finalizar la aplicación ejecutar Ctrl+C en la consola -->
-  
+  ```mvn spring-boot:run```  
   
   Los usuarios principales son:
   - Usuario: ```user```, Contraseña: ```pass```
   - Usuario: ```admin```, Contraseña: ```adminpass```
-    
