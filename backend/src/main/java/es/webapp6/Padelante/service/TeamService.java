@@ -1,4 +1,4 @@
-package es.webapp6.Padelante.service;
+package es.webapp6.padelante.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,10 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.webapp6.Padelante.model.Team;
-import es.webapp6.Padelante.model.Tournament;
-import es.webapp6.Padelante.model.User;
-import es.webapp6.Padelante.repositories.TeamRepository;
+import es.webapp6.padelante.model.Team;
+import es.webapp6.padelante.model.Tournament;
+import es.webapp6.padelante.model.User;
+import es.webapp6.padelante.repositories.TeamRepository;
 
 @Service 
 public class TeamService {

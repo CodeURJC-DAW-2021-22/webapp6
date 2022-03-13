@@ -1,4 +1,4 @@
-package es.webapp6.Padelante.controller;
+package es.webapp6.padelante.controller;
 
 import java.io.IOException;
 import java.security.Principal;
@@ -19,18 +19,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import es.webapp6.padelante.model.Match;
+import es.webapp6.padelante.model.Team;
+import es.webapp6.padelante.model.Tournament;
+import es.webapp6.padelante.model.User;
+import es.webapp6.padelante.service.MatchService;
+import es.webapp6.padelante.service.TeamService;
+import es.webapp6.padelante.service.TournamentService;
+import es.webapp6.padelante.service.UserService;
+
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
-
-import es.webapp6.Padelante.model.Match;
-import es.webapp6.Padelante.model.Team;
-import es.webapp6.Padelante.model.Tournament;
-import es.webapp6.Padelante.model.User;
-import es.webapp6.Padelante.service.MatchService;
-import es.webapp6.Padelante.service.TeamService;
-import es.webapp6.Padelante.service.TournamentService;
-import es.webapp6.Padelante.service.UserService;
 
 @Controller
 public class TournamentController {
@@ -157,10 +158,10 @@ public class TournamentController {
 
 				List<Tournament> userTournaments = tournamentService.getUserTournaments(user.get());
 				if(userTournaments.contains(tournament.get())){
-					model.addAttribute("canDownloadPDF", true);
+					model.addAttribute("isInTournament", true);
 	
 				}else{
-					model.addAttribute("canDownloadPDF", false);
+					model.addAttribute("isInTournament", false);
 				}
 
 				model.addAttribute("matches", matches);

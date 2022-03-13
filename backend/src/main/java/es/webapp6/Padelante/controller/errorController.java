@@ -1,4 +1,4 @@
-package es.webapp6.Padelante.controller;
+package es.webapp6.padelante.controller;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;

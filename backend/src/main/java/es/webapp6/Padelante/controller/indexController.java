@@ -1,4 +1,4 @@
-package es.webapp6.Padelante.controller;
+package es.webapp6.padelante.controller;
 
 import java.security.Principal;
 import java.util.List;
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import es.webapp6.Padelante.model.Match;
-import es.webapp6.Padelante.model.Tournament;
-import es.webapp6.Padelante.model.User;
-import es.webapp6.Padelante.service.MatchService;
-import es.webapp6.Padelante.service.TournamentService;
-import es.webapp6.Padelante.service.UserService;
+import es.webapp6.padelante.model.Match;
+import es.webapp6.padelante.model.Tournament;
+import es.webapp6.padelante.model.User;
+import es.webapp6.padelante.service.MatchService;
+import es.webapp6.padelante.service.TournamentService;
+import es.webapp6.padelante.service.UserService;
 
 @Controller
 public class indexController {

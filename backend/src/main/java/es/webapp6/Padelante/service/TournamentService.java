@@ -1,4 +1,4 @@
-package es.webapp6.Padelante.service;
+package es.webapp6.padelante.service;
 
 
 import java.sql.Date;
@@ -12,13 +12,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import es.webapp6.Padelante.model.Match;
-import es.webapp6.Padelante.model.Team;
-import es.webapp6.Padelante.model.Tournament;
-import es.webapp6.Padelante.model.User;
-import es.webapp6.Padelante.repositories.MatchRepository;
-import es.webapp6.Padelante.repositories.TeamRepository;
-import es.webapp6.Padelante.repositories.TournamentRepository;
+import es.webapp6.padelante.model.Match;
+import es.webapp6.padelante.model.Team;
+import es.webapp6.padelante.model.Tournament;
+import es.webapp6.padelante.model.User;
+import es.webapp6.padelante.repositories.MatchRepository;
+import es.webapp6.padelante.repositories.TeamRepository;
+import es.webapp6.padelante.repositories.TournamentRepository;
 
 
 @Service

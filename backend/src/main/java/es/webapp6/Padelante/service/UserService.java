@@ -1,4 +1,4 @@
-package es.webapp6.Padelante.service;
+package es.webapp6.padelante.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +10,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import es.webapp6.Padelante.model.Team;
-import es.webapp6.Padelante.model.User;
-import es.webapp6.Padelante.repositories.UserRepository;
+import es.webapp6.padelante.model.Team;
+import es.webapp6.padelante.model.User;
+import es.webapp6.padelante.repositories.UserRepository;
 
 @Service 
 public class UserService {

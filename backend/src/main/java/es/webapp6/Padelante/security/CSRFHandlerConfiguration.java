@@ -1,4 +1,4 @@
-package es.webapp6.Padelante.security;
+package es.webapp6.padelante.security;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

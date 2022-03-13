@@ -1,4 +1,4 @@
-package es.webapp6.Padelante.controller;
+package es.webapp6.padelante.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import es.webapp6.Padelante.service.UserService;
+import es.webapp6.padelante.service.UserService;
 
 @Controller
 public class LoginWebController {

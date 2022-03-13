@@ -1,4 +1,4 @@
-package es.webapp6.Padelante.security;
+package es.webapp6.padelante.security;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import es.webapp6.Padelante.model.User;
-import es.webapp6.Padelante.repositories.UserRepository;
+import es.webapp6.padelante.model.User;
+import es.webapp6.padelante.repositories.UserRepository;
 
 @Service
 public class RepositoryUserDetailsService implements UserDetailsService {

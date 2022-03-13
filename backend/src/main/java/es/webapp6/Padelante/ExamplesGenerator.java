@@ -1,4 +1,4 @@
-package es.webapp6.Padelante;
+package es.webapp6.padelante;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,13 +7,14 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import es.webapp6.Padelante.model.Team;
-import es.webapp6.Padelante.model.Tournament;
-import es.webapp6.Padelante.model.User;
-import es.webapp6.Padelante.repositories.TeamRepository;
-import es.webapp6.Padelante.repositories.TournamentRepository;
-import es.webapp6.Padelante.repositories.UserRepository;
-import es.webapp6.Padelante.service.TournamentService;
+
+import es.webapp6.padelante.model.Team;
+import es.webapp6.padelante.model.Tournament;
+import es.webapp6.padelante.model.User;
+import es.webapp6.padelante.repositories.TeamRepository;
+import es.webapp6.padelante.repositories.TournamentRepository;
+import es.webapp6.padelante.repositories.UserRepository;
+import es.webapp6.padelante.service.TournamentService;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.core.io.ClassPathResource;

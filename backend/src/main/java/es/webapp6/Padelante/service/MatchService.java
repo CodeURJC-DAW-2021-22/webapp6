@@ -1,4 +1,4 @@
-package es.webapp6.Padelante.service;
+package es.webapp6.padelante.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,12 +7,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.webapp6.Padelante.repositories.MatchRepository;
-import es.webapp6.Padelante.repositories.UserRepository;
-import es.webapp6.Padelante.model.Match;
-import es.webapp6.Padelante.model.Team;
-import es.webapp6.Padelante.model.Tournament;
-import es.webapp6.Padelante.model.User;
+import es.webapp6.padelante.model.Match;
+import es.webapp6.padelante.model.Team;
+import es.webapp6.padelante.model.Tournament;
+import es.webapp6.padelante.model.User;
+import es.webapp6.padelante.repositories.MatchRepository;
+import es.webapp6.padelante.repositories.UserRepository;
 
 @Service
 public class MatchService {

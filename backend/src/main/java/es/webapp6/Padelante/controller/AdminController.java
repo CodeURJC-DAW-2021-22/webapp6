@@ -1,4 +1,4 @@
-package es.webapp6.Padelante.controller;
+package es.webapp6.padelante.controller;
 
 import java.security.Principal;
 import java.util.List;
@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,15 +16,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import es.webapp6.Padelante.model.Match;
-import es.webapp6.Padelante.model.Tournament;
-import es.webapp6.Padelante.model.User;
-import es.webapp6.Padelante.service.MatchService;
-import es.webapp6.Padelante.service.TournamentService;
-import es.webapp6.Padelante.service.UserService;
+import es.webapp6.padelante.model.Match;
+import es.webapp6.padelante.model.Tournament;
+import es.webapp6.padelante.model.User;
+import es.webapp6.padelante.service.MatchService;
+import es.webapp6.padelante.service.TournamentService;
+import es.webapp6.padelante.service.UserService;
 
 @Controller
 public class AdminController {
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
     @Autowired
 	private TournamentService tournamentService;	
 
@@ -78,6 +82,7 @@ public class AdminController {
 		Optional<User> user = userService.findById(id);
 		if (user.isPresent() && user.get().getStatus()) {
 			user.get().setStatus(false);
+			user.get().setEncodedPassword(passwordEncoder.encode("ThisUserHasBeenDeleted"));
 			userService.save(user.get());
 		}
 		return "redirect:/admin";

@@ -1,4 +1,4 @@
-package es.webapp6.Padelante.repositories;
+package es.webapp6.padelante.repositories;
 
 import java.util.Optional;
 
@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import es.webapp6.Padelante.model.User;
+import es.webapp6.padelante.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 

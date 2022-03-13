@@ -57,20 +57,24 @@
               <a class="button btn-tournament upper-text my-1" href="#"><i class="ri-heart-3-fill pe-1"></i> Seguir</a>
             </div> -->
             {{#logged}}
+            {{^hasStarted}}
+            {{^isInTournament}}
             <div class="d-flex justify-content-end">
               <a class="d-inline button btn-tournament upper-text my-1" href="#" data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop">
                 <i class="ri-edit-fill pe-1"></i> Incribirse
               </a>
             </div>
+            {{/isInTournament}}
+            {{/hasStarted}}
             {{#hasStarted}}
-            {{#canDownloadPDF}}
+            {{#isInTournament}}
             <div class="d-flex justify-content-end">
               <button class="generarPDF d-inline button btn-tournament upper-text my-1" id="PDFWinner" onclick="genPdf()">
                 <i class="ri-file-download-fill"></i> Descargar PDF
               </button>
             </div>
-            {{/canDownloadPDF}}
+            {{/isInTournament}}
             {{/hasStarted}}
            
             {{#owner}}
@@ -660,17 +664,30 @@
                 <label for="participants" class="col-md-4 col-lg-3 col-form-label">Participantes</label>
                 <div class="col-md-8 col-lg-9">
                   <select class="form-select" id="participants" disabled>
-                    <option value="1">2</option>
-                    <option value="2">4</option>
-                    <option value="3">8</option>
-                    <option value="4">16</option>
-                    <option selected value="5">32</option>
-                    <option value="6">64</option>
-                    <option value="7">128</option>
+                    <option selected value="1">{{tourns.numParticipants}}</option>
                   </select>
                 </div>
               </div>
 
+              {{^hasStarted}}
+              <div class="row mb-3">
+                <label for="inscription-date" class="col-md-4 col-lg-3 col-form-label">Fin de inscripciones</label>
+                <div class="col-md-8 col-lg-9">
+                  <input name="inscriptionDate" type="datetime-local" class="form-control" id="inscription-date"
+                    value="{{tourns.inscriptionDate}}">
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="start-date" class="col-md-4 col-lg-3 col-form-label">Inicio del torneo</label>
+                <div class="col-md-8 col-lg-9">
+                  <input name="startDate" type="datetime-local" class="form-control" id="start-date"
+                    value="{{tourns.startDate}}">
+                </div>
+              </div>
+              {{/hasStarted}}
+
+              {{#hasStarted}}
               <div class="row mb-3">
                 <label for="inscription-date" class="col-md-4 col-lg-3 col-form-label">Fin de inscripciones</label>
                 <div class="col-md-8 col-lg-9">
@@ -678,7 +695,7 @@
                     value="{{tourns.inscriptionDate}}" disabled>
                 </div>
               </div>
-
+              
               <div class="row mb-3">
                 <label for="start-date" class="col-md-4 col-lg-3 col-form-label">Inicio del torneo</label>
                 <div class="col-md-8 col-lg-9">
@@ -686,6 +703,7 @@
                     value="{{tourns.startDate}}" disabled>
                 </div>
               </div>
+              {{/hasStarted}}
 
               <div class="row mb-3">
                 <label for="seeding" class="col-md-4 col-lg-3 col-form-label">Seeding</label>
@@ -696,6 +714,7 @@
                   </select>
                 </div>
               </div>
+              
 
               <div class="row mb-3">
                 <label for="visibility" class="col-md-4 col-lg-3 col-form-label">Visibilidad</label>

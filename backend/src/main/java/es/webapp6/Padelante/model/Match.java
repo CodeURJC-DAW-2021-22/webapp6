@@ -1,4 +1,4 @@
-package es.webapp6.Padelante.model;
+package es.webapp6.padelante.model;
 
 import java.util.ArrayList;
 import javax.persistence.Entity;

@@ -1,4 +1,4 @@
-package es.webapp6.Padelante.model;
+package es.webapp6.padelante.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

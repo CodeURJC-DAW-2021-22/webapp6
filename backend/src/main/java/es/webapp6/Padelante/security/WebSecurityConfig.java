@@ -1,4 +1,4 @@
-package es.webapp6.Padelante.security;
+package es.webapp6.padelante.security;
 
 import java.security.SecureRandom;
 

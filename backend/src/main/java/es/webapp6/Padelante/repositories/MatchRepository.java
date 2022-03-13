@@ -1,12 +1,13 @@
-package es.webapp6.Padelante.repositories;
+package es.webapp6.padelante.repositories;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import es.webapp6.Padelante.model.Match;
-import es.webapp6.Padelante.model.Team;
-import es.webapp6.Padelante.model.Tournament;
-import es.webapp6.Padelante.model.User;
+
+import es.webapp6.padelante.model.Match;
+import es.webapp6.padelante.model.Team;
+import es.webapp6.padelante.model.Tournament;
+import es.webapp6.padelante.model.User;
 
 public interface MatchRepository extends JpaRepository<Match,Long> {
 

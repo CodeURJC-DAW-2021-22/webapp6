@@ -1,4 +1,4 @@
-package es.webapp6.Padelante;
+package es.webapp6.padelante;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
