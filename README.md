@@ -240,12 +240,12 @@
   
   ```mvn spring-boot:run```
   
-  Si queremos ejecutar la app web con el .jar, debemos tener instaldo un java JRA y usar el siguiente comando desde la carpeta target:
+ <!-- Si queremos ejecutar la app web con el .jar, debemos tener instaldo un java JRA y usar el siguiente comando desde la carpeta target:
   
   ```$ java -jar Padelante-0.0.1-SNAPSHOT.jar```
-  Para finalizar la aplicación ejecutar Ctrl+C en la consola
   
-  ```mvn spring-boot:run```
+  Para finalizar la aplicación ejecutar Ctrl+C en la consola -->
+  
   
   Los usuarios principales son:
   - Usuario: ```user```, Contraseña: ```pass```
