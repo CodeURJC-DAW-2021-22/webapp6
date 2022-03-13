@@ -137,6 +137,7 @@
 - **Álvaro González:**
 
   - Descripción de tareas:
+  
     En los HTML, me he encargado de incorporar la notación Mustache en aquellos sitios en los que correspondia. También, me he encador de el procesado de imágenes, así como de las tareas relaccionadas con dichas imágenes como puede ser la actualizadion, borrado o subida de imágenes. Por otro lado también me he encargado de controlar los resultados que los usuarios metían en relacion a los partidos. 
     
     En cuanto a los gráficos, me he encargado del correspondiente al número de victorias y derrotas, haciendo para ello uso de JavaScript. Por último, he sido el encargado de implementar la generación de un PDF para aquellos usuarios que participasen en un torneo.
@@ -144,27 +145,27 @@
 
   - Commits más significativos:
   
-  https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/e06fdb77ea31102b529522eab15f2ff1fb051315
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/e06fdb77ea31102b529522eab15f2ff1fb051315
   
-  https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/99a520d2b024a0697d17eee668651eec91dd4a84
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/99a520d2b024a0697d17eee668651eec91dd4a84
   
-  https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/b0cf10a29e90605d3384470bdad9924490956e4f
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/b0cf10a29e90605d3384470bdad9924490956e4f
   
-  https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/1f0aaf2da6dd963b1cdb7755f37f2d5d4028d398
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/1f0aaf2da6dd963b1cdb7755f37f2d5d4028d398
   
-  https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/575b0c2690ebaa10f91e9aaf79bb8271ffb1e5d6
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/575b0c2690ebaa10f91e9aaf79bb8271ffb1e5d6
       
   - Ficheros más relevantes:
   
-  https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/Padelante/controller/errorController.java
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/Padelante/controller/errorController.java
   
-  https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/Padelante/model/User.java
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/Padelante/model/User.java
   
-  https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/Padelante/service/UserService.java
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/Padelante/service/UserService.java
   
-  https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/resources/static/assets/js/generatePDF.js
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/resources/static/assets/js/generatePDF.js
   
-  https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/Padelante/model/Tournament.java
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/Padelante/model/Tournament.java
     
     
 
@@ -184,26 +185,33 @@
 
 - **Silvia Ventura:**
 
- - Descripción de tareas:
-  Me he encargado de la parte inicial de seguridad de la aplicación, creando todos los ficheros necesarios y modificando lo necesario.En los HTML, he implementado AJAX en la parte de mostrar mis torneos en la página de usuario y la de mostrar los torneos en la página de admin.
-  En lo que respecta a los diagramas, he hecho el diagrama con las entidades de la base datos y el diagrama de clases y templates.
-  
+  - Descripción de tareas:
+ 
+    Me he encargado de la parte inicial de seguridad de la aplicación, creando todos los ficheros necesarios y modificando lo necesario.En los HTML, he implementado AJAX en la parte de mostrar mis torneos en la página de usuario y la de mostrar los torneos en la página de admin.
     
-    
+    En lo que respecta a los diagramas, he hecho el diagrama con las entidades de la base datos y el diagrama de clases y templates.
 
   - Commits más significativos:
+  
      https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/51bc98d927cbc98eec443a711408ac56b654ab91
-     https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/e86ebebd7ce58cec31a28554cbea1e62b200b9be
-     https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/0b60d98071603ac9096c06050bf869853d8cc8c2
-     https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/941d340390899c1e38c65a7dcf0d2af7462a0802
-      https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/305221ad6bcee372f3cc1245d78fc689b29a2430
      
-    
+     https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/e86ebebd7ce58cec31a28554cbea1e62b200b9be
+     
+     https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/0b60d98071603ac9096c06050bf869853d8cc8c2
+     
+     https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/941d340390899c1e38c65a7dcf0d2af7462a0802
+     
+     https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/305221ad6bcee372f3cc1245d78fc689b29a2430
 
   - Ficheros más relevantes:
+  
     https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/java/es/webapp6/Padelante/security/CSRFHandlerConfiguration.java
+    
     https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/java/es/webapp6/Padelante/security/RepositoryUserDetailsService.java
+    
     https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/java/es/webapp6/Padelante/security/WebSecurityConfig.java
+    
     https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/java/es/webapp6/Padelante/service/TournamentService.java
+    
     https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/Padelante/controller/indexController.java
     
