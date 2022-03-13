@@ -150,35 +150,35 @@ public class ExamplesGenerator {
 
 		Tournament tournament = new Tournament("Torneo la turra", 16,
 				"Participa en el torneo de la turra y gana el prestigioso torneo donde se apuntan los mejores padeleros del momento",
-				"Este torneo sigue las reglas oficiales del padel", "Madrid", fecha1, fecha2, "Simple Tournament",
+				"Este torneo sigue las reglas oficiales del padel", "Madrid", fecha1, fecha2, 
 				"user");
 		Tournament tournament1 = new Tournament("Torneo Iberian Cup", 4, "Torneo peninsular donde juegan los mejores",
 				"Este torneo sigue las reglas oficiales del padel español", "Mostoles", fecha3, fecha4,
-				"Simple Tournament", "user");
+				 "user");
 		Tournament tournament2 = new Tournament("Torneo la Lora", 4, "Ven y juega",
-				"Este torneo sigue las reglas oficiales del padel", "Sevilla", fecha5, fecha6, "Simple Tournament",
+				"Este torneo sigue las reglas oficiales del padel", "Sevilla", fecha5, fecha6, 
 				"user");
 		Tournament tournament3 = new Tournament("Copa Pistón", 8, "Ven y juega las icónica copa de Cars, la película",
 				"Este torneo sigue las reglas oficiales del padel español", "Valencia", fecha1, fecha2,
-				"Simple Tournament", "user");
+				 "user");
 		Tournament tournament4 = new Tournament("Copa Arcoirirs", 16, "Ven y enfrentate a nuestros rivales en la copa más colorida",
 				"Este torneo sigue las reglas oficiales del padel español", "Madrid", fecha3, fecha4,
-				"Simple Tournament", "admin");
+				 "admin");
 		Tournament tournament5 = new Tournament("Copa Alonso", 8, "Copa a toda velocidad, copa Alonso. Patrocinada por Fernando Alonso",
 				"Este torneo sigue las reglas oficiales del padel español", "Ciudad Real", fecha5, fecha6,
-				"Simple Tournament", "admin");
+				 "admin");
 		Tournament tournament6 = new Tournament("Copa de vino", 16, "Ven a jugar y disfruta después de una cata de vinos",
 				"Este torneo sigue las reglas oficiales del padel español", "La Rioja", fecha1, fecha2,
-				"Simple Tournament", "admin");
+				 "admin");
 		Tournament tournament7 = new Tournament("Copa aquí copa allá", 16,
 				"Este torneo sigue las reglas oficiales del padel español", "Y mírate y mírate...", "Almeria", fecha3, fecha4,
-				"Simple Tournament", "admin");
+				 "admin");
 		Tournament tournament8 = new Tournament("Torneo benefico XIX", 16,
 				"Este torneo sigue las reglas oficiales del padel español", "Torneo con causa benefica, todos los ingresos genereados serán donados",
-				 "Barcelona", fecha5, fecha6,"Simple Tournament", "admin");
+				 "Barcelona", fecha5, fecha6, "admin");
 		Tournament tournament9 = new Tournament("Copa caliz de fuego", 2, "Solo podrán participar los mayores de 16, aquellos que ganen conseguirán la fama eterna.", 
 				"Este torneo sigue las reglas oficiales del padel español", "Vitoria", fecha1, fecha2,
-				"Simple Tournament", "admin");
+				 "admin");
 
 		setTournamentImage(tournament, "/examples/copaTurra.jpg");
 		setTournamentImage(tournament1, "/examples/iberianCup.jpg");

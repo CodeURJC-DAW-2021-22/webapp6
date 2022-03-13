@@ -34,11 +34,6 @@ public class TournamentService {
 	private TeamRepository teams;
 	
 
-	public Page<Tournament> listTournamentPageable(){
-		return tournaments.findAllTournaments(PageRequest.of(0, 6));
-	}
-
-
 	public Page<Tournament> getTournaments(int page) {
 		return tournaments.findAllTournaments(PageRequest.of(page, 6));
 	}
@@ -76,7 +71,7 @@ public class TournamentService {
     public void createTournament(String tournamentName, int numParticipants,
     String about,String ruleset,String location,Date inscriptionDate,
         Date startDate,String format,String owner){
-        Tournament t1 = new Tournament(tournamentName, numParticipants,about,ruleset,location,inscriptionDate,startDate,format,owner);
+        Tournament t1 = new Tournament(tournamentName, numParticipants,about,ruleset,location,inscriptionDate,startDate,owner);
         tournaments.save(t1);
     }
 

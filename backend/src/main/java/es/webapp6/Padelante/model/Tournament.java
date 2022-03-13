@@ -28,7 +28,6 @@ public class Tournament {
     private String location;
     private Date inscriptionDate;
     private Date startDate;
-    private String format;
    
     @Lob
 	private Blob imageFile;
@@ -42,7 +41,7 @@ public class Tournament {
 
     public Tournament(String tournamentName, int numParticipants,
     String about,String ruleset,String location,Date inscriptionDate,
-        Date startDate,String format, String owner
+        Date startDate, String owner
         ) {
                 super();
                 this.tournamentName=tournamentName;
@@ -54,7 +53,6 @@ public class Tournament {
                 this.location= location;
                 this.inscriptionDate=inscriptionDate;
                 this.startDate=startDate;
-                this.format=format;
                 this.owner = owner;
               
     }
@@ -151,14 +149,6 @@ public class Tournament {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
         Date date = (Date)formatter.parse(startDate); 
         this.startDate = date;
-    }
-
-    public String getFormat() {
-        return format;
-    }
-
-    public void setFormat(String format) {
-        this.format = format;
     }
 
     public Blob getImageFile() {
