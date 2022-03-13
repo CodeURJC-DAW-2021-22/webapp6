@@ -138,7 +138,7 @@
 
   - Descripción de tareas:
   
-    En los HTML, me he encargado de incorporar la notación Mustache en aquellos sitios en los que correspondía. También, me he encargado del procesado de imágenes, así como de las tareas relaccionadas con dichas imágenes como puede ser la actualizadion, borrado o subida de imágenes. Por otro lado, también me he encargado de controlar la validez de los resultados que los usuarios metían en los partidos y de los formularios de actualización de datos de torneos y usuarios.
+    En los HTML, me he encargado de incorporar la notación Mustache en aquellos sitios en los que correspondía. También, me he encargado del procesado de imágenes, así como de las tareas relaccionadas con dichas imágenes como puede ser la actualización, borrado o subida de imágenes. Por otro lado, también me he encargado de controlar la validez de los resultados que los usuarios metían en los partidos y de los formularios de actualización de datos de torneos y usuarios. A su vez, me encargué de la implementación de la página de error.
     
     En cuanto a los gráficos, me he encargado del correspondiente al número de victorias y derrotas, haciendo para ello uso de JavaScript. Por último, he sido el encargado de implementar la generación de un PDF para aquellos usuarios que participasen en un torneo.
     
@@ -170,15 +170,33 @@
 
   - Descripción de tareas:
     
+    Fui el responsable de crear la página HTML del partido, donde cualquier jugador puede introducir un resultado.También me encargué de la pestaña "Mis torneos" del perfil, donde un usuario registrado puede ver los torneos a los que está apuntado.
     
+    A nivel de Backend, implementé las clases iniciales de Torneo, Equipo y partido, así como sus repositorios. Implementé la clase que genera los datos de ejemplo para poder probar la aplicación. Fui, a su vez, responsable de la creación del algoritmo de puntuación de jugadores, conocido como karma, que se va modificando en función del nivel de los rivales contra los que se pierde o gana, así como del número de partidos que un jugador lleva. Asociado a la lógica del karma, también me encargue de la visualización del histórico del karma en el perfil del usuario.    
 
   - Commits más significativos:
+  
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/548c3f9c2bb47cc57722cca0efe65bae961ac088
     
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/088e8f5f8ff56871f6f2e414cdfe5673266c59ed?diff=split
     
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/70e61f9724bc1cbf6699a5fd6c2335134b3a54b1
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/56377530a30d09893822509a8aeb60c2776cafa4
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/b45d8f1311fd861a9c51628136ded2524a95344c
 
   - Ficheros más relevantes:
+
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/java/es/webapp6/Padelante/service/MatchService.java
     
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/java/es/webapp6/Padelante/ExamplesGenerator.java
     
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/java/es/webapp6/Padelante/service/UserService.java
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/resources/templates/match.html
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/resources/static/assets/js/karma.js
 
 - **Silvia Ventura:**
 
@@ -215,7 +233,7 @@
 ## Intrucciones de ejecución
 
   Para la apliación se usa:
-  - Java ```15```
+  - Java ```17```
   - PostgreSQL ```14.2``` 
   - SpringBoot ```2.6.3```
 
