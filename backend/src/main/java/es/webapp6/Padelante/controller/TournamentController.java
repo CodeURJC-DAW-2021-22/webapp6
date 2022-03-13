@@ -3,6 +3,7 @@ package es.webapp6.padelante.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -189,8 +190,8 @@ public class TournamentController {
 
 	@PostMapping("/update_tourns/{id}")
 	public String updateTournament(Model model, @PathVariable long id , @RequestParam String name, @RequestParam String about,
-	@RequestParam String ruleset, @RequestParam String location, boolean removeImage, 
-	MultipartFile imageField) throws IOException, SQLException{
+	@RequestParam String ruleset, @RequestParam String location, @RequestParam String inscriptionDate, @RequestParam String startDate, boolean removeImage, 
+	MultipartFile imageField) throws IOException, SQLException, ParseException{
 		
 		Optional<Tournament> tournament = tournamentService.findById(id);
 
@@ -200,6 +201,12 @@ public class TournamentController {
 			tournament.get().setAbout(about);
 			tournament.get().setRuleset(ruleset);
 			tournament.get().setLocation(location);
+			if (!inscriptionDate.equals("")){
+				tournament.get().setInscriptionDate(inscriptionDate);
+			}
+			if (!startDate.equals("")){
+				tournament.get().setStartDate(startDate);;
+			}
 			tournamentService.save(tournament.get());
 			return "redirect:/tourns/{id}";
 		} else {

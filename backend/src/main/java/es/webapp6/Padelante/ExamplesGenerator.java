@@ -66,17 +66,17 @@ public class ExamplesGenerator {
 		User user9 = new User("Sara", passwordEncoder.encode("pass"), "sara@correo.com", "Sara Gonzalez", "USER");
 		User user10 = new User("Diego", passwordEncoder.encode("pass"), "diego@correo.com", "Diego del Amo", "USER");
 
-		User user11 = new User("Paco1", passwordEncoder.encode("pass"), "paco@correo.com", "Paco Navarro", "USER");
-		User user12 = new User("KevinAnd1", passwordEncoder.encode("pass"), "kevinand@correo.com", "Kevin Anderson",
+		User user11 = new User("Pepe", passwordEncoder.encode("pass"), "pepe@correo.com", "Pepe Navarro", "USER");
+		User user12 = new User("Francis", passwordEncoder.encode("pass"), "francis@correo.com", "Francis Anderson",
 				"USER");
-		User user13 = new User("Dani1", passwordEncoder.encode("pass"), "dani@correo.com", "Daniel Haro", "USER");
-		User user14 = new User("Ruben1", passwordEncoder.encode("pass"), "ruben@correo.com", "Ruben Catalan", "USER");
-		User user15 = new User("Silvia1", passwordEncoder.encode("pass"), "silvia@correo.com", "Silvia Ventura",
+		User user13 = new User("Daniela", passwordEncoder.encode("pass"), "daniela@correo.com", "Daniela Murcia", "USER");
+		User user14 = new User("Rubenchu", passwordEncoder.encode("pass"), "rubenchu@correo.com", "Rubenchu Medina", "USER");
+		User user15 = new User("Salvador", passwordEncoder.encode("pass"), "salvador@correo.com", "Salvador Cabrejas",
 				"USER");
-		User user16 = new User("Alvaro1", passwordEncoder.encode("pass"), "alvaro@correo.com", "Alvaro Gonzalez",
+		User user16 = new User("Paquito", passwordEncoder.encode("pass"), "paquito@correo.com", "Paquito Gonzalez",
 				"USER");
-		User user17 = new User("Sara1", passwordEncoder.encode("pass"), "sara@correo.com", "Sara Gonzalez", "USER");
-		User user18 = new User("Diego1", passwordEncoder.encode("pass"), "diego@correo.com", "Diego del Amo", "USER");
+		User user17 = new User("Alex", passwordEncoder.encode("pass"), "alex@correo.com", "Alex Terroba", "USER");
+		User user18 = new User("Almudena", passwordEncoder.encode("pass"), "almudena@correo.com", "Almudena Arias", "USER");
 
 		ArrayList<Integer> array = user1.getHistoricalKarma();
 		array.add(600);
