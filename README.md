@@ -138,11 +138,10 @@
 
   - Descripción de tareas:
   
-    En los HTML, me he encargado de incorporar la notación Mustache en aquellos sitios en los que correspondia. También, me he encador de el procesado de imágenes, así como de las tareas relaccionadas con dichas imágenes como puede ser la actualizadion, borrado o subida de imágenes. Por otro lado también me he encargado de controlar los resultados que los usuarios metían en relacion a los partidos. 
+    En los HTML, me he encargado de incorporar la notación Mustache en aquellos sitios en los que correspondía. También, me he encargado del procesado de imágenes, así como de las tareas relaccionadas con dichas imágenes como puede ser la actualizadion, borrado o subida de imágenes. Por otro lado, también me he encargado de controlar la validez de los resultados que los usuarios metían en los partidos y de los formularios de actualización de datos de torneos y usuarios.
     
     En cuanto a los gráficos, me he encargado del correspondiente al número de victorias y derrotas, haciendo para ello uso de JavaScript. Por último, he sido el encargado de implementar la generación de un PDF para aquellos usuarios que participasen en un torneo.
     
-
   - Commits más significativos:
   
     https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/e06fdb77ea31102b529522eab15f2ff1fb051315
@@ -166,8 +165,6 @@
     https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/resources/static/assets/js/generatePDF.js
   
     https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/Padelante/model/Tournament.java
-    
-    
 
 - **Daniel Haro:**
 
