@@ -81,9 +81,11 @@ public class AdminController {
 
 		Optional<User> user = userService.findById(id);
 		if (user.isPresent() && user.get().getStatus()) {
+			//MOVER A SERVICE
 			user.get().setStatus(false);
 			user.get().setEncodedPassword(passwordEncoder.encode("ThisUserHasBeenDeleted"));
 			userService.save(user.get());
+			//MOVER A SERVICE
 		}
 		return "redirect:/admin";
 	}
