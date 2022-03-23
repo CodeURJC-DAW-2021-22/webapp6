@@ -1,14 +1,18 @@
 package es.webapp6.padelante.service;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import es.webapp6.padelante.model.Team;
 import es.webapp6.padelante.model.User;
@@ -46,15 +50,25 @@ public class UserService {
 		return userRepository.existsById(id);
 	}
 
-    public void delete(long id) {
+    // public void delete(long id) {
+    //     Optional<User> user = userRepository.findById(id);
+    //     List<Team> playerTeams = teamService.getPlayerTeams(user.get());
+	// 		for(int i = 0; i<playerTeams.size();i++){
+	// 			playerTeams.get(i).setUserA(userRepository.findByName("none").get());
+	// 			playerTeams.get(i).setUserB(userRepository.findByName("none").get());
+	// 			teamService.save(playerTeams.get(i));
+	// 		}
+	// 	userRepository.deleteById(id);
+	// }
+	 public void delete(long id) {
         Optional<User> user = userRepository.findById(id);
-        List<Team> playerTeams = teamService.getPlayerTeams(user.get());
-			for(int i = 0; i<playerTeams.size();i++){
-				playerTeams.get(i).setUserA(userRepository.findByName("none").get());
-				playerTeams.get(i).setUserB(userRepository.findByName("none").get());
-				teamService.save(playerTeams.get(i));
-			}
-		userRepository.deleteById(id);
+		if (user.isPresent() && user.get().getStatus()) {
+			//MOVER A SERVICE
+			user.get().setStatus(false);
+			user.get().setEncodedPassword(passwordEncoder.encode("ThisUserHasBeenDeleted"));
+			userRepository.save(user.get());
+			//MOVER A SERVICE
+		}
 	}
 
 	public void calculateKarma(double karmaFromMatch, boolean winner, User user) {        
@@ -92,6 +106,10 @@ public class UserService {
 		return userRepository.findById(id);
 	}
 
+	public List<User> findAll(){
+		return userRepository.findAll();
+	}
+
     
 
     public Page<User> listUserPageable(){
@@ -109,4 +127,24 @@ public class UserService {
 	public Page<User> findPairsOf(int page, User user){
 		return userRepository.findPairsOf(PageRequest.of(page, 4), user);
 	}
+
+	// public void updateImageProfile(User user, boolean removeImage, MultipartFile imageField) throws IOException, SQLException {
+		
+	// 	if (!imageField.isEmpty()) {
+	// 		user.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
+	// 		user.setImage(true);
+	// 	} else {
+	// 		if (removeImage) {
+	// 			user.setImageFile(null);
+	// 			user.setImage(false);
+	// 		} else {
+	// 			User dbUser = userRepository.findById(user.getId()).orElseThrow();
+	// 			if (dbUser.getImage()) {
+	// 				user.setImageFile(BlobProxy.generateProxy(dbUser.getImageFile().getBinaryStream(),
+	// 				dbUser.getImageFile().length()));
+	// 					user.setImage(true);
+	// 			}
+	// 		}
+	// 	}
+	// }
 }

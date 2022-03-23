@@ -13,6 +13,7 @@ import java.sql.Blob;
 import javax.persistence.Lob;
 
 
+
 @Entity(name = "UserTable")
 public class User {
 
