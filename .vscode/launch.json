@@ -21,6 +21,17 @@
             "projectName": "padelante",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PadelanteApplication<Padelante>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "es.webapp6.padelante.PadelanteApplication",
+            "projectName": "Padelante",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
