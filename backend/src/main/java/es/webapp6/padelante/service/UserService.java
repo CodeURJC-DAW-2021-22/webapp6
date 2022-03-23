@@ -42,6 +42,10 @@ public class UserService {
 		return userRepository.findByName(name);
 	}
 
+	public boolean exist(long id) {
+		return userRepository.existsById(id);
+	}
+
     public void delete(long id) {
         Optional<User> user = userRepository.findById(id);
         List<Team> playerTeams = teamService.getPlayerTeams(user.get());

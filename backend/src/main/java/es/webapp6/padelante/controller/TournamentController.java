@@ -89,6 +89,18 @@ public class TournamentController {
 		return "redirect:/";
 	}
 
+	@GetMapping("/removeTournament/{id}")
+	public String removeTournament(Model model, @PathVariable long id) {
+
+		Optional<Tournament> tourn = tournamentService.findById(id);
+		if (tourn.isPresent()) {
+			model.addAttribute("removedTournament", tourn.get());
+			tournamentService.delete(id);
+			
+		}
+		return "redirect:/admin";
+	}
+
     @GetMapping("/tourns/{id}")
 	public String showTournament(Model model, @PathVariable long id, @RequestParam(required = false) Integer page, HttpServletRequest request) {
 		

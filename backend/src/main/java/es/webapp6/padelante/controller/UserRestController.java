@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +14,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import es.webapp6.padelante.model.Match;
@@ -33,8 +33,9 @@ import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 
-@Controller
-public class UserController {
+@RestController
+@RequestMapping("/api")
+public class UserRestController {
     @Autowired
 	private TournamentService tournamentService;	
 
@@ -46,21 +47,18 @@ public class UserController {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+
+	//Teacher example
+	// @GetMapping("/me")
+	// public ResponseEntity<User> me(HttpServletRequest request) {
+	// 	Principal principal = request.getUserPrincipal();
+	// 	if(principal != null) {
+	// 		return ResponseEntity.ok(userService.findByName(principal.getName()).orElseThrow());
+	// 	} else {
+	// 		return ResponseEntity.notFound().build();
+	// 	}
+	// }
     
-
-	@ModelAttribute
-	public void addAttributes(Model model, HttpServletRequest request) {
-		Principal principal = request.getUserPrincipal();
-		if (principal != null) {
-			model.addAttribute("logged", true);
-			model.addAttribute("userName", principal.getName());
-			model.addAttribute("admin", request.isUserInRole("ADMIN"));
-		} else {
-			model.addAttribute("logged", false);
-		}
-	}
-
-
 	@GetMapping("/register")
     public String register(Model model) {
 		model.addAttribute("u", true);
