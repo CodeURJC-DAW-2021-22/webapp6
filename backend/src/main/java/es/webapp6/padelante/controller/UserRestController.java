@@ -3,24 +3,29 @@ package es.webapp6.padelante.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.net.URI;
 
 import javax.servlet.http.HttpServletRequest;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
+import org.springframework.http.HttpStatus;
 import es.webapp6.padelante.model.Match;
 import es.webapp6.padelante.model.Tournament;
 import es.webapp6.padelante.model.User;
@@ -30,11 +35,16 @@ import es.webapp6.padelante.service.UserService;
 
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 
+import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
+
+
+
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/users")
 public class UserRestController {
     @Autowired
 	private TournamentService tournamentService;	
@@ -44,54 +54,63 @@ public class UserRestController {
 
     @Autowired
 	private UserService userService;
-
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-
-	//Teacher example
-	// @GetMapping("/me")
-	// public ResponseEntity<User> me(HttpServletRequest request) {
-	// 	Principal principal = request.getUserPrincipal();
-	// 	if(principal != null) {
-	// 		return ResponseEntity.ok(userService.findByName(principal.getName()).orElseThrow());
-	// 	} else {
-	// 		return ResponseEntity.notFound().build();
-	// 	}
-	// }
-    
-	@GetMapping("/register")
-    public String register(Model model) {
-		model.addAttribute("u", true);
-        return "register";
-    }
-
-    @PostMapping("/register")
-    public String newRegister(Model model, @RequestParam String name, @RequestParam String encodedPassword,@RequestParam String email,
-	@RequestParam String realName){
-		
-		if(userService.findByName(name).isPresent()){
-			model.addAttribute("u", false);
-			return "register";
-		}else{
-			userService.registerNewUser(name, encodedPassword,email,realName);
-			return "redirect:/";	
+	
+	//who is conected
+	@GetMapping("/me")
+	public ResponseEntity<User> me(HttpServletRequest request) {
+		Principal principal = request.getUserPrincipal();
+		if(principal != null) {
+			return ResponseEntity.ok(userService.findByName(principal.getName()).orElseThrow());
+		} else {
+			return ResponseEntity.notFound().build();
 		}
-    }
-
-	@GetMapping("/removeUser/{id}")
-	public String removeUser(Model model, @PathVariable long id) {
-
-		Optional<User> user = userService.findById(id);
-		if (user.isPresent() && user.get().getStatus()) {
-			//MOVER A SERVICE
-			user.get().setStatus(false);
-			user.get().setEncodedPassword(passwordEncoder.encode("ThisUserHasBeenDeleted"));
-			userService.save(user.get());
-			//MOVER A SERVICE
-		}
-		return "redirect:/admin";
 	}
 
+	//get all users
+	@GetMapping("/all")
+	public Collection<User> getPosts() {
+		return userService.findAll();
+	}
+
+	//get user by id
+	@GetMapping("/{id}")
+	public ResponseEntity<Optional<User>> getPost(@PathVariable long id) {
+
+		Optional<User> user = userService.findById(id);
+
+		if (user != null) {
+			return ResponseEntity.ok(user);
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+    
+
+	//Register new user. Can be done better, but idk how to check user params
+	
+	@PostMapping("/register")
+	@ResponseStatus (HttpStatus.CREATED)
+	public User registerNewUser(@RequestBody User user) {
+
+		userService.save(user);
+
+		return user;
+	}
+
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<User> deleteUser(@PathVariable long id) {
+
+		try {
+			userService.delete(id);
+			return new ResponseEntity<>(null, HttpStatus.OK);
+
+		} catch (EmptyResultDataAccessException e) {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+	}
+
+	//not done yet
 	@GetMapping("/admin")
     public String admin(Model model, HttpServletRequest request, @RequestParam(required = false) Integer page) {      
 		Principal principal = request.getUserPrincipal();
@@ -116,7 +135,7 @@ public class UserRestController {
 		return "admin";
     }
 
-
+//not done yet
     @GetMapping("/user_profile")
     public String user_profile(Model model, HttpServletRequest request,
 	@RequestParam(required = false) Integer page) {
@@ -143,59 +162,74 @@ public class UserRestController {
         return "user_profile";
     }
 
-	@GetMapping("/user/{id}/image")
-	public ResponseEntity<Object> downloadImageUser(@PathVariable long id) throws SQLException {
+	
+	//To update user. 
+	@PutMapping("/{id}")
+	public ResponseEntity<User> updateBook(@PathVariable long id, @RequestBody User updatedUser) throws SQLException {
 
-		Optional<User> user = userService.findById(id);
-		if (user.isPresent() && user.get().getImageFile() != null) {
+		if (userService.exist(id)) {
 
-			Resource file = new InputStreamResource(user.get().getImageFile().getBinaryStream());
+			if (updatedUser.getImage()) {
+				// Maintain the same image loading it before updating the book
+				User dbUser = userService.findById(id).orElseThrow();
+				if (dbUser.getImage()) {
+					updatedUser.setImageFile(BlobProxy.generateProxy(dbUser.getImageFile().getBinaryStream(),
+					dbUser.getImageFile().length()));
+				}
+			}
+
+			updatedUser.setId(id);
+			userService.save(updatedUser);
+
+			return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+		} else	{
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+
+	@PostMapping("/{id}/image")
+	public ResponseEntity<Object> uploadImage(@PathVariable long id, @RequestParam MultipartFile imageFile)
+			throws IOException {
+
+		User user = userService.findById(id).orElseThrow();
+
+		URI location = fromCurrentRequest().build().toUri();
+
+		user.setImage(true);
+		user.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
+		userService.save(user);
+
+		return ResponseEntity.created(location).build();
+	}
+
+	@GetMapping("/{id}/image")
+	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
+
+		User user = userService.findById(id).orElseThrow();
+
+		if (user.getImageFile() != null) {
+
+			Resource file = new InputStreamResource(user.getImageFile().getBinaryStream());
 
 			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
-					.contentLength(user.get().getImageFile().length()).body(file);
+					.contentLength(user.getImageFile().length()).body(file);
 
 		} else {
 			return ResponseEntity.notFound().build();
 		}
 	}
 
-	@PostMapping("/update_userProfile/{id}")
-	public String updateProfile(Model model,@PathVariable long id ,@RequestParam String fullName,
-	@RequestParam String location, @RequestParam String country,@RequestParam String phone, 
-	boolean removeImage,  MultipartFile imageField)throws IOException, SQLException{
+	@DeleteMapping("/{id}/image")
+	public ResponseEntity<Object> deleteImage(@PathVariable long id) throws IOException {
 
-		Optional<User> user = userService.findById(id);
-		
-		if (user.isPresent()) {
-		updateImageProfile(user.get(), removeImage, imageField);
-		user.get().setLocation(location);
-		user.get().setCountry(country);
-		user.get().setPhone(phone);
-		user.get().setRealName(fullName);
-		userService.save(user.get());
-		return "redirect:/user_profile";
-		}else{
-			return "error";
-		}
-    }
+		User user = userService.findById(id).orElseThrow();
 
-	private void updateImageProfile(User user, boolean removeImage, MultipartFile imageField) throws IOException, SQLException {
-		
-		if (!imageField.isEmpty()) {
-			user.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
-			user.setImage(true);
-		} else {
-			if (removeImage) {
-				user.setImageFile(null);
-				user.setImage(false);
-			} else {
-				User dbUser = userService.findById(user.getId()).orElseThrow();
-				if (dbUser.getImage()) {
-					user.setImageFile(BlobProxy.generateProxy(dbUser.getImageFile().getBinaryStream(),
-					dbUser.getImageFile().length()));
-						user.setImage(true);
-				}
-			}
-		}
+		user.setImageFile(null);
+		user.setImage(false);
+
+		userService.save(user);
+
+		return ResponseEntity.noContent().build();
 	}
 }
