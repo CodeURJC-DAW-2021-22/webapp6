@@ -1,7 +1,5 @@
 package es.webapp6.padelante.service;
 
-
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -69,8 +67,8 @@ public class TournamentService {
 	}
 
     public void createTournament(String tournamentName, int numParticipants,
-    String about,String ruleset,String location,Date inscriptionDate,
-        Date startDate,String format,String owner){
+    String about,String ruleset,String location,String inscriptionDate,
+        String startDate,String format,String owner){
         Tournament t1 = new Tournament(tournamentName, numParticipants,about,ruleset,location,inscriptionDate,startDate,owner);
         tournaments.save(t1);
     }

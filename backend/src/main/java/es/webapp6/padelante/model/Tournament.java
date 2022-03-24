@@ -28,8 +28,8 @@ public class Tournament {
     private String about;
     private String ruleset;
     private String location;
-    private Date inscriptionDate;
-    private Date startDate;
+    private String inscriptionDate;
+    private String startDate;
    
     @JsonIgnore 
     @Lob
@@ -43,8 +43,8 @@ public class Tournament {
     }
 
     public Tournament(String tournamentName, int numParticipants,
-    String about,String ruleset,String location,Date inscriptionDate,
-        Date startDate, String owner
+    String about,String ruleset,String location,String inscriptionDate,
+    String startDate, String owner
         ) {
                 super();
                 this.tournamentName=tournamentName;
@@ -133,25 +133,25 @@ public class Tournament {
     }
 
     public String getInscriptionDate() {
-        DateFormat formatter = new SimpleDateFormat("HH:mm  dd/MM/yyyy");
-        return formatter.format(this.inscriptionDate);
+        return this.inscriptionDate;
     }
 
     public void setInscriptionDate(String inscriptionDate) throws ParseException {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
         Date date = (Date)formatter.parse(inscriptionDate); 
-        this.inscriptionDate = date;
+        DateFormat formatter2 = new SimpleDateFormat("HH:mm  dd/MM/yyyy");
+        this.inscriptionDate = formatter2.format(date);
     }
 
     public String getStartDate() {
-        DateFormat formatter = new SimpleDateFormat("HH:mm  dd/MM/yyyy");
-        return formatter.format(this.startDate);
+        return this.startDate;
     }
 
     public void setStartDate(String startDate) throws ParseException {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-        Date date = (Date)formatter.parse(startDate); 
-        this.startDate = date;
+        Date date = (Date)formatter.parse(startDate);
+        DateFormat formatter2 = new SimpleDateFormat("HH:mm  dd/MM/yyyy");
+        this.startDate = formatter2.format(date);
     }
 
     public Blob getImageFile() {

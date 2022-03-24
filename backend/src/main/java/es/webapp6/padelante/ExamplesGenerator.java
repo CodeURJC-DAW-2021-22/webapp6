@@ -2,7 +2,6 @@ package es.webapp6.padelante;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -143,14 +142,14 @@ public class ExamplesGenerator {
 		// ------ TOURNAMENTS AND MATCHES ------
 		//
 
-		Date fecha1 = new Date("12/16/2022 16:00");
-		Date fecha2 = new Date("12/20/2022 17:00");
+		String fecha1 = "16:00  16/12/2022";
+		String fecha2 = "17:00  20/12/2022";
 
-		Date fecha3 = new Date("10/08/2022 17:00");
-		Date fecha4 = new Date("10/30/2022 18:00");
+		String fecha3 = "17:00  08/10/2022";
+		String fecha4 = "18:00  30/10/2022";
 
-		Date fecha5 = new Date("08/10/2022 18:00");
-		Date fecha6 = new Date("08/20/2022 19:00");
+		String fecha5 = "18:00  10/08/2022";
+		String fecha6 = "19:00  20/08/2022";
 
 		Tournament tournament = new Tournament("Torneo la turra", 16,
 				"Participa en el torneo de la turra y gana el prestigioso torneo donde se apuntan los mejores padeleros del momento",
