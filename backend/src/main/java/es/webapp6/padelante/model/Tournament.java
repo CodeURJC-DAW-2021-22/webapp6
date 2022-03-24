@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Tournament {
 
@@ -29,6 +31,7 @@ public class Tournament {
     private Date inscriptionDate;
     private Date startDate;
    
+    @JsonIgnore 
     @Lob
 	private Blob imageFile;
 
