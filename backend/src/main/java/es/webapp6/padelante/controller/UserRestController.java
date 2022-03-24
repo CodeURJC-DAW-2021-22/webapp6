@@ -29,6 +29,7 @@ import es.webapp6.padelante.model.Match;
 import es.webapp6.padelante.model.Tournament;
 import es.webapp6.padelante.model.User;
 import es.webapp6.padelante.service.MatchService;
+import es.webapp6.padelante.service.TeamService;
 import es.webapp6.padelante.service.TournamentService;
 import es.webapp6.padelante.service.UserService;
 
@@ -53,6 +54,9 @@ public class UserRestController {
 
     @Autowired
 	private UserService userService;
+
+	@Autowired
+	private TeamService teamService;
 	
 	//who is conected
 	@GetMapping("/me")
@@ -163,6 +167,25 @@ public class UserRestController {
         return "user_profile";
     }
 
+
+	@PostMapping("/inscription/{idtourn}")
+	public ResponseEntity<Object> inscriptionTournament (@PathVariable long idtourn, @RequestParam long id, HttpServletRequest request) {
+		Principal principal = request.getUserPrincipal();
+		User partner = userService.findById(id).get();
+
+		if (principal != null) {
+			User user = userService.findByName(principal.getName()).get();
+			Tournament tournament = tournamentService.findById(idtourn).get();
+			tournamentService.addParticipant(tournament, teamService.makeTeam(user, partner));
+
+			URI location = fromCurrentRequest().build().toUri();
+			return ResponseEntity.created(location).build();
+			
+		}else {
+			return ResponseEntity.notFound().build();
+		}
+		
+	}
 	
 	//To update user. 
 	@PutMapping("/{id}")
