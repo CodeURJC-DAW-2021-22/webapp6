@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,7 +56,7 @@ public class UserRestController {
 	
 	//who is conected
 	@GetMapping("/me")
-	public ResponseEntity<User> me(HttpServletRequest request) {
+	public ResponseEntity<User> getActiveUser(HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
 		if(principal != null) {
 			return ResponseEntity.ok(userService.findByName(principal.getName()).orElseThrow());
@@ -67,14 +66,14 @@ public class UserRestController {
 	}
 
 	//get all users
-	@GetMapping("/all")
-	public Collection<User> getPosts() {
+	@GetMapping("")
+	public Collection<User> getUsers() {
 		return userService.findAll();
 	}
 
 	//get user by id
 	@GetMapping("/{id}")
-	public ResponseEntity<Optional<User>> getPost(@PathVariable long id) {
+	public ResponseEntity<Optional<User>> getUser(@PathVariable long id) {
 
 		Optional<User> user = userService.findById(id);
 
@@ -111,8 +110,9 @@ public class UserRestController {
 	}
 
 	//not done yet
+	//Es necesario el GET de admin? No vale con el get me?
 	@GetMapping("/admin")
-    public String admin(Model model, HttpServletRequest request, @RequestParam(required = false) Integer page) {      
+    public String getAdmin(Model model, HttpServletRequest request, @RequestParam(required = false) Integer page) {      
 		Principal principal = request.getUserPrincipal();
 		if (principal != null) {				
 			String userName = principal.getName();
@@ -136,6 +136,7 @@ public class UserRestController {
     }
 
 //not done yet
+//Es necesario? A lo mejor obtener los torneos, parejas y partidos del usuario por separado si, pero esto?
     @GetMapping("/user_profile")
     public String user_profile(Model model, HttpServletRequest request,
 	@RequestParam(required = false) Integer page) {
@@ -165,12 +166,12 @@ public class UserRestController {
 	
 	//To update user. 
 	@PutMapping("/{id}")
-	public ResponseEntity<User> updateBook(@PathVariable long id, @RequestBody User updatedUser) throws SQLException {
+	public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User updatedUser) throws SQLException {
 
 		if (userService.exist(id)) {
 
 			if (updatedUser.getImage()) {
-				// Maintain the same image loading it before updating the book
+				// Maintain the same image loading it before updating the user
 				User dbUser = userService.findById(id).orElseThrow();
 				if (dbUser.getImage()) {
 					updatedUser.setImageFile(BlobProxy.generateProxy(dbUser.getImageFile().getBinaryStream(),
