@@ -1,20 +1,17 @@
 package es.webapp6.padelante.service;
 
-import java.io.IOException;
-import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.hibernate.engine.jdbc.BlobProxy;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import es.webapp6.padelante.model.Team;
 import es.webapp6.padelante.model.User;
 import es.webapp6.padelante.repositories.UserRepository;
 
@@ -26,10 +23,6 @@ public class UserService {
 
     @Autowired
 	private PasswordEncoder passwordEncoder;
-
-    @Autowired
-	private TeamService teamService;
-
 
 
     public void registerNewUser(String userName, String encodedPassword, String email, String realName){
