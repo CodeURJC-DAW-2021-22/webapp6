@@ -35,6 +35,7 @@ public class Tournament {
     @Lob
 	private Blob imageFile;
 
+    @JsonIgnore
 	private boolean image;
 
 
