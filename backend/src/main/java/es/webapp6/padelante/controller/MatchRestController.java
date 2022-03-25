@@ -42,12 +42,14 @@ public class MatchRestController {
         return matchService.findAll();
     }
 
+    //not working
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Match>> getUser(@PathVariable long id) {
 
         Optional<Match> match = matchService.findById(id);
+        
 
-        if (match != null) {
+        if (matchService.exist(id)) {
             return ResponseEntity.ok(match);
         } else {
             return ResponseEntity.notFound().build();
@@ -67,7 +69,9 @@ public class MatchRestController {
             boolean hasa4 = match.get().getTeamTwo().getUserB().getName().equals(principal.getName());
             boolean has = hasa1 || hasa2 || hasa3 || hasa4;
             if(has){
-                return new ResponseEntity<>(updateMatch, HttpStatus.OK);
+                match.get().setResult(updateMatch.getResult());
+                matchService.save(match.get());
+                return new ResponseEntity<>(match, HttpStatus.OK);
             }else{
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
