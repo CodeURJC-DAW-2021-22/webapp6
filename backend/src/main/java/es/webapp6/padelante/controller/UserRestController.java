@@ -167,7 +167,7 @@ public class UserRestController {
         return "user_profile";
     }
 
-
+	//This should be in tournamentREST controller, not here
 	@PostMapping("/inscription/{idtourn}")
 	public ResponseEntity<Object> inscriptionTournament (@PathVariable long idtourn, @RequestParam long id, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();

@@ -27,7 +27,7 @@ import es.webapp6.padelante.service.UserService;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
-@RequestMapping("/api/match")
+@RequestMapping("/api/matches")
 public class MatchRestController {
 
     @Autowired
@@ -35,12 +35,6 @@ public class MatchRestController {
 
     @Autowired
     private UserService userService;
-
-    // al matches
-    @GetMapping("")
-    public Collection<Match> getUsers() {
-        return matchService.findAll();
-    }
 
     //not working
     @GetMapping("/{id}")

@@ -29,10 +29,6 @@ public class MatchService {
 	@Autowired
 	private UserService userService;
 
-    public List<Match> getMatches() {
-		return matches.findAll();
-	}
-
     public List<Match> getTournamentMatches(Tournament t){
         return matches.getMatches(t);
     }
