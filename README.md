@@ -230,7 +230,7 @@
     
 ## Intrucciones de ejecución
 
-  Para la apliación se usa:
+  Para la aplicación se usa:
   - Java ```17```
   - PostgreSQL ```14.2``` 
   - SpringBoot ```2.6.3```
@@ -255,3 +255,174 @@
   Los usuarios principales son:
   - Usuario: ```user```, Contraseña: ```pass```
   - Usuario: ```admin```, Contraseña: ```adminpass```
+
+# FASE 3
+
+## URL Heroku
+
+https://codeurjc-daw-2021-22-webapp6.herokuapp.com/
+
+Los usuarios principales son:
+  - Usuario: ```user```, Contraseña: ```pass```
+  - Usuario: ```admin```, Contraseña: ```adminpass```
+
+## Documentación API REST
+
+## Diagrama de clases con REST Controllers
+
+## Ejecución de la aplicación dockerizada
+
+  Para la ejecución del archivo ```docker-compose.yml``` se usa:
+  - Docker
+  - Docker Compose
+  - Maven ```3.8.5```
+
+  Se deberá haber clonado el repositorio de git previamente usando la siguiente sentencia:
+  
+  ```$ git clone https://github.com/CodeURJC-DAW-2021-22/webapp6```
+
+  El usuario deberá ejecutar las siguientes sentencias en el terminal después de haberse situado con la sentencia ```cd``` en la carpeta del proyecto ```webapp6```:
+  
+  ```$ cd ./backend/docker```
+  
+  ```$ docker-compose up```
+  
+  Cuando se termine de ejecutar la sentencia, el usuario debería poder acceder a la aplicación desde la URL:
+  
+  https://localhost:8443/
+
+## Construcción de la imagen docker
+
+  Para la construcción de la imagen docker se usa:
+  - Docker
+  - Maven ```3.8.5```
+  - Usuario registrado en Docker Hub
+
+  Se deberá haber clonado el repositorio de git previamente usando la siguiente sentencia:
+  
+  ```$ git clone https://github.com/CodeURJC-DAW-2021-22/webapp6```
+  
+  El usuario deberá ejecutar las siguientes sentencias en el terminal después de haberse situado con la sentencia ```cd``` en la carpeta del proyecto ```webapp6```:
+  
+  ```$ cd ./backend/docker```
+  
+  ```$ ./create_image.sh <usuario_docker>```
+  
+  donde ```<usuario_docker>``` es el nombre de su usuario en Docker Hub
+  
+  De esta forma, se habrá creado la imagen docker y se habrá publicado en Docker Hub desde su usuario.
+  
+## Despliegue en Heroku
+
+Para el despliegue se usa:
+- Docker
+- Java ```17```
+- Maven ```3.8.5```
+- SpringBoot ```2.6.3```
+- Heroku Client
+- Usuario registrado en Heroku
+
+Se deberá haber clonado el repositorio de git previamente usando la siguiente sentencia:
+  
+```$ git clone https://github.com/CodeURJC-DAW-2021-22/webapp6```
+  
+El usuario deberá ejecutar las siguientes sentencias en el terminal después de haberse situado con la sentencia ```cd``` en la carpeta del proyecto ```webapp6```:
+  
+```$ heroku login```
+
+e introducir las credenciales del usuario en Heroku.
+
+```$ heroku create <app-id>```
+
+donde ```<app-id>``` es la id que se le quiera asignar a la aplicación. Esta id no debe existir previamente en Heroku para funcionar. En nuestro caso se usó ```codeurjc-daw-2021-22-webapp6```.
+
+Se genera la imagen docker para Heroku con:
+
+```$ mvn spring-boot:build-image -Dspring-boot.build-image.imageName=registry.heroku.com/<app-id>/web```
+
+Se publica en el registro de Heroku:
+
+```$ heroku container:login```
+
+```$ docker push registry.heroku.com/<app-id>/web```
+
+Se despliega la aplicación:
+
+```$ heroku container:release web --app <app-id>```
+
+Por último, para poder configurar la base de datos PosgreSQL en Heroku y terminar de configurar la aplicación hacemos lo siguiente:
+
+```$ heroku config:set SERVER_SSL_ENABLED=false --app <app-id>```
+
+```$ heroku config:set SPRING_JPA_HIBERNATE_DDL-AUTO=update --app <app-id>```
+
+```$ heroku addons:create heroku-postgresql --app <app-id>```
+
+```$ mvn spring-boot:build-image -Dspring-boot.build-image.imageName=registry.heroku.com/<app-id>/web```
+
+```$ docker push registry.heroku.com/<app-id>/web```
+
+```$ heroku container:release web --app <app-id>```
+
+Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves de la URL:
+
+```https://<app-id>.herokuapp.com/```
+
+## Participación de los miembros
+
+- **Rubén Catalán:** 
+
+  - Descripción de tareas:
+    
+    
+    
+  - Commits más significativos:
+     
+    
+    
+  - Ficheros más relevantes:
+    
+    
+    
+- **Álvaro González:** 
+
+  - Descripción de tareas:
+    
+    
+    
+  - Commits más significativos:
+     
+    
+    
+  - Ficheros más relevantes:
+    
+    
+    
+- **Daniel Haro:** 
+
+  - Descripción de tareas:
+    
+    
+    
+  - Commits más significativos:
+     
+    
+    
+  - Ficheros más relevantes:
+    
+    
+    
+- **Silvia Ventura:** 
+
+  - Descripción de tareas:
+    
+    
+    
+  - Commits más significativos:
+     
+    
+    
+  - Ficheros más relevantes:
+    
+    
+    
