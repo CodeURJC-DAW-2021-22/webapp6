@@ -2,6 +2,7 @@ package es.webapp6.padelante.controller;
 
 import java.net.URI;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -53,8 +54,29 @@ public class MatchRestController {
         }
     }
 
-    // @PutMapping("/resultMach/{id}")
-    // public ResponseEntity<Object> resultMatch(HttpServletRequest request) {
-    // }
+    @PutMapping("/resultMach/{id}")
+    public ResponseEntity<Object> resultMatch(HttpServletRequest request,@RequestBody Match updateMatch,@PathVariable long id) {
+        Principal principal = request.getUserPrincipal();
+       
+        Optional<Match> match = matchService.findById(id);
+
+        if(match!=null){
+            boolean hasa1 = match.get().getTeamOne().getUserA().getName().equals(principal.getName());
+            boolean hasa2 = match.get().getTeamOne().getUserB().getName().equals(principal.getName());
+            boolean hasa3 = match.get().getTeamTwo().getUserA().getName().equals(principal.getName());
+            boolean hasa4 = match.get().getTeamTwo().getUserB().getName().equals(principal.getName());
+            boolean has = hasa1 || hasa2 || hasa3 || hasa4;
+            if(has){
+                return new ResponseEntity<>(updateMatch, HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+           
+         
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+  
+    }
     
 }
