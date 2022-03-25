@@ -63,6 +63,10 @@ public class MatchService {
 		matches.deleteById(id);
 	}
 
+	public List<Match> findAll(){
+		return matches.findAll();
+	}
+
 
 	public boolean checkResult(String r1, String r2, String r3, String r4, String r5, String r6, Match match ){
 		int games1 = Integer.parseInt (r1);
