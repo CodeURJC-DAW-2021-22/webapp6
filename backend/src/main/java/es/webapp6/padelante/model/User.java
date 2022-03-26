@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import java.sql.Blob;
 import javax.persistence.Lob;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @Entity(name = "UserTable")
@@ -32,10 +34,11 @@ public class User {
 	private ArrayList<Integer> historicalKarma = new ArrayList<>(); // Integer because karma will be truncated before added to the list
 	private boolean status;
 
-	//Profile Img To Do	
+	@JsonIgnore
 	@Lob
 	private Blob imageFile;
 
+	@JsonIgnore
 	private boolean image;
 
 

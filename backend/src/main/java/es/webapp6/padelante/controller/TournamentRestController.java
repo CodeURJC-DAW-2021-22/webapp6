@@ -48,8 +48,8 @@ public class TournamentRestController {
 	// get all users
 	// Only shows 4 of 6 tourns on the 1st page. FIX IT
 	@GetMapping("")
-	public Page<Tournament> getTournaments(@RequestParam int page) {
-		return tournamentService.getTournaments(page);
+	public ResponseEntity<Page<Tournament>> getTournaments(@RequestParam int page) {
+		return ResponseEntity.ok(tournamentService.getTournaments(page));
 	}
 
 	// get tournament by id
