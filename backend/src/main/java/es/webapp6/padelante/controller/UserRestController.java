@@ -232,16 +232,18 @@ public class UserRestController {
 		Principal principal = request.getUserPrincipal();
 
 		if (principal != null){
-			User user = userService.findByName(principal.getName()).get();
-			
-			user.setImageFile(null);
-			user.setImage(false);
-			userService.save(user);
-
-			return new ResponseEntity<>(HttpStatus.OK);	
-		}
-		else{
-			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-		}
+            User user = userService.findByName(principal.getName()).get();
+            if (user.getImage()){
+                user.setImageFile(null);
+                user.setImage(false);
+                userService.save(user);
+                return new ResponseEntity<>(HttpStatus.OK);    
+            } else {
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            }
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
 	}
 }

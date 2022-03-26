@@ -241,19 +241,23 @@ public class TournamentRestController {
 		Principal principal = request.getUserPrincipal();
 
 		if (tournamentService.exist(id)) {
-			Tournament tournament = tournamentService.findById(id).get();
-			if (principal != null && principal.getName().equals(tournament.getOwner())) {
-				tournament.setImageFile(null);
-				tournament.setImage(false);
+            Tournament tournament = tournamentService.findById(id).get();
+            if (principal != null && principal.getName().equals(tournament.getOwner())) {
+                if (tournament.getImage()) {
+                    tournament.setImageFile(null);
+                    tournament.setImage(false);
 
-				tournamentService.save(tournament);
+                    tournamentService.save(tournament);
 
-				return new ResponseEntity<>(HttpStatus.OK);
-			} else {
-				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
-			}
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+                    return new ResponseEntity<>(HttpStatus.OK);
+                } else {
+                    return new ResponseEntity<>(HttpStatus.ACCEPTED);
+                }
+            } else {
+                return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+            }
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
 	}
 }
