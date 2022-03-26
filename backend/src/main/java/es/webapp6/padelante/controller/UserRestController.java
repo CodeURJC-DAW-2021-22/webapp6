@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,6 +58,9 @@ public class UserRestController {
 
 	@Autowired
 	private TeamService teamService;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	//who is conected
 	@GetMapping("/me")
@@ -77,40 +81,42 @@ public class UserRestController {
 
 	//get user by id
 	@GetMapping("/{id}")
-	public ResponseEntity<Optional<User>> getUser(@PathVariable long id) {
+	public ResponseEntity<User> getUser(@PathVariable long id) {
 
-		Optional<User> user = userService.findById(id);
-
-		if (user != null) {
-			return ResponseEntity.ok(user);
+		if (userService.exist(id)) {
+			User user = userService.findById(id).get();
+			return new ResponseEntity<>(user, HttpStatus.OK);
 		} else {
-			return ResponseEntity.notFound().build();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 	}
     
 
-	//Register new user. Can be done better, but idk how to check user params
-	
+	//Register new user
 	@PostMapping("/register")
-	@ResponseStatus (HttpStatus.CREATED)
-	public User registerNewUser(@RequestBody User user) {
-
-		userService.save(user);
-
-		return user;
+	public ResponseEntity<User> registerNewUser(@RequestBody User user) {
+		user.setStatus(true);
+		if(user.getName().isBlank() || userService.findByName(user.getName()).isPresent()){
+			return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+		} else {
+			URI location = fromCurrentRequest().build().toUri();
+			User userNew = new User(user.getName(), passwordEncoder.encode(user.getEncodedPassword()), user.getEmail(), user.getRealName(), "USER");
+			
+			userService.save(userNew);
+			return ResponseEntity.created(location).build();
+		}
 	}
 
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<User> deleteUser(@PathVariable long id) {
 
-		try {
+		if (userService.exist(id)) {
 			userService.delete(id);
 			return new ResponseEntity<>(null, HttpStatus.OK);
-
-		} catch (EmptyResultDataAccessException e) {
+		} else {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-		}
+		}	
 	}
 
 //not done yet
@@ -141,26 +147,6 @@ public class UserRestController {
         return "user_profile";
     }
 
-	//This should be in tournamentREST controller, not here
-	@PostMapping("/inscription/{idtourn}")
-	public ResponseEntity<Object> inscriptionTournament (@PathVariable long idtourn, @RequestParam long id, HttpServletRequest request) {
-		Principal principal = request.getUserPrincipal();
-		User partner = userService.findById(id).get();
-
-		if (principal != null) {
-			User user = userService.findByName(principal.getName()).get();
-			Tournament tournament = tournamentService.findById(idtourn).get();
-			tournamentService.addParticipant(tournament, teamService.makeTeam(user, partner));
-
-			URI location = fromCurrentRequest().build().toUri();
-			return ResponseEntity.created(location).build();
-			
-		}else {
-			return ResponseEntity.notFound().build();
-		}
-		
-	}
-	
 	//To update user. 
 	@PutMapping("/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User updatedUser) throws SQLException {

@@ -29,8 +29,10 @@ import org.springframework.http.HttpStatus;
 
 import es.webapp6.padelante.model.Team;
 import es.webapp6.padelante.model.Tournament;
+import es.webapp6.padelante.model.User;
 import es.webapp6.padelante.service.TeamService;
 import es.webapp6.padelante.service.TournamentService;
+import es.webapp6.padelante.service.UserService;
 
 import org.springframework.data.domain.Page;
 
@@ -41,6 +43,9 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 public class TournamentRestController {
 	@Autowired
 	private TournamentService tournamentService;
+
+	@Autowired
+	private UserService userService;
 
 	@Autowired
 	private TeamService teamService;
@@ -110,6 +115,24 @@ public class TournamentRestController {
 			}
 		} else {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@PostMapping("/inscription/{idtourn}")
+	public ResponseEntity<Object> inscriptionTournament (@PathVariable long idtourn, @RequestParam long id, HttpServletRequest request) {
+		Principal principal = request.getUserPrincipal();
+		User partner = userService.findById(id).get();
+
+		if (principal != null) {
+			User user = userService.findByName(principal.getName()).get();
+			Tournament tournament = tournamentService.findById(idtourn).get();
+			tournamentService.addParticipant(tournament, teamService.makeTeam(user, partner));
+
+			URI location = fromCurrentRequest().build().toUri();
+			return ResponseEntity.created(location).build();
+			
+		}else {
+			return ResponseEntity.notFound().build();
 		}
 	}
 
