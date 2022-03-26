@@ -71,8 +71,8 @@ public class UserRestController {
 
 	//get all users
 	@GetMapping("")
-	public Collection<User> getUsers() {
-		return userService.findAll();
+	public ResponseEntity<Page<User>> getTournaments(@RequestParam int page) {
+		return ResponseEntity.ok(userService.getUsers(page));
 	}
 
 	//get user by id
@@ -112,32 +112,6 @@ public class UserRestController {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 	}
-
-	//not done yet
-	//Es necesario el GET de admin? No vale con el get me?
-	@GetMapping("/admin")
-    public String getAdmin(Model model, HttpServletRequest request, @RequestParam(required = false) Integer page) {      
-		Principal principal = request.getUserPrincipal();
-		if (principal != null) {				
-			String userName = principal.getName();
-			Optional<User> user = userService.findByName(userName);
-			List<Match> matches = matchService.getUserMatches(user.get());
-			model.addAttribute("matches", matches);
-			model.addAttribute("numMatches", matches.size());
-			model.addAttribute("showMatches", matches.size()>0);
-		}
-		
-		int pageInt = page == null? 0: page; 
-		Page<Tournament> adminTourns = tournamentService.getTournaments(pageInt);
-		model.addAttribute("adminTourns", adminTourns);
-		model.addAttribute("numAdminTourns", adminTourns.getTotalPages()>1);
-
-		Page<User> adminUsers = userService.getUsersNoAdmin(pageInt);
-		model.addAttribute("adminUsers", adminUsers);
-		model.addAttribute("numAdminUsers", adminUsers.getTotalPages()>1);
-		model.addAttribute("adminnextpage", pageInt+1);
-		return "admin";
-    }
 
 //not done yet
 //Es necesario? A lo mejor obtener los torneos, parejas y partidos del usuario por separado si, pero esto?
@@ -212,48 +186,62 @@ public class UserRestController {
 	}
 
 
-	@PostMapping("/{id}/image")
-	public ResponseEntity<Object> uploadImage(@PathVariable long id, @RequestParam MultipartFile imageFile)
+	@PostMapping("/image")
+	public ResponseEntity<Object> uploadImage(@RequestParam MultipartFile imageFile, HttpServletRequest request)
 			throws IOException {
 
-		User user = userService.findById(id).orElseThrow();
+		Principal principal = request.getUserPrincipal();
 
-		URI location = fromCurrentRequest().build().toUri();
+		if (principal != null){
+			User user = userService.findByName(principal.getName()).get();
+			URI location = fromCurrentRequest().build().toUri();
 
-		user.setImage(true);
-		user.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
-		userService.save(user);
+			user.setImage(true);
+			user.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
+			userService.save(user);
 
-		return ResponseEntity.created(location).build();
+			return ResponseEntity.created(location).build();
+		}
+		else {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}	
 	}
 
 	@GetMapping("/{id}/image")
 	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
 
-		User user = userService.findById(id).orElseThrow();
+		if (userService.exist(id)){
+			User user = userService.findById(id).get();
+			if (user.getImage()) {
 
-		if (user.getImageFile() != null) {
-
-			Resource file = new InputStreamResource(user.getImageFile().getBinaryStream());
-
-			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
-					.contentLength(user.getImageFile().length()).body(file);
-
+				Resource file = new InputStreamResource(user.getImageFile().getBinaryStream());
+	
+				return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+						.contentLength(user.getImageFile().length()).body(file);
+	
+			} else {
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
 		} else {
-			return ResponseEntity.notFound().build();
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 
-	@DeleteMapping("/{id}/image")
-	public ResponseEntity<Object> deleteImage(@PathVariable long id) throws IOException {
+	@DeleteMapping("/image")
+	public ResponseEntity<Object> deleteImage(HttpServletRequest request) throws IOException {
+		Principal principal = request.getUserPrincipal();
 
-		User user = userService.findById(id).orElseThrow();
+		if (principal != null){
+			User user = userService.findByName(principal.getName()).get();
+			
+			user.setImageFile(null);
+			user.setImage(false);
+			userService.save(user);
 
-		user.setImageFile(null);
-		user.setImage(false);
-
-		userService.save(user);
-
-		return ResponseEntity.noContent().build();
+			return new ResponseEntity<>(HttpStatus.OK);	
+		}
+		else{
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
 	}
 }
