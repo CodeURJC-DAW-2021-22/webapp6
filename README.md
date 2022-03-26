@@ -374,7 +374,8 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
 
   - Descripción de tareas:
     
-    
+    Me he encargado con la ayuda de Álvaro de todo lo relacionado con Docker, Docker Compose y Heroku. Posteriormente, me he encargado de toda la documentación relativa a lo anteriormente mencionado y del script correspondiente.
+    Por otra parte, me he encargado de crear distintas API REST, implementar la paginación en estas, de ampliar los distintos modos de estado de las peticiones y de limitar la ejecución de las API REST para usuarios no registrados, registrados y admin en función de cada una.
     
   - Commits más significativos:
      
