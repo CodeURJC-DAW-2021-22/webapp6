@@ -113,11 +113,11 @@ public class TournamentRestController {
 		}
 	}
 
-	@PutMapping("/{id}/TournamentTeam")
-	public ResponseEntity<List<Team>>deleteTournamentTeam(@PathVariable long id, HttpServletRequest request,@RequestParam long teamid) {
+	@PutMapping("/{id}/ejection")
+	public ResponseEntity<List<Team>> deleteTournamentTeam(@PathVariable long id, HttpServletRequest request,
+			@RequestParam long teamid) {
 		Principal principal = request.getUserPrincipal();
-		
-	
+
 		if (tournamentService.exist(id)) {
 			Tournament tournament = tournamentService.findById(id).get();
 			Team team = teamService.findById(teamid).get();
@@ -130,20 +130,33 @@ public class TournamentRestController {
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		
-		
+
 	}
 
+	@PutMapping("/{id}/initiation")
+	public ResponseEntity<Tournament> startTournament(@PathVariable long id, HttpServletRequest request) {
 
-	// @PostMapping("/startTournament/{tournid}")
-	// public String startTournament(Model model, @PathVariable long tournid){
-	// 	Tournament tournament = tournamentService.findById(tournid).get();
-	// 	tournamentService.generateEmptyBracket(tournament);
-	// 	tournamentService.assignTeamsStart(tournament);
-	// 	tournamentService.setFreeWins(tournament);
-		
-	// 	return "redirect:/tourns/{tournid}";
-	// }
+		Principal principal = request.getUserPrincipal();
+
+		if (tournamentService.exist(id)) {
+
+			Tournament tournament = tournamentService.findById(id).get();
+
+			if (principal != null && principal.getName().equals(tournament.getOwner()) && tournament.getNumSignedUp()>1) {
+				tournamentService.generateEmptyBracket(tournament);
+				tournamentService.assignTeamsStart(tournament);
+				tournamentService.setFreeWins(tournament);
+			
+				return new ResponseEntity<>( tournamentService.findById(id).get(), HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+			}
+
+		} else {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+
+	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Tournament> updateTournament(@PathVariable long id, @RequestBody Tournament tournament,
