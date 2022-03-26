@@ -50,7 +50,7 @@ public class MatchRestController {
         }
     }
 
-    @PutMapping("/resultMach/{id}")
+    @PutMapping("/{id}/result")
     public ResponseEntity<Object> resultMatch(HttpServletRequest request,@RequestBody Match updateMatch,@PathVariable long id) {
         Principal principal = request.getUserPrincipal();
        
