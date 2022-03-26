@@ -118,21 +118,28 @@ public class TournamentRestController {
 		}
 	}
 
-	@PostMapping("/inscription/{idtourn}")
-	public ResponseEntity<Object> inscriptionTournament (@PathVariable long idtourn, @RequestParam long id, HttpServletRequest request) {
+	@PutMapping("/{id}/inscription")
+	public ResponseEntity<Object> inscriptionTournament (@PathVariable long id, @RequestParam long idPair, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
-		User partner = userService.findById(id).get();
 
-		if (principal != null) {
-			User user = userService.findByName(principal.getName()).get();
-			Tournament tournament = tournamentService.findById(idtourn).get();
-			tournamentService.addParticipant(tournament, teamService.makeTeam(user, partner));
+		if (tournamentService.exist(id) && userService.exist(idPair)) {
+			Tournament tournament = tournamentService.findById(id).get();
+			User partner = userService.findById(idPair).get();
 
-			URI location = fromCurrentRequest().build().toUri();
-			return ResponseEntity.created(location).build();
-			
-		}else {
-			return ResponseEntity.notFound().build();
+			if (principal != null) {
+				User user = userService.findByName(principal.getName()).get();
+
+				int response = tournamentService.addParticipant(tournament, teamService.makeTeam(user, partner));
+				if (response == 0) {
+					return new ResponseEntity<>(null, HttpStatus.OK);
+				} else {
+					return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
+				}
+			}else {
+				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+			}
+		} else {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 	}
 
