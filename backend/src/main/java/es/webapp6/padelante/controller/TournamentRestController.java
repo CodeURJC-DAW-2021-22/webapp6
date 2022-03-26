@@ -75,7 +75,7 @@ public class TournamentRestController {
 			return ResponseEntity.created(location).body(tournament);
 		}
 		else {
-			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 		
 	}
@@ -87,14 +87,14 @@ public class TournamentRestController {
 		if (tournamentService.exist(id)) {
 			if (principal != null && principal.getName().equals("admin")){
 				tournamentService.delete(id);
-				return new ResponseEntity<>(null, HttpStatus.OK);
+				return new ResponseEntity<>(HttpStatus.OK);
 			}
 			else {
-				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 			}
 		}
 		else {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 
@@ -124,7 +124,7 @@ public class TournamentRestController {
 				return new ResponseEntity<>(tournament, HttpStatus.OK);
 			}
 			else {
-				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 			}
 		} else	{
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -149,7 +149,7 @@ public class TournamentRestController {
 				return ResponseEntity.created(location).build();
 			}
 			else {
-				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 			}	
 		}
 		else{
@@ -194,7 +194,7 @@ public class TournamentRestController {
 				return new ResponseEntity<>(HttpStatus.OK);
 			}
 			else{
-				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 			}	
 		}
 		else {
