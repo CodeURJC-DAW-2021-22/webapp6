@@ -7,14 +7,14 @@ FROM maven:3.8.4-openjdk-17 as builder
 WORKDIR /project
 
 # Copia las dependencias del proyecto
-ADD ../pom.xml /project/
+COPY pom.xml /project/
 
 # Descarga las dependencias del proyecto
 RUN mvn clean verify --fail-never
 
 # Copia el código del proyecto
-ADD ../src/main/resources /project/src/main/resources
-ADD ../src/main/java /project/src/main/java
+COPY src/main/resources /project/src/main/resources
+COPY src/main/java /project/src/main/java
 
 # Compila proyecto
 RUN mvn package -o -DskipTests=true
