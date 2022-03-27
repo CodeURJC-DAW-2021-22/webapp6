@@ -67,7 +67,7 @@ public class UserRestController {
 	public ResponseEntity<User> getActiveUser(HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
 		if(principal != null) {
-			return ResponseEntity.ok(userService.findByName(principal.getName()).orElseThrow());
+			return ResponseEntity.ok(userService.findByName(principal.getName()).get());
 		} else {
 			return ResponseEntity.notFound().build();
 		}
@@ -75,7 +75,7 @@ public class UserRestController {
 
 	//get all users
 	@GetMapping("")
-	public ResponseEntity<Page<User>> getTournaments(@RequestParam int page) {
+	public ResponseEntity<Page<User>> getAllUsers(@RequestParam int page) {
 		return ResponseEntity.ok(userService.getUsers(page));
 	}
 
@@ -117,6 +117,17 @@ public class UserRestController {
 		} else {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}	
+	}
+
+	@GetMapping("/me/pairs")
+	public ResponseEntity<Page<User>> getUserPairs(@RequestParam int page, HttpServletRequest request) {
+		Principal principal = request.getUserPrincipal();
+		if(principal != null) {
+			Page<User> userPairs = userService.findPairsOf(page, userService.findByName(principal.getName()).get());
+			return new ResponseEntity<>(userPairs, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
 	}
 
 //not done yet
