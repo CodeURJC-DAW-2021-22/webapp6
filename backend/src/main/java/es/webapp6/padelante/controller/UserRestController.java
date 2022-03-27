@@ -130,55 +130,58 @@ public class UserRestController {
 		}
 	}
 
-//not done yet
-//Es necesario? A lo mejor obtener los torneos, parejas y partidos del usuario por separado si, pero esto?
-    @GetMapping("/user_profile")
-    public String user_profile(Model model, HttpServletRequest request,
-	@RequestParam(required = false) Integer page) {
+	@GetMapping("/me/tournaments")
+	public ResponseEntity<Page<Tournament>> getUserTournaments(@RequestParam int page, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
-		String userName = principal.getName();
-		Optional<User> user = userService.findByName(userName);
-		model.addAttribute("user", user.get());
-		List<Match> matches = matchService.getUserMatches(user.get());
-		model.addAttribute("matches", matches);
-		model.addAttribute("numMatches", matches.size());
-		model.addAttribute("showMatches", matches.size()>0);
+		if(principal != null) {
+			Page<Tournament> userTourns = tournamentService.findUserTournaments(page, userService.findByName(principal.getName()).get());
+			return new ResponseEntity<>(userTourns, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+	}
 
-		int pageInt = page == null? 0: page;  
-		Page<Tournament> userTourns = tournamentService.findUserTournaments(pageInt, user.get());
-		model.addAttribute("userTourns", userTourns);
-		model.addAttribute("numUserTourns", userTourns.getTotalPages()>1);
-		model.addAttribute("nextpage", pageInt+1);
-
-		Page<User> userPairs = userService.findPairsOf(pageInt, user.get());
-		model.addAttribute("userPairs", userPairs);
-		model.addAttribute("numUserPairs", userPairs.getTotalPages()>1);
-		model.addAttribute("nextpage2", pageInt+1);
-		
-        return "user_profile";
-    }
+	@GetMapping("/me/matches")
+	public ResponseEntity<List<Match>> getUserMatches(HttpServletRequest request) {
+		Principal principal = request.getUserPrincipal();
+		if(principal != null) {
+			List<Match> matches = matchService.getUserMatches(userService.findByName(principal.getName()).get());
+			return new ResponseEntity<>(matches, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+	}
 
 	//To update user. 
-	@PutMapping("/{id}")
-	public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User updatedUser) throws SQLException {
+	@PutMapping("")
+	public ResponseEntity<User> updateUser(@RequestBody User updatedUser, HttpServletRequest request) throws SQLException {
+		Principal principal = request.getUserPrincipal();
 
-		if (userService.exist(id)) {
+		if (principal != null) {
+			User dbUser = userService.findByName(principal.getName()).get();
 
-			if (updatedUser.getImage()) {
-				// Maintain the same image loading it before updating the user
-				User dbUser = userService.findById(id).orElseThrow();
-				if (dbUser.getImage()) {
-					updatedUser.setImageFile(BlobProxy.generateProxy(dbUser.getImageFile().getBinaryStream(),
-					dbUser.getImageFile().length()));
-				}
+			// Data that must not change because user could be inconsistent
+			updatedUser.setId(dbUser.getId());
+			updatedUser.setName(dbUser.getName());
+			updatedUser.setEmail(dbUser.getEmail());
+			updatedUser.setNumWins(dbUser.getNumWins());
+			updatedUser.setNumLoses(dbUser.getNumLoses());
+			updatedUser.setNumMatchesPlayed(dbUser.getNumMatchesPlayed());
+			updatedUser.setHistoricalKarma(dbUser.getHistoricalKarma());
+			updatedUser.setStatus(dbUser.getStatus());
+			updatedUser.setEncodedPassword(dbUser.getEncodedPassword());
+			updatedUser.setRoles(dbUser.getRoles());
+			if (dbUser.getImage()) {
+				updatedUser.setImageFile(BlobProxy.generateProxy(dbUser.getImageFile().getBinaryStream(),
+				dbUser.getImageFile().length()));
+						updatedUser.setImage(true);
 			}
 
-			updatedUser.setId(id);
 			userService.save(updatedUser);
 
 			return new ResponseEntity<>(updatedUser, HttpStatus.OK);
 		} else	{
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 	}
 

@@ -131,9 +131,9 @@ public class TournamentRestController {
 
 				int response = tournamentService.addParticipant(tournament, teamService.makeTeam(user, partner));
 				if (response == 0) {
-					return new ResponseEntity<>(null, HttpStatus.OK);
+					return new ResponseEntity<>(tournamentService.getTeamsSignedUp(tournament), HttpStatus.OK);
 				} else {
-					return new ResponseEntity<>(null, HttpStatus.ACCEPTED);
+					return new ResponseEntity<>(tournamentService.getTeamsSignedUp(tournament), HttpStatus.ACCEPTED);
 				}
 			}else {
 				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
@@ -148,11 +148,11 @@ public class TournamentRestController {
 			@RequestParam long teamid) {
 		Principal principal = request.getUserPrincipal();
 
-		if (tournamentService.exist(id)) {
+		if (tournamentService.exist(id) && teamService.exist(teamid)) {
 			Tournament tournament = tournamentService.findById(id).get();
 			Team team = teamService.findById(teamid).get();
-			tournamentService.deleteParticipant(tournament, team);
 			if (principal != null && principal.getName().equals(tournament.getOwner())) {
+				tournamentService.deleteParticipant(tournament, team);
 				return new ResponseEntity<>(tournamentService.getTeamsSignedUp(tournament), HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);

@@ -25,6 +25,10 @@ public class TeamService {
 		return teamRepository.findById(id);
 	}
 
+    public boolean exist(long id) {
+		return teamRepository.existsById(id);
+	}
+
     public List<Team> getTeams(Tournament t){
         return teamRepository.getTeams(t);
     }
