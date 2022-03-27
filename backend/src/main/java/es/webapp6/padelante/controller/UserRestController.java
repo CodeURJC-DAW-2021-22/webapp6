@@ -3,9 +3,7 @@ package es.webapp6.padelante.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
-import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import java.net.URI;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +11,6 @@ import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +19,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.HttpStatus;
@@ -30,13 +26,11 @@ import es.webapp6.padelante.model.Match;
 import es.webapp6.padelante.model.Tournament;
 import es.webapp6.padelante.model.User;
 import es.webapp6.padelante.service.MatchService;
-import es.webapp6.padelante.service.TeamService;
 import es.webapp6.padelante.service.TournamentService;
 import es.webapp6.padelante.service.UserService;
 
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 
@@ -55,9 +49,6 @@ public class UserRestController {
 
     @Autowired
 	private UserService userService;
-
-	@Autowired
-	private TeamService teamService;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;

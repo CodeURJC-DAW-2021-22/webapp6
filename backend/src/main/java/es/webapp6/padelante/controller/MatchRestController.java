@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.webapp6.padelante.model.Match;
 import es.webapp6.padelante.service.MatchService;
-import es.webapp6.padelante.service.UserService;
 
 
 @RestController
