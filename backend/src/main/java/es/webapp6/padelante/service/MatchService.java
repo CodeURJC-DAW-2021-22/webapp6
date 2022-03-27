@@ -63,8 +63,7 @@ public class MatchService {
 		return matches.findAll();
 	}
 
-
-	public boolean checkResult(String r1, String r2, String r3, String r4, String r5, String r6, Match match ){
+	public ArrayList<Integer> buildResult(String r1, String r2, String r3, String r4, String r5, String r6){
 		int games1 = Integer.parseInt (r1);
 		int games2 = Integer.parseInt (r2);
 		int games3 = Integer.parseInt (r3);
@@ -78,6 +77,16 @@ public class MatchService {
 		result.add(games4);
 		result.add(games5);
 		result.add(games6);
+		return result;
+	}
+
+	public boolean checkResult(ArrayList<Integer> result, Match match){
+		int games1 = result.get(0);
+		int games2 = result.get(1);
+		int games3 = result.get(2);
+		int games4 = result.get(3);
+		int games5 = result.get(4);
+		int games6 = result.get(5);
 
 		boolean cheked = true;
 
@@ -114,16 +123,22 @@ public class MatchService {
 				return cheked;
 		}
 
+		return cheked;
+	}
+
+	public boolean generateResult (ArrayList<Integer> result, Match match) {
+		boolean cheked = checkResult(result, match);
 		if(cheked){
 			match.setResult(result);
-			ArrayList<Integer> sets = calculateSets(match, games1, games2, games3, games4, games5, games6);
+			ArrayList<Integer> sets = calculateSets(match, result.get(0), result.get(1), result.get(2), result.get(3),
+				result.get(4), result.get(5));
 			match.setSetsTeamOne((int) sets.get(0));
 			match.setSetsTeamTwo((int) sets.get(1));
 			match.setHasWinner(true);
 
 			setWinnerNormalMatch(match, sets);
 		}
-		return cheked;
+		return cheked;		
 	}
 
 	private ArrayList<Integer> calculateSets (Match match, int games1, int games2, int games3, int games4, int games5, int games6){
