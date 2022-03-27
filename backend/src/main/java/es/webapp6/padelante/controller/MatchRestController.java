@@ -29,7 +29,6 @@ public class MatchRestController {
     private MatchService matchService;
 
 
-    
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Match>> getUser(@PathVariable long id) {
 
@@ -38,32 +37,6 @@ public class MatchRestController {
 
         if (match.get() != null) {
             return ResponseEntity.ok(match);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @GetMapping("/{id}/round")
-    public ResponseEntity<List<Match>> getRound(@PathVariable long id, @RequestParam Integer n_round) {
-
-        Optional<Match> match = matchService.findById(id);
-        
-
-        if (matchService.exist(id)) {
-            try{
-               
-                if(n_round>0 && match.get().getTournament().getRounds()>=n_round){ 
-                    List<Match> rMatches = matchService.getRoundMatches(match.get().getTournament(), n_round);
-                    return ResponseEntity.ok(rMatches);
-                }else{
-                    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-                }
-                
-                
-            }catch(Exception e){
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-
-            }  
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

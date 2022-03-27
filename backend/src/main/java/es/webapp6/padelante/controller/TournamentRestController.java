@@ -27,9 +27,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 
+import es.webapp6.padelante.model.Match;
 import es.webapp6.padelante.model.Team;
 import es.webapp6.padelante.model.Tournament;
 import es.webapp6.padelante.model.User;
+import es.webapp6.padelante.service.MatchService;
 import es.webapp6.padelante.service.TeamService;
 import es.webapp6.padelante.service.TournamentService;
 import es.webapp6.padelante.service.UserService;
@@ -43,6 +45,9 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 public class TournamentRestController {
 	@Autowired
 	private TournamentService tournamentService;
+
+	@Autowired
+    private MatchService matchService;
 
 	@Autowired
 	private UserService userService;
@@ -79,6 +84,22 @@ public class TournamentRestController {
 			return ResponseEntity.notFound().build();
 		}
 	}
+
+	@GetMapping("/{id}/matches")
+    public ResponseEntity<List<Match>> getRound(@PathVariable long id, @RequestParam Integer round) {
+        
+        if (tournamentService.exist(id)) {
+            Tournament tournament = tournamentService.findById(id).get();
+            if(round > 0 && tournament.getRounds() >= round){ 
+                List<Match> rMatches = matchService.getRoundMatches(tournament, round);
+                return ResponseEntity.ok(rMatches);
+            }else{
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }        
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
 	@PostMapping("")
 	public ResponseEntity<Tournament> createTournament(@RequestBody Tournament tournament, HttpServletRequest request) {
