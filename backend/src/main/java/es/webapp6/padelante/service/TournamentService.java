@@ -102,7 +102,7 @@ public class TournamentService {
 		return false;
 	}
 
-	public void addParticipant(Tournament tournament, Team team){
+	public int addParticipant(Tournament tournament, Team team){
 		List<Match> auxMatches = matches.getAuxMatches(tournament);
 
 		if (tournament.getNumSignedUp() < tournament.getNumParticipants() && !isAnyUserOfTeamInTournament(tournament, team)){
@@ -116,8 +116,10 @@ public class TournamentService {
 			}
 			tournament.setNumSignedUp(tournament.getNumSignedUp()+1);
 			tournaments.save(tournament);
+			return 0; //All OK
+		} else {
+			return 1; //Cant add participant
 		}
-		
 	}
 
 	public void deleteParticipant(Tournament tournament, Team team){

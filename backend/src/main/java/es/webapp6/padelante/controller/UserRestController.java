@@ -3,16 +3,14 @@ package es.webapp6.padelante.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
-import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import java.net.URI;
 
 import javax.servlet.http.HttpServletRequest;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.HttpStatus;
@@ -29,13 +26,11 @@ import es.webapp6.padelante.model.Match;
 import es.webapp6.padelante.model.Tournament;
 import es.webapp6.padelante.model.User;
 import es.webapp6.padelante.service.MatchService;
-import es.webapp6.padelante.service.TeamService;
 import es.webapp6.padelante.service.TournamentService;
 import es.webapp6.padelante.service.UserService;
 
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 
@@ -56,14 +51,14 @@ public class UserRestController {
 	private UserService userService;
 
 	@Autowired
-	private TeamService teamService;
+	private PasswordEncoder passwordEncoder;
 	
 	//who is conected
 	@GetMapping("/me")
 	public ResponseEntity<User> getActiveUser(HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
 		if(principal != null) {
-			return ResponseEntity.ok(userService.findByName(principal.getName()).orElseThrow());
+			return ResponseEntity.ok(userService.findByName(principal.getName()).get());
 		} else {
 			return ResponseEntity.notFound().build();
 		}
@@ -71,189 +66,175 @@ public class UserRestController {
 
 	//get all users
 	@GetMapping("")
-	public Collection<User> getUsers() {
-		return userService.findAll();
+	public ResponseEntity<Page<User>> getAllUsers(@RequestParam int page) {
+		return ResponseEntity.ok(userService.getUsers(page));
 	}
 
 	//get user by id
 	@GetMapping("/{id}")
-	public ResponseEntity<Optional<User>> getUser(@PathVariable long id) {
+	public ResponseEntity<User> getUser(@PathVariable long id) {
 
-		Optional<User> user = userService.findById(id);
-
-		if (user != null) {
-			return ResponseEntity.ok(user);
+		if (userService.exist(id)) {
+			User user = userService.findById(id).get();
+			return new ResponseEntity<>(user, HttpStatus.OK);
 		} else {
-			return ResponseEntity.notFound().build();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 	}
     
 
-	//Register new user. Can be done better, but idk how to check user params
-	
+	//Register new user
 	@PostMapping("/register")
-	@ResponseStatus (HttpStatus.CREATED)
-	public User registerNewUser(@RequestBody User user) {
-
-		userService.save(user);
-
-		return user;
+	public ResponseEntity<User> registerNewUser(@RequestBody User user) {
+		user.setStatus(true);
+		if(user.getName().isBlank() || userService.findByName(user.getName()).isPresent()){
+			return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+		} else {
+			URI location = fromCurrentRequest().build().toUri();
+			User userNew = new User(user.getName(), passwordEncoder.encode(user.getEncodedPassword()), user.getEmail(), user.getRealName(), "USER");
+			
+			userService.save(userNew);
+			return ResponseEntity.created(location).build();
+		}
 	}
 
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<User> deleteUser(@PathVariable long id) {
 
-		try {
+		if (userService.exist(id)) {
 			userService.delete(id);
 			return new ResponseEntity<>(null, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}	
+	}
 
-		} catch (EmptyResultDataAccessException e) {
+	@GetMapping("/me/pairs")
+	public ResponseEntity<Page<User>> getUserPairs(@RequestParam int page, HttpServletRequest request) {
+		Principal principal = request.getUserPrincipal();
+		if(principal != null) {
+			Page<User> userPairs = userService.findPairsOf(page, userService.findByName(principal.getName()).get());
+			return new ResponseEntity<>(userPairs, HttpStatus.OK);
+		} else {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 	}
 
-	//not done yet
-	//Es necesario el GET de admin? No vale con el get me?
-	@GetMapping("/admin")
-    public String getAdmin(Model model, HttpServletRequest request, @RequestParam(required = false) Integer page) {      
+	@GetMapping("/me/tournaments")
+	public ResponseEntity<Page<Tournament>> getUserTournaments(@RequestParam int page, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
-		if (principal != null) {				
-			String userName = principal.getName();
-			Optional<User> user = userService.findByName(userName);
-			List<Match> matches = matchService.getUserMatches(user.get());
-			model.addAttribute("matches", matches);
-			model.addAttribute("numMatches", matches.size());
-			model.addAttribute("showMatches", matches.size()>0);
+		if(principal != null) {
+			Page<Tournament> userTourns = tournamentService.findUserTournaments(page, userService.findByName(principal.getName()).get());
+			return new ResponseEntity<>(userTourns, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
-		
-		int pageInt = page == null? 0: page; 
-		Page<Tournament> adminTourns = tournamentService.getTournaments(pageInt);
-		model.addAttribute("adminTourns", adminTourns);
-		model.addAttribute("numAdminTourns", adminTourns.getTotalPages()>1);
+	}
 
-		Page<User> adminUsers = userService.getUsersNoAdmin(pageInt);
-		model.addAttribute("adminUsers", adminUsers);
-		model.addAttribute("numAdminUsers", adminUsers.getTotalPages()>1);
-		model.addAttribute("adminnextpage", pageInt+1);
-		return "admin";
-    }
-
-//not done yet
-//Es necesario? A lo mejor obtener los torneos, parejas y partidos del usuario por separado si, pero esto?
-    @GetMapping("/user_profile")
-    public String user_profile(Model model, HttpServletRequest request,
-	@RequestParam(required = false) Integer page) {
+	@GetMapping("/me/matches")
+	public ResponseEntity<List<Match>> getUserMatches(HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
-		String userName = principal.getName();
-		Optional<User> user = userService.findByName(userName);
-		model.addAttribute("user", user.get());
-		List<Match> matches = matchService.getUserMatches(user.get());
-		model.addAttribute("matches", matches);
-		model.addAttribute("numMatches", matches.size());
-		model.addAttribute("showMatches", matches.size()>0);
+		if(principal != null) {
+			List<Match> matches = matchService.getUserMatches(userService.findByName(principal.getName()).get());
+			return new ResponseEntity<>(matches, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+	}
 
-		int pageInt = page == null? 0: page;  
-		Page<Tournament> userTourns = tournamentService.findUserTournaments(pageInt, user.get());
-		model.addAttribute("userTourns", userTourns);
-		model.addAttribute("numUserTourns", userTourns.getTotalPages()>1);
-		model.addAttribute("nextpage", pageInt+1);
-
-		Page<User> userPairs = userService.findPairsOf(pageInt, user.get());
-		model.addAttribute("userPairs", userPairs);
-		model.addAttribute("numUserPairs", userPairs.getTotalPages()>1);
-		model.addAttribute("nextpage2", pageInt+1);
-		
-        return "user_profile";
-    }
-
-
-	@PostMapping("/inscription/{idtourn}")
-	public ResponseEntity<Object> inscriptionTournament (@PathVariable long idtourn, @RequestParam long id, HttpServletRequest request) {
+	//To update user. 
+	@PutMapping("")
+	public ResponseEntity<User> updateUser(@RequestBody User updatedUser, HttpServletRequest request) throws SQLException {
 		Principal principal = request.getUserPrincipal();
-		User partner = userService.findById(id).get();
 
 		if (principal != null) {
-			User user = userService.findByName(principal.getName()).get();
-			Tournament tournament = tournamentService.findById(idtourn).get();
-			tournamentService.addParticipant(tournament, teamService.makeTeam(user, partner));
+			User dbUser = userService.findByName(principal.getName()).get();
 
-			URI location = fromCurrentRequest().build().toUri();
-			return ResponseEntity.created(location).build();
-			
-		}else {
-			return ResponseEntity.notFound().build();
-		}
-		
-	}
-	
-	//To update user. 
-	@PutMapping("/{id}")
-	public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User updatedUser) throws SQLException {
-
-		if (userService.exist(id)) {
-
-			if (updatedUser.getImage()) {
-				// Maintain the same image loading it before updating the user
-				User dbUser = userService.findById(id).orElseThrow();
-				if (dbUser.getImage()) {
-					updatedUser.setImageFile(BlobProxy.generateProxy(dbUser.getImageFile().getBinaryStream(),
-					dbUser.getImageFile().length()));
-				}
+			// Data that must not change because user could be inconsistent
+			updatedUser.setId(dbUser.getId());
+			updatedUser.setName(dbUser.getName());
+			updatedUser.setEmail(dbUser.getEmail());
+			updatedUser.setNumWins(dbUser.getNumWins());
+			updatedUser.setNumLoses(dbUser.getNumLoses());
+			updatedUser.setNumMatchesPlayed(dbUser.getNumMatchesPlayed());
+			updatedUser.setHistoricalKarma(dbUser.getHistoricalKarma());
+			updatedUser.setStatus(dbUser.getStatus());
+			updatedUser.setEncodedPassword(dbUser.getEncodedPassword());
+			updatedUser.setRoles(dbUser.getRoles());
+			if (dbUser.getImage()) {
+				updatedUser.setImageFile(BlobProxy.generateProxy(dbUser.getImageFile().getBinaryStream(),
+				dbUser.getImageFile().length()));
+						updatedUser.setImage(true);
 			}
 
-			updatedUser.setId(id);
 			userService.save(updatedUser);
 
 			return new ResponseEntity<>(updatedUser, HttpStatus.OK);
 		} else	{
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 	}
 
 
-	@PostMapping("/{id}/image")
-	public ResponseEntity<Object> uploadImage(@PathVariable long id, @RequestParam MultipartFile imageFile)
+	@PostMapping("/image")
+	public ResponseEntity<Object> uploadImage(@RequestParam MultipartFile imageFile, HttpServletRequest request)
 			throws IOException {
 
-		User user = userService.findById(id).orElseThrow();
+		Principal principal = request.getUserPrincipal();
 
-		URI location = fromCurrentRequest().build().toUri();
+		if (principal != null){
+			User user = userService.findByName(principal.getName()).get();
+			URI location = fromCurrentRequest().build().toUri();
 
-		user.setImage(true);
-		user.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
-		userService.save(user);
+			user.setImage(true);
+			user.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
+			userService.save(user);
 
-		return ResponseEntity.created(location).build();
+			return ResponseEntity.created(location).build();
+		}
+		else {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}	
 	}
 
 	@GetMapping("/{id}/image")
 	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
 
-		User user = userService.findById(id).orElseThrow();
+		if (userService.exist(id)){
+			User user = userService.findById(id).get();
+			if (user.getImage()) {
 
-		if (user.getImageFile() != null) {
-
-			Resource file = new InputStreamResource(user.getImageFile().getBinaryStream());
-
-			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
-					.contentLength(user.getImageFile().length()).body(file);
-
+				Resource file = new InputStreamResource(user.getImageFile().getBinaryStream());
+	
+				return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+						.contentLength(user.getImageFile().length()).body(file);
+	
+			} else {
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
 		} else {
-			return ResponseEntity.notFound().build();
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 
-	@DeleteMapping("/{id}/image")
-	public ResponseEntity<Object> deleteImage(@PathVariable long id) throws IOException {
+	@DeleteMapping("/image")
+	public ResponseEntity<Object> deleteImage(HttpServletRequest request) throws IOException {
+		Principal principal = request.getUserPrincipal();
 
-		User user = userService.findById(id).orElseThrow();
-
-		user.setImageFile(null);
-		user.setImage(false);
-
-		userService.save(user);
-
-		return ResponseEntity.noContent().build();
+		if (principal != null){
+            User user = userService.findByName(principal.getName()).get();
+            if (user.getImage()){
+                user.setImageFile(null);
+                user.setImage(false);
+                userService.save(user);
+                return new ResponseEntity<>(HttpStatus.OK);    
+            } else {
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            }
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
 	}
 }

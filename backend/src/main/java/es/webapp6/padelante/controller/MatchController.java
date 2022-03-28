@@ -1,6 +1,7 @@
 package es.webapp6.padelante.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,7 +77,8 @@ public class MatchController {
 	@RequestParam String games4,@RequestParam String games5,@RequestParam String games6){
         Match match = matchService.findById(id).get();
 		
-		boolean cheked = matchService.checkResult(games1, games2, games3, games4, games5, games6, match);
+		ArrayList<Integer> result = matchService.buildResult(games1, games2, games3, games4, games5, games6);
+		boolean cheked = matchService.generateResult(result, match);
 
 		if(cheked){
 			

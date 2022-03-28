@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,8 +26,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+
+import es.webapp6.padelante.model.Match;
+import es.webapp6.padelante.model.Team;
 import es.webapp6.padelante.model.Tournament;
+import es.webapp6.padelante.model.User;
+import es.webapp6.padelante.service.MatchService;
+import es.webapp6.padelante.service.TeamService;
 import es.webapp6.padelante.service.TournamentService;
+import es.webapp6.padelante.service.UserService;
 
 import org.springframework.data.domain.Page;
 
@@ -38,11 +46,20 @@ public class TournamentRestController {
 	@Autowired
 	private TournamentService tournamentService;
 
+	@Autowired
+    private MatchService matchService;
+
+	@Autowired
+	private UserService userService;
+
+	@Autowired
+	private TeamService teamService;
+
 	// get all users
 	// Only shows 4 of 6 tourns on the 1st page. FIX IT
 	@GetMapping("")
-	public Page<Tournament> getTournaments(@RequestParam int page) {
-		return tournamentService.getTournaments(page);
+	public ResponseEntity<Page<Tournament>> getTournaments(@RequestParam int page) {
+		return ResponseEntity.ok(tournamentService.getTournaments(page));
 	}
 
 	// get tournament by id
@@ -57,12 +74,39 @@ public class TournamentRestController {
 		}
 	}
 
+	@GetMapping("/{id}/tournamentTeams")
+	public ResponseEntity<List<Team>> getTournamentTeams(@PathVariable long id) {
+
+		if (tournamentService.exist(id)) {
+			Tournament tournament = tournamentService.findById(id).get();
+			return ResponseEntity.ok(tournamentService.getTeamsSignedUp(tournament));
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+
+	@GetMapping("/{id}/matches")
+    public ResponseEntity<List<Match>> getRound(@PathVariable long id, @RequestParam Integer round) {
+        
+        if (tournamentService.exist(id)) {
+            Tournament tournament = tournamentService.findById(id).get();
+            if(round > 0 && tournament.getRounds() >= round){ 
+                List<Match> rMatches = matchService.getRoundMatches(tournament, round);
+                return ResponseEntity.ok(rMatches);
+            }else{
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }        
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 	@PostMapping("")
 	public ResponseEntity<Tournament> createTournament(@RequestBody Tournament tournament, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
-		
+
 		if (principal != null) {
-			//Data that must be default because tournament could be inconsistent
+			// Data that must be default because tournament could be inconsistent
 			tournament.setOwner(principal.getName());
 			tournament.setNumParticipants(0);
 			tournament.setNumSignedUp(0);
@@ -73,41 +117,108 @@ public class TournamentRestController {
 			URI location = fromCurrentRequest().path("/{id}").buildAndExpand(tournament.getId()).toUri();
 
 			return ResponseEntity.created(location).body(tournament);
-		}
-		else {
+		} else {
 			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 		}
-		
+
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Tournament> deleteTournament(@PathVariable long id, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
-		
+
 		if (tournamentService.exist(id)) {
-			if (principal != null && principal.getName().equals("admin")){
+			if (principal != null && principal.getName().equals("admin")) {
 				tournamentService.delete(id);
 				return new ResponseEntity<>(null, HttpStatus.OK);
-			}
-			else {
+			} else {
 				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 			}
-		}
-		else {
+		} else {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 	}
 
+	@PutMapping("/{id}/inscription")
+	public ResponseEntity<Object> inscriptionTournament (@PathVariable long id, @RequestParam long idPair, HttpServletRequest request) {
+		Principal principal = request.getUserPrincipal();
+
+		if (tournamentService.exist(id) && userService.exist(idPair)) {
+			Tournament tournament = tournamentService.findById(id).get();
+			User partner = userService.findById(idPair).get();
+
+			if (principal != null) {
+				User user = userService.findByName(principal.getName()).get();
+
+				int response = tournamentService.addParticipant(tournament, teamService.makeTeam(user, partner));
+				if (response == 0) {
+					return new ResponseEntity<>(tournamentService.getTeamsSignedUp(tournament), HttpStatus.OK);
+				} else {
+					return new ResponseEntity<>(tournamentService.getTeamsSignedUp(tournament), HttpStatus.ACCEPTED);
+				}
+			}else {
+				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+			}
+		} else {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@PutMapping("/{id}/ejection")
+	public ResponseEntity<List<Team>> deleteTournamentTeam(@PathVariable long id, HttpServletRequest request,
+			@RequestParam long teamid) {
+		Principal principal = request.getUserPrincipal();
+
+		if (tournamentService.exist(id) && teamService.exist(teamid)) {
+			Tournament tournament = tournamentService.findById(id).get();
+			Team team = teamService.findById(teamid).get();
+			if (principal != null && principal.getName().equals(tournament.getOwner())) {
+				tournamentService.deleteParticipant(tournament, team);
+				return new ResponseEntity<>(tournamentService.getTeamsSignedUp(tournament), HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+			}
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+	}
+
+	@PutMapping("/{id}/initiation")
+	public ResponseEntity<Tournament> startTournament(@PathVariable long id, HttpServletRequest request) {
+
+		Principal principal = request.getUserPrincipal();
+
+		if (tournamentService.exist(id)) {
+
+			Tournament tournament = tournamentService.findById(id).get();
+
+			if (principal != null && principal.getName().equals(tournament.getOwner()) && tournament.getNumSignedUp()>1) {
+				tournamentService.generateEmptyBracket(tournament);
+				tournamentService.assignTeamsStart(tournament);
+				tournamentService.setFreeWins(tournament);
+			
+				return new ResponseEntity<>( tournamentService.findById(id).get(), HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+			}
+
+		} else {
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+
+	}
+
 	@PutMapping("/{id}")
 	public ResponseEntity<Tournament> updateTournament(@PathVariable long id, @RequestBody Tournament tournament,
-		HttpServletRequest request) throws SQLException {
-		
+			HttpServletRequest request) throws SQLException {
+
 		Principal principal = request.getUserPrincipal();
-		
+
 		if (tournamentService.exist(id)) {
 			Tournament bdTournament = tournamentService.findById(id).get();
-			if (principal != null && principal.getName().equals(bdTournament.getOwner())){
-				//Data that must not change because tournament could be inconsistent
+			if (principal != null && principal.getName().equals(bdTournament.getOwner())) {
+				// Data that must not change because tournament could be inconsistent
 				tournament.setId(id);
 				tournament.setOwner(bdTournament.getOwner());
 				tournament.setNumParticipants(bdTournament.getNumParticipants());
@@ -115,31 +226,31 @@ public class TournamentRestController {
 				tournament.setRounds(bdTournament.getRounds());
 				if (bdTournament.getImage()) {
 					tournament.setImageFile(BlobProxy.generateProxy(bdTournament.getImageFile().getBinaryStream(),
-						bdTournament.getImageFile().length()));
+							bdTournament.getImageFile().length()));
 					tournament.setImage(true);
 				}
 
 				tournamentService.save(tournament);
 
 				return new ResponseEntity<>(tournament, HttpStatus.OK);
-			}
-			else {
+			} else {
 				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 			}
-		} else	{
+		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 
 	@PostMapping("/{id}/image")
-	public ResponseEntity<Object> uploadImage(@PathVariable long id, @RequestParam MultipartFile imageFile, HttpServletRequest request)
+	public ResponseEntity<Object> uploadImage(@PathVariable long id, @RequestParam MultipartFile imageFile,
+			HttpServletRequest request)
 			throws IOException {
 
 		Principal principal = request.getUserPrincipal();
 
-		if (tournamentService.exist(id)){
+		if (tournamentService.exist(id)) {
 			Tournament tournament = tournamentService.findById(id).get();
-			if (principal != null && principal.getName().equals(tournament.getOwner())){
+			if (principal != null && principal.getName().equals(tournament.getOwner())) {
 				URI location = fromCurrentRequest().build().toUri();
 
 				tournament.setImage(true);
@@ -147,12 +258,10 @@ public class TournamentRestController {
 				tournamentService.save(tournament);
 
 				return ResponseEntity.created(location).build();
-			}
-			else {
+			} else {
 				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
-			}	
-		}
-		else{
+			}
+		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
@@ -160,7 +269,7 @@ public class TournamentRestController {
 	@GetMapping("/{id}/image")
 	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
 
-		if (tournamentService.exist(id)){
+		if (tournamentService.exist(id)) {
 			Tournament tournament = tournamentService.findById(id).get();
 
 			if (tournament.getImage()) {
@@ -172,33 +281,34 @@ public class TournamentRestController {
 			} else {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
-		}
-		else {
+		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		
+
 	}
 
 	@DeleteMapping("/{id}/image")
 	public ResponseEntity<Object> deleteImage(@PathVariable long id, HttpServletRequest request) throws IOException {
 		Principal principal = request.getUserPrincipal();
 
-		if (tournamentService.exist(id)){
-			Tournament tournament = tournamentService.findById(id).get();
-			if (principal != null && principal.getName().equals(tournament.getOwner())){
-				tournament.setImageFile(null);
-				tournament.setImage(false);
+		if (tournamentService.exist(id)) {
+            Tournament tournament = tournamentService.findById(id).get();
+            if (principal != null && principal.getName().equals(tournament.getOwner())) {
+                if (tournament.getImage()) {
+                    tournament.setImageFile(null);
+                    tournament.setImage(false);
 
-				tournamentService.save(tournament);
+                    tournamentService.save(tournament);
 
-				return new ResponseEntity<>(HttpStatus.OK);
-			}
-			else{
-				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
-			}	
-		}
-		else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+                    return new ResponseEntity<>(HttpStatus.OK);
+                } else {
+                    return new ResponseEntity<>(HttpStatus.ACCEPTED);
+                }
+            } else {
+                return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+            }
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
 	}
 }

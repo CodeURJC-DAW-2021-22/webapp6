@@ -1,4 +1,4 @@
-package es.webapp6.padelante.controller.auth;
+package es.webapp6.padelante.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,7 +19,7 @@ import es.webapp6.padelante.security.jwt.AuthResponse.Status;
 
 @RestController
 @RequestMapping("/api/auth")
-public class LoginController {
+public class LoginRestController {
 
 	@Autowired
 	private UserLoginService userService;

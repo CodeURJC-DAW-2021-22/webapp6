@@ -13,7 +13,8 @@ COPY pom.xml /project/
 RUN mvn clean verify --fail-never
 
 # Copia el código del proyecto
-COPY /src /project/src
+COPY src/main/resources /project/src/main/resources
+COPY src/main/java /project/src/main/java
 
 # Compila proyecto
 RUN mvn package -o -DskipTests=true
