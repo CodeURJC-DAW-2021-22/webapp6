@@ -30,6 +30,7 @@ public class Tournament {
     private String location;
     private String inscriptionDate;
     private String startDate;
+    private boolean started;
    
     @JsonIgnore 
     @Lob
@@ -58,6 +59,7 @@ public class Tournament {
                 this.inscriptionDate=inscriptionDate;
                 this.startDate=startDate;
                 this.owner = owner;
+                this.started = false;
               
     }
 
@@ -171,4 +173,11 @@ public class Tournament {
 		this.image = image;
 	}
 
+    public boolean isStarted() {
+        return started;
+    }
+
+    public void setStarted(boolean started) {
+        this.started = started;
+    }
 }

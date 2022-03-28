@@ -173,6 +173,7 @@ public class TournamentService {
 				matches.save(match);
 			}
 		}
+		tournament.setStarted(true);
 		tournaments.save(tournament);
 	}
 
