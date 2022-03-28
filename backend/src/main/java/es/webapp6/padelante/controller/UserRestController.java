@@ -25,6 +25,7 @@ import org.springframework.http.HttpStatus;
 import es.webapp6.padelante.model.Match;
 import es.webapp6.padelante.model.Tournament;
 import es.webapp6.padelante.model.User;
+import es.webapp6.padelante.model.Views;
 import es.webapp6.padelante.service.MatchService;
 import es.webapp6.padelante.service.TournamentService;
 import es.webapp6.padelante.service.UserService;
@@ -35,6 +36,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
+import com.fasterxml.jackson.annotation.JsonView;
+
 
 
 
@@ -54,6 +57,7 @@ public class UserRestController {
 	private PasswordEncoder passwordEncoder;
 	
 	//who is conected
+	@JsonView(Views.Mostrar.class)
 	@GetMapping("/me")
 	public ResponseEntity<User> getActiveUser(HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
@@ -65,12 +69,14 @@ public class UserRestController {
 	}
 
 	//get all users
+	@JsonView(Views.Mostrar.class)
 	@GetMapping("")
 	public ResponseEntity<Page<User>> getAllUsers(@RequestParam int page) {
 		return ResponseEntity.ok(userService.getUsers(page));
 	}
 
 	//get user by id
+	@JsonView(Views.Mostrar.class)
 	@GetMapping("/{id}")
 	public ResponseEntity<User> getUser(@PathVariable long id) {
 
@@ -110,6 +116,7 @@ public class UserRestController {
 		}	
 	}
 
+	@JsonView(Views.Mostrar.class)
 	@GetMapping("/me/pairs")
 	public ResponseEntity<Page<User>> getUserPairs(@RequestParam int page, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
@@ -132,6 +139,7 @@ public class UserRestController {
 		}
 	}
 
+	@JsonView(Views.Mostrar.class)
 	@GetMapping("/me/matches")
 	public ResponseEntity<List<Match>> getUserMatches(HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
