@@ -61,11 +61,6 @@ public class UserRestController {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-<<<<<<< HEAD
-	
-	//who is conected
-	@JsonView(Views.Mostrar.class)
-=======
 
 	@Operation(summary = "Get the user conected")
 	@ApiResponses(value = {
@@ -74,7 +69,6 @@ public class UserRestController {
 			@ApiResponse(responseCode = "404", description = "User conected not found", content = @Content) })
 
 	// who is conected
->>>>>>> 20494030577c9f2e0e263d51668ee21dc4fc7ece
 	@GetMapping("/me")
 	public ResponseEntity<User> getActiveUser(HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
@@ -85,23 +79,9 @@ public class UserRestController {
 		}
 	}
 
-<<<<<<< HEAD
-	//get all users
-	@JsonView(Views.Mostrar.class)
-=======
-	// get all users
->>>>>>> 20494030577c9f2e0e263d51668ee21dc4fc7ece
-	@GetMapping("")
-	public ResponseEntity<Page<User>> getAllUsers(@RequestParam int page) {
-		return ResponseEntity.ok(userService.getUsers(page));
-	}
-
-<<<<<<< HEAD
-	//get user by id
-	@JsonView(Views.Mostrar.class)
-=======
+	
 	// get user by id
->>>>>>> 20494030577c9f2e0e263d51668ee21dc4fc7ece
+	@JsonView(Views.Mostrar.class)
 	@GetMapping("/{id}")
 	public ResponseEntity<User> getUser(@PathVariable long id) {
 
