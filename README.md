@@ -270,6 +270,7 @@ Los usuarios principales son:
 
 ## Diagrama de clases con REST Controllers
 
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/ClassDiagramUpdate.png" width="1000"></img>
 ## Ejecución de la aplicación dockerizada
 
   Para la ejecución del archivo ```docker-compose.yml``` se usa:
