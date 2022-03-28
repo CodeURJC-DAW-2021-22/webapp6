@@ -185,7 +185,8 @@ public class TournamentRestController {
 	}
 
 	@PutMapping("/{id}/initiation")
-	public ResponseEntity<Tournament> startTournament(@PathVariable long id, HttpServletRequest request) {
+	public ResponseEntity<Tournament> startTournament(@PathVariable long id, @RequestParam boolean start,
+		HttpServletRequest request) {
 
 		Principal principal = request.getUserPrincipal();
 
@@ -194,10 +195,11 @@ public class TournamentRestController {
 			Tournament tournament = tournamentService.findById(id).get();
 
 			if (principal != null && principal.getName().equals(tournament.getOwner()) && tournament.getNumSignedUp()>1) {
-				tournamentService.generateEmptyBracket(tournament);
-				tournamentService.assignTeamsStart(tournament);
-				tournamentService.setFreeWins(tournament);
-			
+				if (start) {
+					tournamentService.generateEmptyBracket(tournament);
+					tournamentService.assignTeamsStart(tournament);
+					tournamentService.setFreeWins(tournament);
+				}
 				return new ResponseEntity<>( tournamentService.findById(id).get(), HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);

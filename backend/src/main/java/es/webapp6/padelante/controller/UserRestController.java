@@ -99,10 +99,10 @@ public class UserRestController {
 	}
 
 
-	@DeleteMapping("/{id}")
-	public ResponseEntity<User> deleteUser(@PathVariable long id) {
+	@PutMapping("/{id}")
+	public ResponseEntity<User> deleteUser(@PathVariable long id, @RequestBody User user) {
 
-		if (userService.exist(id)) {
+		if (userService.exist(id) && !user.getStatus()) {
 			userService.delete(id);
 			return new ResponseEntity<>(null, HttpStatus.OK);
 		} else {

@@ -56,11 +56,11 @@ public class UserService {
 	 public void delete(long id) {
         Optional<User> user = userRepository.findById(id);
 		if (user.isPresent() && user.get().getStatus()) {
-			//MOVER A SERVICE
+			//MOVE TO SERVICE
 			user.get().setStatus(false);
 			user.get().setEncodedPassword(passwordEncoder.encode("ThisUserHasBeenDeleted"));
 			userRepository.save(user.get());
-			//MOVER A SERVICE
+			//MOVE TO SERVICE
 		}
 	}
 
