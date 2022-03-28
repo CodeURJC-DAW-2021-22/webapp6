@@ -105,10 +105,10 @@ public class TournamentController {
 	public String showTournament(Model model, @PathVariable long id, @RequestParam(required = false) Integer page, HttpServletRequest request) {
 		
 		Principal principal = request.getUserPrincipal();
-		Optional<Tournament> tournament = tournamentService.findById(id);
 
-		if (tournament.isPresent()) {
-			int numRound = tournament.get().getRounds();
+		if (tournamentService.exist(id)) {
+			Tournament tournament = tournamentService.findById(id).get();
+			int numRound = tournament.getRounds();
 			boolean r1=false;
 			boolean r2=false;
 			boolean r3=false;
@@ -135,15 +135,14 @@ public class TournamentController {
 			model.addAttribute("hasr3", r3);
 			model.addAttribute("hasr4", r4);
 
-			model.addAttribute("roundFour", matchService.getRoundMatches(tournament.get(),4));
-			model.addAttribute("roundTres", matchService.getRoundMatches(tournament.get(),3));
-			model.addAttribute("roundTwo",matchService.getRoundMatches(tournament.get(),2));
-			model.addAttribute("roundOne",matchService.getRoundMatches(tournament.get(),1));
+			model.addAttribute("roundFour", matchService.getRoundMatches(tournament,4));
+			model.addAttribute("roundTres", matchService.getRoundMatches(tournament,3));
+			model.addAttribute("roundTwo",matchService.getRoundMatches(tournament,2));
+			model.addAttribute("roundOne",matchService.getRoundMatches(tournament,1));
 
-			boolean hasStarted = matchService.getRoundMatches(tournament.get(),1).size()!=0;
-			model.addAttribute("hasStarted", hasStarted);
+			model.addAttribute("hasStarted", tournament.isStarted());
 
-			List<Team> teams = tournamentService.getTeamsSignedUp(tournament.get());
+			List<Team> teams = tournamentService.getTeamsSignedUp(tournament);
 			model.addAttribute("participants", teams);
 			if (teams.size()<2){
 				model.addAttribute("hasParticipants", false);
@@ -151,7 +150,7 @@ public class TournamentController {
 				model.addAttribute("hasParticipants", true);
 			}	
 
-			model.addAttribute("tourns", tournament.get());
+			model.addAttribute("tourns", tournament);
 
 			int pageInt = page == null? 0: page;  
 			model.addAttribute("userlist", userService.getUsers(pageInt).getContent());
@@ -159,7 +158,7 @@ public class TournamentController {
 
 			if(principal!=null){
 				String userName = principal.getName();
-				String ownerTournament=tournament.get().getOwner();
+				String ownerTournament=tournament.getOwner();
 				Boolean owner = ownerTournament.equals(userName);
 				if(owner || userService.findByName(userName).get().getRoles().contains("ADMIN")){
 					model.addAttribute("owner", true);
@@ -170,7 +169,7 @@ public class TournamentController {
 				List<Match> matches = matchService.getUserMatches(user.get());
 
 				List<Tournament> userTournaments = tournamentService.getUserTournaments(user.get());
-				if(userTournaments.contains(tournament.get())){
+				if(userTournaments.contains(tournament)){
 					model.addAttribute("isInTournament", true);
 	
 				}else{

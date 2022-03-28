@@ -56,7 +56,6 @@ public class TournamentRestController {
 	private TeamService teamService;
 
 	// get all users
-	// Only shows 4 of 6 tourns on the 1st page. FIX IT
 	@GetMapping("")
 	public ResponseEntity<Page<Tournament>> getTournaments(@RequestParam int page) {
 		return ResponseEntity.ok(tournamentService.getTournaments(page));
@@ -74,7 +73,7 @@ public class TournamentRestController {
 		}
 	}
 
-	@GetMapping("/{id}/tournamentTeams")
+	@GetMapping("/{id}/teams")
 	public ResponseEntity<List<Team>> getTournamentTeams(@PathVariable long id) {
 
 		if (tournamentService.exist(id)) {
@@ -139,13 +138,13 @@ public class TournamentRestController {
 		}
 	}
 
-	@PutMapping("/{id}/inscription")
-	public ResponseEntity<Object> inscriptionTournament (@PathVariable long id, @RequestParam long idPair, HttpServletRequest request) {
+	@PutMapping("/{id}/teams")
+	public ResponseEntity<Object> inscriptionTournament (@PathVariable long id, @RequestBody User user2, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
 
-		if (tournamentService.exist(id) && userService.exist(idPair)) {
+		if (tournamentService.exist(id) && userService.exist(user2.getId())) {
 			Tournament tournament = tournamentService.findById(id).get();
-			User partner = userService.findById(idPair).get();
+			User partner = userService.findById(user2.getId()).get();
 
 			if (principal != null) {
 				User user = userService.findByName(principal.getName()).get();
@@ -154,7 +153,7 @@ public class TournamentRestController {
 				if (response == 0) {
 					return new ResponseEntity<>(tournamentService.getTeamsSignedUp(tournament), HttpStatus.OK);
 				} else {
-					return new ResponseEntity<>(tournamentService.getTeamsSignedUp(tournament), HttpStatus.ACCEPTED);
+					return new ResponseEntity<>(tournamentService.getTeamsSignedUp(tournament), HttpStatus.BAD_REQUEST);
 				}
 			}else {
 				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
@@ -164,9 +163,9 @@ public class TournamentRestController {
 		}
 	}
 
-	@PutMapping("/{id}/ejection")
-	public ResponseEntity<List<Team>> deleteTournamentTeam(@PathVariable long id, HttpServletRequest request,
-			@RequestParam long teamid) {
+	@DeleteMapping("/{id}/teams/{teamid}")
+	public ResponseEntity<List<Team>> deleteTournamentTeam(@PathVariable long id, @PathVariable long teamid,
+		HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
 
 		if (tournamentService.exist(id) && teamService.exist(teamid)) {
@@ -184,33 +183,6 @@ public class TournamentRestController {
 
 	}
 
-	@PutMapping("/{id}/initiation")
-	public ResponseEntity<Tournament> startTournament(@PathVariable long id, @RequestParam boolean start,
-		HttpServletRequest request) {
-
-		Principal principal = request.getUserPrincipal();
-
-		if (tournamentService.exist(id)) {
-
-			Tournament tournament = tournamentService.findById(id).get();
-
-			if (principal != null && principal.getName().equals(tournament.getOwner()) && tournament.getNumSignedUp()>1) {
-				if (start) {
-					tournamentService.generateEmptyBracket(tournament);
-					tournamentService.assignTeamsStart(tournament);
-					tournamentService.setFreeWins(tournament);
-				}
-				return new ResponseEntity<>( tournamentService.findById(id).get(), HttpStatus.OK);
-			} else {
-				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
-			}
-
-		} else {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-		}
-
-	}
-
 	@PutMapping("/{id}")
 	public ResponseEntity<Tournament> updateTournament(@PathVariable long id, @RequestBody Tournament tournament,
 			HttpServletRequest request) throws SQLException {
@@ -220,21 +192,30 @@ public class TournamentRestController {
 		if (tournamentService.exist(id)) {
 			Tournament bdTournament = tournamentService.findById(id).get();
 			if (principal != null && principal.getName().equals(bdTournament.getOwner())) {
-				// Data that must not change because tournament could be inconsistent
-				tournament.setId(id);
-				tournament.setOwner(bdTournament.getOwner());
-				tournament.setNumParticipants(bdTournament.getNumParticipants());
-				tournament.setNumSignedUp(bdTournament.getNumSignedUp());
-				tournament.setRounds(bdTournament.getRounds());
-				if (bdTournament.getImage()) {
-					tournament.setImageFile(BlobProxy.generateProxy(bdTournament.getImageFile().getBinaryStream(),
-							bdTournament.getImageFile().length()));
-					tournament.setImage(true);
+				if (tournament.isStarted()) {
+					if (bdTournament.getNumSignedUp()>1) {
+						tournamentService.generateEmptyBracket(bdTournament);
+						tournamentService.assignTeamsStart(bdTournament);
+						tournamentService.setFreeWins(bdTournament);
+						return new ResponseEntity<>(tournamentService.findById(id).get(), HttpStatus.OK);
+					} else {
+						return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+					}
+				} else {
+					// Data that must not change because tournament could be inconsistent
+					tournament.setId(id);
+					tournament.setOwner(bdTournament.getOwner());
+					tournament.setNumParticipants(bdTournament.getNumParticipants());
+					tournament.setNumSignedUp(bdTournament.getNumSignedUp());
+					tournament.setRounds(bdTournament.getRounds());
+					if (bdTournament.getImage()) {
+						tournament.setImageFile(BlobProxy.generateProxy(bdTournament.getImageFile().getBinaryStream(),
+								bdTournament.getImageFile().length()));
+						tournament.setImage(true);
+					}
+					tournamentService.save(tournament);
+					return new ResponseEntity<>(tournament, HttpStatus.OK);
 				}
-
-				tournamentService.save(tournament);
-
-				return new ResponseEntity<>(tournament, HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 			}
@@ -304,7 +285,7 @@ public class TournamentRestController {
 
                     return new ResponseEntity<>(HttpStatus.OK);
                 } else {
-                    return new ResponseEntity<>(HttpStatus.ACCEPTED);
+                    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
                 }
             } else {
                 return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
