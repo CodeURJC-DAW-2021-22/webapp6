@@ -328,6 +328,8 @@ Se deberá haber clonado el repositorio de git previamente usando la siguiente s
 ```$ git clone https://github.com/CodeURJC-DAW-2021-22/webapp6```
   
 El usuario deberá ejecutar las siguientes sentencias en el terminal después de haberse situado con la sentencia ```cd``` en la carpeta del proyecto ```webapp6```:
+
+```$ cd ./backend```
   
 ```$ heroku login```
 
