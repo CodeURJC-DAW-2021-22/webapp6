@@ -69,6 +69,7 @@ public class UserRestController {
 			@ApiResponse(responseCode = "404", description = "User conected not found", content = @Content) })
 
 	// who is conected
+	@JsonView(Views.Mostrar.class)
 	@GetMapping("/me")
 	public ResponseEntity<User> getActiveUser(HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
@@ -144,7 +145,6 @@ public class UserRestController {
 		}
 	}
 
-	@JsonView(Views.Mostrar.class)
 	@GetMapping("/me/matches")
 	public ResponseEntity<List<Match>> getUserMatches(HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
@@ -157,6 +157,7 @@ public class UserRestController {
 	}
 
 	// To update user.
+	@JsonView(Views.Mostrar.class)
 	@PutMapping("")
 	public ResponseEntity<User> updateUser(@RequestBody User updatedUser, HttpServletRequest request)
 			throws SQLException {
