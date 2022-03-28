@@ -1,0 +1,839 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost:8443
+  description: Generated server url
+paths:
+  /api/users:
+    get:
+      tags:
+      - user-rest-controller
+      operationId: getAllUsers
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageUser'
+    put:
+      tags:
+      - user-rest-controller
+      operationId: updateUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/User'
+    post:
+      tags:
+      - user-rest-controller
+      operationId: registerNewUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/users/{id}:
+    get:
+      tags:
+      - user-rest-controller
+      operationId: getUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/User'
+    put:
+      tags:
+      - user-rest-controller
+      operationId: deleteUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/tournaments/{id}:
+    get:
+      tags:
+      - tournament-rest-controller
+      operationId: getTournament
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Tournament'
+    put:
+      tags:
+      - tournament-rest-controller
+      operationId: updateTournament
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tournament'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Tournament'
+    delete:
+      tags:
+      - tournament-rest-controller
+      operationId: deleteTournament
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Tournament'
+  /api/tournaments/{id}/inscription:
+    put:
+      tags:
+      - tournament-rest-controller
+      operationId: inscriptionTournament
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: idPair
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/tournaments/{id}/initiation:
+    put:
+      tags:
+      - tournament-rest-controller
+      operationId: startTournament
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: start
+        in: query
+        required: true
+        schema:
+          type: boolean
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Tournament'
+  /api/tournaments/{id}/ejection:
+    put:
+      tags:
+      - tournament-rest-controller
+      operationId: deleteTournamentTeam
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: teamid
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+  /api/matches/{id}/result:
+    put:
+      tags:
+      - match-rest-controller
+      operationId: resultMatch
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Match'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/users/image:
+    post:
+      tags:
+      - user-rest-controller
+      operationId: uploadImage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - imageFile
+              type: object
+              properties:
+                imageFile:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+    delete:
+      tags:
+      - user-rest-controller
+      operationId: deleteImage
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/tournaments:
+    get:
+      tags:
+      - tournament-rest-controller
+      operationId: getTournaments
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageTournament'
+    post:
+      tags:
+      - tournament-rest-controller
+      operationId: createTournament
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tournament'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Tournament'
+  /api/tournaments/{id}/image:
+    get:
+      tags:
+      - tournament-rest-controller
+      operationId: downloadImage_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+    post:
+      tags:
+      - tournament-rest-controller
+      operationId: uploadImage_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required:
+              - imageFile
+              type: object
+              properties:
+                imageFile:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+    delete:
+      tags:
+      - tournament-rest-controller
+      operationId: deleteImage_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/auth/refresh:
+    post:
+      tags:
+      - login-rest-controller
+      operationId: refreshToken
+      parameters:
+      - name: refreshToken
+        in: cookie
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /api/auth/logout:
+    post:
+      tags:
+      - login-rest-controller
+      operationId: logOut
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /api/auth/login:
+    post:
+      tags:
+      - login-rest-controller
+      operationId: login
+      parameters:
+      - name: accessToken
+        in: cookie
+        required: false
+        schema:
+          type: string
+      - name: refreshToken
+        in: cookie
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /api/users/{id}/image:
+    get:
+      tags:
+      - user-rest-controller
+      operationId: downloadImage
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/users/me:
+    get:
+      tags:
+      - user-rest-controller
+      operationId: getActiveUser
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/users/me/tournaments:
+    get:
+      tags:
+      - user-rest-controller
+      operationId: getUserTournaments
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageTournament'
+  /api/users/me/pairs:
+    get:
+      tags:
+      - user-rest-controller
+      operationId: getUserPairs
+      parameters:
+      - name: page
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageUser'
+  /api/users/me/matches:
+    get:
+      tags:
+      - user-rest-controller
+      operationId: getUserMatches
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Match'
+  /api/tournaments/{id}/tournamentTeams:
+    get:
+      tags:
+      - tournament-rest-controller
+      operationId: getTournamentTeams
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+  /api/tournaments/{id}/matches:
+    get:
+      tags:
+      - tournament-rest-controller
+      operationId: getRound
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: round
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Match'
+  /api/matches/{id}:
+    get:
+      tags:
+      - match-rest-controller
+      operationId: getUser_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Match'
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        email:
+          type: string
+        realName:
+          type: string
+        location:
+          type: string
+        country:
+          type: string
+        phone:
+          type: string
+        numWins:
+          type: integer
+          format: int32
+        numLoses:
+          type: integer
+          format: int32
+        numMatchesPlayed:
+          type: number
+          format: double
+        historicalKarma:
+          type: array
+          items:
+            type: integer
+            format: int32
+        status:
+          type: boolean
+        encodedPassword:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        karma:
+          type: integer
+          format: int32
+    Tournament:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        owner:
+          type: string
+        tournamentName:
+          type: string
+        numParticipants:
+          type: integer
+          format: int32
+        numSignedUp:
+          type: integer
+          format: int32
+        rounds:
+          type: integer
+          format: int32
+        about:
+          type: string
+        ruleset:
+          type: string
+        location:
+          type: string
+        inscriptionDate:
+          type: string
+        startDate:
+          type: string
+    Team:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        tbd:
+          type: boolean
+        userA:
+          $ref: '#/components/schemas/User'
+        userB:
+          $ref: '#/components/schemas/User'
+    Match:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        round:
+          type: integer
+          format: int32
+        result:
+          type: array
+          items:
+            type: integer
+            format: int32
+        setsTeamOne:
+          type: integer
+          format: int32
+        setsTeamTwo:
+          type: integer
+          format: int32
+        hasWinner:
+          type: boolean
+        winnerTeamOne:
+          type: boolean
+        winnerTeamTwo:
+          type: boolean
+        teamOne:
+          $ref: '#/components/schemas/Team'
+        teamTwo:
+          $ref: '#/components/schemas/Team'
+        tournament:
+          $ref: '#/components/schemas/Tournament'
+    AuthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILURE
+        message:
+          type: string
+        error:
+          type: string
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    PageUser:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/Pageable'
+        empty:
+          type: boolean
+    Pageable:
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int64
+        sort:
+          $ref: '#/components/schemas/Sort'
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        unpaged:
+          type: boolean
+        paged:
+          type: boolean
+    Sort:
+      type: object
+      properties:
+        empty:
+          type: boolean
+        sorted:
+          type: boolean
+        unsorted:
+          type: boolean
+    PageTournament:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tournament'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/Pageable'
+        empty:
+          type: boolean
