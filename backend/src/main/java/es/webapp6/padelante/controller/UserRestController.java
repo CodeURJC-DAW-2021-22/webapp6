@@ -29,6 +29,14 @@ import es.webapp6.padelante.service.MatchService;
 import es.webapp6.padelante.service.TournamentService;
 import es.webapp6.padelante.service.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+
+
+
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
@@ -36,41 +44,45 @@ import org.springframework.http.HttpHeaders;
 
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
-
-
 @RestController
 @RequestMapping("/api/users")
 public class UserRestController {
-    @Autowired
-	private TournamentService tournamentService;	
+	@Autowired
+	private TournamentService tournamentService;
 
 	@Autowired
 	private MatchService matchService;
 
-    @Autowired
+	@Autowired
 	private UserService userService;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
-	//who is conected
+
+	@Operation(summary = "Get the user conected")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Found the user", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
+			@ApiResponse(responseCode = "404", description = "User conected not found", content = @Content) })
+
+	// who is conected
 	@GetMapping("/me")
 	public ResponseEntity<User> getActiveUser(HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
-		if(principal != null) {
+		if (principal != null) {
 			return ResponseEntity.ok(userService.findByName(principal.getName()).get());
 		} else {
 			return ResponseEntity.notFound().build();
 		}
 	}
 
-	//get all users
+	// get all users
 	@GetMapping("")
 	public ResponseEntity<Page<User>> getAllUsers(@RequestParam int page) {
 		return ResponseEntity.ok(userService.getUsers(page));
 	}
 
-	//get user by id
+	// get user by id
 	@GetMapping("/{id}")
 	public ResponseEntity<User> getUser(@PathVariable long id) {
 
@@ -81,23 +93,22 @@ public class UserRestController {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 	}
-    
 
-	//Register new user
+	// Register new user
 	@PostMapping("")
 	public ResponseEntity<User> registerNewUser(@RequestBody User user) {
 		user.setStatus(true);
-		if(user.getName().isBlank() || userService.findByName(user.getName()).isPresent()){
+		if (user.getName().isBlank() || userService.findByName(user.getName()).isPresent()) {
 			return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
 		} else {
 			URI location = fromCurrentRequest().build().toUri();
-			User userNew = new User(user.getName(), passwordEncoder.encode(user.getEncodedPassword()), user.getEmail(), user.getRealName(), "USER");
-			
+			User userNew = new User(user.getName(), passwordEncoder.encode(user.getEncodedPassword()), user.getEmail(),
+					user.getRealName(), "USER");
+
 			userService.save(userNew);
 			return ResponseEntity.created(location).build();
 		}
 	}
-
 
 	@PutMapping("/{id}")
 	public ResponseEntity<User> deleteUser(@PathVariable long id, @RequestBody User user) {
@@ -107,13 +118,13 @@ public class UserRestController {
 			return new ResponseEntity<>(null, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-		}	
+		}
 	}
 
 	@GetMapping("/me/pairs")
 	public ResponseEntity<Page<User>> getUserPairs(@RequestParam int page, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
-		if(principal != null) {
+		if (principal != null) {
 			Page<User> userPairs = userService.findPairsOf(page, userService.findByName(principal.getName()).get());
 			return new ResponseEntity<>(userPairs, HttpStatus.OK);
 		} else {
@@ -124,8 +135,9 @@ public class UserRestController {
 	@GetMapping("/me/tournaments")
 	public ResponseEntity<Page<Tournament>> getUserTournaments(@RequestParam int page, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
-		if(principal != null) {
-			Page<Tournament> userTourns = tournamentService.findUserTournaments(page, userService.findByName(principal.getName()).get());
+		if (principal != null) {
+			Page<Tournament> userTourns = tournamentService.findUserTournaments(page,
+					userService.findByName(principal.getName()).get());
 			return new ResponseEntity<>(userTourns, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -135,7 +147,7 @@ public class UserRestController {
 	@GetMapping("/me/matches")
 	public ResponseEntity<List<Match>> getUserMatches(HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
-		if(principal != null) {
+		if (principal != null) {
 			List<Match> matches = matchService.getUserMatches(userService.findByName(principal.getName()).get());
 			return new ResponseEntity<>(matches, HttpStatus.OK);
 		} else {
@@ -143,9 +155,10 @@ public class UserRestController {
 		}
 	}
 
-	//To update user. 
+	// To update user.
 	@PutMapping("")
-	public ResponseEntity<User> updateUser(@RequestBody User updatedUser, HttpServletRequest request) throws SQLException {
+	public ResponseEntity<User> updateUser(@RequestBody User updatedUser, HttpServletRequest request)
+			throws SQLException {
 		Principal principal = request.getUserPrincipal();
 
 		if (principal != null) {
@@ -164,18 +177,17 @@ public class UserRestController {
 			updatedUser.setRoles(dbUser.getRoles());
 			if (dbUser.getImage()) {
 				updatedUser.setImageFile(BlobProxy.generateProxy(dbUser.getImageFile().getBinaryStream(),
-				dbUser.getImageFile().length()));
-						updatedUser.setImage(true);
+						dbUser.getImageFile().length()));
+				updatedUser.setImage(true);
 			}
 
 			userService.save(updatedUser);
 
 			return new ResponseEntity<>(updatedUser, HttpStatus.OK);
-		} else	{
+		} else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 	}
-
 
 	@PostMapping("/image")
 	public ResponseEntity<Object> uploadImage(@RequestParam MultipartFile imageFile, HttpServletRequest request)
@@ -183,7 +195,7 @@ public class UserRestController {
 
 		Principal principal = request.getUserPrincipal();
 
-		if (principal != null){
+		if (principal != null) {
 			User user = userService.findByName(principal.getName()).get();
 			URI location = fromCurrentRequest().build().toUri();
 
@@ -192,24 +204,23 @@ public class UserRestController {
 			userService.save(user);
 
 			return ResponseEntity.created(location).build();
-		}
-		else {
+		} else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-		}	
+		}
 	}
 
 	@GetMapping("/{id}/image")
 	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
 
-		if (userService.exist(id)){
+		if (userService.exist(id)) {
 			User user = userService.findById(id).get();
 			if (user.getImage()) {
 
 				Resource file = new InputStreamResource(user.getImageFile().getBinaryStream());
-	
+
 				return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
 						.contentLength(user.getImageFile().length()).body(file);
-	
+
 			} else {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
@@ -222,19 +233,18 @@ public class UserRestController {
 	public ResponseEntity<Object> deleteImage(HttpServletRequest request) throws IOException {
 		Principal principal = request.getUserPrincipal();
 
-		if (principal != null){
-            User user = userService.findByName(principal.getName()).get();
-            if (user.getImage()){
-                user.setImageFile(null);
-                user.setImage(false);
-                userService.save(user);
-                return new ResponseEntity<>(HttpStatus.OK);    
-            } else {
-                return new ResponseEntity<>(HttpStatus.ACCEPTED);
-            }
-        }
-        else{
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
+		if (principal != null) {
+			User user = userService.findByName(principal.getName()).get();
+			if (user.getImage()) {
+				user.setImageFile(null);
+				user.setImage(false);
+				userService.save(user);
+				return new ResponseEntity<>(HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(HttpStatus.ACCEPTED);
+			}
+		} else {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
 	}
 }
