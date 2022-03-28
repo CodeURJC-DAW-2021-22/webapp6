@@ -84,7 +84,7 @@ public class UserRestController {
     
 
 	//Register new user
-	@PostMapping("/register")
+	@PostMapping("")
 	public ResponseEntity<User> registerNewUser(@RequestBody User user) {
 		user.setStatus(true);
 		if(user.getName().isBlank() || userService.findByName(user.getName()).isPresent()){
