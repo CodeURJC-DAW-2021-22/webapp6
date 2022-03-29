@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,10 +42,6 @@ public class UserController {
 
     @Autowired
 	private UserService userService;
-
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-    
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -85,11 +80,7 @@ public class UserController {
 
 		Optional<User> user = userService.findById(id);
 		if (user.isPresent() && user.get().getStatus()) {
-			//MOVE TO SERVICE
-			user.get().setStatus(false);
-			user.get().setEncodedPassword(passwordEncoder.encode("ThisUserHasBeenDeleted"));
-			userService.save(user.get());
-			//MOVE TO SERVICE
+			userService.delete(user.get());
 		}
 		return "redirect:/admin";
 	}
