@@ -254,6 +254,7 @@
             <div class="container pb-2">
               <div class="bracket d-flex flex-row flex-nowrap overflow-auto">
                 <div class="tournament-bracket tournament-bracket--rounded mb-5">
+                  
 
                   {{#hasr4}}
                   <div class="tournament-bracket__round tournament-bracket__round--semifinals">
@@ -727,9 +728,17 @@
 
               <input type="hidden" name="_csrf" value="{{token}}" />
 
+              {{#hasStarted}}
               <div class="text-center">
-                <button class="btn btn-green fw-bold" type="submit">Guardar cambios</button>
+                <button class="btn btn-green fw-bold" type="submit" disabled>Guardar cambios</button>
               </div>
+              {{/hasStarted}}
+
+              {{^hasStarted}}
+              <div class="text-center">
+                <button class="btn btn-green fw-bold" type="submit" >Guardar cambios</button>
+              </div>
+              {{/hasStarted}}
 
 
             </form><!-- End Profile Edit Form -->
