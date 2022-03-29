@@ -64,6 +64,7 @@ public class UserRestController {
 
 
 	//get all users
+	@JsonView(Views.Mostrar.class)
 	@GetMapping("")
 	public ResponseEntity<Page<User>> getAllUsers(@RequestParam int page) {
 		return ResponseEntity.ok(userService.getUsers(page));
