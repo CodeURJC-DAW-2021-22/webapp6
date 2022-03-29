@@ -68,6 +68,7 @@ public class UserRestController {
 			@ApiResponse(responseCode = "200", description = "Found a page of user", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
 		})
+		
 	//get all users
 	@JsonView(User.Mostrar.class)
 	@GetMapping("")
