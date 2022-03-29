@@ -25,7 +25,6 @@ import org.springframework.http.HttpStatus;
 import es.webapp6.padelante.model.Match;
 import es.webapp6.padelante.model.Tournament;
 import es.webapp6.padelante.model.User;
-import es.webapp6.padelante.model.Views;
 import es.webapp6.padelante.service.MatchService;
 import es.webapp6.padelante.service.TournamentService;
 import es.webapp6.padelante.service.UserService;
@@ -70,7 +69,7 @@ public class UserRestController {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
 		})
 	//get all users
-	@JsonView(Views.Mostrar.class)
+	@JsonView(User.Mostrar.class)
 	@GetMapping("")
 	public ResponseEntity<Page<User>> getAllUsers(
 		@Parameter(description="Page number of the list of users") @RequestParam int page) {
@@ -84,7 +83,7 @@ public class UserRestController {
 			@ApiResponse(responseCode = "404", description = "User conected not found", content = @Content) })
 
 	// who is conected
-	@JsonView(Views.Mostrar.class)
+	@JsonView(User.Mostrar.class)
 	@GetMapping("/me")
 	public ResponseEntity<User> getActiveUser(HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
@@ -97,7 +96,7 @@ public class UserRestController {
 
 	
 	// get user by id
-	@JsonView(Views.Mostrar.class)
+	@JsonView(User.Mostrar.class)
 	@GetMapping("/{id}")
 	public ResponseEntity<User> getUser(@PathVariable long id) {
 
@@ -136,7 +135,7 @@ public class UserRestController {
 		}
 	}
 
-	@JsonView(Views.Mostrar.class)
+	@JsonView(User.Mostrar.class)
 	@GetMapping("/me/pairs")
 	public ResponseEntity<Page<User>> getUserPairs(@RequestParam int page, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
@@ -172,7 +171,7 @@ public class UserRestController {
 	}
 
 	// To update user.
-	@JsonView(Views.Mostrar.class)
+	@JsonView(User.Mostrar.class)
 	@PutMapping("")
 	public ResponseEntity<User> updateUser(@RequestBody User updatedUser, HttpServletRequest request)
 			throws SQLException {

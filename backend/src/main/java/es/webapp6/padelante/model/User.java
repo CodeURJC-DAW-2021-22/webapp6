@@ -19,33 +19,35 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity(name = "UserTable")
 public class User {
+	 public interface Mostrar{}
+    
 
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@JsonView(Views.Mostrar.class)
+	@JsonView(Mostrar.class)
 	private Long id;
-	@JsonView(Views.Mostrar.class)
+	@JsonView(Mostrar.class)
 	private String name;
-	@JsonView(Views.Mostrar.class)
+	@JsonView(Mostrar.class)
 	private String email;
-	@JsonView(Views.Mostrar.class)
+	@JsonView(Mostrar.class)
 	private String realName;
-	@JsonView(Views.Mostrar.class)
+	@JsonView(Mostrar.class)
 	private String location;
-	@JsonView(Views.Mostrar.class)
+	@JsonView(Mostrar.class)
 	private String country;
-	@JsonView(Views.Mostrar.class)
+	@JsonView(Mostrar.class)
 	private String phone;
-	@JsonView(Views.Mostrar.class)
+	@JsonView(Mostrar.class)
 	private int numWins;
-	@JsonView(Views.Mostrar.class)
+	@JsonView(Mostrar.class)
 	private int numLoses;
-	@JsonView(Views.Mostrar.class)
+	@JsonView(Mostrar.class)
 	private double numMatchesPlayed; // Double cause it will have to be the argument of Math.log(Double a)
-	@JsonView(Views.Mostrar.class)
+	@JsonView(Mostrar.class)
 	private ArrayList<Integer> historicalKarma = new ArrayList<>(); // Integer because karma will be truncated before added to the list
-	@JsonView(Views.Mostrar.class)
+	@JsonView(Mostrar.class)
 	private boolean status;
 
 	@JsonIgnore
@@ -59,7 +61,7 @@ public class User {
 	private String encodedPassword;
 
 	@ElementCollection(fetch = FetchType.EAGER)
-	@JsonView(Views.class)
+	@JsonView(Mostrar.class)
 	private List<String> roles;
 
 	public User() {
