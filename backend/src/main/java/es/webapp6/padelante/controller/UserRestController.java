@@ -31,6 +31,7 @@ import es.webapp6.padelante.service.TournamentService;
 import es.webapp6.padelante.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -63,10 +64,16 @@ public class UserRestController {
 	private PasswordEncoder passwordEncoder;
 
 
+	@Operation(summary = "Get all users")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Found a page of user", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
+		})
 	//get all users
 	@JsonView(Views.Mostrar.class)
 	@GetMapping("")
-	public ResponseEntity<Page<User>> getAllUsers(@RequestParam int page) {
+	public ResponseEntity<Page<User>> getAllUsers(
+		@Parameter(description="Page number of the list of users") @RequestParam int page) {
 		return ResponseEntity.ok(userService.getUsers(page));
 	}
 
@@ -251,7 +258,7 @@ public class UserRestController {
 				userService.save(user);
 				return new ResponseEntity<>(HttpStatus.OK);
 			} else {
-				return new ResponseEntity<>(HttpStatus.ACCEPTED);
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
 		} else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
