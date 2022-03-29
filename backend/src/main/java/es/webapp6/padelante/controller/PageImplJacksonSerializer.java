@@ -1,6 +1,4 @@
 package  es.webapp6.padelante.controller;
-
-
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
@@ -18,7 +16,10 @@ public class PageImplJacksonSerializer extends JsonSerializer<PageImpl<?>> {
 			throws IOException {
 
 		jsonGenerator.writeStartObject();
-		jsonGenerator.writeObjectField("content", page.getContent());
+				
+		jsonGenerator.writeFieldName("content");
+		serializerProvider.defaultSerializeValue(page.getContent(), jsonGenerator);
+		
 		jsonGenerator.writeBooleanField("first", page.isFirst());
 		jsonGenerator.writeBooleanField("last", page.isLast());
 		jsonGenerator.writeNumberField("totalPages", page.getTotalPages());
