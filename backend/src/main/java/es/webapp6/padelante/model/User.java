@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity(name = "UserTable")
 public class User {
+	
 	 public interface Mostrar{}
     
 
