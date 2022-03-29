@@ -116,11 +116,13 @@ public class UserRestController {
 		if (user.getName().isBlank() || userService.findByName(user.getName()).isPresent()) {
 			return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
 		} else {
-			URI location = fromCurrentRequest().build().toUri();
+			
 			User userNew = new User(user.getName(), passwordEncoder.encode(user.getEncodedPassword()), user.getEmail(),
 					user.getRealName(), "USER");
 
 			userService.save(userNew);
+			String id = userService.findByName(user.getName()).get().getId().toString();
+			URI location = fromCurrentRequest().path("/"+id).build().toUri();
 			return ResponseEntity.created(location).build();
 		}
 	}
@@ -129,7 +131,7 @@ public class UserRestController {
 	public ResponseEntity<User> deleteUser(@PathVariable long id, @RequestBody User user) {
 
 		if (userService.exist(id) && !user.getStatus()) {
-			userService.delete(id);
+			userService.delete(userService.findById(id).get());
 			return new ResponseEntity<>(null, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);

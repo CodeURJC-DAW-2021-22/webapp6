@@ -317,7 +317,7 @@ Los usuarios principales son:
 
 Para el despliegue se usa:
 - Docker
-- Java ```17```
+- Java ```17.0.2```
 - Maven ```3.8.5```
 - SpringBoot ```2.6.3```
 - Heroku Client
@@ -382,25 +382,59 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
     
   - Commits más significativos:
      
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/8f96cac2b95b02889c6074ef69c7ec046fb16299
     
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/4f651bebfdd36bf82bf503e9990ac66df5d93c4a
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/86c47a8150c75222520a674eccc6b23e6eb9ee2d
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/3e89900b11a6bd67927d1dfad7c63d15f6efe23b
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/524560e96e62abc9726ff1d06ca21c22a28e9482
     
   - Ficheros más relevantes:
     
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/docker/Dockerfile
     
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/docker/docker-compose.yml
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/padelante/controller/TournamentRestController.java
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commits/main/backend/src/main/java/es/webapp6/padelante/controller/UserRestController.java
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/padelante/security/RestSecurityConfig.java
     
 - **Álvaro González:** 
 
   - Descripción de tareas:
+   Me he encargado de implementar parte de las apis Rest, así como de ayudar a Rubén con Docker y heroku. Posteriormente, me he encargado de incorporar el tema de la seguridad para las api Rest.
+   Por otra parte, me he encargardo de algunas de las peticiones de Postman, asi como del fichero .json de las peticiones de Postman.
     
     
     
   - Commits más significativos:
-     
-    
+  
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/a65c1b51de9de4ae9e59c5bdd4bb2eef7f800f38
+
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/8c0473fd80da3c8f364ec723ab98cebdcbf4a821
+
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/128457ebc4dfe54ba7756910c6a29753ffd232f8 
+
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/4d7b2dedbf34956068658353db3b418011c40dcd
+
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/0b16aefd80632a66774360e424c567316ed4ca6c 
     
   - Ficheros más relevantes:
     
-    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/padelante/controller/LoginRestController.java
+
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/padelante/controller/MatchRestController.java
+
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/padelante/controller/UserRestController.java
+
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/padelante/controller/TournamentRestController.java
+
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/padelante/security/RestSecurityConfig.java
     
 - **Daniel Haro:** 
 
