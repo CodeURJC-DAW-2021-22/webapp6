@@ -79,7 +79,7 @@ public class UserRestController {
 
 	@Operation(summary = "Get the user conected")
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "Found the user", content = {
+			@ApiResponse(responseCode = "200", description = "Found the connected user", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
 			@ApiResponse(responseCode = "404", description = "User conected not found", content = @Content) })
 
@@ -95,7 +95,11 @@ public class UserRestController {
 		}
 	}
 
-	
+	@Operation(summary = "Get the user by ID")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Found the user", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
+			@ApiResponse(responseCode = "404", description = "User not found", content = @Content) })
 	// get user by id
 	@JsonView(User.Mostrar.class)
 	@GetMapping("/{id}")
@@ -109,12 +113,17 @@ public class UserRestController {
 		}
 	}
 
+	@Operation(summary = "Register a new user")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "User registerd successfully", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
+			@ApiResponse(responseCode = "400", description = "User couldn't register", content = @Content) })
 	// Register new user
 	@PostMapping("")
 	public ResponseEntity<User> registerNewUser(@RequestBody User user) {
 		user.setStatus(true);
 		if (user.getName().isBlank() || userService.findByName(user.getName()).isPresent()) {
-			return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		} else {
 			
 			User userNew = new User(user.getName(), passwordEncoder.encode(user.getEncodedPassword()), user.getEmail(),
@@ -127,6 +136,11 @@ public class UserRestController {
 		}
 	}
 
+	@Operation(summary = "Delete a user")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "User deleted succesfully", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
+			@ApiResponse(responseCode = "404", description = "User wasn't found", content = @Content) })
 	@PutMapping("/{id}")
 	public ResponseEntity<User> deleteUser(@PathVariable long id, @RequestBody User user) {
 
@@ -138,7 +152,13 @@ public class UserRestController {
 		}
 	}
 
+	@Operation(summary = "Get the user pairs")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Pairs founded", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
+			@ApiResponse(responseCode = "404", description = "Pairs weren't found", content = @Content) })
 	@JsonView(User.Mostrar.class)
+	//find pairs
 	@GetMapping("/me/pairs")
 	public ResponseEntity<Page<User>> getUserPairs(@RequestParam int page, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
@@ -150,6 +170,11 @@ public class UserRestController {
 		}
 	}
 
+	@Operation(summary = "Get the tournaments where the user is inscribed")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Found the tournament", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
+			@ApiResponse(responseCode = "404", description = "Tournament not found", content = @Content) })
 	@GetMapping("/me/tournaments")
 	public ResponseEntity<Page<Tournament>> getUserTournaments(@RequestParam int page, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
@@ -162,6 +187,11 @@ public class UserRestController {
 		}
 	}
 
+	@Operation(summary = "Get the user's matches")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Match found", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
+			@ApiResponse(responseCode = "404", description = "Match not found", content = @Content) })
 	@GetMapping("/me/matches")
 	public ResponseEntity<List<Match>> getUserMatches(HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
@@ -173,6 +203,11 @@ public class UserRestController {
 		}
 	}
 
+	@Operation(summary = "Update user")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "User updated correctly", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
+			@ApiResponse(responseCode = "401", description = "unauthorized to update the user", content = @Content) })
 	// To update user.
 	@JsonView(User.Mostrar.class)
 	@PutMapping("")
@@ -208,6 +243,11 @@ public class UserRestController {
 		}
 	}
 
+	@Operation(summary = "upload user image")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "uploaded correctly", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
+			@ApiResponse(responseCode = "404", description = "You are not authorized to upload the image", content = @Content) })
 	@PostMapping("/image")
 	public ResponseEntity<Object> uploadImage(@RequestParam MultipartFile imageFile, HttpServletRequest request)
 			throws IOException {
@@ -228,6 +268,14 @@ public class UserRestController {
 		}
 	}
 
+	@Operation(summary = "Download user image")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Imaged downloaded successfully", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
+			@ApiResponse(responseCode = "204", description = "Image field is empty", content = @Content),
+			@ApiResponse(responseCode = "404", description = "Image not found", content = @Content)			
+		})
+			
 	@GetMapping("/{id}/image")
 	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
 
@@ -248,6 +296,13 @@ public class UserRestController {
 		}
 	}
 
+	@Operation(summary = "Delete user image")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Imaged deleted successfully", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
+			@ApiResponse(responseCode = "400", description = "Request cannot be processed", content = @Content),
+			@ApiResponse(responseCode = "401", description = "You are not authorized to delete the image", content = @Content)			
+		})
 	@DeleteMapping("/image")
 	public ResponseEntity<Object> deleteImage(HttpServletRequest request) throws IOException {
 		Principal principal = request.getUserPrincipal();
