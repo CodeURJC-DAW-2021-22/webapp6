@@ -49,7 +49,7 @@ public class MatchRestController {
 	@JsonView(User.Mostrar.class)
     // Get match by id
     @GetMapping("/{id}")
-    public ResponseEntity<Match> getUser(@PathVariable long id) {
+    public ResponseEntity<Match> getMatch(@PathVariable long id) {
 
         if(matchService.exist(id)){
             Match match = matchService.findById(id).get();

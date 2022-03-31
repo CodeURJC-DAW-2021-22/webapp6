@@ -17,6 +17,13 @@ import es.webapp6.padelante.security.jwt.LoginRequest;
 import es.webapp6.padelante.security.jwt.UserLoginService;
 import es.webapp6.padelante.security.jwt.AuthResponse.Status;
 
+// import io.swagger.v3.oas.annotations.Operation;
+// import io.swagger.v3.oas.annotations.Parameter;
+// import io.swagger.v3.oas.annotations.responses.ApiResponses;
+// import io.swagger.v3.oas.annotations.responses.ApiResponse;
+// import io.swagger.v3.oas.annotations.media.Content;
+// import io.swagger.v3.oas.annotations.media.Schema;
+
 @RestController
 @RequestMapping("/api/auth")
 public class LoginRestController {
@@ -40,6 +47,11 @@ public class LoginRestController {
 		return userService.refresh(refreshToken);
 	}
 
+	// @Operation(summary = "Update user")
+	// @ApiResponses(value = {
+	// 		@ApiResponse(responseCode = "200", description = "User updated correctly", content = {
+	// 				@Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
+	// 		})
 	@PostMapping("/logout")
 	public ResponseEntity<AuthResponse> logOut(HttpServletRequest request, HttpServletResponse response) {
 

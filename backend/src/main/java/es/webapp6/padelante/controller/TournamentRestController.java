@@ -40,6 +40,13 @@ import es.webapp6.padelante.service.UserService;
 
 import org.springframework.data.domain.Page;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
@@ -57,12 +64,22 @@ public class TournamentRestController {
 	@Autowired
 	private TeamService teamService;
 
-	// get all users
+	@Operation(summary = "get all tournaments")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Success getting the tournaments", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Tournament.class)) }),
+			 })
+	// get all tournaments
 	@GetMapping("")
 	public ResponseEntity<Page<Tournament>> getTournaments(@RequestParam int page) {
 		return new ResponseEntity<>(tournamentService.getTournaments(page), HttpStatus.OK);
 	}
 
+	@Operation(summary = "Get tournament by id")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "got tournament successfully", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Tournament.class)) }),
+			@ApiResponse(responseCode = "404", description = "tournament not found", content = @Content) })
 	// get tournament by id
 	@GetMapping("/{id}")
 	public ResponseEntity<Tournament> getTournament(@PathVariable long id) {
@@ -74,6 +91,12 @@ public class TournamentRestController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+
+	@Operation(summary = "Get teams from tournament")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "success getting the teams", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Tournament.class)) }),
+			@ApiResponse(responseCode = "404", description = "tournament not found", content = @Content) })
 	@JsonView(User.Mostrar.class)
 	@GetMapping("/{id}/teams")
 	public ResponseEntity<List<Team>> getTournamentTeams(@PathVariable long id) {
@@ -85,6 +108,14 @@ public class TournamentRestController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+
+	@Operation(summary = "Get rounds from tournament")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "success getting the rounds", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Tournament.class)) }),
+			@ApiResponse(responseCode = "201", description = "the tournament doesn't have rounds", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Tournament.class)) }),
+			@ApiResponse(responseCode = "404", description = "tournament not found", content = @Content) })
 	@JsonView(User.Mostrar.class)
 	@GetMapping("/{id}/matches")
     public ResponseEntity<List<Match>> getRound(@PathVariable long id, @RequestParam Integer round) {
@@ -102,6 +133,11 @@ public class TournamentRestController {
         }
     }
 
+	@Operation(summary = "Create tournament")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "success creating the tournament", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Tournament.class)) }),
+			@ApiResponse(responseCode = "401", description = "you cannot create a tournament", content = @Content) })
 	@PostMapping("")
 	public ResponseEntity<Tournament> createTournament(@RequestBody Tournament tournament, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
@@ -124,6 +160,13 @@ public class TournamentRestController {
 
 	}
 
+	@Operation(summary = "Delete tournament")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "tournamente deleted successfully", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Tournament.class)) }),
+			@ApiResponse(responseCode = "401", description = "you are not authorized to delete the tournament",
+			 content = @Content),
+			@ApiResponse(responseCode = "404", description = "tournament not found", content = @Content) })
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Tournament> deleteTournament(@PathVariable long id, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
@@ -140,6 +183,15 @@ public class TournamentRestController {
 		}
 	}
 
+	@Operation(summary = "show tournament's teams")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "teams posted successfully", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Tournament.class)) }),
+			@ApiResponse(responseCode = "400", description = "couldn't get the teams",
+			 content = @Content),
+			@ApiResponse(responseCode = "401", description = "you are not authorized to see the teams",
+			 content = @Content),
+			@ApiResponse(responseCode = "404", description = "tournament not found", content = @Content) })
 	@PutMapping("/{id}/teams")
 	@JsonView(User.Mostrar.class)
 	public ResponseEntity<List<Team>> tournamentTeams (@PathVariable long id, @RequestBody User user2, HttpServletRequest request) {
@@ -166,6 +218,13 @@ public class TournamentRestController {
 		}
 	}
 
+	@Operation(summary = "delete team")
+	@ApiResponses(value = {
+		@ApiResponse(responseCode = "200", description = "team deleted successfully", content = {
+				@Content(mediaType = "application/json", schema = @Schema(implementation = Tournament.class)) }),
+		@ApiResponse(responseCode = "401", description = "you are not authorized to deelte the team",
+			content = @Content),
+		@ApiResponse(responseCode = "404", description = "tournament not found", content = @Content) })
 	@DeleteMapping("/{id}/teams/{teamid}")
 	public ResponseEntity<List<Team>> deleteTournamentTeam(@PathVariable long id, @PathVariable long teamid,
 		HttpServletRequest request) {
@@ -186,6 +245,15 @@ public class TournamentRestController {
 
 	}
 
+	@Operation(summary = "update tournamet")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "tournament updated successfully", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Tournament.class)) }),
+			@ApiResponse(responseCode = "400", description = "couldn't get the tournament",
+			 content = @Content),
+			@ApiResponse(responseCode = "401", description = "you are not authorized to update the tournament",
+			 content = @Content),
+			@ApiResponse(responseCode = "404", description = "tournament not found", content = @Content) })
 	@PutMapping("/{id}")
 	public ResponseEntity<Tournament> updateTournament(@PathVariable long id, @RequestBody Tournament tournament,
 			HttpServletRequest request) throws SQLException {
@@ -227,6 +295,13 @@ public class TournamentRestController {
 		}
 	}
 
+	@Operation(summary = "upload tournament image")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "uploaded correctly", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Tournament.class)) }),
+			@ApiResponse(responseCode = "401", description = "You are not authorized to upload the image", content = @Content),
+			@ApiResponse(responseCode = "404", description = "tournament not found", content = @Content) })
+
 	@PostMapping("/{id}/image")
 	public ResponseEntity<Object> uploadImage(@PathVariable long id, @RequestParam MultipartFile imageFile,
 			HttpServletRequest request)
@@ -252,6 +327,13 @@ public class TournamentRestController {
 		}
 	}
 
+	@Operation(summary = "download tournament image")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "downloaded correctly", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Tournament.class)) }),
+			@ApiResponse(responseCode = "204", description = "there's no image", content = @Content),
+			@ApiResponse(responseCode = "401", description = "You are not authorized to download the image", content = @Content),
+			@ApiResponse(responseCode = "404", description = "tournament not found", content = @Content) })
 	@GetMapping("/{id}/image")
 	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
 
@@ -273,6 +355,13 @@ public class TournamentRestController {
 
 	}
 
+	@Operation(summary = "delete tournament image")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "deleted correctly", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Tournament.class)) }),
+			@ApiResponse(responseCode = "400", description = "couldn't get to the image", content = @Content),
+			@ApiResponse(responseCode = "401", description = "You are not authorized to delete the image", content = @Content),
+			@ApiResponse(responseCode = "404", description = "tournament not found", content = @Content) })
 	@DeleteMapping("/{id}/image")
 	public ResponseEntity<Object> deleteImage(@PathVariable long id, HttpServletRequest request) throws IOException {
 		Principal principal = request.getUserPrincipal();
