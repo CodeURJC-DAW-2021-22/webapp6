@@ -452,15 +452,25 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
     
 - **Silvia Ventura:** 
 
-  - Descripción de tareas:
+  - Descripción de tareas: Me he encargado de cambiar el diagrama y actualizarlo. También me he encargado de ocultar los datos sensibles que no debrían verse al hacer una petición para los Users y Tournaments
     
     
     
   - Commits más significativos:
-     
+     https://github.com/CodeURJC-DAW-2021-22/webapp6/tree/2eabb8a5567961f3f22d4cf7a69d21870786e6b8
+     https://github.com/CodeURJC-DAW-2021-22/webapp6/tree/80c1d1101fdfe8b9111167b7b83bd8983a483184
+     https://github.com/CodeURJC-DAW-2021-22/webapp6/tree/c6f7fb4532d42a8ea840cd15864fd06ee24571f6
+     https://github.com/CodeURJC-DAW-2021-22/webapp6/tree/4ed6da39fba4f52a997466c8ae98351c89295ea0
+     https://github.com/CodeURJC-DAW-2021-22/webapp6/tree/c2142a2cbba41af0f21f3c83868933ac19eaea99
     
     
   - Ficheros más relevantes:
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/java/es/webapp6/padelante/controller/PageImplJacksonSerializer.java
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/java/es/webapp6/padelante/controller/TournamentRestController.java
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/java/es/webapp6/padelante/controller/UserRestController.java
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/java/es/webapp6/padelante/model/User.java
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/java/es/webapp6/padelante/model/Team.java
+    
     
     
     
