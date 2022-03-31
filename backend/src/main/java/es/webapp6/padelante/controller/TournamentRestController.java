@@ -85,6 +85,7 @@ public class TournamentRestController {
 			return ResponseEntity.notFound().build();
 		}
 	}
+	@JsonView(User.Mostrar.class)
 	@GetMapping("/{id}/matches")
     public ResponseEntity<List<Match>> getRound(@PathVariable long id, @RequestParam Integer round) {
         
@@ -140,6 +141,7 @@ public class TournamentRestController {
 	}
 
 	@PutMapping("/{id}/teams")
+	@JsonView(User.Mostrar.class)
 	public ResponseEntity<Object> inscriptionTournament (@PathVariable long id, @RequestBody User user2, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
 

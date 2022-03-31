@@ -12,23 +12,48 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Tournament {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(User.Mostrar.class)
     private long id;
+
+    @JsonView(User.Mostrar.class)
     private String owner;
+
+    @JsonView(User.Mostrar.class)
     private String tournamentName; 
+
+    @JsonView(User.Mostrar.class)
     private int numParticipants;
+
+    @JsonView(User.Mostrar.class)
     private int numSignedUp;
+    
+    @JsonView(User.Mostrar.class)
+
     private int rounds;
+    @JsonView(User.Mostrar.class)
+
     private String about;
+    @JsonView(User.Mostrar.class)
+
     private String ruleset;
+    @JsonView(User.Mostrar.class)
+
     private String location;
+    @JsonView(User.Mostrar.class)
+
     private String inscriptionDate;
+    @JsonView(User.Mostrar.class)
+
     private String startDate;
+    @JsonView(User.Mostrar.class)
+
     private boolean started;
    
     @JsonIgnore 
