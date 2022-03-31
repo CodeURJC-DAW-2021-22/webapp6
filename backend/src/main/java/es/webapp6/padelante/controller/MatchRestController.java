@@ -44,7 +44,7 @@ public class MatchRestController {
     @Operation(summary = "Get the match by ID")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Found the mathch", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Match.class)) }),
 			@ApiResponse(responseCode = "404", description = "Match not found", content = @Content) })
 	@JsonView(User.Mostrar.class)
     // Get match by id
@@ -62,7 +62,7 @@ public class MatchRestController {
     @Operation(summary = "set Match's result")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Resultd updated successfully", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Match.class)) }),
 			@ApiResponse(responseCode = "400", description = "Couldn't update the result", content = @Content),
 			@ApiResponse(responseCode = "401", description = "You don't have permission to update the result", content = @Content),	
             @ApiResponse(responseCode = "404", description = "Couldn't find the match", content = @Content)		
