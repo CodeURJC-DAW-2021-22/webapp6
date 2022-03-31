@@ -192,6 +192,8 @@ public class UserRestController {
 			@ApiResponse(responseCode = "200", description = "Match found", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
 			@ApiResponse(responseCode = "404", description = "Match not found", content = @Content) })
+			@JsonView(User.Mostrar.class)
+
 	@GetMapping("/me/matches")
 	public ResponseEntity<List<Match>> getUserMatches(HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
