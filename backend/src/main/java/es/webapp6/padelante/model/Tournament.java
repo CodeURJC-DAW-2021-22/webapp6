@@ -19,7 +19,6 @@ public class Tournament {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
     private String owner;
     private String tournamentName; 
     private int numParticipants;

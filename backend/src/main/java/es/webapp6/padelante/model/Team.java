@@ -6,22 +6,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 
 
 @Entity
 public class Team {
+	
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(User.Mostrar.class)
     private long id;
 
+	@JsonView(User.Mostrar.class)
 	private boolean tbd;
 
 	@ManyToOne
-	private User userA;
+	@JsonView(User.Mostrar.class)	private User userA;
 
 	@ManyToOne
-	private User userB;
+	@JsonView(User.Mostrar.class)	private User userB;
     
     public Team() {
 		super();

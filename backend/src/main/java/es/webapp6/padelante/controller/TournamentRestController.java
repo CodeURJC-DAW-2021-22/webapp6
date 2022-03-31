@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -72,7 +74,7 @@ public class TournamentRestController {
 			return ResponseEntity.notFound().build();
 		}
 	}
-
+	@JsonView(User.Mostrar.class)
 	@GetMapping("/{id}/teams")
 	public ResponseEntity<List<Team>> getTournamentTeams(@PathVariable long id) {
 
@@ -83,7 +85,6 @@ public class TournamentRestController {
 			return ResponseEntity.notFound().build();
 		}
 	}
-
 	@GetMapping("/{id}/matches")
     public ResponseEntity<List<Match>> getRound(@PathVariable long id, @RequestParam Integer round) {
         

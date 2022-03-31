@@ -7,28 +7,40 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Match {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView(User.Mostrar.class)
     private long id;
-
+    @JsonView(User.Mostrar.class)
     private int round;
+    @JsonView(User.Mostrar.class)
     private ArrayList<Integer> result;
+    @JsonView(User.Mostrar.class)
     private int setsTeamOne;
+    @JsonView(User.Mostrar.class)
     private int setsTeamTwo;
+    @JsonView(User.Mostrar.class)
     private boolean hasWinner;
+    @JsonView(User.Mostrar.class)
     private boolean winnerTeamOne;
+    @JsonView(User.Mostrar.class)
     private boolean winnerTeamTwo;
 
     @ManyToOne 
+    @JsonView(User.Mostrar.class)
     private Team teamOne;
 
     @ManyToOne
+    @JsonView(User.Mostrar.class)
     private Team teamTwo;
 
     @ManyToOne
+    @JsonView(User.Mostrar.class)
     Tournament tournament;
 
     public Match() {
