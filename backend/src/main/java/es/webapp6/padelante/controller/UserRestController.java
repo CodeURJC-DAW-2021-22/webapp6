@@ -146,9 +146,9 @@ public class UserRestController {
 
 		if (userService.exist(id) && !user.getStatus()) {
 			userService.delete(userService.findById(id).get());
-			return new ResponseEntity<>(null, HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 
@@ -252,18 +252,18 @@ public class UserRestController {
 			@ApiResponse(responseCode = "404", description = "You are not authorized to upload the image", content = @Content) })
 	@PostMapping("/image")
 	public ResponseEntity<Object> uploadImage(@RequestParam MultipartFile imageFile, HttpServletRequest request)
-			throws IOException {
+			throws IOException, SQLException {
 
 		Principal principal = request.getUserPrincipal();
 
 		if (principal != null) {
 			User user = userService.findByName(principal.getName()).get();
-			URI location = fromCurrentRequest().build().toUri();
-
+			
 			user.setImage(true);
 			user.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
 			userService.save(user);
 
+			URI location = fromCurrentRequest().path("/"+user.getId()+"/image").build().toUri();
 			return ResponseEntity.created(location).build();
 		} else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);

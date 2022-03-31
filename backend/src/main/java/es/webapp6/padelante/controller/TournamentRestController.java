@@ -60,7 +60,7 @@ public class TournamentRestController {
 	// get all users
 	@GetMapping("")
 	public ResponseEntity<Page<Tournament>> getTournaments(@RequestParam int page) {
-		return ResponseEntity.ok(tournamentService.getTournaments(page));
+		return new ResponseEntity<>(tournamentService.getTournaments(page), HttpStatus.OK);
 	}
 
 	// get tournament by id
@@ -69,9 +69,9 @@ public class TournamentRestController {
 
 		if (tournamentService.exist(id)) {
 			Tournament tournament = tournamentService.findById(id).get();
-			return ResponseEntity.ok(tournament);
+			return new ResponseEntity<>(tournament, HttpStatus.OK);
 		} else {
-			return ResponseEntity.notFound().build();
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 	@JsonView(User.Mostrar.class)
@@ -80,9 +80,9 @@ public class TournamentRestController {
 
 		if (tournamentService.exist(id)) {
 			Tournament tournament = tournamentService.findById(id).get();
-			return ResponseEntity.ok(tournamentService.getTeamsSignedUp(tournament));
+			return new ResponseEntity<>(tournamentService.getTeamsSignedUp(tournament), HttpStatus.OK);
 		} else {
-			return ResponseEntity.notFound().build();
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 	@JsonView(User.Mostrar.class)
@@ -93,7 +93,7 @@ public class TournamentRestController {
             Tournament tournament = tournamentService.findById(id).get();
             if(round > 0 && tournament.getRounds() >= round){ 
                 List<Match> rMatches = matchService.getRoundMatches(tournament, round);
-                return ResponseEntity.ok(rMatches);
+				return new ResponseEntity<>(rMatches, HttpStatus.OK);
             }else{
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }        
@@ -119,7 +119,7 @@ public class TournamentRestController {
 
 			return ResponseEntity.created(location).body(tournament);
 		} else {
-			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 
 	}
@@ -131,18 +131,18 @@ public class TournamentRestController {
 		if (tournamentService.exist(id)) {
 			if (principal != null && principal.getName().equals("admin")) {
 				tournamentService.delete(id);
-				return new ResponseEntity<>(null, HttpStatus.OK);
+				return new ResponseEntity<>(HttpStatus.OK);
 			} else {
-				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 			}
 		} else {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 
 	@PutMapping("/{id}/teams")
 	@JsonView(User.Mostrar.class)
-	public ResponseEntity<Object> inscriptionTournament (@PathVariable long id, @RequestBody User user2, HttpServletRequest request) {
+	public ResponseEntity<List<Team>> tournamentTeams (@PathVariable long id, @RequestBody User user2, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
 
 		if (tournamentService.exist(id) && userService.exist(user2.getId())) {
@@ -159,10 +159,10 @@ public class TournamentRestController {
 					return new ResponseEntity<>(tournamentService.getTeamsSignedUp(tournament), HttpStatus.BAD_REQUEST);
 				}
 			}else {
-				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 			}
 		} else {
-			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 
@@ -176,9 +176,9 @@ public class TournamentRestController {
 			Team team = teamService.findById(teamid).get();
 			if (principal != null && principal.getName().equals(tournament.getOwner())) {
 				tournamentService.deleteParticipant(tournament, team);
-				return new ResponseEntity<>(tournamentService.getTeamsSignedUp(tournament), HttpStatus.OK);
+				return new ResponseEntity<>(HttpStatus.OK);
 			} else {
-				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 			}
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -202,7 +202,7 @@ public class TournamentRestController {
 						tournamentService.setFreeWins(bdTournament);
 						return new ResponseEntity<>(tournamentService.findById(id).get(), HttpStatus.OK);
 					} else {
-						return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+						return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 					}
 				} else {
 					// Data that must not change because tournament could be inconsistent
@@ -220,7 +220,7 @@ public class TournamentRestController {
 					return new ResponseEntity<>(tournament, HttpStatus.OK);
 				}
 			} else {
-				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 			}
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -245,7 +245,7 @@ public class TournamentRestController {
 
 				return ResponseEntity.created(location).build();
 			} else {
-				return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 			}
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -291,7 +291,7 @@ public class TournamentRestController {
                     return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
                 }
             } else {
-                return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

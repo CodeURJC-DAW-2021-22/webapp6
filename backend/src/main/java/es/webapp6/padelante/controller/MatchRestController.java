@@ -36,19 +36,18 @@ public class MatchRestController {
 
 	@JsonView(User.Mostrar.class)
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Match>> getUser(@PathVariable long id) {
+    public ResponseEntity<Match> getUser(@PathVariable long id) {
 
-        Optional<Match> match = matchService.findById(id);
-
-        if (match.get() != null) {
-            return ResponseEntity.ok(match);
+        if(matchService.exist(id)){
+            Match match = matchService.findById(id).get();
+            return new ResponseEntity<>(match, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @PutMapping("/{id}/result")
-    public ResponseEntity<Object> resultMatch(HttpServletRequest request,@RequestBody Match updateMatch,@PathVariable long id) {
+    public ResponseEntity<Match> resultMatch(HttpServletRequest request,@RequestBody Match updateMatch,@PathVariable long id) {
         Principal principal = request.getUserPrincipal();
 
         if(matchService.exist(id)){
