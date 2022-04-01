@@ -268,6 +268,14 @@ Los usuarios principales son:
 
 ## Documentación API REST
 
+- Fichero OpenAPI YAML:
+
+https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/api-docs/api-docs.yaml
+
+- Fichero OpenAPI HTML:
+
+https://rawcdn.githack.com/CodeURJC-DAW-2021-22/webapp6/c908eef6aae7103bd57f908b9c72c84c37ee0d50/backend/api-docs/api-docs.html
+
 ## Diagrama de clases con REST Controllers
 
 <img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/ClassDiagramUpdate.png" width="1000"></img>
