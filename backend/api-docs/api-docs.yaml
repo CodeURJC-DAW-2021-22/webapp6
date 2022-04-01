@@ -10,41 +10,47 @@ paths:
     get:
       tags:
       - user-rest-controller
+      summary: Get all users
       operationId: getAllUsers
       parameters:
       - name: page
         in: query
+        description: Page number of the list of users
         required: true
         schema:
           type: integer
           format: int32
       responses:
         "200":
-          description: OK
+          description: Found a page of user
           content:
-            '*/*':
+            application/json:
               schema:
-                $ref: '#/components/schemas/PageUser'
+                $ref: '#/components/schemas/User_Mostrar'
     put:
       tags:
       - user-rest-controller
+      summary: Update user
       operationId: updateUser
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/User_Mostrar'
         required: true
       responses:
         "200":
-          description: OK
+          description: User updated correctly
           content:
-            '*/*':
+            application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/User_Mostrar'
+        "401":
+          description: unauthorized to update the user
     post:
       tags:
       - user-rest-controller
+      summary: Register a new user
       operationId: registerNewUser
       requestBody:
         content:
@@ -54,15 +60,18 @@ paths:
         required: true
       responses:
         "200":
-          description: OK
+          description: User registerd successfully
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/User'
+        "400":
+          description: User couldn't register
   /api/users/{id}:
     get:
       tags:
       - user-rest-controller
+      summary: Get the user by ID
       operationId: getUser
       parameters:
       - name: id
@@ -73,14 +82,17 @@ paths:
           format: int64
       responses:
         "200":
-          description: OK
+          description: Found the user
           content:
-            '*/*':
+            application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/User_Mostrar'
+        "404":
+          description: User not found
     put:
       tags:
       - user-rest-controller
+      summary: Delete a user
       operationId: deleteUser
       parameters:
       - name: id
@@ -96,16 +108,19 @@ paths:
               $ref: '#/components/schemas/User'
         required: true
       responses:
+        "404":
+          description: User wasn't found
         "200":
-          description: OK
+          description: User deleted succesfully
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/User'
   /api/tournaments/{id}:
     get:
       tags:
       - tournament-rest-controller
+      summary: Get tournament by id
       operationId: getTournament
       parameters:
       - name: id
@@ -116,14 +131,17 @@ paths:
           format: int64
       responses:
         "200":
-          description: OK
+          description: got tournament successfully
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/Tournament'
+        "404":
+          description: tournament not found
     put:
       tags:
       - tournament-rest-controller
+      summary: update tournamet
       operationId: updateTournament
       parameters:
       - name: id
@@ -139,15 +157,22 @@ paths:
               $ref: '#/components/schemas/Tournament'
         required: true
       responses:
+        "401":
+          description: you are not authorized to update the tournament
         "200":
-          description: OK
+          description: tournament updated successfully
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/Tournament'
+        "400":
+          description: couldn't get the tournament
+        "404":
+          description: tournament not found
     delete:
       tags:
       - tournament-rest-controller
+      summary: Delete tournament
       operationId: deleteTournament
       parameters:
       - name: id
@@ -158,16 +183,21 @@ paths:
           format: int64
       responses:
         "200":
-          description: OK
+          description: tournamente deleted successfully
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/Tournament'
-  /api/tournaments/{id}/inscription:
-    put:
+        "401":
+          description: you are not authorized to delete the tournament
+        "404":
+          description: tournament not found
+  /api/tournaments/{id}/teams:
+    get:
       tags:
       - tournament-rest-controller
-      operationId: inscriptionTournament
+      summary: Get teams from tournament
+      operationId: getTournamentTeams
       parameters:
       - name: id
         in: path
@@ -175,24 +205,20 @@ paths:
         schema:
           type: integer
           format: int64
-      - name: idPair
-        in: query
-        required: true
-        schema:
-          type: integer
-          format: int64
       responses:
         "200":
-          description: OK
+          description: success getting the teams
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
-  /api/tournaments/{id}/initiation:
+                $ref: '#/components/schemas/Tournament_Mostrar'
+        "404":
+          description: tournament not found
     put:
       tags:
       - tournament-rest-controller
-      operationId: startTournament
+      summary: show tournament's teams
+      operationId: tournamentTeams
       parameters:
       - name: id
         in: path
@@ -200,49 +226,30 @@ paths:
         schema:
           type: integer
           format: int64
-      - name: start
-        in: query
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User_Mostrar'
         required: true
-        schema:
-          type: boolean
       responses:
+        "400":
+          description: couldn't get the teams
         "200":
-          description: OK
+          description: teams posted successfully
           content:
-            '*/*':
+            application/json:
               schema:
-                $ref: '#/components/schemas/Tournament'
-  /api/tournaments/{id}/ejection:
-    put:
-      tags:
-      - tournament-rest-controller
-      operationId: deleteTournamentTeam
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-      - name: teamid
-        in: query
-        required: true
-        schema:
-          type: integer
-          format: int64
-      responses:
-        "200":
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Team'
+                $ref: '#/components/schemas/Tournament_Mostrar'
+        "404":
+          description: tournament not found
+        "401":
+          description: you are not authorized to see the teams
   /api/matches/{id}/result:
     put:
       tags:
       - match-rest-controller
+      summary: set Match's result
       operationId: resultMatch
       parameters:
       - name: id
@@ -259,15 +266,22 @@ paths:
         required: true
       responses:
         "200":
-          description: OK
+          description: Resultd updated successfully
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Match'
+        "404":
+          description: Couldn't find the match
+        "400":
+          description: Couldn't update the result
+        "401":
+          description: You don't have permission to update the result
   /api/users/image:
     post:
       tags:
       - user-rest-controller
+      summary: upload user image
       operationId: uploadImage
       requestBody:
         content:
@@ -281,27 +295,35 @@ paths:
                   type: string
                   format: binary
       responses:
+        "404":
+          description: You are not authorized to upload the image
         "200":
-          description: OK
+          description: uploaded correctly
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/User'
     delete:
       tags:
       - user-rest-controller
+      summary: Delete user image
       operationId: deleteImage
       responses:
+        "400":
+          description: Request cannot be processed
         "200":
-          description: OK
+          description: Imaged deleted successfully
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/User'
+        "401":
+          description: You are not authorized to delete the image
   /api/tournaments:
     get:
       tags:
       - tournament-rest-controller
+      summary: get all tournaments
       operationId: getTournaments
       parameters:
       - name: page
@@ -312,14 +334,15 @@ paths:
           format: int32
       responses:
         "200":
-          description: OK
+          description: Success getting the tournaments
           content:
-            '*/*':
+            application/json:
               schema:
-                $ref: '#/components/schemas/PageTournament'
+                $ref: '#/components/schemas/Tournament'
     post:
       tags:
       - tournament-rest-controller
+      summary: Create tournament
       operationId: createTournament
       requestBody:
         content:
@@ -329,15 +352,18 @@ paths:
         required: true
       responses:
         "200":
-          description: OK
+          description: success creating the tournament
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/Tournament'
+        "401":
+          description: you cannot create a tournament
   /api/tournaments/{id}/image:
     get:
       tags:
       - tournament-rest-controller
+      summary: download tournament image
       operationId: downloadImage_1
       parameters:
       - name: id
@@ -347,15 +373,22 @@ paths:
           type: integer
           format: int64
       responses:
+        "204":
+          description: there's no image
         "200":
-          description: OK
+          description: downloaded correctly
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Tournament'
+        "401":
+          description: You are not authorized to download the image
+        "404":
+          description: tournament not found
     post:
       tags:
       - tournament-rest-controller
+      summary: upload tournament image
       operationId: uploadImage_1
       parameters:
       - name: id
@@ -376,15 +409,20 @@ paths:
                   type: string
                   format: binary
       responses:
+        "401":
+          description: You are not authorized to upload the image
         "200":
-          description: OK
+          description: uploaded correctly
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Tournament'
+        "404":
+          description: tournament not found
     delete:
       tags:
       - tournament-rest-controller
+      summary: delete tournament image
       operationId: deleteImage_1
       parameters:
       - name: id
@@ -394,12 +432,18 @@ paths:
           type: integer
           format: int64
       responses:
+        "400":
+          description: couldn't get to the image
         "200":
-          description: OK
+          description: deleted correctly
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/Tournament'
+        "401":
+          description: You are not authorized to delete the image
+        "404":
+          description: tournament not found
   /api/auth/refresh:
     post:
       tags:
@@ -463,6 +507,7 @@ paths:
     get:
       tags:
       - user-rest-controller
+      summary: Download user image
       operationId: downloadImage
       parameters:
       - name: id
@@ -472,28 +517,36 @@ paths:
           type: integer
           format: int64
       responses:
+        "404":
+          description: Image not found
         "200":
-          description: OK
+          description: Imaged downloaded successfully
           content:
-            '*/*':
+            application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/User'
+        "204":
+          description: Image field is empty
   /api/users/me:
     get:
       tags:
       - user-rest-controller
+      summary: Get the user conected
       operationId: getActiveUser
       responses:
+        "404":
+          description: User conected not found
         "200":
-          description: OK
+          description: Found the connected user
           content:
-            '*/*':
+            application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/User_Mostrar'
   /api/users/me/tournaments:
     get:
       tags:
       - user-rest-controller
+      summary: Get the tournaments where the user is inscribed
       operationId: getUserTournaments
       parameters:
       - name: page
@@ -503,16 +556,19 @@ paths:
           type: integer
           format: int32
       responses:
+        "404":
+          description: Tournament not found
         "200":
-          description: OK
+          description: Found the tournament
           content:
-            '*/*':
+            application/json:
               schema:
-                $ref: '#/components/schemas/PageTournament'
+                $ref: '#/components/schemas/User'
   /api/users/me/pairs:
     get:
       tags:
       - user-rest-controller
+      summary: Get the user pairs
       operationId: getUserPairs
       parameters:
       - name: page
@@ -523,50 +579,33 @@ paths:
           format: int32
       responses:
         "200":
-          description: OK
+          description: Pairs founded
           content:
-            '*/*':
+            application/json:
               schema:
-                $ref: '#/components/schemas/PageUser'
+                $ref: '#/components/schemas/User_Mostrar'
+        "404":
+          description: Pairs weren't found
   /api/users/me/matches:
     get:
       tags:
       - user-rest-controller
+      summary: Get the user's matches
       operationId: getUserMatches
       responses:
         "200":
-          description: OK
+          description: Match found
           content:
-            '*/*':
+            application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Match'
-  /api/tournaments/{id}/tournamentTeams:
-    get:
-      tags:
-      - tournament-rest-controller
-      operationId: getTournamentTeams
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-      responses:
-        "200":
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Team'
+                $ref: '#/components/schemas/User_Mostrar'
+        "404":
+          description: Match not found
   /api/tournaments/{id}/matches:
     get:
       tags:
       - tournament-rest-controller
+      summary: Get rounds from tournament
       operationId: getRound
       parameters:
       - name: id
@@ -582,19 +621,26 @@ paths:
           type: integer
           format: int32
       responses:
-        "200":
-          description: OK
+        "201":
+          description: the tournament doesn't have rounds
           content:
-            '*/*':
+            application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Match'
+                $ref: '#/components/schemas/Tournament_Mostrar'
+        "200":
+          description: success getting the rounds
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tournament_Mostrar'
+        "404":
+          description: tournament not found
   /api/matches/{id}:
     get:
       tags:
       - match-rest-controller
-      operationId: getUser_1
+      summary: Get the match by ID
+      operationId: getMatch
       parameters:
       - name: id
         in: path
@@ -603,14 +649,89 @@ paths:
           type: integer
           format: int64
       responses:
+        "404":
+          description: Match not found
         "200":
-          description: OK
+          description: Found the mathch
           content:
-            '*/*':
+            application/json:
               schema:
-                $ref: '#/components/schemas/Match'
+                $ref: '#/components/schemas/Match_Mostrar'
+  /api/tournaments/{id}/teams/{teamid}:
+    delete:
+      tags:
+      - tournament-rest-controller
+      summary: delete team
+      operationId: deleteTournamentTeam
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: teamid
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: team deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tournament'
+        "401":
+          description: you are not authorized to deelte the team
+        "404":
+          description: tournament not found
 components:
   schemas:
+    User_Mostrar:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        email:
+          type: string
+        realName:
+          type: string
+        location:
+          type: string
+        country:
+          type: string
+        phone:
+          type: string
+        numWins:
+          type: integer
+          format: int32
+        numLoses:
+          type: integer
+          format: int32
+        numMatchesPlayed:
+          type: number
+          format: double
+        historicalKarma:
+          type: array
+          items:
+            type: integer
+            format: int32
+        status:
+          type: boolean
+        encodedPassword:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        karma:
+          type: integer
+          format: int32
     User:
       type: object
       properties:
@@ -683,18 +804,39 @@ components:
           type: string
         startDate:
           type: string
-    Team:
+        started:
+          type: boolean
+    Tournament_Mostrar:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        tbd:
+        owner:
+          type: string
+        tournamentName:
+          type: string
+        numParticipants:
+          type: integer
+          format: int32
+        numSignedUp:
+          type: integer
+          format: int32
+        rounds:
+          type: integer
+          format: int32
+        about:
+          type: string
+        ruleset:
+          type: string
+        location:
+          type: string
+        inscriptionDate:
+          type: string
+        startDate:
+          type: string
+        started:
           type: boolean
-        userA:
-          $ref: '#/components/schemas/User'
-        userB:
-          $ref: '#/components/schemas/User'
     Match:
       type: object
       properties:
@@ -727,6 +869,18 @@ components:
           $ref: '#/components/schemas/Team'
         tournament:
           $ref: '#/components/schemas/Tournament'
+    Team:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        tbd:
+          type: boolean
+        userA:
+          $ref: '#/components/schemas/User'
+        userB:
+          $ref: '#/components/schemas/User'
     AuthResponse:
       type: object
       properties:
@@ -746,94 +900,47 @@ components:
           type: string
         password:
           type: string
-    PageUser:
+    Match_Mostrar:
       type: object
       properties:
-        totalPages:
-          type: integer
-          format: int32
-        totalElements:
+        id:
           type: integer
           format: int64
-        size:
+        round:
           type: integer
           format: int32
-        content:
+        result:
           type: array
           items:
-            $ref: '#/components/schemas/User'
-        number:
+            type: integer
+            format: int32
+        setsTeamOne:
           type: integer
           format: int32
-        sort:
-          $ref: '#/components/schemas/Sort'
-        first:
-          type: boolean
-        last:
-          type: boolean
-        numberOfElements:
+        setsTeamTwo:
           type: integer
           format: int32
-        pageable:
-          $ref: '#/components/schemas/Pageable'
-        empty:
+        hasWinner:
           type: boolean
-    Pageable:
+        winnerTeamOne:
+          type: boolean
+        winnerTeamTwo:
+          type: boolean
+        teamOne:
+          $ref: '#/components/schemas/Team_Mostrar'
+        teamTwo:
+          $ref: '#/components/schemas/Team_Mostrar'
+        tournament:
+          $ref: '#/components/schemas/Tournament_Mostrar'
+    Team_Mostrar:
       type: object
       properties:
-        offset:
+        id:
           type: integer
           format: int64
-        sort:
-          $ref: '#/components/schemas/Sort'
-        pageNumber:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        unpaged:
+        tbd:
           type: boolean
-        paged:
-          type: boolean
-    Sort:
-      type: object
-      properties:
-        empty:
-          type: boolean
-        sorted:
-          type: boolean
-        unsorted:
-          type: boolean
-    PageTournament:
-      type: object
-      properties:
-        totalPages:
-          type: integer
-          format: int32
-        totalElements:
-          type: integer
-          format: int64
-        size:
-          type: integer
-          format: int32
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tournament'
-        number:
-          type: integer
-          format: int32
-        sort:
-          $ref: '#/components/schemas/Sort'
-        first:
-          type: boolean
-        last:
-          type: boolean
-        numberOfElements:
-          type: integer
-          format: int32
-        pageable:
-          $ref: '#/components/schemas/Pageable'
-        empty:
-          type: boolean
+        userA:
+          $ref: '#/components/schemas/User_Mostrar'
+        userB:
+          $ref: '#/components/schemas/User_Mostrar'
