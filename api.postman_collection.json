@@ -1,0 +1,722 @@
+{
+	"info": {
+		"_postman_id": "920aa42d-6359-42d4-ab60-9d211797ac02",
+		"name": "Padelante",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "match by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/matches/55/",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"matches",
+						"55",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update result",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"result\": [\n        6,\n        0,\n        6,\n        0,\n        0,\n        0\n    ]\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/matches/55/result",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"matches",
+						"55",
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all tournaments",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{URL}}/api/tournaments?page=0",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"tournaments"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "tournament by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/tournaments/35",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"tournaments",
+						"35"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "tournament teams",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/tournaments/32/teams",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"tournaments",
+						"32",
+						"teams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "tournament round matches",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/tournaments/32/matches?round=1",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"tournaments",
+						"32",
+						"matches"
+					],
+					"query": [
+						{
+							"key": "round",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create tournament",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"owner\": \"user\",\r\n    \"tournamentName\": \"Torneo Api\",\r\n    \"numParticipants\": 8,\r\n    \"numSignedUp\": 0,\r\n    \"rounds\": 0,\r\n    \"about\": \"Participa en el torneo de la turra y gana el prestigioso torneo donde se apuntan los mejores padeleros del momento\",\r\n    \"ruleset\": \"Este torneo sigue las reglas oficiales del padel\",\r\n    \"location\": \"Madrid\",\r\n    \"inscriptionDate\": \"2022-12-16T16:00\",\r\n    \"startDate\": \"2022-12-16T16:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/tournaments",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"tournaments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update or start tournament",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"started\": true,\r\n    \"owner\": \"user\",\r\n    \"tournamentName\": \"Copa Arcoirirs\",\r\n    \"numParticipants\": 8,\r\n    \"numSignedUp\": 0,\r\n    \"rounds\": 0,\r\n    \"about\": \"Ven y enfrentate a nuestros rivales en la copa más colorida\",\r\n    \"ruleset\": \"Este torneo sigue las reglas oficiales del padel español\",\r\n    \"location\": \"Madrid\",\r\n    \"inscriptionDate\": \"2022-12-16T16:00\",\r\n    \"startDate\": \"2022-12-16T16:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/tournaments/32",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"tournaments",
+						"32"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "inscription",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/tournaments/35/teams",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"tournaments",
+						"35",
+						"teams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "tournament by id",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/tournaments/36",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"tournaments",
+						"36"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete tournament team",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/tournaments/32/teams/21",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"tournaments",
+						"32",
+						"teams",
+						"21"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tournament download img",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/tournaments/36/image",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"tournaments",
+						"36",
+						"image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tournament upload img",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "imageFile",
+							"type": "file",
+							"src": "/C:/Users/Ruben/Desktop/URJC/Curso 4/DAW/Proyecto DAW/webapp6/backend/src/main/resources/examples/copaArcoiris.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/api/tournaments/36/image",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"tournaments",
+						"36",
+						"image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tournament delete img",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/tournaments/36/image",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"tournaments",
+						"36",
+						"image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{URL}}/api/users?page=0",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						}
+					]
+				},
+				"description": "User Collection\n"
+			},
+			"response": []
+		},
+		{
+			"name": "user Conected",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/users/me",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/users/3",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user pairs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/users/me/pairs?page=0",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"me",
+						"pairs"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user tournaments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/users/me/tournaments?page=0",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"me",
+						"tournaments"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user matches",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/users/me/matches",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"me",
+						"matches"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"apiuser\",\n    \"encodedPassword\": \"pass\",\n    \"email\": \"postman@correo.com\",\n    \"realName\": \"postman\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/users",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"username\": \"user\", \"password\": \"pass\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/auth/login",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/auth/logout",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"username\": \"admin\", \"password\": \"adminpass\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/auth/login",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update user",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"name doesnt change\",\r\n    \"email\": \"doesntChange@correo.com\",\r\n    \"realName\": \"update\",\r\n    \"location\": \"update\",\r\n    \"country\": \"update\",\r\n    \"phone\": \"695846286\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/users",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete user by id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/users/18",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"18"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User download img",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/api/users/2/image",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"2",
+						"image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User upload img",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "imageFile",
+							"type": "file",
+							"src": "/D:/Universidad/Curso 4/Segundo Cuatrimestre/Desarrollo de App Web/ProyectoDAW/webapp6/backend/src/main/resources/static/assets/images/profile-img.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:8443/api/users/image",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"users",
+						"image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User delete img",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/api/users/image",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"api",
+						"users",
+						"image"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
