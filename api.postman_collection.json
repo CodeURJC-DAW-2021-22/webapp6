@@ -308,19 +308,19 @@
 						{
 							"key": "imageFile",
 							"type": "file",
-							"src": "/C:/Users/Ruben/Desktop/URJC/Curso 4/DAW/Proyecto DAW/webapp6/backend/src/main/resources/examples/copaArcoiris.jpg"
+							"src": "/D:/Universidad/Curso 4/Segundo Cuatrimestre/Desarrollo de App Web/ProyectoDAW/webapp6/backend/src/main/resources/static/assets/images/product_06.jpg"
 						}
 					]
 				},
 				"url": {
-					"raw": "{{URL}}/api/tournaments/36/image",
+					"raw": "{{URL}}/api/tournaments/32/image",
 					"host": [
 						"{{URL}}"
 					],
 					"path": [
 						"api",
 						"tournaments",
-						"36",
+						"32",
 						"image"
 					]
 				}
@@ -652,15 +652,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URL}}/api/users/2/image",
+					"raw": "{{URL}}/api/users/image/2",
 					"host": [
 						"{{URL}}"
 					],
 					"path": [
 						"api",
 						"users",
-						"2",
-						"image"
+						"image",
+						"2"
 					]
 				}
 			},
@@ -682,12 +682,10 @@
 					]
 				},
 				"url": {
-					"raw": "https://localhost:8443/api/users/image",
-					"protocol": "https",
+					"raw": "{{URL}}/api/users/image",
 					"host": [
-						"localhost"
+						"{{URL}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"users",
@@ -703,12 +701,10 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:8443/api/users/image",
-					"protocol": "https",
+					"raw": "{{URL}}/api/users/image",
 					"host": [
-						"localhost"
+						"{{URL}}"
 					],
-					"port": "8443",
 					"path": [
 						"api",
 						"users",
