@@ -263,7 +263,7 @@ public class UserRestController {
 			user.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
 			userService.save(user);
 
-			URI location = fromCurrentRequest().path("/"+user.getId()+"/image").build().toUri();
+			URI location = fromCurrentRequest().path("/"+user.getId()).build().toUri();
 			return ResponseEntity.created(location).build();
 		} else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
@@ -278,7 +278,7 @@ public class UserRestController {
 			@ApiResponse(responseCode = "404", description = "Image not found", content = @Content)			
 		})
 			
-	@GetMapping("/{id}/image")
+	@GetMapping("/image/{id}")
 	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
 
 		if (userService.exist(id)) {
