@@ -418,8 +418,8 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
 
   - Descripción de tareas:
   
-   Me he encargado de implementar parte de las apis Rest, así como de ayudar a Rubén con Docker y heroku. Posteriormente, me he encargado de incorporar el tema de la seguridad para las api Rest.
-   Por otra parte, me he encargardo de algunas de las peticiones de Postman, asi como del fichero .json de las peticiones de Postman.
+    Me he encargado de implementar parte de las apis Rest, así como de ayudar a Rubén con Docker y heroku. Posteriormente, me he encargado de incorporar el tema de la    seguridad para las api Rest.
+    Por otra parte, me he encargardo de algunas de las peticiones de Postman, asi como del fichero .json de las peticiones de Postman.
     
     
     
