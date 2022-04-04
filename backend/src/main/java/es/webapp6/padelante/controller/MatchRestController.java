@@ -2,7 +2,6 @@ package es.webapp6.padelante.controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,7 +23,6 @@ import es.webapp6.padelante.service.MatchService;
 import es.webapp6.padelante.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.media.Content;

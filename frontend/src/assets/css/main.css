@@ -1,0 +1,1266 @@
+/*--------------------------------------------------------------
+# General CSS
+--------------------------------------------------------------*/
+
+.upper-text {
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.color-fff {
+    color: #fff;
+}
+
+.color-121212 {
+    color: #121212;
+}
+
+.color-green {
+    color: #67d400;
+}
+
+.border-green {
+    border: 5px solid #67d400;
+}
+
+.border-green-tiny {
+    border: 3px solid #67d400;
+}
+
+.btn-crea-torneo {
+    background-color: #121212;
+    color: #67d400;
+    text-transform: uppercase;
+    font-size: 35px;
+    font-weight: 700;
+    padding: 10px 15px;
+    border-radius: 0.5rem;
+}
+
+.btn-crea-torneo:hover {
+    color: #ffffff!important;
+}
+
+.img-lista-torneos {
+    height: 225px;
+    width: 100%;
+}
+
+.cargar-mas {
+    align-items: center;
+    font-style: normal;
+    color: #67d400;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.cargar-mas-mini {
+    align-items: center;
+    font-style: normal;
+    color: #67d400;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.cargar-mas:hover {
+    color: #67d400;
+}
+
+.bg-232323 {
+    background-color: #232323;
+}
+
+.bg-green {
+	background-color: #67d400;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+p {
+    margin-bottom: 0px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #4a4a4a;
+    line-height: 24px;
+}
+
+a {
+    text-decoration: none!important;
+    color: #121212;
+}
+
+a:hover {
+    text-decoration: none!important;
+    color: #121212;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0px;
+}
+
+a.filled-button {
+    background-color: #67d400;
+    color: #fff;
+    font-size: 14px;
+    text-transform: capitalize;
+    font-weight: 300;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    transition: all 0.3s;
+}
+
+a.filled-button:hover {
+    background-color: #121212;
+    color: #fff;
+}
+
+.section-heading {
+    text-align: left;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgb(165, 165, 165);
+}
+
+.section-heading h2 {
+    font-size: 28px;
+    font-weight: 400;
+    color: #121212;
+    margin-bottom: 15px;
+}
+
+.page-heading {
+    padding: 210px 0px 130px 0px;
+    text-align: center;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.page-heading .text-content h4 {
+    color: #67d400;
+    font-size: 22px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.page-heading .text-content h2 {
+    color: #fff;
+    font-size: 62px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+button.button-no-format{
+    appearance: auto;
+    text-rendering: auto;
+    color: inherit;
+    letter-spacing: inherit;
+    word-spacing: inherit;
+    line-height: inherit;
+    text-transform: inherit;
+    text-indent: 0;
+    text-shadow: inherit;
+    display: inherit;
+    text-align: inherit;
+    align-items: inherit;
+    cursor: inherit;
+    box-sizing: border-box;
+    background-color: inherit;
+    margin: 0;
+    padding: 0;
+    border-width: 0;
+    border-style: inherit;
+    border-color: inherit;
+    border-image: inherit;
+    width: 100%;
+}
+
+
+/*--------------------------------------------------------------
+# Header Style
+--------------------------------------------------------------*/
+
+header {
+    position: absolute;
+    z-index: 99999;
+    width: 100%;
+    height: 80px;
+    background-color: #232323;
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    -moz-transition: all 0.3s ease-in-out 0s;
+    -o-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+header .navbar {
+    padding: 16px 0px;
+}
+
+.navbar-brand {
+    float: left;
+    outline: none;
+}
+
+.navbar-brand h2 {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: 700;
+    -webkit-transition: all .3s ease 0s;
+    -moz-transition: all .3s ease 0s;
+    -o-transition: all .3s ease 0s;
+    transition: all .3s ease 0s;
+}
+
+.navbar-brand h2 em {
+    font-style: normal;
+    color: #67d400;
+}
+
+#navbarResponsive {
+    z-index: 999;
+}
+
+.navbar-collapse {
+    text-align: center;
+}
+
+.header-nav a.nav-text {
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #fff;
+    padding-bottom: 19px;
+    padding-top: 19px;
+}
+
+.header-nav .nav-link:hover,
+.header-nav .active>.nav-link,
+.header-nav .nav-link.active,
+.header-nav .nav-link.show,
+.header-nav .show>.nav-link {
+    color: #67d400!important;
+    border-bottom: 3px solid #67d400;
+}
+
+
+/*--------------------------------------------------------------
+# Header Nav
+--------------------------------------------------------------*/
+
+.header-nav>ul {
+    margin: 0;
+    padding: 0;
+}
+
+.header-nav .nav-icon {
+    font-size: 27px;
+    color: #fff;
+}
+
+.header-nav .nav-profile {
+    color: #fff;
+}
+
+.header-nav .nav-profile img {
+    max-height: 36px;
+}
+
+.header-nav .nav-profile span {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.header-nav .badge-number {
+    position: absolute;
+    inset: 4px 6px auto auto;
+    font-weight: normal;
+    font-size: 11px;
+    padding: 3px 6px;
+}
+
+.header-nav .messages .message-item {
+    padding: 15px 10px;
+    transition: 0.3s;
+    width: 250px;
+}
+
+.header-nav .messages .message-item a {
+    display: flex;
+}
+
+.header-nav .messages .message-item img {
+    margin: 0 20px 0 10px;
+    max-height: 40px;
+}
+
+.header-nav .messages .message-item h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.header-nav .messages .message-item p {
+    font-size: 13px;
+    margin-bottom: 3px;
+    color: #fff;
+}
+
+.header-nav .messages .message-item:hover {
+    background-color: #333333;
+}
+
+.header-nav .profile {
+    min-width: 240px;
+    padding-bottom: 0;
+}
+
+.header-nav .profile .dropdown-header h6 {
+    font-size: 18px;
+    margin-bottom: 0;
+    font-weight: 600;
+    color: #fff;
+}
+
+.header-nav .profile .dropdown-header span {
+    font-size: 14px;
+}
+
+.header-nav .profile .dropdown-item {
+    font-size: 14px;
+    padding: 10px 15px;
+    transition: 0.3s;
+}
+
+.header-nav .profile .dropdown-item i {
+    margin-right: 10px;
+    font-size: 18px;
+    line-height: 0;
+}
+
+.header-nav .profile .dropdown-item:hover {
+    background-color: #333333;
+}
+
+
+/*--------------------------------------------------------------
+Titulo Pag Admin
+--------------------------------------------------------------*/
+
+#tituloPagAdmin {
+    font-family: Arial Black;
+    font-weight: bold;
+    font-size: 60px;
+    color: #67d400;
+    text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+}
+
+
+/*--------------------------------------------------------------
+Admin search
+--------------------------------------------------------------*/
+
+.topnav {
+    overflow: hidden;
+    background-color: white;
+}
+
+.topnav .search-container {
+    float: left;
+}
+
+.topnav input[type=text] {
+    padding: 6px;
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: 30px 30px 30px 30px;
+    font-size: 35px;
+    border: none;
+    background-color: #eee;
+}
+
+.topnav .search-container button {
+    padding: 6px 10px;
+    margin: 25px 15px 25px auto;
+    background: #ddd;
+    font-size: 35px;
+    border-radius: 30px 30px 30px 30px;
+    border: none;
+    cursor: pointer;
+}
+
+.topnav .search-container button:hover {
+    background: #eee;
+}
+
+@media screen and (max-width: 600px) {
+    .topnav .search-container {
+        float: none;
+    }
+    .topnav a,
+    .topnav input[type=text],
+    .topnav .search-container button {
+        float: none;
+        display: block;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+    }
+    .topnav input[type=text] {
+        border: 1px solid #ccc;
+    }
+}
+
+
+/*--------------------------------------------------------------
+# Users finder
+--------------------------------------------------------------*/
+
+.userFinder {
+    /* cambia estos dos valores para definir el tamaño de tu círculo */
+    height: 80px;
+    width: 80px;
+    /* los siguientes valores son independientes del tamaño del círculo */
+    margin: 5px;
+    background-position: 50%;
+    border-radius: 50%;
+    background-size: 100% auto;
+    border: 3px solid #67d400;
+    
+}
+
+.lineUser .partner-name {
+    width: 180px;
+    margin-left: 10px;
+}
+
+.lineUser .partner-img {
+    width: 50px;
+    margin: 5px 5px 5px 5px;
+}
+
+.lineUser {
+    background-color: #fff;
+    padding: 2px;
+    margin: 2px;
+}
+
+.lineUser:hover {
+    background-color: #eee;
+}
+
+
+/*--------------------------------------------------------------
+# Pagination css
+--------------------------------------------------------------*/
+
+.center {
+    margin: auto;
+}
+
+.pagination {
+    display: inline-block;
+    padding: 5px;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #eee;
+    margin: 0 4px;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #eee;
+}
+
+
+/*--------------------------------------------------------------
+# Bin to delate users
+--------------------------------------------------------------*/
+
+.binUsers {
+    margin: 25px 15px 25px auto;
+}
+
+
+/*--------------------------------------------------------------
+# Tournament finder
+--------------------------------------------------------------*/
+
+.tournamentFinder {
+    /* cambia estos dos valores para definir el tamaño de tu círculo */
+    height: 80px;
+    width: 80px;
+    /* los siguientes valores son independientes del tamaño del círculo */
+    margin: 5px;
+    background-position: 50%;
+    border-radius: 50%;
+    background-size: 100% auto;
+    border: 3px solid #67d400;
+    
+}
+
+.lineTournament .partner-name {
+    width: 180px;
+    margin-left: 10px;
+}
+
+.lineTournament .partner-img {
+    width: 50px;
+    margin: 5px 5px 5px 5px;
+}
+
+.lineTournament {
+    background-color: #fff;
+    padding: 2px;
+    margin: 2px;
+}
+
+.lineTournament:hover {
+    background-color: #eee;
+}
+
+
+/*--------------------------------------------------------------
+# Bin to delate tournament
+--------------------------------------------------------------*/
+
+.binTournament {
+    margin: 25px 15px 25px auto;
+}
+
+
+/*--------------------------------------------------------------
+# Error 404
+--------------------------------------------------------------*/
+
+.error-404 {
+    padding: 30px;
+}
+
+.error-404 h1 {
+    font-weight: 700;
+    color: #67d400;
+    margin-bottom: 0;
+    line-height: 150px;
+    font-size: 180px;
+}
+
+.error-404 h2 {
+    color: #67d400;
+}
+
+.error-404 img {
+    max-width: 50%;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.btnBackE404 {
+    background-color: #67d400;
+    margin: 10px;
+    font-size: 40px;
+    color: black;
+}
+
+.btnBackE404:hover{
+    color:black;
+}
+
+
+/*--------------------------------------------------------------
+# Formulario Log In
+--------------------------------------------------------------*/
+
+.login .btn-login {
+    background-color: #67d400;
+    color: #121212
+}
+
+.form-check-input:checked {
+    background-color: #67d400;
+    border-color: #67d400;
+}
+
+.form-check-input.is-valid:checked,
+.was-validated .form-check-input:valid:checked {
+    background-color: #67d400;
+}
+
+.form-check-input:checked[type=checkbox] {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e")
+}
+
+.form-check-input.is-valid~.form-check-label,
+.was-validated .form-check-input:valid~.form-check-label {
+    color: hsl(91, 100%, 42%);
+}
+
+.form-control.is-valid,
+.was-validated .form-control:valid
+ {
+    border-color: rgb(103, 212, 0);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2367D400' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e")!important;
+}
+
+.was-validated .form-select:valid:not([multiple]):not([size]){
+    border-color: rgb(103, 212, 0);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e"),url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2367D400' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+}
+
+.form-control.is-valid:focus,
+.was-validated .form-control:valid:focus {
+    border-color: #67d400;
+    box-shadow: 0 0 0 0.25rem rgb(103 212 0 / 25%);
+}
+
+.form-control:focus {
+    border-color: #232323;
+    box-shadow: 0 0 0 0.25rem rgba(102, 102, 102, 0.25);
+}
+
+.login .button {
+    display: inline-block;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+
+/*--------------------------------------------------------------
+# Scrollbar format
+--------------------------------------------------------------*/
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #232323;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #67d400;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #fff;
+  }
+
+
+/*--------------------------------------------------------------
+# Dropdown
+--------------------------------------------------------------*/
+
+.dropdown-menu {
+    border-radius: 4px;
+    padding: 10px 0;
+    -webkit-animation-name: dropdown-animate;
+    animation-name: dropdown-animate;
+    -webkit-animation-duration: 0.2s;
+    animation-duration: 0.2s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    border: 2px solid #67d400;
+    background-color: #232323;
+    box-shadow: 0 5px 30px 0 rgba(82, 63, 105, 0.2);
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.dropdown-menu .dropdown-header,
+.dropdown-menu .dropdown-footer {
+    text-align: center;
+    font-size: 15px;
+    padding: 10px 25px;
+}
+
+.dropdown-header {
+    color: #fff;
+}
+
+.dropdown-menu .dropdown-footer a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.dropdown-menu .dropdown-footer a:hover {
+    text-decoration: none;
+}
+
+.dropdown-menu .dropdown-divider {
+    color: #67d400;
+    margin: 0;
+    border: 1px solid #67d400;
+}
+
+.dropdown-menu .dropdown-item {
+    font-size: 14px;
+    color: #fff;
+    padding: 10px 15px;
+    transition: 0.3s;
+}
+
+.dropdown-menu .dropdown-item i {
+    margin-right: 10px;
+    font-size: 18px;
+    line-height: 0;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #eee;
+}
+
+.dropdown-menu .dropdown-header .rounded-pill {
+    background-color: #67d400;
+    color: #121212;
+}
+
+@media (min-width: 768px) {
+    .dropdown-menu-arrow::before {
+        content: "";
+        width: 13px;
+        height: 13px;
+        background: #232323;
+        position: absolute;
+        top: -7px;
+        right: 20px;
+        transform: rotate(45deg);
+        border-top: 2px solid #67d400;
+        border-left: 2px solid #67d400;
+    }
+}
+
+@-webkit-keyframes dropdown-animate {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+    0% {
+        opacity: 0;
+    }
+}
+
+@keyframes dropdown-animate {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+    0% {
+        opacity: 0;
+    }
+}
+
+
+/*--------------------------------------------------------------
+# Banner Style
+--------------------------------------------------------------*/
+
+.banner {
+    position: relative;
+    text-align: center;
+    padding-top: 80px;
+}
+
+.banner-item-01 {
+    padding: 150px 0px;
+    background-image: url(../images/slide_01.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.banner .banner-item {
+    max-height: 600px;
+}
+
+.banner .text-content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    width: 100%;
+}
+
+.banner .text-content h4 {
+    color: #67d400;
+    font-size: 22px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.banner .text-content h2 {
+    color: #fff;
+    font-size: 62px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+
+/*--------------------------------------------------------------
+# Profile Style
+--------------------------------------------------------------*/
+
+.main-profile {
+    margin-top: 80px;
+    padding-top: 20px;
+    transition: all 0.3s;
+}
+
+.profile .profile-card img {
+    width: 120px;
+    height: 120px;
+}
+
+.profile img.small {
+    width: 40px;
+    height: 40px;
+}
+
+.profile .profile-card h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #121212;
+    margin: 10px 0 0 0;
+}
+
+.profile .profile-card h3 {
+    font-size: 18px;
+}
+
+.profile .profile-card .social-links a {
+    font-size: 25px;
+    display: inline-block;
+    color: #67d400;
+    line-height: 0;
+    margin-right: 10px;
+    transition: 0.3s;
+}
+
+.profile .profile-card .social-links a:hover {
+    color: #121212;
+}
+
+.profile .profile-overview .row {
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.profile .profile-overview .card-title {
+    color: #121212;
+}
+
+.profile .profile-overview .label {
+    font-weight: 600;
+    color: #67d400;
+}
+
+.profile .profile-edit label {
+    font-weight: 600;
+    color: #67d400;
+}
+
+.profile .profile-edit img {
+    max-width: 120px;
+}
+
+.partner-name {
+    width: 180px;
+}
+
+.partner-img {
+    width: 50px;
+}
+
+
+/*--------------------------------------------------------------
+# Card
+--------------------------------------------------------------*/
+
+.card {
+    margin-bottom: 23px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+}
+
+.card-header,
+.card-footer {
+    border-color: #ebeef4;
+    background-color: #fff;
+    color: #798eb3;
+    padding: 15px;
+}
+
+.card-title {
+    padding: 20px 0 15px 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #012970;
+    font-family: "Poppins", sans-serif;
+}
+
+.card-title span {
+    color: #899bbd;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.card-body {
+    padding: 0 20px 20px 20px;
+}
+
+.card-img-overlay {
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.card .nav-link {
+    color: #121212;
+}
+
+.card .nav-link:hover,
+.card .active>.nav-link,
+.card .nav-link.active,
+.card .nav-link.show,
+.card .show>.nav-link {
+    color: #67d400!important;
+    border-bottom: 3px solid #67d400;
+}
+
+.btn-green {
+    background-color: #67d400;
+    color: #121212
+}
+
+.card .button {
+    display: inline-block;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.card .button-normal {
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+}
+
+
+/*--------------------------------------------------------------
+# Tournament
+--------------------------------------------------------------*/
+
+.main-tournament {
+    margin-top: 80px;
+    padding-top: 20px;
+    transition: all 0.3s;
+}
+
+.tournament-img-mini img {
+    width: 80px;
+    height: 80px;
+    border-width: 3px!important;
+}
+
+.tournament-img img {
+    width: 120px;
+    height: 120px;
+}
+
+.tournament img.small {
+    width: 40px;
+    height: 40px;
+}
+
+.tournament .tournament-card h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #121212;
+    margin: 10px 0 0 0;
+}
+
+.tournament .tournament-card h3 {
+    font-size: 18px;
+}
+
+.tournament .tournament-card h5 {
+  font-size: 13px;
+}
+
+.tournament .date-title {
+  font-weight: 600;
+}
+
+.tournament .btn-tournament{
+  background-color: #67d400;
+  color:#121212
+}
+
+.tournament .button{
+  align-items: center;
+  display: inline-block;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.tournament .tournament-overview .row {
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.tournament .tournament-overview .card-title {
+    color: #121212;
+}
+
+.tournament .tournament-overview .label {
+    font-weight: 600;
+    color: #67d400;
+}
+
+.tournament .tournament-edit label {
+    font-weight: 600;
+    color: #67d400;
+}
+
+.tournament .tournament-edit img {
+    max-width: 120px;
+}
+
+.pair-tournament:hover{
+    background-color: #eee;
+}
+
+
+/*--------------------------------------------------------------
+# Tournament list
+--------------------------------------------------------------*/
+
+.lista-torneos {
+    margin-top: 10px;
+}
+
+.lista-torneos .section-heading a {
+    float: right;
+    margin-top: -35px;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+    color: #67d400;
+}
+
+.product-item {
+    border: 1px solid #eee;
+    background-color: #121212;
+    margin-bottom: 30px;
+}
+
+.product-item .down-content {
+    padding: 30px;
+    position: relative;
+}
+
+.product-item img {
+    width: 100%;
+    overflow: hidden;
+}
+
+.product-item .down-content h4 {
+    font-size: 20px;
+    color: #ffffff;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.product-item .down-content h6 {
+    top: 30px;
+    right: 30px;
+    font-size: 17px;
+    color: #67d400;
+}
+
+.product-item .down-content p {
+    font-size: 17px;
+    color: #bebebe;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.product-item .down-content ul li {
+    display: inline-block;
+}
+
+.product-item .down-content ul li i {
+    color: #67d400;
+    font-size: 17px;
+}
+
+.product-item .down-content span {
+    right: 30px;
+    bottom: 30px;
+    font-size: 17px;
+    color: #67d400;
+    font-weight: 500;
+}
+
+
+/*--------------------------------------------------------------
+# Call to action
+--------------------------------------------------------------*/
+
+.call-to-action .inner-content {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+}
+
+.call-to-action .inner-content h4 {
+    font-size: 17px;
+    color: #1a6692;
+    margin-bottom: 15px;
+}
+
+.call-to-action .inner-content em {
+    font-style: normal;
+    font-weight: 700;
+}
+
+.call-to-action .inner-content .col-md-4 {
+    text-align: right;
+}
+
+.call-to-action .inner-content .filled-button {
+    margin-top: 12px;
+}
+
+
+/*--------------------------------------------------------------
+# Search bar users invite
+--------------------------------------------------------------*/
+
+
+.search-bar {
+    min-width: 360px;
+  }
+
+.search-bar input {
+  font-size: 14px;
+  color: #012970;
+  border: 1px solid rgba(1, 41, 112, 0.2);
+  padding: 7px 38px 7px 8px;
+  border-radius: 3px;
+  transition: 0.3s;
+  width: 100%;
+  margin-right: -35px;
+}
+
+.search-bar button {
+  border: 0;
+  padding: 0;
+  background: none;
+}
+
+
+/*--------------------------------------------------------------
+# Pop Up inscription
+--------------------------------------------------------------*/
+
+.addUser{
+    color:#67d400; 
+    font-size: 20px;
+    padding: 0.1rem 0.4rem;
+    background-color: #121212;
+}
+
+.addUser:hover{
+    color:#fff;
+}
+
+
+progress {
+    margin-top: 5px;
+    border: black;
+    border-width: 1px;
+    border-radius: 10px;
+    border-style: solid;
+    width: 100%;
+    height: 15px;
+    background-color: #67d400;
+  }
+  
+  progress::-moz-progress-bar {
+    background: lightcolor;
+  }
+  
+  progress::-webkit-progress-value {
+    background: #67d400;
+  }
+  
+  progress::-webkit-progress-bar {
+    background: rgb(160, 160, 160);
+  }
