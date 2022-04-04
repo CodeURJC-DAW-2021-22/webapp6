@@ -26,7 +26,11 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/css/main.css",
+              "src/assets/css/bracket.css",
+              "src/assets/css/league.css",
+              "src/assets/vendor/remixicon/remixicon.css"
             ],
             "scripts": []
           },
