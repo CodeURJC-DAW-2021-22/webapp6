@@ -85,7 +85,9 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
+
+			
+			<!-- <plugin>
 				<groupId>org.springdoc</groupId>
 				<artifactId>springdoc-openapi-maven-plugin</artifactId>
 				<version>1.3</version>
@@ -138,7 +140,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin> -->
 
 
 			<plugin>
