@@ -511,6 +511,4 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
     
     https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/java/es/webapp6/padelante/model/Team.java
     
-    
-    
-    
+# FASE 4
