@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg">
     <div class="container d-flex justify-content-between">
         <div class="d-flex justify-content-start">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" [routerLink]="['']">
                 <h2><em>Padel</em>ante </h2>
             </a>
         </div>
@@ -12,7 +12,7 @@
 
                     <li *ngIf="loginService.isAdmin()" class="nav-item dropdown">
 
-                        <a class="nav-link nav-icon" href="/admin">
+                        <a class="nav-link nav-icon" [routerLink]="['/admin']">
                             <!--data-bs-toggle="dropdown"> -->
                             <i class="ri-tools-fill"></i>
                         </a>
@@ -35,7 +35,7 @@
                             <!-- {{#matches}}
                             <li class="message-item">
                                 <div class="d-flex justify-content-center">
-                                    <a href="/match/{{id}}">
+                                    <a [routerLink]="['/match',match.id]">
                                         <div class="text-center">
                                             <h4>{{tournament.tournamentName}}</h4>
                                             <p>{{teamOne.userA.name}} / {{teamOne.userB.name}}</p>
@@ -70,7 +70,7 @@
 
                     <li *ngIf="loginService.isLogged()" class="nav-item dropdown">
 
-                        <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                        <a class="nav-link nav-icon" data-bs-toggle="dropdown">
                             <i class="ri-account-circle-fill"></i>
                         </a>
                         <!-- End Profile Iamge Icon -->
@@ -84,7 +84,7 @@
                             </li>
 
                             <li>
-                                <a class="dropdown-item d-flex align-items-center" href="/user_profile">
+                                <a class="dropdown-item d-flex align-items-center" [routerLink]="['/user_profile']">
                                     <i class="ri-user-3-line"></i>
                                     <span>Mi perfil</span>
                                 </a>
@@ -95,14 +95,12 @@
                             </li>
 
                             <li>
-                                <form action="/logout" method="post">
-                                    <button class="button-no-format" type="submit">
-                                        <a class="dropdown-item d-flex align-items-center">
-                                            <i class="ri-logout-box-r-line"></i>
-                                            <span>Cerrar sesión</span>
-                                        </a>
-                                    </button>
-                                </form>
+                              <button class="button-no-format" (click)="loginService.logOut()">
+                                  <a class="dropdown-item d-flex align-items-center">
+                                      <i class="ri-logout-box-r-line"></i>
+                                      <span>Cerrar sesión</span>
+                                  </a>
+                              </button>
                             </li>
 
                         </ul>
@@ -111,7 +109,7 @@
                     <!-- End Profile Nav -->
 
                     <li *ngIf="!loginService.isLogged()" class="nav-item">
-                      <a class="nav-link nav-icon nav-text" href="/login">Iniciar sesión</a>
+                      <a class="nav-link nav-icon nav-text" [routerLink]="['/login']">Iniciar sesión</a>
                       <!-- End Log In Icon -->
                     </li>
                     <!-- End Profile Nav -->

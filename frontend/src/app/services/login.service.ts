@@ -31,9 +31,9 @@ export class LoginService {
 
     }
 
-    logIn(user: string, pass: string) {
+    logIn(username: string, password: string) {
 
-        this.http.post(BASE_URL + "/login", { username: user, password: pass }, { withCredentials: true })
+        this.http.post(BASE_URL + "/login", { username: username, password: password }, { withCredentials: true })
             .subscribe(
                 (response) => this.reqIsLogged(),
                 (error) => alert("Wrong credentials")

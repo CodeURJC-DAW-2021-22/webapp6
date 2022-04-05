@@ -1,26 +1,66 @@
-<form *ngIf="!loginService.isLogged()" class="navbar-form navbar-right form-inline" role="search">
+<main class="bg-232323">
+  <div class="container">
 
-	<div class="form-group">
-		<input #user type="text" class="form-control" name="username" placeholder="Username">
-	</div>
+    <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
-	<div class="form-group">
-		<input #pass type="password" class="form-control" name="password" placeholder="Password">
-	</div>
+            <div class="d-flex justify-content-center pt-2 pb-3">
+              <a [routerLink]="['']">
+                <h6 class="upper-text color-fff text-center"><i class="ri-arrow-left-fill pr-2"></i> Volver a</h6>
+                <div class="navbar-brand m-0">
+                  <span class="text-center"><h2><em>Padel</em>ante</h2></span>
+                </div>
+              </a>
+            </div><!-- End Logo -->
 
-	<button type="submit" (click)="logIn($event, user.value, pass.value)" class="btn btn-default">Sign In</button>
+            <div class="card mb-3 login">
 
-</form>
+              <div class="card-body">
 
-<div *ngIf="loginService.isLogged()" class="nav navbar-nav navbar-right">
+                <div class="card-intro py-3">
+                  <h5 class="upper-text text-center pb-0 fw-bold">Inicia sesión en tu cuenta</h5>
+                </div>
 
-	<ul class="nav navbar-nav">
-		<div class="navbar-nav mr-auto">
-			<a class="navbar-brand" href="/">Current user: {{loginService.currentUser().name}}</a>
-		</div>
-		<li>
-			<button class="btn btn-default navbar-btn" (click)="logOut()" type="button">Log Out</button>
-		</li>
-	</ul>
+                <form class="row g-3 needs-validation" novalidate>
 
-</div>
+                  <div class="col-12">
+                    <label for="username" class="form-label">Usuario</label>
+                    <div class="input-group has-validation">
+                      <span class="input-group-text" id="inputGroupPrepend">@</span>
+                      <input #username type="text" name="username" class="form-control" id="username" required>
+                      <div class="invalid-feedback">Introduce el usuario.</div>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input #password type="password" name="password" class="form-control" id="password" required>
+                    <div class="invalid-feedback">Introduce la contraseña.</div>
+                  </div>
+
+                  <div class="col-12">
+                    <button class="btn btn-login upper-text w-100" (click)="logIn($event, username.value, password.value)" type="submit">Iniciar sesión</button>
+                  </div>
+
+
+                  <div class="col-12 pt-2">
+                    <p class="small mb-0 text-center">¿No tienes cuenta?</p>
+                  </div>
+                  <div class="col-12 mt-1">
+                      <a class="button btn-login upper-text w-100" [routerLink]="['/register']">Registrarse</a>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+</main><!-- End #main -->
