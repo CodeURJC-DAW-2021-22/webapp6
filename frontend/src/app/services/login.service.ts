@@ -23,7 +23,7 @@ export class LoginService {
                 this.logged = true;
             },
             error => {
-                if (error.status != 404) {
+                if (error.status != 403) {
                     console.error('Error when asking if logged: ' + JSON.stringify(error));
                 }
             }

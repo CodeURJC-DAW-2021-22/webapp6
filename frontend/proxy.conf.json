@@ -1,0 +1,8 @@
+{
+  "/api/*": {
+      "target": "https://codeurjc-daw-2021-22-webapp6.herokuapp.com/",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+  }
+}
