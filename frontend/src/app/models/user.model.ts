@@ -14,5 +14,6 @@ export interface User{
     imageFile: Blob;
     image:boolean;
     encodedPassword:string;
+    roles: string[];
 
 }
