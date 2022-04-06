@@ -1,0 +1,134 @@
+
+
+<body>
+
+  <main class="bg-232323">
+    <div class="container">
+
+      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+              <div class="d-flex justify-content-center pt-2 pb-3">
+                <a href="/">
+                  <h6 class="upper-text color-fff text-center"><i class="ri-arrow-left-fill pr-2"></i> Volver a</h6>
+                  <div class="navbar-brand m-0">
+                    <p class="text-center"><h2><em>Padel</em>ante</h2>
+                  </div>
+                </a>
+              </div><!-- End Logo -->
+
+              <div class="card mb-3 login">
+
+                <div class="card-body">
+
+                  <div class="card-intro py-3">
+                    <h5 class="upper-text text-center pb-0 fw-bold">Crea un torneo nuevo</h5>
+                  </div>
+
+
+                  <form class="row g-3 needs-validation" novalidate >
+                      <!-- action="create_tournament" method="post" enctype="multipart/form-data" -->
+                    <div class="col-12">
+                      <label for="tournamentImage" class="form-label">Imagen del torneo</label>
+                      <div class="tournament-img">
+                        <input type='file' name='imageField' accept=".jpg, .jpeg, .png" />
+                      </div>
+                      <div class="invalid-feedback">Introduce una imagen válida.</div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="tournamentName" class="form-label">Nombre del torneo *</label>
+                      <input #tournamentName type="text" name="tournamentName" class="form-control" id="tournamentName" required>
+                      <div class="invalid-feedback">Introduce el nombre del torneo.</div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="about" class="form-label">Sobre el torneo</label>
+                      <textarea #about name="about" class="form-control" id="about" style="height: 100px"></textarea>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="ruleset" class="form-label">Reglamento</label>
+                      <textarea #ruleset name="ruleset" class="form-control" id="ruleset" style="height: 100px"></textarea>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="location" class="form-label">Localidad *</label>
+                      <input #location type="text" name="location" class="form-control" id="location" required>
+                      <div class="invalid-feedback">Introduce el lugar el torneo </div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="numParticipants" class="form-label">Participantes *</label>
+                      <select #numParticipants class="form-select" name="numParticipants" id="numParticipants" required>
+                        <option value="2">2</option>
+                        <option value="4">4</option>
+                        <option value="8">8</option>
+                        <option value="16">16</option>
+
+                      </select>
+                      <div class="invalid-feedback">Introduce el número de participantes.</div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="inscription-date" class="form-label">Fin de inscripciones *</label>
+                      <input #inscriptionDate name="inscriptionDate" type="datetime-local" class="form-control" id="inscription-date" required>
+                      <div class="invalid-feedback">Introduce la fecha.</div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="start-date" class="form-label">Inicio del torneo *</label>
+                      <input #startDate name="startDate" type="datetime-local" class="form-control" id="start-date" required>
+                      <div class="invalid-feedback">Introduce la fecha.</div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="format" class="form-label">Formato</label>
+                      <select #format class="form-select" name="format" id="format" disabled>
+                        <option value="Simple Tournament">Torneo simple</option>
+                        <option value="Regular League">Liga regular</option>
+                      </select>
+                      <div class="invalid-feedback">Introduce el formato.</div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="seeding" class="form-label">Seeding</label>
+                      <select #seeding class="form-select" name="seeding" id="seeding" disabled>
+                        <option selected value="1">Aleatorio</option>
+                        <option value="2">Manual</option>
+                      </select>
+                      <div class="invalid-feedback">Introduce el tipo de seeding.</div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="visibility" class="form-label">Visibilidad</label>
+                      <select #visibility class="form-select" id="visibility" filter="true" disabled>
+                        <option selected value="1">Público</option>
+                        <option value="2">Privado</option>
+                      </select>
+                    </div>
+
+                    <div class="col-12 mt-4">
+                      <button class="btn btn-login upper-text w-100" type="submit">Crear torneo</button>
+                    </div>
+
+                    <!-- <input type="hidden" name="_csrf" value="{{token}}"/> -->
+
+
+                  </form>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main><!-- End #main -->
+
+

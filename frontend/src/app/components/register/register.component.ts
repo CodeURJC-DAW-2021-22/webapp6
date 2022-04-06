@@ -45,7 +45,7 @@ export class RegisterComponent {
       this.User.image = false;
     }
     this.service.registerUser(this.User).subscribe(
-      error => alert('Error creating new book: ' + error));
+      error => alert('Error creating new User: ' + error));
 
     }else{
       throw Error();

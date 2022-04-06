@@ -4,11 +4,13 @@ import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
 import { MainComponent } from './components/main/main/main.component';
 import { LoginComponent } from './components/login/login.component';
+import {CreateTournament} from './components/tournament/createTournament.component';
 
 const appRoutes = [
   { path: '', component: MainComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: 'create_tournament', component: CreateTournament }
   // { path: '', redirectTo: '', pathMatch: 'full' }
 ]
 
