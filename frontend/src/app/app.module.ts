@@ -1,4 +1,5 @@
-import { MainComponent } from './components/main/main/main.component';
+import { CreateTournament } from './components/createTournament/createTournament.component';
+import { MainComponent } from './components/main/main.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -20,7 +21,7 @@ import { UserProfile } from './components/user/userProfile.component';
     LoginComponent,
     RegisterComponent,
     UserProfile,
-
+    CreateTournament
   ],
   imports: [
     BrowserModule,

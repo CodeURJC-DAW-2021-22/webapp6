@@ -20,7 +20,7 @@ export class MatchService {
   // THIS FUNCTIONS MAY NO WORK, TEST THEM WHEN DOING THE PAGES OF MATCH
 
   getMatch(id: number | string) {
-    return this.http.get(BASE_URL + id, { withCredentials: true }).pipe(catchError(error => throwError('Not Found')));
+    return this.http.get(BASE_URL + id, { withCredentials: true }).pipe(error => throwError('Match Not Found')) as Observable<Match>;
     // return this.http.get(BASE_URL + id, { withCredentials: true }).pipe(catchError(error => this.router.navigate(['/error_404'])));
   }
 

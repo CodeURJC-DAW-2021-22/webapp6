@@ -12,6 +12,8 @@ const BASE_URL = '/api/tournaments/';
 })
 export class TournamentService {
 
-constructor() { }
+constructor() {
+
+}
 
 }

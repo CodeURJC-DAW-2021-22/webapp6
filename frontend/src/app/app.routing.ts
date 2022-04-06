@@ -3,9 +3,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { HeaderComponent } from './components/header/header.component';
 
 import { RouterModule } from '@angular/router';
-import { MainComponent } from './components/main/main/main.component';
+import { MainComponent } from './components/main/main.component';
 import { LoginComponent } from './components/login/login.component';
-import {CreateTournament} from './components/tournament/createTournament.component';
+import {CreateTournament} from './components/createTournament/createTournament.component';
 
 const appRoutes = [
   { path: '', component: MainComponent },
