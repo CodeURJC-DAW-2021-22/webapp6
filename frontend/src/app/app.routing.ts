@@ -1,18 +1,22 @@
-import { UserProfile } from './components/user/userProfile.component';
-import { RegisterComponent } from './components/register/register.component';
-import { HeaderComponent } from './components/header/header.component';
-
 import { RouterModule } from '@angular/router';
 import { MainComponent } from './components/main/main.component';
 import { LoginComponent } from './components/login/login.component';
-import {CreateTournament} from './components/createTournament/createTournament.component';
+import { RegisterComponent } from './components/register/register.component';
+import { CreateTournamentComponent } from './components/createTournament/createTournament.component';
+import { UserProfileComponent } from './components/user/userProfile.component';
+import { TournamentComponent } from './components/tournament/tournament.component';
+import { MatchComponent } from './components/match/match.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 const appRoutes = [
   { path: '', component: MainComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'create_tournament', component: CreateTournament },
-  { path: 'user_profile', component: UserProfile }
+  { path: 'create_tournament', component: CreateTournamentComponent },
+  { path: 'user_profile', component: UserProfileComponent },
+  { path: 'tournament/:id', component: TournamentComponent },
+  { path: 'match/:id', component: MatchComponent },
+  { path: 'admin', component: AdminComponent }
   // { path: '', redirectTo: '', pathMatch: 'full' }
 ]
 

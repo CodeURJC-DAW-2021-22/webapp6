@@ -10,6 +10,6 @@ import { LoginService } from 'src/app/services/login.service';
   templateUrl: './userProfile.component.html'
 })
 
-export class UserProfile{
+export class UserProfileComponent{
   constructor(public loginService: LoginService, public userService: UserService) { }
 }

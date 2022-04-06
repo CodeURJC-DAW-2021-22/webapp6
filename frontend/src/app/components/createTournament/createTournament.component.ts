@@ -9,6 +9,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './createTournament.component.html'
 })
 
-export class CreateTournament {
+export class CreateTournamentComponent {
 
 }
