@@ -1,4 +1,4 @@
-import { HeaderComponent } from './header.component';
+import { HeaderComponent } from './components/header/header.component';
 
 import { RouterModule } from '@angular/router';
 import { MainComponent } from './components/main/main/main.component';

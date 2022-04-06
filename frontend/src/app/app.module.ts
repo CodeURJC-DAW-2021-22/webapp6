@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { routing } from './app.routing';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header.component';
+import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
