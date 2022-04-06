@@ -11,7 +11,7 @@ export interface User{
     numMatchesPlayed:number;
     historicalKarma: number[];
     status:boolean;
-    imageFile: Blob;
+    //imageFile: Blob;
     image:boolean;
     encodedPassword:string;
     roles: string[];
