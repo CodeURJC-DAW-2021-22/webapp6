@@ -12,6 +12,7 @@ const BASE_URL = '/api/users/';
 export class UserService {
 
 
+
 constructor(private HttpClient: HttpClient) { }
 
 //getuser by id
@@ -34,15 +35,46 @@ registerUser(User: User) {
   if (!User.id) {
     return this.HttpClient.post(BASE_URL, User)
       .pipe(
-        //catchError(error => this.handleError(error))
+        catchError(error => this.handleError(error))
       );
   } else {
     return this.HttpClient.put(BASE_URL + User.id, User).pipe(
-      //catchError(error => this.handleError(error))
+      catchError(error => this.handleError(error))
     );
   }
 }
 
+setUserImage(user: User, formData: FormData) {
+  return this.HttpClient.post(BASE_URL + '/image', formData)
+    .pipe(
+      catchError(error => this.handleError(error))
+    );
+}
+
+deleteUserImage(user: User) {
+  return this.HttpClient.delete(BASE_URL + user.id + '/image')
+    .pipe(
+      catchError(error => this.handleError(error))
+    );
+}
+
+deleteUser(user: User) {
+  return this.HttpClient.delete(BASE_URL + user.id).pipe(
+    catchError(error => this.handleError(error))
+  );
+}
+
+updateUser(user: User) {
+  return this.HttpClient.put(BASE_URL + user.id, user).pipe(
+    catchError(error => this.handleError(error))
+  );
+}
+
+private handleError(error: any) {
+  console.log("ERROR:");
+  console.error(error);
+  return throwError("Server error (" + error.status + "): " + error.text())
+}
 
 
 }
