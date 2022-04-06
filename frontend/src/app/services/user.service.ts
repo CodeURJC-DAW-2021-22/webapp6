@@ -10,8 +10,11 @@ const BASE_URL = '/api/users/';
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class UserService {
 
 constructor() { }
 
+  registerUser(){
+
+  }
 }
