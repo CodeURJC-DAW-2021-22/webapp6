@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  templateUrl: './main.component.html'
+  templateUrl: './match.component.html'
 })
-export class MainComponent {
+export class MatchComponent {
 
   constructor() { }
 
