@@ -45,14 +45,14 @@ constructor(private http: HttpClient) { }
   }
 
   setUserImage(user: User, formData: FormData) {
-    return this.http.post(BASE_URL + '/image', formData)
+    return this.http.post(BASE_URL + 'image', formData)
       .pipe(
         catchError(error => this.handleError(error))
       );
   }
 
   deleteUserImage(user: User) {
-    return this.http.delete(BASE_URL + '/image')
+    return this.http.delete(BASE_URL + 'image')
       .pipe(
         catchError(error => this.handleError(error))
       );
@@ -71,8 +71,12 @@ constructor(private http: HttpClient) { }
   }
 
   getUserMatches() {
-    return this.http.get(BASE_URL + '/me/matches', { withCredentials: true }) as Observable<Match[]>;
+    return this.http.get(BASE_URL + 'me/matches', { withCredentials: true }) as Observable<Match[]>;
     // return this.http.get(BASE_URL + id, { withCredentials: true }).pipe(catchError(error => this.router.navigate(['/error_404'])));
+  }
+
+  getUserTournaments(page: number | string) {
+    return this.http.get(BASE_URL + "me/matches?page=" + page, { withCredentials: true }) as Observable<any>;
   }
 
   private handleError(error: any) {
