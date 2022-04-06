@@ -1,6 +1,6 @@
 {
   "/api/*": {
-      "target": "https://codeurjc-daw-2021-22-webapp6.herokuapp.com/",
+      "target": "https://127.0.0.1:8443/",
       "secure": false,
       "logLevel": "debug",
       "changeOrigin": true
