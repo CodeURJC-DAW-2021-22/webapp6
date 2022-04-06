@@ -1,3 +1,4 @@
+import { UserProfile } from './components/user/userProfile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HeaderComponent } from './components/header/header.component';
 
@@ -10,7 +11,8 @@ const appRoutes = [
   { path: '', component: MainComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'create_tournament', component: CreateTournament }
+  { path: 'create_tournament', component: CreateTournament },
+  { path: 'user_profile', component: UserProfile }
   // { path: '', redirectTo: '', pathMatch: 'full' }
 ]
 
