@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Match } from '../models/match.model';
+import { UserService } from './user.service';
 
 const BASE_URL = '/api/matches/';
 
@@ -12,6 +13,9 @@ const BASE_URL = '/api/matches/';
 })
 export class MatchService {
 
-constructor() { }
+  constructor(private http: HttpClient, public userService: UserService) {
+  }
+
+
 
 }
