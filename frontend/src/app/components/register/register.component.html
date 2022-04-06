@@ -1,97 +1,94 @@
+<main class="bg-232323">
+  <div class="container">
 
+    <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
+            <div class="d-flex justify-content-center pt-2 pb-3">
+              <a href="/">
+                <h6 class="upper-text color-fff text-center"><i class="ri-arrow-left-fill pr-2"></i> Volver a</h6>
+                <div class="navbar-brand m-0">
+                  <span class="text-center"><h2><em>Padel</em>ante</h2></span>
+                </div>
+              </a>
+            </div><!-- End Logo -->
 
+            <div class="card mb-3 login">
 
-  <main class="bg-232323">
-    <div class="container">
+              <div class="card-body">
 
-      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                <div class="card-intro py-3">
+                  <h5 class="upper-text text-center pb-0 fw-bold">Crea un cuenta nueva</h5>
+                </div>
 
-              <div class="d-flex justify-content-center pt-2 pb-3">
-                <a href="/">
-                  <h6 class="upper-text color-fff text-center"><i class="ri-arrow-left-fill pr-2"></i> Volver a</h6>
-                  <div class="navbar-brand m-0">
-                    <span class="text-center"><h2><em>Padel</em>ante</h2></span>
+                <form class="row g-3 needs-validation" novalidate >
+
+                  <div class="col-12">
+                    <label for="name" class="form-label">Usuario</label>
+                    <div class="input-group has-validation">
+                      <span class="input-group-text" id="inputGroupPrepend">@</span>
+                      <input #name type="text" name="name" class="form-control" id="username" required>
+                      <div class="invalid-feedback">Introduce el usuario.</div>
+
                   </div>
-                </a>
-              </div><!-- End Logo -->
-
-              <div class="card mb-3 login">
-
-                <div class="card-body">
-
-                  <div class="card-intro py-3">
-                    <h5 class="upper-text text-center pb-0 fw-bold">Crea un cuenta nueva</h5>
-                  </div>
-
-                  <form class="row g-3 needs-validation" novalidate >
-
-                    <div class="col-12">
-                      <label for="name" class="form-label">Usuario</label>
-                      <div class="input-group has-validation">
-                        <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input #name type="text" name="name" class="form-control" id="username" required>
-                        <div class="invalid-feedback">Introduce el usuario.</div>
-
-                    </div>
                       <!-- {{^u}}
                         <div style="color: red; font-size: 10px;">
                           Nombre de usuario en uso.
                         </div>
-                        {{/u}}
-                      </div> -->
-
-                    <div class="col-12">
-                      <label for="realName" class="form-label">Nombre completo</label>
-                      <input #realName type="text" name="realName" class="form-control" id="realName" required>
-                      <div class="invalid-feedback">Introduce tu nombre completo.</div>
+                        {{/u}}-->
                     </div>
 
-                    <div class="col-12">
-                      <label for="email" class="form-label">Correo electrónico</label>
-                      <input #email type="email" name="email" class="form-control" id="email" required>
-                      <div class="invalid-feedback">Introduce un correo electrónico válido.</div>
-                    </div>
+                  <div class="col-12">
+                    <label for="realName" class="form-label">Nombre completo</label>
+                    <input #realName type="text" name="realName" class="form-control" id="realName" required>
+                    <div class="invalid-feedback">Introduce tu nombre completo.</div>
+                  </div>
 
-                    <div class="col-12">
-                      <label for="password" class="form-label">Contraseña</label>
-                      <input #password type="password" name="encodedPassword" class="form-control" id="password" required>
-                      <div class="invalid-feedback">Introduce la contraseña.</div>
-                    </div>
+                  <div class="col-12">
+                    <label for="email" class="form-label">Correo electrónico</label>
+                    <input #email type="email" name="email" class="form-control" id="email" required>
+                    <div class="invalid-feedback">Introduce un correo electrónico válido.</div>
+                  </div>
 
-                    <div class="col-12">
-                      <div class="form-check">
-                        <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
-                        <label class="form-check-label" for="acceptTerms">Acepto los <a class="color-green text-decoration-underline" href="#">términos y condiciones</a></label>
-                        <div class="invalid-feedback">Debes aceptar para poder registrarte.</div>
-                      </div>
+                   <div class="col-12">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input #password type="password" name="encodedPassword" class="form-control" id="password" required>
+                    <div class="invalid-feedback">Introduce la contraseña.</div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="form-check">
+                      <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
+                      <label class="form-check-label" for="acceptTerms">Acepto los <a class="color-green text-decoration-underline" href="#">términos y condiciones</a></label>
+                      <div class="invalid-feedback">Debes aceptar para poder registrarte.</div>
                     </div>
-                    <div class="col-12 mt-4">
-                      <button class="btn btn-login upper-text w-100" type="submit">Registrarse</button>
-                    </div>
+                  </div>
+                   <div class="col-12 mt-4">
+                    <button class="btn btn-login upper-text w-100" type="submit">Registrarse</button>
+                  </div>
 
                     <!-- <input type="hidden" name="_csrf" value="{{token}}"/> -->
 
-                    <div class="col-12 pt-2">
-                      <p class="small mb-0 text-center">¿Ya tienes cuenta?</p>
-                    </div>
-                    <div class="col-12 mt-1">
-                      <a class="button btn-login upper-text w-100" (click)="save()">Iniciar sesión</a>
-                    </div>
-                  </form>
+                  <div class="col-12 pt-2">
+                    <p class="small mb-0 text-center">¿Ya tienes cuenta?</p>
+                  </div>
+                  <div class="col-12 mt-1">
+                    <a class="button btn-login upper-text w-100" (click)="save()">Iniciar sesión</a>
+                  </div>
+                </form>
 
-                </div>
               </div>
-
             </div>
+
           </div>
         </div>
+      </div>
 
-    </section>
+  </section>
 
   </div>
-</main><!-- End #main -->
+</main>
+<!-- End #main -->
 
