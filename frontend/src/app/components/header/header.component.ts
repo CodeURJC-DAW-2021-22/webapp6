@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
-import { MatchService } from 'src/app/services/match.service';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -8,6 +8,6 @@ import { MatchService } from 'src/app/services/match.service';
     templateUrl: './header.component.html'
 })
 export class HeaderComponent {
-  constructor(public loginService: LoginService, public matchService: MatchService) { }
+  constructor(public loginService: LoginService, public userService: UserService) { }
 
 }
