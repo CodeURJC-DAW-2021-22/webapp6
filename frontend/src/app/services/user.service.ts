@@ -14,14 +14,22 @@ export class UserService {
 
 constructor(private HttpClient: HttpClient) { }
 
-
+//getuser by id
 getUser(id: number | string): Observable<User> {
   return this.HttpClient.get(BASE_URL + id).pipe(
     //catchError(error => this.handleError(error))
   ) as Observable<User>;
 }
 
-addBook(User: User) {
+//get all users;
+// OJITO QUE AQUI HAY PAGEABLE
+// getAllUsers(): Observable<User[]> {
+//   return this.HttpClient.get(BASE_URL).pipe(
+//     //catchError(error => this.handleError(error))
+//   ) as Observable<User[]>;
+// }
+
+registerUser(User: User) {
 
   if (!User.id) {
     return this.HttpClient.post(BASE_URL, User)
