@@ -3,7 +3,7 @@ import { MainComponent } from './components/main/main.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CreateTournamentComponent } from './components/createTournament/createTournament.component';
-import { UserProfileComponent } from './components/user/userProfile.component';
+import { UserProfileComponent } from './components/userProfile/userProfile.component';
 import { TournamentComponent } from './components/tournament/tournament.component';
 import { MatchComponent } from './components/match/match.component';
 import { AdminComponent } from './components/admin/admin.component';

@@ -10,9 +10,9 @@ export interface Tournament{
     location:string;
     inscriptionDate:string;
     startDate:string;
-    started:boolean;
-    imageFile:Blob;
-    image:boolean;
-    
+    //started:boolean;
+    //imageFile:Blob;
+    //image:boolean;
+
 
 }

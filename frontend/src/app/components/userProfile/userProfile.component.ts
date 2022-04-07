@@ -1,4 +1,4 @@
-import { User } from './../../models/user.model';
+import { User } from '../../models/user.model';
 import { Component, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { LoginService } from 'src/app/services/login.service';

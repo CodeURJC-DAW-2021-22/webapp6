@@ -86,7 +86,7 @@
 
                     <div class="col-12">
                       <label for="format" class="form-label">Formato</label>
-                      <select #format class="form-select" name="format" id="format" disabled>
+                      <select  class="form-select" name="format" id="format" disabled>
                         <option value="Simple Tournament">Torneo simple</option>
                         <option value="Regular League">Liga regular</option>
                       </select>
@@ -95,7 +95,7 @@
 
                     <div class="col-12">
                       <label for="seeding" class="form-label">Seeding</label>
-                      <select #seeding class="form-select" name="seeding" id="seeding" disabled>
+                      <select  class="form-select" name="seeding" id="seeding" disabled>
                         <option selected value="1">Aleatorio</option>
                         <option value="2">Manual</option>
                       </select>
@@ -104,14 +104,15 @@
 
                     <div class="col-12">
                       <label for="visibility" class="form-label">Visibilidad</label>
-                      <select #visibility class="form-select" id="visibility" filter="true" disabled>
+                      <select  class="form-select" id="visibility" filter="true" disabled>
                         <option selected value="1">Público</option>
                         <option value="2">Privado</option>
                       </select>
                     </div>
 
                     <div class="col-12 mt-4">
-                      <button class="btn btn-login upper-text w-100" type="submit">Crear torneo</button>
+                      <button class="btn btn-login upper-text w-100" (click)="TournamentCreated($event,tournamentName.value,
+                      about.value,ruleset.value,location.value,numParticipants.value,inscriptionDate.value,startDate.value)" type="submit">Crear torneo</button>
                     </div>
 
                     <!-- <input type="hidden" name="_csrf" value="{{token}}"/> -->

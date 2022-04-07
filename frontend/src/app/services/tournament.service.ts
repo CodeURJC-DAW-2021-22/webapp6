@@ -25,16 +25,14 @@ export class TournamentService {
 
   creteTournament(Tournament: Tournament) {
 
-    if (!Tournament.id) {
-      return this.http.post(BASE_URL, Tournament)
-        .pipe(
-          catchError(error => this.handleError(error))
-        );
-    } else {
-      return this.http.put(BASE_URL + Tournament.id, Tournament).pipe(
-        catchError(error => this.handleError(error))
-      );
-    }
+      // let To : Tournament;
+      // To={owner:"owner",tournamentName:"tournamentName",numParticipants:1,numSignedUp:0,rounds:0,about:"about",ruleset:"ruleset",
+      // location:"location", inscriptionDate:"2022-12-16T16:00",startDate:"2022-12-16T16:00"}
+      return this.http.post(BASE_URL, Tournament, { withCredentials: true }).subscribe((resp: any) => {
+        console.log("LOGOUT: Successfully");
+
+    });
+
   }
 
   private handleError(error: any) {
