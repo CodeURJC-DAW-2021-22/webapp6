@@ -4,7 +4,8 @@
 <div class="banner header-text mb-4">
   <div class="banner-item-01">
     <div class="container">
-      <a class="button btn-crea-torneo" [routerLink]="['/create_tournament']">Crea un torneo</a>
+      <a *ngIf="loginService.isLogged()" class="button btn-crea-torneo" [routerLink]="['/create_tournament']">Crea un torneo</a>
+      <a *ngIf="!loginService.isLogged()" class="button btn-crea-torneo" [routerLink]="['/login']">Crea un torneo</a>
     </div>
   </div>
 </div>
@@ -27,13 +28,10 @@
         <div *ngFor="let userTournament of userTournaments" class="col-md-4">
           <div class="product-item">
             <a [routerLink]="['/tournament',userTournament.id]">
-              <!-- {{#image}}
-              <img class="img-lista-torneos" src="/tourns/{{id}}/image">
-              {{/image}} -->
 
-              <!-- {{^image}} -->
-              <img class="img-lista-torneos" src="/assets/images/product_02.jpg">
-              <!-- {{/image}} -->
+              <!-- <img *ngIf="hasTournamentImage(userTournament.id)" class="img-lista-torneos" [src]="getTournamentImage(userTournament.id)"> -->
+              <img class="img-lista-torneos" src="../../../assets/images/product_02.jpg">
+
             </a>
             <div class="down-content text-center">
               <a [routerLink]="['/tournament',userTournament.id]">
@@ -70,15 +68,11 @@
         <div *ngFor="let tournament of tournaments" class="col-md-4">
           <div class="product-item">
             <!-- select image from DB when necessary-->
-
             <a [routerLink]="['/tournament',tournament.id]">
-              <!-- {{#image}}
-                            <img class="img-lista-torneos" src="/tourns/{{id}}/image">
-                            {{/image}}
 
-                            {{^image}} -->
+              <!-- <img *ngIf="hasTournamentImage(tournament.id)" class="img-lista-torneos" [src]="getTournamentImage(tournament.id)"> -->
               <img class="img-lista-torneos" src="../../../assets/images/product_02.jpg">
-              <!-- {{/image}} -->
+
             </a>
 
             <div class="down-content text-center">
