@@ -1,7 +1,6 @@
-import { User } from '../../models/user.model';
+import { TournamentService } from './../../services/tournament.service';
 import { Component, ViewChild } from '@angular/core';
-import { LoginService } from '../../services/login.service';
-import { UserService } from 'src/app/services/user.service';
+
 import { ActivatedRoute, Router } from '@angular/router';
 
 
@@ -10,5 +9,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 
 export class CreateTournamentComponent {
+
+  constructor(private router: Router,activatedRoute: ActivatedRoute,private service: TournamentService){}
+
+  createTournament(){
+
+  }
+
 
 }
