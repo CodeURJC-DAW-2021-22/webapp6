@@ -32,16 +32,11 @@ constructor(private http: HttpClient) { }
 
   registerUser(User: User) {
 
-    if (!User.id) {
-      return this.http.post(BASE_URL, User)
-        .pipe(
-          catchError(error => this.handleError(error))
-        );
-    } else {
-      return this.http.put(BASE_URL + User.id, User).pipe(
-        catchError(error => this.handleError(error))
-      );
-    }
+
+      return this.http.post(BASE_URL, User,{ withCredentials: true }).subscribe((resp: any) => {
+        console.log("Register new User: Successfully");
+
+    });
   }
 
   setUserImage(user: User, formData: FormData) {
