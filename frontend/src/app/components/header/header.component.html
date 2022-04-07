@@ -90,12 +90,10 @@
                   </li>
 
                   <li>
-                    <button class="button-no-format" (click)="loginService.logOut()">
-                        <a class="dropdown-item d-flex align-items-center">
-                            <i class="ri-logout-box-r-line"></i>
-                            <span>Cerrar sesión</span>
-                        </a>
-                    </button>
+                    <a class="dropdown-item d-flex align-items-center" [routerLink]="['']" (click)="loginService.logOut()">
+                      <i class="ri-logout-box-r-line"></i>
+                      <span>Cerrar sesión</span>
+                    </a>
                   </li>
 
               </ul>
