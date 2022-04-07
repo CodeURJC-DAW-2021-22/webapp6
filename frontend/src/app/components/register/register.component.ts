@@ -41,13 +41,11 @@ export class RegisterComponent {
       historicalKarma:[500],status:false,encodedPassword:password,roles:[], image: false };
 
 
-    if(this.User.image && this.removeImage){
-      this.User.image = false;
-    }
-    this.service.registerUser(this.User).subscribe(
-      error => alert('Error creating new User: ' + error));
-
-    }else{
+    // if(this.User.image && this.removeImage){
+    //   this.User.image = false;
+    // }
+    this.service.registerUser(this.User)
+  }else{
       throw Error();
     }
   }
