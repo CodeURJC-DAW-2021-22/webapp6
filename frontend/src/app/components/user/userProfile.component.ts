@@ -12,4 +12,12 @@ import { LoginService } from 'src/app/services/login.service';
 
 export class UserProfileComponent{
   constructor(public loginService: LoginService, public userService: UserService) { }
+
+  calculatedKarma( array : number[]){
+    let j = 0;
+      for(let i = 0; i < array.length;i++){
+          j+=array[i];
+      }
+    return Math.round(j/array.length);
+  }
 }

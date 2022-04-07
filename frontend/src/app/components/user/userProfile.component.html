@@ -25,7 +25,7 @@
 
               <h2>{{loginService.currentUser().realName}}</h2>
               <h3 class="mt-1 color-green"><span class="fw-bold">@{{loginService.currentUser().name}}</span></h3>
-              <h3 class="my-2">Karma: <span class="color-green fw-bold">{{loginService.currentUser().historicalKarma}} puntos</span></h3>
+              <h3 class="my-2">Karma: <span class="color-green fw-bold">{{calculatedKarma(loginService.currentUser().historicalKarma)}} puntos</span></h3>
               <h3 class="mb-3">{{loginService.currentUser().location}} {{loginService.currentUser().country}}</h3>
             </div>
           </div>
