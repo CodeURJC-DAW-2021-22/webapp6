@@ -29,9 +29,9 @@ export class TournamentService {
       // To={owner:"owner",tournamentName:"tournamentName",numParticipants:1,numSignedUp:0,rounds:0,about:"about",ruleset:"ruleset",
       // location:"location", inscriptionDate:"2022-12-16T16:00",startDate:"2022-12-16T16:00"}
       return this.http.post(BASE_URL, Tournament, { withCredentials: true }).subscribe((resp: any) => {
-        console.log("LOGOUT: Successfully");
-
-    });
+        console.log("Creation Tournament: Successfully");
+        this.router.navigate(['']);
+      });
 
   }
 
@@ -40,4 +40,19 @@ export class TournamentService {
     console.error(error);
     return throwError("Server error (" + error.status + "): " + error.text())
   }
+
+  getTournamentImageAPI(id: number | undefined) {
+    return this.http.get(BASE_URL + id + "/image", { withCredentials: true }) as Observable<Blob>;
+  }
+
+  // getTournamentImage(id: number | undefined) {
+  //   this.getTournamentImageAPI(id).subscribe(
+  //     tournamentImage => {
+  //       return tournamentImage;
+  //     },
+  //     error => {
+  //       console.error('Unexpected Error on getUserTournaments')
+  //     }
+  //   )
+  // }
 }
