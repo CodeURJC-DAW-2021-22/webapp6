@@ -65,6 +65,10 @@ constructor(private http: HttpClient) { }
     );
   }
 
+  getAllUsers(page: number | string) {
+    return this.http.get(BASE_URL + "?page=" + page, { withCredentials: true }) as Observable<any>;
+  }
+
   getUserMatches() {
     return this.http.get(BASE_URL + 'me/matches', { withCredentials: true }) as Observable<Match[]>;
     // return this.http.get(BASE_URL + id, { withCredentials: true }).pipe(catchError(error => this.router.navigate(['/error_404'])));

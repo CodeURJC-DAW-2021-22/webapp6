@@ -19,10 +19,10 @@ export class CreateTournamentComponent {
     about:string,ruleset:string,location:string,numParticipants:string,inscriptionDate:string,startDate:string){
 
 
-      this.Tournament={owner:"owner",tournamentName:tournamentName,numParticipants:Number(numParticipants),numSignedUp:0,rounds:0,about:about,
-      ruleset:ruleset,location:location, inscriptionDate:inscriptionDate,startDate:startDate}
+      this.Tournament={owner:"someone",tournamentName:tournamentName,numParticipants:Number(numParticipants),numSignedUp:0,rounds:0,about:about,
+      ruleset:ruleset,location:location, inscriptionDate:inscriptionDate,startDate:startDate,started:false}
 
-      this.service.creteTournament(this.Tournament);
+      this.service.createTournament(this.Tournament);
 
 
 

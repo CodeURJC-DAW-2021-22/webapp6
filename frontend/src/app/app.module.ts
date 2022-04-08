@@ -15,6 +15,7 @@ import { CreateTournamentComponent } from './components/createTournament/createT
 import { TournamentComponent } from './components/tournament/tournament.component';
 import { MatchComponent } from './components/match/match.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { Error404Component } from './components/error/error_404.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { AdminComponent } from './components/admin/admin.component';
     CreateTournamentComponent,
     TournamentComponent,
     MatchComponent,
-    AdminComponent
+    AdminComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,

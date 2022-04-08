@@ -1,0 +1,623 @@
+<body class="bg-232323">
+  <main class="container main-tournament tournament">
+
+    <section class="card tournament-card">
+      <div class="d-flex justify-content-between">
+        <div class="d-flex flex-row">
+          <div class="tournament-img p-3">
+
+            <!-- <img src="/tournament/{{tournament.id}}/image" alt="Tournament Image" class="rounded-circle border-green bg-232323"> -->
+            <img src="../../../assets/images/product_02.jpg" alt="Tournament Image" class="rounded-circle border-green bg-232323">
+
+          </div>
+          <div class="d-flex align-items-center ps-2">
+            <div>
+              <h2 class="mt-0" id="tournamentNamePDF">{{tournament?.tournamentName}}</h2>
+              <h3 class="d-flex align-items-center pt-2"><em class="me-2">Organizador:</em>
+
+                {{tournament?.owner}}
+              </h3>
+
+              <div>
+                  <div>
+                    <progress class="progress-bar round mb-1" value="{{tournament?.numSignedUp}}" max="{{tournament?.numParticipants}}"></progress>
+                  </div>
+              </div>
+              <h5>Participantes: {{tournament?.numSignedUp}}/{{tournament?.numParticipants}}<span class="ps-5">{{tournament?.location}}</span></h5>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-center p-2">
+          <div class="text-center">
+            <h3 class="py-1 date-title">Fin de inscripciones</h3>
+            <h3 class="py-1"><em>{{tournament?.inscriptionDate}}</em></h3>
+            <h3 class="py-1 date-title">Inicio del torneo</h3>
+            <h3 class="py-1"><em>{{tournament?.startDate}}</em></h3>
+          </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-end p-2 pe-3">
+          <div>
+            <!-- <div class="d-flex justify-content-end">
+              <a class="button btn-tournament upper-text my-1" href="#"><i class="ri-heart-3-fill pe-1"></i> Seguir</a>
+            </div> -->
+
+            <div *ngIf="userInTournament && !tournament?.started" class="d-flex justify-content-end">
+              <a class="d-inline button btn-tournament upper-text my-1" href="#" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop">
+                <i class="ri-edit-fill pe-1"></i> Incribirse
+              </a>
+            </div>
+
+            <div *ngIf="userInTournament && tournament?.started" class="d-flex justify-content-end">
+              <button class="generarPDF d-inline button btn-tournament upper-text my-1" id="PDFWinner" onclick="genPdf()">
+                <i class="ri-file-download-fill"></i> Descargar PDF
+              </button>
+            </div>
+
+            <div *ngIf="tournamentOwner && !tournament?.started && canTournamenStart()" class="d-flex justify-content-end">
+              <button class="button-no-format" type="submit" (click)="startTournament()">
+                  <span class="button btn-tournament upper-text my-1" title="Start Tournament">
+                    <i class="ri-play-fill"></i> Iniciar torneo
+                  </span>
+              </button>
+            </div>
+
+            <!-- Pop Up Inscriptions -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+              aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h3 class="modal-title fw-bold" id="staticBackdropLabel">Añade a tu pareja</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="resetUsersPage()"></button>
+                  </div>
+                  <div class="modal-body">
+                    <!-- <div class="d-flex justify-content-center mb-2">
+                      <div class="search-bar">
+
+                        <form class="search-form d-flex align-items-center" method="POST" action="sing_up_tournament">
+                          <input type="text" name="searchTeamMate" placeholder="Introducir usuario"
+                            title="Introducir usuario">
+                          <button type="submit" title="Search"><i class="ri-search-line"></i></button>
+                        </form>
+
+                      </div>
+                    </div> -->
+                    <span id="elements">
+
+                      <div *ngFor="let user of usersList" class="row">
+                        <div class="col-md-12">
+                          <div class="d-flex align-items-center justify-content-between lineUser">
+                            <div class="pe-2">
+
+                              <!-- <img class="partner-img rounded-circle border-green-tiny small me-2" src="/user/{{id}}/image"> -->
+                              <img class="partner-img rounded-circle border-green-tiny small me-2" src="/assets/images/no_profile_photo.jpg">
+
+                              {{user.name}}
+                            </div>
+                            <div class="me-2">
+
+                              <button class="button-no-format" type="submit" (click)="inscription(user.id)">
+                                  <span  class="btn addUser fw-bold" title="Add partner">
+                                    <i class="ri-add-line"></i>
+                                  </span>
+                              </button>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </span>
+
+                    <div *ngIf="hasMoreUsers" class="row">
+                      <div class="d-flex justify-content-center">
+                        <a class="cargar-mas mb-5" (click)="getUsersForInscription()">Cargar más</a>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-green color-121212 fw-bold" data-bs-dismiss="modal" (click)="resetUsersPage()">
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Pop Up Inscriptions -->
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="card">
+      <div class="card-body py-3">
+        <!-- Bordered Tabs -->
+        <ul class="nav nav-tabs nav-tabs-bordered">
+
+          <li class="nav-item">
+            <button class="nav-link active d-flex align-items-center" data-bs-toggle="tab"
+              data-bs-target="#tournament-info"><i class="ri-information-fill pe-2"></i>Información</button>
+          </li>
+
+          <li class="nav-item">
+            <button class="nav-link d-flex align-items-center" data-bs-toggle="tab"
+              data-bs-target="#tournament-bracket"><i class="ri-organization-chart pe-2"></i>Bracket</button>
+          </li>
+
+          <li *ngIf="tournamentOwner" class="nav-item">
+            <button class="nav-link d-flex align-items-center" data-bs-toggle="tab"
+              data-bs-target="#tournament-settings"><i class="ri-settings-3-fill pe-2"></i>Ajustes admin</button>
+          </li>
+
+        </ul>
+        <div class="tab-content pt-2">
+          <!-- Tournament Info -->
+          <div class="tab-pane fade show active profile-overview" id="tournament-info">
+            <h5 class="card-title">Sobre el torneo</h5>
+            <p class="small fst-italic">
+              {{tournament?.about}}
+            </p>
+
+            <h5 class="card-title">Reglamento</h5>
+            <p class="small fst-italic">
+              {{tournament?.ruleset}}
+            </p>
+
+            <h5 class="card-title pb-1">Participantes</h5>
+
+            <!-- {{#participants}}
+            <div class="row py-2 pair-tournament">
+              <div class="col-md-11 d-flex justify-content-start align-items-center">
+                <div class="pe-2">
+                      {{userA.name}}
+                </div>
+                <i class="ri-arrow-left-right-fill"></i>
+                <div class="ps-2">
+                      {{userB.name}}
+                </div>
+              </div>
+              {{#owner}}
+              {{^hasStarted}}
+              <div class="col-md-1 d-flex justify-content-end align-items-center">
+                <form action="/deleteTourParticipant/{{tournament.id}}" method="post">
+                  <input type="hidden" name="teamid" value="{{id}}" />
+                  <button class="button-no-format" type="submit">
+                      <span class="btn btn-danger btn-sm" title="Remove my profile image">
+                        <i class="ri-delete-bin-fill"></i>
+                      </span>
+                  </button>
+
+                  <input type="hidden" name="_csrf" value="{{token}}" />
+                </form>
+              </div>
+              {{/hasStarted}}
+              {{/owner}}
+            </div>
+            {{/participants}} -->
+
+          </div>
+
+          <div class="tab-pane fade pt-3" id="tournament-bracket">
+            <!-- Tournament Bracket -->
+            <!-- <div class="container pb-2">
+              <div class="bracket d-flex flex-row flex-nowrap overflow-auto">
+                <div class="tournament-bracket tournament-bracket--rounded mb-5">
+
+
+                  {{#hasr4}}
+                  <div class="tournament-bracket__round tournament-bracket__round--semifinals">
+                    <h3 class="tournament-bracket__round-title">Octavos de final</h3>
+                    <ul class="tournament-bracket__list">
+                      {{#roundFour}}
+                      <li class="tournament-bracket__item">
+                        <div class="tournament-bracket__match" tabindex="0">
+                          <table class="tournament-bracket__table">
+
+                            <tbody class="tournament-bracket__content">
+                              {{#winnerTeamOne}}
+                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                              {{/winnerTeamOne}}
+                              {{^winnerTeamOne}}
+                              <tr class="tournament-bracket__team">
+                              {{/winnerTeamOne}}
+                                <td class="tournament-bracket__team-name">
+                                  <abbr class="tournament-bracket__code">
+
+                                    {{#teamOne.tbd}}
+                                    tbd
+                                    {{/teamOne.tbd}}
+
+                                    {{^teamOne.tbd}}
+                                    {{teamOne.userA.name}},{{teamOne.userB.name}}
+                                    {{/teamOne.tbd}}
+
+                                  </abbr>
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{setsTeamOne}}</span>
+                                </td>
+                              </tr>
+                              {{#winnerTeamTwo}}
+                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                              {{/winnerTeamTwo}}
+                              {{^winnerTeamTwo}}
+                              <tr class="tournament-bracket__team">
+                              {{/winnerTeamTwo}}
+                                <td class="tournament-bracket__team-name">
+                                  <abbr class="tournament-bracket__code">
+
+                                    {{#teamTwo.tbd}}
+                                    tbd
+                                    {{/teamTwo.tbd}}
+
+                                    {{^teamTwo.tbd}}
+                                    {{teamTwo.userA.name}}, {{teamTwo.userB.name}}
+                                    {{/teamTwo.tbd}}
+                                  </abbr>
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{setsTeamTwo}}</span>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </li>
+                      {{/roundFour}}
+
+
+                    </ul>
+                  </div>
+                  {{/hasr4}}
+
+                  {{#hasr3}}
+                  <div class="tournament-bracket__round tournament-bracket__round--quarterfinals">
+                    <h3 class="tournament-bracket__round-title">Cuartos de final</h3>
+
+                    <ul class="tournament-bracket__list">
+                      {{#roundTres}}
+                      <li class="tournament-bracket__item">
+                        <div class="tournament-bracket__match" tabindex="0">
+                          <table class="tournament-bracket__table">
+                            <caption class="tournament-bracket__caption">
+                            </caption>
+                            <tbody class="tournament-bracket__content">
+                              {{#winnerTeamOne}}
+                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                              {{/winnerTeamOne}}
+                              {{^winnerTeamOne}}
+                              <tr class="tournament-bracket__team">
+                              {{/winnerTeamOne}}
+                                <td class="tournament-bracket__team-name">
+                                  <abbr class="tournament-bracket__code">
+                                    {{#teamOne.tbd}}
+                                    tbd
+                                    {{/teamOne.tbd}}
+
+                                    {{^teamOne.tbd}}
+                                    {{teamOne.userA.name}}, {{teamOne.userB.name}}
+                                    {{/teamOne.tbd}}
+                                  </abbr>
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{setsTeamOne}}</span>
+                                </td>
+                              </tr>
+                              {{#winnerTeamTwo}}
+                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                              {{/winnerTeamTwo}}
+                              {{^winnerTeamTwo}}
+                              <tr class="tournament-bracket__team">
+                              {{/winnerTeamTwo}}
+                                <td class="tournament-bracket__team-name">
+                                  <abbr class="tournament-bracket__code">
+                                    {{#teamTwo.tbd}}
+                                    tbd
+                                    {{/teamTwo.tbd}}
+
+                                    {{^teamTwo.tbd}}
+                                    {{teamTwo.userA.name}}, {{teamTwo.userB.name}}
+                                    {{/teamTwo.tbd}}
+                                  </abbr>
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{setsTeamTwo}}</span>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </li>
+                      {{/roundTres}}
+                    </ul>
+                  </div>
+                  {{/hasr3}}
+
+                  {{#hasr2}}
+                  <div class="tournament-bracket__round tournament-bracket__round--semifinals">
+                    <h3 class="tournament-bracket__round-title">Semifinales</h3>
+                    <ul class="tournament-bracket__list">
+                      {{#roundTwo}}
+                      <li class="tournament-bracket__item">
+                        <div class="tournament-bracket__match" tabindex="0">
+                          <table class="tournament-bracket__table">
+
+                            <tbody class="tournament-bracket__content">
+                              {{#winnerTeamOne}}
+                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                              {{/winnerTeamOne}}
+                              {{^winnerTeamOne}}
+                              <tr class="tournament-bracket__team">
+                              {{/winnerTeamOne}}
+                                <td class="tournament-bracket__team-name">
+                                  <abbr class="tournament-bracket__code">
+
+                                    {{#teamOne.tbd}}
+                                    tbd
+                                    {{/teamOne.tbd}}
+
+                                    {{^teamOne.tbd}}
+                                    {{teamOne.userA.name}}, {{teamOne.userB.name}}
+                                    {{/teamOne.tbd}}
+
+                                  </abbr>
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{setsTeamOne}}</span>
+                                </td>
+                              </tr>
+                              {{#winnerTeamTwo}}
+                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                              {{/winnerTeamTwo}}
+                              {{^winnerTeamTwo}}
+                              <tr class="tournament-bracket__team">
+                              {{/winnerTeamTwo}}
+                                <td class="tournament-bracket__team-name">
+                                  <abbr class="tournament-bracket__code">
+
+                                    {{#teamTwo.tbd}}
+                                    tbd
+                                    {{/teamTwo.tbd}}
+
+                                    {{^teamTwo.tbd}}
+                                    {{teamTwo.userA.name}}, {{teamTwo.userB.name}}
+                                    {{/teamTwo.tbd}}
+                                  </abbr>
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{setsTeamTwo}}</span>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </li>
+                      {{/roundTwo}}
+
+
+                    </ul>
+                  </div>
+                  {{/hasr2}}
+
+                  {{#hasr1}}
+                  <div class="tournament-bracket__round tournament-bracket__round--bronze">
+                    <h3 class="tournament-bracket__round-title">Final</h3>
+                    <ul class="tournament-bracket__list">
+                      {{#roundOne}}
+                      <li class="tournament-bracket__item">
+                        <div class="tournament-bracket__match" tabindex="0">
+                          <table class="tournament-bracket__table">
+
+                            <tbody class="tournament-bracket__content">
+                              {{#winnerTeamOne}}
+                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                              {{/winnerTeamOne}}
+                              {{^winnerTeamOne}}
+                              <tr class="tournament-bracket__team">
+                              {{/winnerTeamOne}}
+                                <td class="tournament-bracket__team-name">
+                                  <abbr class="tournament-bracket__code">
+
+                                    {{#teamOne.tbd}}
+                                    tbd
+                                    {{/teamOne.tbd}}
+
+                                    {{^teamOne.tbd}}
+                                    {{teamOne.userA.name}}, {{teamOne.userB.name}}
+                                    {{/teamOne.tbd}}
+
+                                  </abbr>
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{setsTeamOne}}</span>
+                                </td>
+                              </tr>
+                              {{#winnerTeamTwo}}
+                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
+                              {{/winnerTeamTwo}}
+                              {{^winnerTeamTwo}}
+                              <tr class="tournament-bracket__team">
+                              {{/winnerTeamTwo}}
+                                <td class="tournament-bracket__team-name">
+                                  <abbr class="tournament-bracket__code">
+
+                                    {{#teamTwo.tbd}}
+                                    tbd
+                                    {{/teamTwo.tbd}}
+
+                                    {{^teamTwo.tbd}}
+                                    {{teamTwo.userA.name}}, {{teamTwo.userB.name}}
+                                    {{/teamTwo.tbd}}
+
+                                  </abbr>
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{setsTeamTwo}}</span>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </li>
+                      {{/roundOne}}
+                    </ul>
+                  </div>
+                  {{/hasr1}}
+                </div>
+              </div>
+            </div> -->
+
+          </div>
+
+          <div class="tab-pane fade profile-edit pt-3" id="tournament-settings">
+
+            <!-- Tournament Settings Admin -->
+            <!-- <form action="/update_tournament/{{tournament.id}}" method="post" enctype="multipart/form-data">
+
+              <div class="row mb-3">
+                <label for="tournamentImage" class="col-md-4 col-lg-3 col-form-label">Imagen del torneo</label>
+                <div class="col-md-8 col-lg-9 tournament-img">
+                  {{#tournament.image}}
+                  <img src="/tournament/{{tournament.id}}/image"><br>
+                  <input type='checkbox' name='removeImage'> <label>Remove image</label><br>
+
+                  {{/tournament.image}}
+
+                  {{^tournament.image}}
+                  <img src="/assets/images/product_02.jpg"><br>
+
+                  {{/tournament.image}}
+
+
+                  <input type='file' name='imageField' accept=".jpg, .jpeg">
+
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="name" class="col-md-4 col-lg-3 col-form-label">Nombre</label>
+                <div class="col-md-8 col-lg-9">
+                  <input name="name" type="text" class="form-control" id="name" value="{{tournament.tournamentName}}">
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="about" class="col-md-4 col-lg-3 col-form-label">Sobre el torneo</label>
+                <div class="col-md-8 col-lg-9">
+                  <textarea name="about" class="form-control" id="about" style="height: 100px"
+                    value="{{tournament.about}}">{{tournament.about}}</textarea>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="ruleset" class="col-md-4 col-lg-3 col-form-label">Reglamento</label>
+                <div class="col-md-8 col-lg-9">
+                  <textarea name="ruleset" class="form-control" id="ruleset" style="height: 100px"
+                    value="{{tournament.ruleset}}">{{tournament.ruleset}}</textarea>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="location" class="col-md-4 col-lg-3 col-form-label">Localidad</label>
+                <div class="col-md-8 col-lg-9">
+                  <input name="location" type="text" class="form-control" id="location" value="{{tournament.location}}">
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="participants" class="col-md-4 col-lg-3 col-form-label">Participantes</label>
+                <div class="col-md-8 col-lg-9">
+                  <select class="form-select" id="participants" disabled>
+                    <option selected value="1">{{tournament.numParticipants}}</option>
+                  </select>
+                </div>
+              </div>
+
+              {{^hasStarted}}
+              <div class="row mb-3">
+                <label for="inscription-date" class="col-md-4 col-lg-3 col-form-label">Fin de inscripciones</label>
+                <div class="col-md-8 col-lg-9">
+                  <input name="inscriptionDate" type="datetime-local" class="form-control" id="inscription-date"
+                    value="{{tournament.inscriptionDate}}">
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="start-date" class="col-md-4 col-lg-3 col-form-label">Inicio del torneo</label>
+                <div class="col-md-8 col-lg-9">
+                  <input name="startDate" type="datetime-local" class="form-control" id="start-date"
+                    value="{{tournament.startDate}}">
+                </div>
+              </div>
+              {{/hasStarted}}
+
+              {{#hasStarted}}
+              <div class="row mb-3">
+                <label for="inscription-date" class="col-md-4 col-lg-3 col-form-label">Fin de inscripciones</label>
+                <div class="col-md-8 col-lg-9">
+                  <input name="inscription-date" type="datetime-local" class="form-control" id="inscription-date"
+                    value="{{tournament.inscriptionDate}}" disabled>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="start-date" class="col-md-4 col-lg-3 col-form-label">Inicio del torneo</label>
+                <div class="col-md-8 col-lg-9">
+                  <input name="start-date" type="datetime-local" class="form-control" id="start-date"
+                    value="{{tournament.startDate}}" disabled>
+                </div>
+              </div>
+              {{/hasStarted}}
+
+              <div class="row mb-3">
+                <label for="seeding" class="col-md-4 col-lg-3 col-form-label">Seeding</label>
+                <div class="col-md-8 col-lg-9">
+                  <select class="form-select" id="seeding" filter="true" disabled>
+                    <option selected value="1">Aleatorio</option>
+                    <option value="2">Manual</option>
+                  </select>
+                </div>
+              </div>
+
+
+              <div class="row mb-3">
+                <label for="visibility" class="col-md-4 col-lg-3 col-form-label">Visibilidad</label>
+                <div class="col-md-8 col-lg-9">
+                  <select class="form-select" id="visibility" filter="true" disabled>
+                    <option selected value="1">Público</option>
+                    <option value="2">Privado</option>
+                  </select>
+                </div>
+              </div>
+
+              <input type="hidden" name="_csrf" value="{{token}}" />
+
+              {{#hasStarted}}
+              <div class="text-center">
+                <button class="btn btn-green fw-bold" type="submit" disabled>Guardar cambios</button>
+              </div>
+              {{/hasStarted}}
+
+              {{^hasStarted}}
+              <div class="text-center">
+                <button class="btn btn-green fw-bold" type="submit" >Guardar cambios</button>
+              </div>
+              {{/hasStarted}}
+
+
+            </form> -->
+            <!-- End Profile Edit Form -->
+
+          </div>
+
+        </div><!-- End Bordered Tabs -->
+
+      </div>
+    </div>
+  </main>
+
+</body>
+

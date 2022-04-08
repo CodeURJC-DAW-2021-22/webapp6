@@ -23,7 +23,7 @@ export class TournamentService {
     return this.http.get(BASE_URL + "?page=" + page, { withCredentials: true }) as Observable<any>;
   }
 
-  creteTournament(Tournament: Tournament) {
+  createTournament(Tournament: Tournament) {
 
       // let To : Tournament;
       // To={owner:"owner",tournamentName:"tournamentName",numParticipants:1,numSignedUp:0,rounds:0,about:"about",ruleset:"ruleset",

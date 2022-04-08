@@ -7,6 +7,7 @@ import { UserProfileComponent } from './components/userProfile/userProfile.compo
 import { TournamentComponent } from './components/tournament/tournament.component';
 import { MatchComponent } from './components/match/match.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { Error404Component } from './components/error/error_404.component';
 
 const appRoutes = [
   { path: '', component: MainComponent },
@@ -16,7 +17,8 @@ const appRoutes = [
   { path: 'user_profile', component: UserProfileComponent },
   { path: 'tournament/:id', component: TournamentComponent },
   { path: 'match/:id', component: MatchComponent },
-  { path: 'admin', component: AdminComponent }
+  { path: 'admin', component: AdminComponent },
+  { path: 'error404', component: Error404Component }
   // { path: '', redirectTo: '', pathMatch: 'full' }
 ]
 
