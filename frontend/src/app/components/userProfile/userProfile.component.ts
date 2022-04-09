@@ -24,11 +24,17 @@ export class UserProfileComponent{
     return Math.round(j/array.length);
   }
 
-  updateUserForm(event:any,fullName:string,location:string, country:string, phone:string,user:User){
+  updateUserForm(event:any,fullName:string,location:string, country:string, phone:string){
+      let user = this.loginService.currentUser();
       user.realName=fullName;
       user.location = location;
       user.country=country;
       user.phone = phone;
+
       this.userService.updateUser(user);
     }
+
+  hasImage(){
+      return this.loginService.currentUser().image;
+  }
 }

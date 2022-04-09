@@ -16,12 +16,12 @@
 
               <!-- {{#user.image}}
               <img src="/user/{{user.id}}/image" alt="Tournament Image" class="rounded-circle border-green bg-232323">
-              {{/user.image}}
+              {{/user.image}}-->
 
-              {{^user.image}}
-              <img src="/assets/images/no_profile_photo.jpg" alt="Tournament Image"
+
+              <img *ngIf="!hasImage()" src="/assets/images/no_profile_photo.jpg" alt="Tournament Image"
                 class="rounded-circle border-green bg-232323">
-              {{/user.image}} -->
+
 
               <h2>{{loginService.currentUser().realName}}</h2>
               <h3 class="mt-1 color-green"><span class="fw-bold">@{{loginService.currentUser().name}}</span></h3>
@@ -186,25 +186,21 @@
 
                   <!-- Profile Edit Form -->
                   <form action="update_userProfile/{{loginService.currentUser().id}}" >
-                    <!-- method="post" enctype="multipart/form-data" -->
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Imagen de Perfil </label>
 
-                      <!-- <div class="col-md-8 col-lg-9">
+                      <!--  <div class="col-md-8 col-lg-9">
                         {{#user.image}}
                         <img src="/user/{{user.id}}/image"><br>
                         <input type='checkbox' name='removeImage'> <label>Remove image</label><br>
 
-                        {{/user.image}}
+                        {{/user.image}} -->
 
-                        {{^user.image}}
-                        <img src="/assets/images/no_profile_photo.jpg"> <br>
-
-                        {{/user.image}}
-
+                        <img *ngIf="!hasImage()"
+                        src="/assets/images/no_profile_photo.jpg"> <br>
 
                         <input type='file' name='imageField' accept=".jpg, .jpeg">
-                      </div> -->
+
                     </div>
 
                     <div class="row mb-3">
@@ -259,7 +255,7 @@
                     <!-- <input type="hidden" name="_csrf" value="{{token}}" /> -->
                     <div class="text-center">
                       <button class="btn btn-green fw-bold"(click)="updateUserForm($event,fullName.value,location.value, country.value,
-                      phone.value,loginService.currentUser())" type="submit">Guardar cambios</button>
+                      phone.value)" type="submit">Guardar cambios</button>
                     </div>
 
 
