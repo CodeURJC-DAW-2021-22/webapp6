@@ -211,7 +211,7 @@
                       <label for="username" class="col-md-4 col-lg-3 col-form-label">Usuario @</label>
                       <div class="col-md-8 col-lg-9">
 
-                        <input name="userN" type="text" class="form-control" id="username" value="{{loginService.currentUser().name}}"
+                        <input #username name="userN" type="text" class="form-control" id="username" value="{{loginService.currentUser().name}}"
                           disabled>
 
                       </div>
@@ -220,14 +220,14 @@
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nombre completo</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="fullName" type="text" class="form-control" id="fullName" value="{{loginService.currentUser().realName}}">
+                        <input #fullName name="fullName" type="text" class="form-control" id="fullName" value="{{loginService.currentUser().realName}}">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="location" class="col-md-4 col-lg-3 col-form-label">Localidad</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="location" type="text" placeholder="Introduce tu localidad" class="form-control"
+                        <input #location name="location" type="text" placeholder="Introduce tu localidad" class="form-control"
                           id="location" value="{{loginService.currentUser().location}}">
                       </div>
                     </div>
@@ -235,7 +235,7 @@
                     <div class="row mb-3">
                       <label for="Country" class="col-md-4 col-lg-3 col-form-label">País</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="country" type="text" placeholder="Introduce tu país" class="form-control"
+                        <input #country name="country" type="text" placeholder="Introduce tu país" class="form-control"
                           id="Country" value="{{loginService.currentUser().country}}">
                       </div>
                     </div>
@@ -243,7 +243,7 @@
                     <div class="row mb-3">
                       <label for="Email" class="col-md-4 col-lg-3 col-form-label">Correo eletrónico</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control" id="Email" value="{{loginService.currentUser().email}}"
+                        <input #email name="email" type="email" class="form-control" id="Email" value="{{loginService.currentUser().email}}"
                           disabled>
                       </div>
                     </div>
@@ -251,14 +251,15 @@
                     <div class="row mb-3">
                       <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Teléfono</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="phone" type="text" placeholder="Introduce tu teléfono" class="form-control"
+                        <input #phone name="phone" type="text" placeholder="Introduce tu teléfono" class="form-control"
                           id="Phone" value="{{loginService.currentUser().phone}}">
                       </div>
                     </div>
 
                     <!-- <input type="hidden" name="_csrf" value="{{token}}" /> -->
                     <div class="text-center">
-                      <button class="btn btn-green fw-bold" type="submit">Guardar cambios</button>
+                      <button class="btn btn-green fw-bold"(click)="updateUserForm($event,fullName.value,location.value, country.value,
+                      phone.value,loginService.currentUser())" type="submit">Guardar cambios</button>
                     </div>
 
 
