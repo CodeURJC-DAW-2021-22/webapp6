@@ -1,98 +1,101 @@
-<header class="fixed-top"></header>
-<!-- Page Content -->
-<!-- Banner Starts Here -->
-<div class="banner header-text mb-4">
-  <div class="banner-item-01">
+<body>
+  <header class="fixed-top"></header>
+  <!-- Page Content -->
+  <!-- Banner Starts Here -->
+  <div class="banner header-text mb-4">
+    <div class="banner-item-01">
+      <div class="container">
+        <a *ngIf="loginService.isLogged()" class="button btn-crea-torneo" [routerLink]="['/create_tournament']">Crea un torneo</a>
+        <a *ngIf="!loginService.isLogged()" class="button btn-crea-torneo" [routerLink]="['/login']">Crea un torneo</a>
+      </div>
+    </div>
+  </div>
+  <!-- Banner Ends Here -->
+
+
+
+  <!-- My tournaments. Only for logged users-->
+
+  <div *ngIf="loginService.isLogged()" class="lista-torneos">
     <div class="container">
-      <a *ngIf="loginService.isLogged()" class="button btn-crea-torneo" [routerLink]="['/create_tournament']">Crea un torneo</a>
-      <a *ngIf="!loginService.isLogged()" class="button btn-crea-torneo" [routerLink]="['/login']">Crea un torneo</a>
-    </div>
-  </div>
-</div>
-<!-- Banner Ends Here -->
-
-
-
-<!-- My tournaments. Only for logged users-->
-
-<div *ngIf="loginService.isLogged()" class="lista-torneos">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="section-heading">
-          <h2>Mis torneos</h2>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h2>Mis torneos</h2>
+          </div>
         </div>
-      </div>
-      <div  class="row" id="elements2">
+        <div  class="row" id="elements2">
 
-        <div *ngFor="let userTournament of userTournaments" class="col-md-4">
-          <div class="product-item">
-            <a [routerLink]="['/tournament',userTournament.id]">
-
-              <!-- <img *ngIf="hasTournamentImage(userTournament.id)" class="img-lista-torneos" [src]="getTournamentImage(userTournament.id)"> -->
-              <img class="img-lista-torneos" src="../../../assets/images/product_02.jpg">
-
-            </a>
-            <div class="down-content text-center">
+          <div *ngFor="let userTournament of userTournaments" class="col-md-4">
+            <div class="product-item">
               <a [routerLink]="['/tournament',userTournament.id]">
-                <h4>{{userTournament.tournamentName}}</h4>
+
+                <!-- <img *ngIf="hasTournamentImage(userTournament.id)" class="img-lista-torneos" [src]="getTournamentImage(userTournament.id)"> -->
+                <img class="img-lista-torneos" src="../../../assets/images/product_02.jpg">
+
               </a>
-              <p>{{userTournament.inscriptionDate}}</p>
-              <span>{{userTournament.numParticipants}} equipos</span>
+              <div class="down-content text-center">
+                <a [routerLink]="['/tournament',userTournament.id]">
+                  <h4>{{userTournament.tournamentName}}</h4>
+                </a>
+                <p>{{userTournament.inscriptionDate}}</p>
+                <span>{{userTournament.numParticipants}} equipos</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div *ngIf="hasMoreUserTournaments" class="row">
-        <div class="d-flex justify-content-center">
-          <a class="cargar-mas mb-5" (click)="getUserTournaments()">Cargar más</a>
+        <div *ngIf="hasMoreUserTournaments" class="row">
+          <div class="d-flex justify-content-center">
+            <a class="cargar-mas mb-5" (click)="getUserTournaments()">Cargar más</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
 
-<!-- All tournaments -->
-<div class="lista-torneos">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="section-heading">
-          <h2>Últimos torneos</h2>
+  <!-- All tournaments -->
+  <div class="lista-torneos">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h2>Últimos torneos</h2>
+          </div>
         </div>
-      </div>
-      <div class="row" id="elements">
+        <div class="row" id="elements">
 
-        <div *ngFor="let tournament of tournaments" class="col-md-4">
-          <div class="product-item">
-            <!-- select image from DB when necessary-->
-            <a [routerLink]="['/tournament',tournament.id]">
-
-              <!-- <img *ngIf="hasTournamentImage(tournament.id)" class="img-lista-torneos" [src]="getTournamentImage(tournament.id)"> -->
-              <img class="img-lista-torneos" src="../../../assets/images/product_02.jpg">
-
-            </a>
-
-            <div class="down-content text-center">
+          <div *ngFor="let tournament of tournaments" class="col-md-4">
+            <div class="product-item">
+              <!-- select image from DB when necessary-->
               <a [routerLink]="['/tournament',tournament.id]">
-                <h4>{{tournament.tournamentName}}</h4> <!-- tournamentName-->
-              </a>
-              <p>{{tournament.inscriptionDate}}</p>
-              <span>{{tournament.numParticipants}} equipos</span> <!-- numParticipants-->
 
+                <!-- <img *ngIf="hasTournamentImage(tournament.id)" class="img-lista-torneos" [src]="getTournamentImage(tournament.id)"> -->
+                <img class="img-lista-torneos" src="../../../assets/images/product_02.jpg">
+
+              </a>
+
+              <div class="down-content text-center">
+                <a [routerLink]="['/tournament',tournament.id]">
+                  <h4>{{tournament.tournamentName}}</h4> <!-- tournamentName-->
+                </a>
+                <p>{{tournament.inscriptionDate}}</p>
+                <span>{{tournament.numParticipants}} equipos</span> <!-- numParticipants-->
+
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div *ngIf="hasMoreTournaments" class="row">
-        <div class="d-flex justify-content-center">
-          <a class="cargar-mas mb-5" (click)="getTournaments()">Cargar más</a>
+        <div *ngIf="hasMoreTournaments" class="row">
+          <div class="d-flex justify-content-center">
+            <a class="cargar-mas mb-5" (click)="getTournaments()">Cargar más</a>
+          </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </div>
-</div>
+
+</body>

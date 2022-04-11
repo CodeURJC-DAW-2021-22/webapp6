@@ -14,9 +14,14 @@ export class TournamentComponent {
   tournament: Tournament | undefined;
   userInTournament: boolean = false;
   tournamentOwner: boolean = false;
-  usersPage = 0;
+
+  usersPage = -1;
   hasMoreUsers: boolean = true;
   usersList: User[] = [];
+
+  userTournaments: Tournament[] = [];
+  hasMoreUserTournaments: boolean = true;
+  userTournamentsPage: number = -1;
 
 
   constructor(private router: Router, activatedRoute: ActivatedRoute, public tournamentService: TournamentService,
@@ -35,8 +40,9 @@ export class TournamentComponent {
         }
       }
     )
-    this.userInTournament = this.isUserInTournament(this.getThisUserTournaments());
-    this.tournamentOwner = this.isTournamentOwner();
+    // this.getThisUserTournaments();
+    // this.userInTournament = this.isUserInTournament();
+    // this.tournamentOwner = this.isTournamentOwner();
   }
 
   isTournamentOwner(){
@@ -55,49 +61,48 @@ export class TournamentComponent {
     }
   }
 
-  isUserInTournament(tournaments: Tournament[]): boolean {
+  isUserInTournament(): boolean {
     if (this.loginService.isLogged()) {
-      for (let i = 0; i < tournaments.length; i++){
-        if (tournaments[i]?.id == this.tournament?.id){
+      for (let i = 0; i < this.userTournaments.length; i++){
+        if (this.userTournaments[i]?.id == this.tournament?.id){
           return true;
         }
       }
-      tournaments.length
     }
     return false;
   }
 
-  getThisUserTournaments(): Tournament[] {
-    let tournaments: Tournament[] = []
-    let page = 0
-    let hasMoreTournaments = true;
+  getThisUserTournaments() {
     if (this.loginService.isLogged()) {
-      while (hasMoreTournaments){
-        this.userService.getUserTournaments(page).subscribe(
-          listTournaments => {
-            if (listTournaments.content != undefined) {
-              tournaments = tournaments.concat(listTournaments.content);
-              hasMoreTournaments = !listTournaments.last;
-            } else {
-              hasMoreTournaments = false;
-            }
-          },
-          error => {
-            if (error.status != 403) {
-              console.error('Unexpected Error on getUserTournaments')
-            }
-          }
-        )
+      while (this.hasMoreUserTournaments){
+        this.getUserTournaments();
       }
     }
-    return tournaments;
+  }
+
+  getUserTournaments() {
+    this.userTournamentsPage = this.userTournamentsPage + 1;
+    this.userService.getUserTournaments(this.userTournamentsPage).subscribe(
+      listTournaments => {
+        if (listTournaments.content != undefined) {
+          this.userTournaments = this.userTournaments.concat(listTournaments.content);
+          this.hasMoreUserTournaments = !listTournaments.last;
+        } else {
+          this.hasMoreUserTournaments = false;
+        }
+      },
+      error => {
+        if (error.status != 403) {
+          console.error('Unexpected Error on getUserTournaments')
+        }
+      }
+    )
   }
 
   resetUsersPage(){
     this.usersPage = 0;
     this.hasMoreUsers = true;
     this.usersList = [];
-    this.getThisUserTournaments();
   }
 
   getUsersForInscription(){

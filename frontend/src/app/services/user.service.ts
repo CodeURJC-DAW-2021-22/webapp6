@@ -75,7 +75,7 @@ constructor(private http: HttpClient) { }
   }
 
   getUserTournaments(page: number | string) {
-    return this.http.get(BASE_URL + "me/matches?page=" + page, { withCredentials: true }) as Observable<any>;
+    return this.http.get(BASE_URL + "me/tournaments?page=" + page, { withCredentials: true }) as Observable<any>;
   }
 
   private handleError(error: any) {
