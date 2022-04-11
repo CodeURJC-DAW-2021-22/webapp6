@@ -56,7 +56,7 @@
               </button>
             </div>
 
-            <div *ngIf="tournamentOwner && !tournament?.started && canTournamenStart()" class="d-flex justify-content-end">
+            <div *ngIf="this.loginService.currentUser().name == tournament?.owner && !tournament?.started && canTournamenStart()" class="d-flex justify-content-end">
               <button class="button-no-format" type="submit" (click)="startTournament()">
                   <span class="button btn-tournament upper-text my-1" title="Start Tournament">
                     <i class="ri-play-fill"></i> Iniciar torneo
@@ -149,7 +149,7 @@
               data-bs-target="#tournament-bracket"><i class="ri-organization-chart pe-2"></i>Bracket</button>
           </li>
 
-          <li *ngIf="tournamentOwner" class="nav-item">
+          <li *ngIf="this.loginService.currentUser().name == tournament?.owner" class="nav-item">
             <button class="nav-link d-flex align-items-center" data-bs-toggle="tab"
               data-bs-target="#tournament-settings"><i class="ri-settings-3-fill pe-2"></i>Ajustes admin</button>
           </li>
@@ -170,35 +170,30 @@
 
             <h5 class="card-title pb-1">Participantes</h5>
 
-            <!-- {{#participants}}
-            <div class="row py-2 pair-tournament">
+            <div *ngFor="let team of ($participants | async)" class="row py-2 pair-tournament">
+              <span type="hidden"></span>
               <div class="col-md-11 d-flex justify-content-start align-items-center">
-                <div class="pe-2">
-                      {{userA.name}}
+                <div class="pe-2" *ngIf="checkUser(team.userA.name)">
+                      {{team.userA.name}}
                 </div>
                 <i class="ri-arrow-left-right-fill"></i>
-                <div class="ps-2">
-                      {{userB.name}}
+                <div class="ps-2" *ngIf="checkUser(team.userA.name)">
+                      {{team.userB.name}}
                 </div>
               </div>
-              {{#owner}}
-              {{^hasStarted}}
-              <div class="col-md-1 d-flex justify-content-end align-items-center">
-                <form action="/deleteTourParticipant/{{tournament.id}}" method="post">
-                  <input type="hidden" name="teamid" value="{{id}}" />
-                  <button class="button-no-format" type="submit">
+
+              <div *ngIf="this.loginService.currentUser().name == tournament?.owner && !tournament?.started" class="col-md-1 d-flex justify-content-end align-items-center">
+                <form class="mb-0">
+                  <button class="button-no-format" type="submit" (click)="deleteTeam(team.id)">
                       <span class="btn btn-danger btn-sm" title="Remove my profile image">
                         <i class="ri-delete-bin-fill"></i>
                       </span>
                   </button>
 
-                  <input type="hidden" name="_csrf" value="{{token}}" />
+                  <!-- <input type="hidden" name="_csrf" value="{{token}}" /> -->
                 </form>
               </div>
-              {{/hasStarted}}
-              {{/owner}}
             </div>
-            {{/participants}} -->
 
           </div>
 

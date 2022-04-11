@@ -1,3 +1,5 @@
+import { LoginService } from './login.service';
+import { Team } from './../models/team.model';
 import { Tournament } from './../models/tournament.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -11,7 +13,7 @@ const BASE_URL = '/api/tournaments/';
 })
 export class TournamentService {
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private loginService :LoginService) {
   }
 
   getTournament(id: number | string) {
@@ -21,6 +23,10 @@ export class TournamentService {
 
   getTournaments(page: number | string) {
     return this.http.get(BASE_URL + "?page=" + page, { withCredentials: true }) as Observable<any>;
+  }
+
+  getTournamentTeams(id: number | string) {
+    return this.http.get(BASE_URL + id + "/teams", { withCredentials: true }) as Observable<Team[]>;
   }
 
   createTournament(Tournament: Tournament) {

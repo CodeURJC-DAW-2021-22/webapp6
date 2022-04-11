@@ -1,33 +1,39 @@
+import { Team } from './../../models/team.model';
 import { User } from './../../models/user.model';
 import { Tournament } from './../../models/tournament.model';
 import { TournamentService } from 'src/app/services/tournament.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
+import { Observable } from 'rxjs';
 
 @Component({
   templateUrl: './tournament.component.html'
 })
-export class TournamentComponent {
+export class TournamentComponent implements OnInit{
 
+  id: number = 0;
   tournament: Tournament | undefined;
-  userInTournament: boolean = false;
-  tournamentOwner: boolean = false;
+  $participants: Observable<Team[]> | undefined;
+  userInTournament: boolean | undefined;
+
+  userName: string | undefined;
 
   usersPage = -1;
   hasMoreUsers: boolean = true;
   usersList: User[] = [];
 
-  userTournaments: Tournament[] = [];
-  hasMoreUserTournaments: boolean = true;
-  userTournamentsPage: number = -1;
-
 
   constructor(private router: Router, activatedRoute: ActivatedRoute, public tournamentService: TournamentService,
     public userService: UserService, public loginService: LoginService) {
 
+    this.id = activatedRoute.snapshot.params['id'];
     const id = activatedRoute.snapshot.params['id'];
+    if (this.loginService.isLogged()) {
+      this.userName = this.loginService.currentUser().name;
+    }
+
     tournamentService.getTournament(id).subscribe(
       tournament => {
         this.tournament = tournament;
@@ -40,17 +46,22 @@ export class TournamentComponent {
         }
       }
     )
-    // this.getThisUserTournaments();
-    // this.userInTournament = this.isUserInTournament();
-    // this.tournamentOwner = this.isTournamentOwner();
   }
 
-  isTournamentOwner(){
-    if (this.loginService.isLogged()) {
-      return (this.loginService.currentUser().name == this.tournament?.owner)
-    } else {
-      return false;
+  ngOnInit() {
+		this.refresh();
+    this.tournamentService
+  }
+
+  refresh() {
+		this.$participants = this.tournamentService.getTournamentTeams(this.id);
+	}
+
+  checkUser(name: String) {
+    if (!this.userInTournament) {
+      this.userInTournament = name == this.loginService.currentUser().name;
     }
+    return true;
   }
 
   canTournamenStart(){
@@ -59,44 +70,6 @@ export class TournamentComponent {
     } else {
       return false;
     }
-  }
-
-  isUserInTournament(): boolean {
-    if (this.loginService.isLogged()) {
-      for (let i = 0; i < this.userTournaments.length; i++){
-        if (this.userTournaments[i]?.id == this.tournament?.id){
-          return true;
-        }
-      }
-    }
-    return false;
-  }
-
-  getThisUserTournaments() {
-    if (this.loginService.isLogged()) {
-      while (this.hasMoreUserTournaments){
-        this.getUserTournaments();
-      }
-    }
-  }
-
-  getUserTournaments() {
-    this.userTournamentsPage = this.userTournamentsPage + 1;
-    this.userService.getUserTournaments(this.userTournamentsPage).subscribe(
-      listTournaments => {
-        if (listTournaments.content != undefined) {
-          this.userTournaments = this.userTournaments.concat(listTournaments.content);
-          this.hasMoreUserTournaments = !listTournaments.last;
-        } else {
-          this.hasMoreUserTournaments = false;
-        }
-      },
-      error => {
-        if (error.status != 403) {
-          console.error('Unexpected Error on getUserTournaments')
-        }
-      }
-    )
   }
 
   resetUsersPage(){
@@ -123,10 +96,14 @@ export class TournamentComponent {
   }
 
   inscription(id: number | undefined){
-
+    //...
   }
 
   startTournament(){
+
+  }
+
+  deleteTeam(id: number | undefined){
 
   }
 
