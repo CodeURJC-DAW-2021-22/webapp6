@@ -1,3 +1,4 @@
+import { Match } from './../models/match.model';
 import { LoginService } from './login.service';
 import { Team } from './../models/team.model';
 import { Tournament } from './../models/tournament.model';
@@ -27,6 +28,10 @@ export class TournamentService {
 
   getTournamentTeams(id: number | string) {
     return this.http.get(BASE_URL + id + "/teams", { withCredentials: true }) as Observable<Team[]>;
+  }
+
+  getTournamentRound(id: number | string, round: number | string) {
+    return this.http.get(BASE_URL + id + "/matches?round=" + round, { withCredentials: true }) as Observable<Match[]>;
   }
 
   createTournament(Tournament: Tournament) {

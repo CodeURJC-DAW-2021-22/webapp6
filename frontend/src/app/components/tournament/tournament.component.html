@@ -199,273 +199,347 @@
 
           <div class="tab-pane fade pt-3" id="tournament-bracket">
             <!-- Tournament Bracket -->
-            <!-- <div class="container pb-2">
+            <div class="container pb-2">
               <div class="bracket d-flex flex-row flex-nowrap overflow-auto">
                 <div class="tournament-bracket tournament-bracket--rounded mb-5">
 
 
-                  {{#hasr4}}
-                  <div class="tournament-bracket__round tournament-bracket__round--semifinals">
+                  <div *ngIf="hasRound4" class="tournament-bracket__round tournament-bracket__round--semifinals">
                     <h3 class="tournament-bracket__round-title">Octavos de final</h3>
                     <ul class="tournament-bracket__list">
-                      {{#roundFour}}
-                      <li class="tournament-bracket__item">
+
+                      <li *ngFor="let match of round4" class="tournament-bracket__item">
                         <div class="tournament-bracket__match" tabindex="0">
                           <table class="tournament-bracket__table">
 
                             <tbody class="tournament-bracket__content">
-                              {{#winnerTeamOne}}
-                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                              {{/winnerTeamOne}}
-                              {{^winnerTeamOne}}
-                              <tr class="tournament-bracket__team">
-                              {{/winnerTeamOne}}
+
+                              <tr *ngIf="match.winnerTeamOne" class="tournament-bracket__team tournament-bracket__team--winner">
+
                                 <td class="tournament-bracket__team-name">
-                                  <abbr class="tournament-bracket__code">
 
-                                    {{#teamOne.tbd}}
+                                  <abbr *ngIf="match.teamOne.tbd" class="tournament-bracket__code">
                                     tbd
-                                    {{/teamOne.tbd}}
-
-                                    {{^teamOne.tbd}}
-                                    {{teamOne.userA.name}},{{teamOne.userB.name}}
-                                    {{/teamOne.tbd}}
-
                                   </abbr>
+                                  <abbr *ngIf="!match.teamOne.tbd" class="tournament-bracket__code">
+                                    {{match.teamOne.userA.name}}, {{match.teamOne.userB.name}}
+                                  </abbr>
+
                                 </td>
                                 <td class="tournament-bracket__score">
-                                  <span class="tournament-bracket__number">{{setsTeamOne}}</span>
+                                  <span class="tournament-bracket__number">{{match.setsTeamOne}}</span>
                                 </td>
                               </tr>
-                              {{#winnerTeamTwo}}
-                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                              {{/winnerTeamTwo}}
-                              {{^winnerTeamTwo}}
-                              <tr class="tournament-bracket__team">
-                              {{/winnerTeamTwo}}
+
+                              <tr *ngIf="!match.winnerTeamOne" class="tournament-bracket__team">
                                 <td class="tournament-bracket__team-name">
-                                  <abbr class="tournament-bracket__code">
 
-                                    {{#teamTwo.tbd}}
+                                  <abbr *ngIf="match.teamOne.tbd" class="tournament-bracket__code">
                                     tbd
-                                    {{/teamTwo.tbd}}
+                                  </abbr>
+                                  <abbr *ngIf="!match.teamOne.tbd" class="tournament-bracket__code">
+                                    {{match.teamOne.userA.name}}, {{match.teamOne.userB.name}}
+                                  </abbr>
 
-                                    {{^teamTwo.tbd}}
-                                    {{teamTwo.userA.name}}, {{teamTwo.userB.name}}
-                                    {{/teamTwo.tbd}}
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{match.setsTeamOne}}</span>
+                                </td>
+                              </tr>
+
+                              <tr *ngIf="match.winnerTeamTwo" class="tournament-bracket__team tournament-bracket__team--winner">
+
+                                <td class="tournament-bracket__team-name">
+                                  <abbr *ngIf="match.teamTwo.tbd" class="tournament-bracket__code">
+                                    tbd
+                                  </abbr>
+                                  <abbr *ngIf="!match.teamTwo.tbd" class="tournament-bracket__code">
+                                    {{match.teamTwo.userA.name}}, {{match.teamTwo.userB.name}}
                                   </abbr>
                                 </td>
                                 <td class="tournament-bracket__score">
-                                  <span class="tournament-bracket__number">{{setsTeamTwo}}</span>
+                                  <span class="tournament-bracket__number">{{match.setsTeamTwo}}</span>
                                 </td>
+
+                              </tr>
+
+                              <tr *ngIf="!match.winnerTeamTwo" class="tournament-bracket__team">
+
+                                <td class="tournament-bracket__team-name">
+                                  <abbr *ngIf="match.teamTwo.tbd" class="tournament-bracket__code">
+                                    tbd
+                                  </abbr>
+                                  <abbr *ngIf="!match.teamTwo.tbd" class="tournament-bracket__code">
+                                    {{match.teamTwo.userA.name}}, {{match.teamTwo.userB.name}}
+                                  </abbr>
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{match.setsTeamTwo}}</span>
+                                </td>
+
                               </tr>
                             </tbody>
                           </table>
                         </div>
                       </li>
-                      {{/roundFour}}
-
 
                     </ul>
                   </div>
-                  {{/hasr4}}
 
-                  {{#hasr3}}
-                  <div class="tournament-bracket__round tournament-bracket__round--quarterfinals">
+
+                  <div *ngIf="hasRound3" class="tournament-bracket__round tournament-bracket__round--quarterfinals">
                     <h3 class="tournament-bracket__round-title">Cuartos de final</h3>
 
                     <ul class="tournament-bracket__list">
-                      {{#roundTres}}
-                      <li class="tournament-bracket__item">
+
+                      <li *ngFor="let match of round3" class="tournament-bracket__item">
                         <div class="tournament-bracket__match" tabindex="0">
                           <table class="tournament-bracket__table">
                             <caption class="tournament-bracket__caption">
                             </caption>
                             <tbody class="tournament-bracket__content">
-                              {{#winnerTeamOne}}
-                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                              {{/winnerTeamOne}}
-                              {{^winnerTeamOne}}
-                              <tr class="tournament-bracket__team">
-                              {{/winnerTeamOne}}
-                                <td class="tournament-bracket__team-name">
-                                  <abbr class="tournament-bracket__code">
-                                    {{#teamOne.tbd}}
-                                    tbd
-                                    {{/teamOne.tbd}}
 
-                                    {{^teamOne.tbd}}
-                                    {{teamOne.userA.name}}, {{teamOne.userB.name}}
-                                    {{/teamOne.tbd}}
+                              <tr *ngIf="match.winnerTeamOne" class="tournament-bracket__team tournament-bracket__team--winner">
+
+                                <td class="tournament-bracket__team-name">
+
+                                  <abbr *ngIf="match.teamOne.tbd" class="tournament-bracket__code">
+                                    tbd
                                   </abbr>
+                                  <abbr *ngIf="!match.teamOne.tbd" class="tournament-bracket__code">
+                                    {{match.teamOne.userA.name}}, {{match.teamOne.userB.name}}
+                                  </abbr>
+
                                 </td>
                                 <td class="tournament-bracket__score">
-                                  <span class="tournament-bracket__number">{{setsTeamOne}}</span>
+                                  <span class="tournament-bracket__number">{{match.setsTeamOne}}</span>
                                 </td>
                               </tr>
-                              {{#winnerTeamTwo}}
-                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                              {{/winnerTeamTwo}}
-                              {{^winnerTeamTwo}}
-                              <tr class="tournament-bracket__team">
-                              {{/winnerTeamTwo}}
-                                <td class="tournament-bracket__team-name">
-                                  <abbr class="tournament-bracket__code">
-                                    {{#teamTwo.tbd}}
-                                    tbd
-                                    {{/teamTwo.tbd}}
 
-                                    {{^teamTwo.tbd}}
-                                    {{teamTwo.userA.name}}, {{teamTwo.userB.name}}
-                                    {{/teamTwo.tbd}}
+                              <tr *ngIf="!match.winnerTeamOne" class="tournament-bracket__team">
+                                <td class="tournament-bracket__team-name">
+
+                                  <abbr *ngIf="match.teamOne.tbd" class="tournament-bracket__code">
+                                    tbd
+                                  </abbr>
+                                  <abbr *ngIf="!match.teamOne.tbd" class="tournament-bracket__code">
+                                    {{match.teamOne.userA.name}}, {{match.teamOne.userB.name}}
+                                  </abbr>
+
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{match.setsTeamOne}}</span>
+                                </td>
+                              </tr>
+
+                              <tr *ngIf="match.winnerTeamTwo" class="tournament-bracket__team tournament-bracket__team--winner">
+
+                                <td class="tournament-bracket__team-name">
+                                  <abbr *ngIf="match.teamTwo.tbd" class="tournament-bracket__code">
+                                    tbd
+                                  </abbr>
+                                  <abbr *ngIf="!match.teamTwo.tbd" class="tournament-bracket__code">
+                                    {{match.teamTwo.userA.name}}, {{match.teamTwo.userB.name}}
                                   </abbr>
                                 </td>
                                 <td class="tournament-bracket__score">
-                                  <span class="tournament-bracket__number">{{setsTeamTwo}}</span>
+                                  <span class="tournament-bracket__number">{{match.setsTeamTwo}}</span>
                                 </td>
+
+                              </tr>
+
+                              <tr *ngIf="!match.winnerTeamTwo" class="tournament-bracket__team">
+
+                                <td class="tournament-bracket__team-name">
+                                  <abbr *ngIf="match.teamTwo.tbd" class="tournament-bracket__code">
+                                    tbd
+                                  </abbr>
+                                  <abbr *ngIf="!match.teamTwo.tbd" class="tournament-bracket__code">
+                                    {{match.teamTwo.userA.name}}, {{match.teamTwo.userB.name}}
+                                  </abbr>
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{match.setsTeamTwo}}</span>
+                                </td>
+
                               </tr>
                             </tbody>
                           </table>
                         </div>
                       </li>
-                      {{/roundTres}}
+
                     </ul>
                   </div>
-                  {{/hasr3}}
 
-                  {{#hasr2}}
-                  <div class="tournament-bracket__round tournament-bracket__round--semifinals">
+
+                  <div *ngIf="hasRound2" class="tournament-bracket__round tournament-bracket__round--semifinals">
                     <h3 class="tournament-bracket__round-title">Semifinales</h3>
                     <ul class="tournament-bracket__list">
-                      {{#roundTwo}}
-                      <li class="tournament-bracket__item">
+
+                      <li *ngFor="let match of round2" class="tournament-bracket__item">
                         <div class="tournament-bracket__match" tabindex="0">
                           <table class="tournament-bracket__table">
 
                             <tbody class="tournament-bracket__content">
-                              {{#winnerTeamOne}}
-                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                              {{/winnerTeamOne}}
-                              {{^winnerTeamOne}}
-                              <tr class="tournament-bracket__team">
-                              {{/winnerTeamOne}}
+
+                              <tr *ngIf="match.winnerTeamOne" class="tournament-bracket__team tournament-bracket__team--winner">
+
                                 <td class="tournament-bracket__team-name">
-                                  <abbr class="tournament-bracket__code">
 
-                                    {{#teamOne.tbd}}
+                                  <abbr *ngIf="match.teamOne.tbd" class="tournament-bracket__code">
                                     tbd
-                                    {{/teamOne.tbd}}
-
-                                    {{^teamOne.tbd}}
-                                    {{teamOne.userA.name}}, {{teamOne.userB.name}}
-                                    {{/teamOne.tbd}}
-
                                   </abbr>
+                                  <abbr *ngIf="!match.teamOne.tbd" class="tournament-bracket__code">
+                                    {{match.teamOne.userA.name}}, {{match.teamOne.userB.name}}
+                                  </abbr>
+
                                 </td>
                                 <td class="tournament-bracket__score">
-                                  <span class="tournament-bracket__number">{{setsTeamOne}}</span>
+                                  <span class="tournament-bracket__number">{{match.setsTeamOne}}</span>
                                 </td>
                               </tr>
-                              {{#winnerTeamTwo}}
-                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                              {{/winnerTeamTwo}}
-                              {{^winnerTeamTwo}}
-                              <tr class="tournament-bracket__team">
-                              {{/winnerTeamTwo}}
+
+                              <tr *ngIf="!match.winnerTeamOne" class="tournament-bracket__team">
                                 <td class="tournament-bracket__team-name">
-                                  <abbr class="tournament-bracket__code">
 
-                                    {{#teamTwo.tbd}}
+                                  <abbr *ngIf="match.teamOne.tbd" class="tournament-bracket__code">
                                     tbd
-                                    {{/teamTwo.tbd}}
+                                  </abbr>
+                                  <abbr *ngIf="!match.teamOne.tbd" class="tournament-bracket__code">
+                                    {{match.teamOne.userA.name}}, {{match.teamOne.userB.name}}
+                                  </abbr>
 
-                                    {{^teamTwo.tbd}}
-                                    {{teamTwo.userA.name}}, {{teamTwo.userB.name}}
-                                    {{/teamTwo.tbd}}
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{match.setsTeamOne}}</span>
+                                </td>
+                              </tr>
+
+                              <tr *ngIf="match.winnerTeamTwo" class="tournament-bracket__team tournament-bracket__team--winner">
+
+                                <td class="tournament-bracket__team-name">
+                                  <abbr *ngIf="match.teamTwo.tbd" class="tournament-bracket__code">
+                                    tbd
+                                  </abbr>
+                                  <abbr *ngIf="!match.teamTwo.tbd" class="tournament-bracket__code">
+                                    {{match.teamTwo.userA.name}}, {{match.teamTwo.userB.name}}
                                   </abbr>
                                 </td>
                                 <td class="tournament-bracket__score">
-                                  <span class="tournament-bracket__number">{{setsTeamTwo}}</span>
+                                  <span class="tournament-bracket__number">{{match.setsTeamTwo}}</span>
                                 </td>
+
+                              </tr>
+
+                              <tr *ngIf="!match.winnerTeamTwo" class="tournament-bracket__team">
+
+                                <td class="tournament-bracket__team-name">
+                                  <abbr *ngIf="match.teamTwo.tbd" class="tournament-bracket__code">
+                                    tbd
+                                  </abbr>
+                                  <abbr *ngIf="!match.teamTwo.tbd" class="tournament-bracket__code">
+                                    {{match.teamTwo.userA.name}}, {{match.teamTwo.userB.name}}
+                                  </abbr>
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{match.setsTeamTwo}}</span>
+                                </td>
+
                               </tr>
                             </tbody>
                           </table>
                         </div>
                       </li>
-                      {{/roundTwo}}
-
 
                     </ul>
                   </div>
-                  {{/hasr2}}
 
-                  {{#hasr1}}
-                  <div class="tournament-bracket__round tournament-bracket__round--bronze">
+
+                  <div *ngIf="hasRound1" class="tournament-bracket__round tournament-bracket__round--bronze">
                     <h3 class="tournament-bracket__round-title">Final</h3>
                     <ul class="tournament-bracket__list">
-                      {{#roundOne}}
-                      <li class="tournament-bracket__item">
+
+                      <li *ngFor="let match of round1" class="tournament-bracket__item">
                         <div class="tournament-bracket__match" tabindex="0">
                           <table class="tournament-bracket__table">
 
                             <tbody class="tournament-bracket__content">
-                              {{#winnerTeamOne}}
-                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                              {{/winnerTeamOne}}
-                              {{^winnerTeamOne}}
-                              <tr class="tournament-bracket__team">
-                              {{/winnerTeamOne}}
+
+                              <tr *ngIf="match.winnerTeamOne" class="tournament-bracket__team tournament-bracket__team--winner">
+
                                 <td class="tournament-bracket__team-name">
-                                  <abbr class="tournament-bracket__code">
 
-                                    {{#teamOne.tbd}}
+                                  <abbr *ngIf="match.teamOne.tbd" class="tournament-bracket__code">
                                     tbd
-                                    {{/teamOne.tbd}}
-
-                                    {{^teamOne.tbd}}
-                                    {{teamOne.userA.name}}, {{teamOne.userB.name}}
-                                    {{/teamOne.tbd}}
-
                                   </abbr>
+                                  <abbr *ngIf="!match.teamOne.tbd" class="tournament-bracket__code">
+                                    {{match.teamOne.userA.name}},{{match.teamOne.userB.name}}
+                                  </abbr>
+
                                 </td>
                                 <td class="tournament-bracket__score">
-                                  <span class="tournament-bracket__number">{{setsTeamOne}}</span>
+                                  <span class="tournament-bracket__number">{{match.setsTeamOne}}</span>
                                 </td>
                               </tr>
-                              {{#winnerTeamTwo}}
-                              <tr class="tournament-bracket__team tournament-bracket__team--winner">
-                              {{/winnerTeamTwo}}
-                              {{^winnerTeamTwo}}
-                              <tr class="tournament-bracket__team">
-                              {{/winnerTeamTwo}}
+
+                              <tr *ngIf="!match.winnerTeamOne" class="tournament-bracket__team">
                                 <td class="tournament-bracket__team-name">
-                                  <abbr class="tournament-bracket__code">
 
-                                    {{#teamTwo.tbd}}
+                                  <abbr *ngIf="match.teamOne.tbd" class="tournament-bracket__code">
                                     tbd
-                                    {{/teamTwo.tbd}}
+                                  </abbr>
+                                  <abbr *ngIf="!match.teamOne.tbd" class="tournament-bracket__code">
+                                    {{match.teamOne.userA.name}},{{match.teamOne.userB.name}}
+                                  </abbr>
 
-                                    {{^teamTwo.tbd}}
-                                    {{teamTwo.userA.name}}, {{teamTwo.userB.name}}
-                                    {{/teamTwo.tbd}}
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{match.setsTeamOne}}</span>
+                                </td>
+                              </tr>
 
+                              <tr *ngIf="match.winnerTeamTwo" class="tournament-bracket__team tournament-bracket__team--winner">
+
+                                <td class="tournament-bracket__team-name">
+                                  <abbr *ngIf="match.teamTwo.tbd" class="tournament-bracket__code">
+                                    tbd
+                                  </abbr>
+                                  <abbr *ngIf="!match.teamTwo.tbd" class="tournament-bracket__code">
+                                    {{match.teamTwo.userA.name}},{{match.teamTwo.userB.name}}
                                   </abbr>
                                 </td>
                                 <td class="tournament-bracket__score">
-                                  <span class="tournament-bracket__number">{{setsTeamTwo}}</span>
+                                  <span class="tournament-bracket__number">{{match.setsTeamTwo}}</span>
                                 </td>
+
+                              </tr>
+
+                              <tr *ngIf="!match.winnerTeamTwo" class="tournament-bracket__team">
+
+                                <td class="tournament-bracket__team-name">
+                                  <abbr *ngIf="match.teamTwo.tbd" class="tournament-bracket__code">
+                                    tbd
+                                  </abbr>
+                                  <abbr *ngIf="!match.teamTwo.tbd" class="tournament-bracket__code">
+                                    {{match.teamTwo.userA.name}},{{match.teamTwo.userB.name}}
+                                  </abbr>
+                                </td>
+                                <td class="tournament-bracket__score">
+                                  <span class="tournament-bracket__number">{{match.setsTeamTwo}}</span>
+                                </td>
+
                               </tr>
                             </tbody>
                           </table>
                         </div>
                       </li>
-                      {{/roundOne}}
+
                     </ul>
                   </div>
-                  {{/hasr1}}
+
                 </div>
               </div>
-            </div> -->
+            </div>
 
           </div>
 

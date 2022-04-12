@@ -274,7 +274,7 @@ public class UserRestController {
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Imaged downloaded successfully", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
-			@ApiResponse(responseCode = "204", description = "Image field is empty", content = @Content),
+			@ApiResponse(responseCode = "400", description = "Image field is empty", content = @Content),
 			@ApiResponse(responseCode = "404", description = "Image not found", content = @Content)			
 		})
 			
@@ -291,7 +291,7 @@ public class UserRestController {
 						.contentLength(user.getImageFile().length()).body(file);
 
 			} else {
-				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

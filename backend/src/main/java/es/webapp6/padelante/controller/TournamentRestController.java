@@ -112,7 +112,7 @@ public class TournamentRestController {
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "success getting the rounds", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Tournament.class)) }),
-			@ApiResponse(responseCode = "201", description = "the tournament doesn't have rounds", content = {
+			@ApiResponse(responseCode = "400", description = "the tournament doesn't have matches for this round", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Tournament.class)) }),
 			@ApiResponse(responseCode = "404", description = "tournament not found", content = @Content) })
 	@JsonView(User.Mostrar.class)
@@ -125,7 +125,7 @@ public class TournamentRestController {
                 List<Match> rMatches = matchService.getRoundMatches(tournament, round);
 				return new ResponseEntity<>(rMatches, HttpStatus.OK);
             }else{
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }        
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -330,7 +330,7 @@ public class TournamentRestController {
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "downloaded correctly", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Tournament.class)) }),
-			@ApiResponse(responseCode = "204", description = "there's no image", content = @Content),
+			@ApiResponse(responseCode = "400", description = "there's no image", content = @Content),
 			@ApiResponse(responseCode = "401", description = "You are not authorized to download the image", content = @Content),
 			@ApiResponse(responseCode = "404", description = "tournament not found", content = @Content) })
 	@GetMapping("/{id}/image")
@@ -346,7 +346,7 @@ public class TournamentRestController {
 						.contentLength(tournament.getImageFile().length()).body(file);
 
 			} else {
-				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
