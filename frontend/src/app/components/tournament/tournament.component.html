@@ -1,7 +1,7 @@
-<header class="fixed-top"></header>
-
 <body class="bg-232323">
-  <main class="container main-tournament tournament">
+  <header class="fixed-top"></header>
+
+  <main *ngIf="$tournament | async as tournament" class="container main-tournament tournament">
 
     <section class="card tournament-card">
       <div class="d-flex justify-content-between">
@@ -14,27 +14,27 @@
           </div>
           <div class="d-flex align-items-center ps-2">
             <div>
-              <h2 class="mt-0" id="tournamentNamePDF">{{tournament?.tournamentName}}</h2>
+              <h2 class="mt-0" id="tournamentNamePDF">{{tournament.tournamentName}}</h2>
               <h3 class="d-flex align-items-center pt-2"><em class="me-2">Organizador:</em>
 
-                {{tournament?.owner}}
+                {{tournament.owner}}
               </h3>
 
               <div>
                   <div>
-                    <progress class="progress-bar round mb-1" value="{{tournament?.numSignedUp}}" max="{{tournament?.numParticipants}}"></progress>
+                    <progress class="progress-bar round mb-1" value="{{tournament.numSignedUp}}" max="{{tournament.numParticipants}}"></progress>
                   </div>
               </div>
-              <h5>Participantes: {{tournament?.numSignedUp}}/{{tournament?.numParticipants}}<span class="ps-5">{{tournament?.location}}</span></h5>
+              <h5>Participantes: {{tournament.numSignedUp}}/{{tournament.numParticipants}}<span class="ps-5">{{tournament.location}}</span></h5>
             </div>
           </div>
         </div>
         <div class="d-flex align-items-center justify-content-center p-2">
           <div class="text-center">
             <h3 class="py-1 date-title">Fin de inscripciones</h3>
-            <h3 class="py-1"><em>{{tournament?.inscriptionDate}}</em></h3>
+            <h3 class="py-1"><em>{{tournament.inscriptionDate}}</em></h3>
             <h3 class="py-1 date-title">Inicio del torneo</h3>
-            <h3 class="py-1"><em>{{tournament?.startDate}}</em></h3>
+            <h3 class="py-1"><em>{{tournament.startDate}}</em></h3>
           </div>
         </div>
         <div class="d-flex align-items-center justify-content-end p-2 pe-3">
@@ -43,20 +43,20 @@
               <a class="button btn-tournament upper-text my-1" href="#"><i class="ri-heart-3-fill pe-1"></i> Seguir</a>
             </div> -->
 
-            <div *ngIf="!userInTournament && !tournament?.started" class="d-flex justify-content-end">
+            <div *ngIf="this.loginService.isLogged() && !userInTournament && !tournament.started" class="d-flex justify-content-end">
               <a class="d-inline button btn-tournament upper-text my-1" href="#" data-bs-toggle="modal" (click)="getUsersForInscription()"
                 data-bs-target="#staticBackdrop">
                 <i class="ri-edit-fill pe-1"></i> Incribirse
               </a>
             </div>
 
-            <div *ngIf="userInTournament && tournament?.started" class="d-flex justify-content-end">
+            <div *ngIf="userInTournament && tournament.started" class="d-flex justify-content-end">
               <button class="generarPDF d-inline button btn-tournament upper-text my-1" id="PDFWinner" onclick="genPdf()">
                 <i class="ri-file-download-fill"></i> Descargar PDF
               </button>
             </div>
 
-            <div *ngIf="this.loginService.currentUser().name == tournament?.owner && !tournament?.started && canTournamenStart()" class="d-flex justify-content-end">
+            <div *ngIf="getName()== this.tournament.owner && !tournament.started && tournament.numSignedUp > 1" class="d-flex justify-content-end">
               <button class="button-no-format" type="submit" (click)="startTournament()">
                   <span class="button btn-tournament upper-text my-1" title="Start Tournament">
                     <i class="ri-play-fill"></i> Iniciar torneo
@@ -149,7 +149,7 @@
               data-bs-target="#tournament-bracket"><i class="ri-organization-chart pe-2"></i>Bracket</button>
           </li>
 
-          <li *ngIf="this.loginService.currentUser().name == tournament?.owner" class="nav-item">
+          <li *ngIf="getName()== this.tournament.owner" class="nav-item">
             <button class="nav-link d-flex align-items-center" data-bs-toggle="tab"
               data-bs-target="#tournament-settings"><i class="ri-settings-3-fill pe-2"></i>Ajustes admin</button>
           </li>
@@ -160,12 +160,12 @@
           <div class="tab-pane fade show active profile-overview" id="tournament-info">
             <h5 class="card-title">Sobre el torneo</h5>
             <p class="small fst-italic">
-              {{tournament?.about}}
+              {{tournament.about}}
             </p>
 
             <h5 class="card-title">Reglamento</h5>
             <p class="small fst-italic">
-              {{tournament?.ruleset}}
+              {{tournament.ruleset}}
             </p>
 
             <h5 class="card-title pb-1">Participantes</h5>
@@ -177,12 +177,12 @@
                       {{team.userA.name}}
                 </div>
                 <i class="ri-arrow-left-right-fill"></i>
-                <div class="ps-2" *ngIf="checkUser(team.userA.name)">
+                <div class="ps-2" *ngIf="checkUser(team.userB.name)">
                       {{team.userB.name}}
                 </div>
               </div>
 
-              <div *ngIf="this.loginService.currentUser().name == tournament?.owner && !tournament?.started" class="col-md-1 d-flex justify-content-end align-items-center">
+              <div *ngIf="getName()== this.tournament.owner && !tournament.started" class="col-md-1 d-flex justify-content-end align-items-center">
                 <form class="mb-0">
                   <button class="button-no-format" type="submit" (click)="deleteTeam(team.id)">
                       <span class="btn btn-danger btn-sm" title="Remove my profile image">
@@ -204,11 +204,11 @@
                 <div class="tournament-bracket tournament-bracket--rounded mb-5">
 
 
-                  <div *ngIf="hasRound4" class="tournament-bracket__round tournament-bracket__round--semifinals">
+                  <div *ngIf="$round4 | async as round4" class="tournament-bracket__round tournament-bracket__round--semifinals">
                     <h3 class="tournament-bracket__round-title">Octavos de final</h3>
                     <ul class="tournament-bracket__list">
 
-                      <li *ngFor="let match of round4" class="tournament-bracket__item">
+                      <li *ngFor="let match of ($round4 | async)" class="tournament-bracket__item">
                         <div class="tournament-bracket__match" tabindex="0">
                           <table class="tournament-bracket__table">
 
@@ -287,12 +287,12 @@
                   </div>
 
 
-                  <div *ngIf="hasRound3" class="tournament-bracket__round tournament-bracket__round--quarterfinals">
+                  <div *ngIf="$round3 | async as round3" class="tournament-bracket__round tournament-bracket__round--quarterfinals">
                     <h3 class="tournament-bracket__round-title">Cuartos de final</h3>
 
                     <ul class="tournament-bracket__list">
 
-                      <li *ngFor="let match of round3" class="tournament-bracket__item">
+                      <li *ngFor="let match of ($round3 | async)" class="tournament-bracket__item">
                         <div class="tournament-bracket__match" tabindex="0">
                           <table class="tournament-bracket__table">
                             <caption class="tournament-bracket__caption">
@@ -372,11 +372,11 @@
                   </div>
 
 
-                  <div *ngIf="hasRound2" class="tournament-bracket__round tournament-bracket__round--semifinals">
+                  <div *ngIf="$round2 | async as round2" class="tournament-bracket__round tournament-bracket__round--semifinals">
                     <h3 class="tournament-bracket__round-title">Semifinales</h3>
                     <ul class="tournament-bracket__list">
 
-                      <li *ngFor="let match of round2" class="tournament-bracket__item">
+                      <li *ngFor="let match of ($round2 | async)" class="tournament-bracket__item">
                         <div class="tournament-bracket__match" tabindex="0">
                           <table class="tournament-bracket__table">
 
@@ -455,11 +455,11 @@
                   </div>
 
 
-                  <div *ngIf="hasRound1" class="tournament-bracket__round tournament-bracket__round--bronze">
+                  <div *ngIf="$round1 | async as round1" class="tournament-bracket__round tournament-bracket__round--bronze">
                     <h3 class="tournament-bracket__round-title">Final</h3>
                     <ul class="tournament-bracket__list">
 
-                      <li *ngFor="let match of round1" class="tournament-bracket__item">
+                      <li *ngFor="let match of ($round1 | async)" class="tournament-bracket__item">
                         <div class="tournament-bracket__match" tabindex="0">
                           <table class="tournament-bracket__table">
 
@@ -546,22 +546,15 @@
           <div class="tab-pane fade profile-edit pt-3" id="tournament-settings">
 
             <!-- Tournament Settings Admin -->
-            <!-- <form action="/update_tournament/{{tournament.id}}" method="post" enctype="multipart/form-data">
+            <form enctype="multipart/form-data">
 
               <div class="row mb-3">
                 <label for="tournamentImage" class="col-md-4 col-lg-3 col-form-label">Imagen del torneo</label>
                 <div class="col-md-8 col-lg-9 tournament-img">
-                  {{#tournament.image}}
-                  <img src="/tournament/{{tournament.id}}/image"><br>
-                  <input type='checkbox' name='removeImage'> <label>Remove image</label><br>
 
-                  {{/tournament.image}}
-
-                  {{^tournament.image}}
-                  <img src="/assets/images/product_02.jpg"><br>
-
-                  {{/tournament.image}}
-
+                  <!-- <img src="/tournament/{{tournament.id}}/image"><br>
+                  <input type='checkbox' name='removeImage'> <label>Remove image</label><br> -->
+                  <img src="../../../assets/images/product_02.jpg"><br>
 
                   <input type='file' name='imageField' accept=".jpg, .jpeg">
 
@@ -571,14 +564,14 @@
               <div class="row mb-3">
                 <label for="name" class="col-md-4 col-lg-3 col-form-label">Nombre</label>
                 <div class="col-md-8 col-lg-9">
-                  <input name="name" type="text" class="form-control" id="name" value="{{tournament.tournamentName}}">
+                  <input #name name="name" type="text" class="form-control" id="name" value="{{tournament.tournamentName}}">
                 </div>
               </div>
 
               <div class="row mb-3">
                 <label for="about" class="col-md-4 col-lg-3 col-form-label">Sobre el torneo</label>
                 <div class="col-md-8 col-lg-9">
-                  <textarea name="about" class="form-control" id="about" style="height: 100px"
+                  <textarea #about name="about" class="form-control" id="about" style="height: 100px"
                     value="{{tournament.about}}">{{tournament.about}}</textarea>
                 </div>
               </div>
@@ -586,7 +579,7 @@
               <div class="row mb-3">
                 <label for="ruleset" class="col-md-4 col-lg-3 col-form-label">Reglamento</label>
                 <div class="col-md-8 col-lg-9">
-                  <textarea name="ruleset" class="form-control" id="ruleset" style="height: 100px"
+                  <textarea #ruleset name="ruleset" class="form-control" id="ruleset" style="height: 100px"
                     value="{{tournament.ruleset}}">{{tournament.ruleset}}</textarea>
                 </div>
               </div>
@@ -594,7 +587,7 @@
               <div class="row mb-3">
                 <label for="location" class="col-md-4 col-lg-3 col-form-label">Localidad</label>
                 <div class="col-md-8 col-lg-9">
-                  <input name="location" type="text" class="form-control" id="location" value="{{tournament.location}}">
+                  <input #location name="location" type="text" class="form-control" id="location" value="{{tournament.location}}">
                 </div>
               </div>
 
@@ -607,41 +600,19 @@
                 </div>
               </div>
 
-              {{^hasStarted}}
               <div class="row mb-3">
-                <label for="inscription-date" class="col-md-4 col-lg-3 col-form-label">Fin de inscripciones</label>
+                <label for="inscriptionDate" class="col-md-4 col-lg-3 col-form-label">Fin de inscripciones</label>
                 <div class="col-md-8 col-lg-9">
-                  <input name="inscriptionDate" type="datetime-local" class="form-control" id="inscription-date"
-                    value="{{tournament.inscriptionDate}}">
+                  <input #inscriptionDate name="inscriptionDate" type="datetime-local" class="form-control" id="inscriptionDate">
                 </div>
               </div>
 
               <div class="row mb-3">
-                <label for="start-date" class="col-md-4 col-lg-3 col-form-label">Inicio del torneo</label>
+                <label for="startDate" class="col-md-4 col-lg-3 col-form-label">Inicio del torneo</label>
                 <div class="col-md-8 col-lg-9">
-                  <input name="startDate" type="datetime-local" class="form-control" id="start-date"
-                    value="{{tournament.startDate}}">
+                  <input #startDate name="startDate" type="datetime-local" class="form-control" id="startDate">
                 </div>
               </div>
-              {{/hasStarted}}
-
-              {{#hasStarted}}
-              <div class="row mb-3">
-                <label for="inscription-date" class="col-md-4 col-lg-3 col-form-label">Fin de inscripciones</label>
-                <div class="col-md-8 col-lg-9">
-                  <input name="inscription-date" type="datetime-local" class="form-control" id="inscription-date"
-                    value="{{tournament.inscriptionDate}}" disabled>
-                </div>
-              </div>
-
-              <div class="row mb-3">
-                <label for="start-date" class="col-md-4 col-lg-3 col-form-label">Inicio del torneo</label>
-                <div class="col-md-8 col-lg-9">
-                  <input name="start-date" type="datetime-local" class="form-control" id="start-date"
-                    value="{{tournament.startDate}}" disabled>
-                </div>
-              </div>
-              {{/hasStarted}}
 
               <div class="row mb-3">
                 <label for="seeding" class="col-md-4 col-lg-3 col-form-label">Seeding</label>
@@ -664,22 +635,18 @@
                 </div>
               </div>
 
-              <input type="hidden" name="_csrf" value="{{token}}" />
+              <!-- <input type="hidden" name="_csrf" value="{{token}}" /> -->
 
-              {{#hasStarted}}
-              <div class="text-center">
+              <div *ngIf="tournament.started" class="text-center">
                 <button class="btn btn-green fw-bold" type="submit" disabled>Guardar cambios</button>
               </div>
-              {{/hasStarted}}
 
-              {{^hasStarted}}
-              <div class="text-center">
-                <button class="btn btn-green fw-bold" type="submit" >Guardar cambios</button>
+              <div *ngIf="!tournament.started" class="text-center">
+                <button class="btn btn-green fw-bold" type="submit" (click)="updateTournamentForm(name.value,
+                about.value, ruleset.value, location.value, inscriptionDate.value, startDate.value)">Guardar cambios</button>
               </div>
-              {{/hasStarted}}
 
-
-            </form> -->
+            </form>
             <!-- End Profile Edit Form -->
 
           </div>

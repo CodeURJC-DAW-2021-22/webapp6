@@ -1,3 +1,4 @@
+import { User } from './../models/user.model';
 import { Match } from './../models/match.model';
 import { LoginService } from './login.service';
 import { Team } from './../models/team.model';
@@ -44,6 +45,16 @@ export class TournamentService {
         this.router.navigate(['']);
       });
 
+  }
+
+  updateTournament(tournament: Tournament) {
+    return this.http.put(BASE_URL + tournament.id, tournament).pipe(
+			catchError(error => this.handleError(error))
+		);
+  }
+
+  inscription(id: number | string, user2: User) {
+    return this.http.put(BASE_URL + id + "/teams", user2);
   }
 
   private handleError(error: any) {

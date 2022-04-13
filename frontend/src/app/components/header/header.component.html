@@ -10,7 +10,7 @@
       <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
 
-          <li *ngIf="loginService.isAdmin()" class="nav-item dropdown">
+          <li *ngIf="loginService.isAdmin()" class="nav-item dropdown mt-1">
 
             <a class="nav-link nav-icon" [routerLink]="['/admin']">
                 <i class="ri-tools-fill"></i>
@@ -20,7 +20,7 @@
           </li>
           <!-- End Admin Nav -->
 
-          <li *ngIf="loginService.isLogged()" class="nav-item dropdown">
+          <li *ngIf="loginService.isLogged()" class="nav-item dropdown mt-1">
 
             <a class="nav-link nav-icon" data-bs-toggle="dropdown">
                 <i class="ri-dribbble-line"></i>
@@ -63,7 +63,7 @@
           </li>
           <!-- End Matchs Nav -->
 
-          <li *ngIf="loginService.isLogged()" class="nav-item dropdown">
+          <li *ngIf="loginService.isLogged()" class="nav-item dropdown mt-1">
 
               <a class="nav-link nav-icon" data-bs-toggle="dropdown">
                   <i class="ri-account-circle-fill"></i>
