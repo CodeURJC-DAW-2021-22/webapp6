@@ -8,8 +8,8 @@
         <div class="d-flex flex-row">
           <div class="tournament-img p-3">
 
-            <!-- <img src="/tournament/{{tournament.id}}/image" alt="Tournament Image" class="rounded-circle border-green bg-232323"> -->
-            <img src="../../../assets/images/product_02.jpg" alt="Tournament Image" class="rounded-circle border-green bg-232323">
+            <img *ngIf="tournament.image" src="api/tournaments/{{tournament.id}}/image" alt="Tournament Image" class="rounded-circle border-green bg-232323">
+            <img *ngIf="!tournament.image" src="../../../assets/images/product_02.jpg" alt="Tournament Image" class="rounded-circle border-green bg-232323">
 
           </div>
           <div class="d-flex align-items-center ps-2">
@@ -552,9 +552,9 @@
                 <label for="tournamentImage" class="col-md-4 col-lg-3 col-form-label">Imagen del torneo</label>
                 <div class="col-md-8 col-lg-9 tournament-img">
 
-                  <!-- <img src="/tournament/{{tournament.id}}/image"><br>
-                  <input type='checkbox' name='removeImage'> <label>Remove image</label><br> -->
-                  <img src="../../../assets/images/product_02.jpg"><br>
+                  <img *ngIf="tournament.image" src="/api/tournaments/{{tournament.id}}/image"><br>
+                  <img *ngIf="!tournament.image" src="../../../assets/images/product_02.jpg">
+                  <input *ngIf="tournament.image" type='checkbox' name='removeImage'> <label>Remove image</label><br>
 
                   <input type='file' name='imageField' accept=".jpg, .jpeg">
 

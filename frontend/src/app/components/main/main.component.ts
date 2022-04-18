@@ -57,39 +57,6 @@ export class MainComponent {
     )
   }
 
-  // hasTournamentImage(id: number | undefined){
-  //   let image = this.tournamentService.getTournamentImage(id);
-  //   if (image === undefined) {
-  //     return false;
-  //   } else {
-  //     return true;
-  //   }
-  // }
-
-  // getTournamentImage(id: number | undefined){
-  //   return this.tournamentService.getTournamentImage(id);;
-  // }
-
-  // hasTournamentImage(id: number | undefined){
-  //   let has = false
-  //   this.tournamentService.getTournamentImageAPI(id).subscribe(data => {
-  //     has = true
-  //   }, error => {
-  //     has = false
-  //   });
-  //   return has;
-  // }
-
-//   getTournamentImage(id: number | undefined) {
-//     let imageToShow: any;
-//     this.tournamentService.getTournamentImageAPI(id).subscribe(data => {
-//       imageToShow = this.createImageFromBlob(data);
-//     }, error => {
-//       console.error('Unexpected Error on hasTournamentImage')
-//     });
-//     return imageToShow;
-//   }
-
 //   createImageFromBlob(image: Blob) {
 //     let imageToShow: any;
 //     let reader = new FileReader();

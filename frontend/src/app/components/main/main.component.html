@@ -31,7 +31,9 @@
               <a [routerLink]="['/tournament',userTournament.id]">
 
                 <!-- <img *ngIf="hasTournamentImage(userTournament.id)" class="img-lista-torneos" [src]="getTournamentImage(userTournament.id)"> -->
-                <img class="img-lista-torneos" src="../../../assets/images/product_02.jpg">
+                <!-- <img class="img-lista-torneos" [src]="getTournamentImage(userTournament.id)"> -->
+                <img *ngIf="userTournament.image" class="img-lista-torneos" src="/api/tournaments/{{userTournament?.id}}/image">
+                <img *ngIf="!userTournament.image" class="img-lista-torneos" src="../../../assets/images/product_02.jpg">
 
               </a>
               <div class="down-content text-center">
@@ -71,8 +73,8 @@
               <!-- select image from DB when necessary-->
               <a [routerLink]="['/tournament',tournament.id]">
 
-                <!-- <img *ngIf="hasTournamentImage(tournament.id)" class="img-lista-torneos" [src]="getTournamentImage(tournament.id)"> -->
-                <img class="img-lista-torneos" src="../../../assets/images/product_02.jpg">
+                <img *ngIf="tournament.image" class="img-lista-torneos" src="/api/tournaments/{{tournament?.id}}/image">
+                <img *ngIf="!tournament.image" class="img-lista-torneos" src="../../../assets/images/product_02.jpg">
 
               </a>
 

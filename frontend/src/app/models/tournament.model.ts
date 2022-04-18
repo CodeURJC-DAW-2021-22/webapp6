@@ -12,7 +12,7 @@ export interface Tournament{
     startDate:string;
     started:boolean;
     //imageFile:Blob;
-    //image:boolean;
+    image:boolean;
 
 
 }

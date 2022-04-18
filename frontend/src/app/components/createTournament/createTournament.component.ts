@@ -20,7 +20,8 @@ export class CreateTournamentComponent {
 
 
       this.Tournament={owner:"someone",tournamentName:tournamentName,numParticipants:Number(numParticipants),numSignedUp:0,rounds:0,about:about,
-      ruleset:ruleset,location:location, inscriptionDate:inscriptionDate,startDate:startDate,started:false}
+      ruleset:ruleset,location:location, inscriptionDate:inscriptionDate,startDate:startDate,started:false,image:false}
+
 
       this.service.createTournament(this.Tournament);
 

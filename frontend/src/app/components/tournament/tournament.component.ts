@@ -148,7 +148,8 @@ export class TournamentComponent implements OnInit{
       location: '',
       inscriptionDate: '',
       startDate: '',
-      started: true
+      started: true,
+      image: false
     }
 
     this.refreshRoundsWhenFinish(this.tournamentService.updateTournament(startedTournament));
@@ -182,7 +183,9 @@ export class TournamentComponent implements OnInit{
       location: location,
       inscriptionDate: newinscriptionDate,
       startDate: newstartDate,
-      started: false
+      started: false,
+      //BE CAREFULL WITH THIS BOOLEAN WHEN UPDATED A IMG (NOT DONE YET)
+      image: false
     }
 
     this.refreshTournamentWhenFinish(this.tournamentService.updateTournament(updatedTournanent))

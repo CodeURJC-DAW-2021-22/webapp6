@@ -60,7 +60,7 @@ public class Tournament {
     @Lob
 	private Blob imageFile;
 
-    @JsonIgnore
+    @JsonView(User.Mostrar.class)
 	private boolean image;
 
 

@@ -63,18 +63,4 @@ export class TournamentService {
     return throwError("Server error (" + error.status + ")")
   }
 
-  getTournamentImageAPI(id: number | undefined) {
-    return this.http.get(BASE_URL + id + "/image", { withCredentials: true }) as Observable<Blob>;
-  }
-
-  // getTournamentImage(id: number | undefined) {
-  //   this.getTournamentImageAPI(id).subscribe(
-  //     tournamentImage => {
-  //       return tournamentImage;
-  //     },
-  //     error => {
-  //       console.error('Unexpected Error on getUserTournaments')
-  //     }
-  //   )
-  // }
 }
