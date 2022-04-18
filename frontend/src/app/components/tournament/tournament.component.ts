@@ -136,7 +136,7 @@ export class TournamentComponent implements OnInit{
 
   //idk why it doesnt work
   startTournament(){
-    const newTourn : Tournament = {
+    const startedTournament : Tournament = {
       id: this.id,
       owner: '',
       tournamentName: '',
@@ -151,7 +151,7 @@ export class TournamentComponent implements OnInit{
       started: true
     }
 
-    this.refreshRoundsWhenFinish(this.tournamentService.updateTournament(newTourn));
+    this.refreshRoundsWhenFinish(this.tournamentService.updateTournament(startedTournament));
   }
 
   deleteTeam(id: number | undefined){
@@ -170,7 +170,7 @@ export class TournamentComponent implements OnInit{
       newstartDate = this.formatDate(startDate);
     }
 
-    let newTourn: Tournament = {
+    const updatedTournanent: Tournament = {
       id: this.id,
       owner: '',
       tournamentName: name,
@@ -185,7 +185,7 @@ export class TournamentComponent implements OnInit{
       started: false
     }
 
-    this.refreshTournamentWhenFinish(this.tournamentService.updateTournament(newTourn))
+    this.refreshTournamentWhenFinish(this.tournamentService.updateTournament(updatedTournanent))
   }
 
   private formatDate(date: string): string {
