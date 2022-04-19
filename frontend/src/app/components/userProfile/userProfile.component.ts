@@ -13,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class UserProfileComponent{
 
-  constructor(private router: Router,public loginService: LoginService, public userService: UserService,activatedRoute: ActivatedRoute) {
+  constructor(private router: Router,public loginService: LoginService, public userService: UserService) {
    }
 
   calculatedKarma( array : number[]){

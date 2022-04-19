@@ -60,9 +60,9 @@ constructor(private http: HttpClient) { }
   }
 
   updateUser(user: User) {
-    return this.http.put(BASE_URL + user.id, user).pipe(
-      catchError(error => this.handleError(error))
-    );
+    return this.http.put(BASE_URL , user,{ withCredentials: true }).subscribe((resp: any) => {
+      console.log("Register new User: Successfully");
+    });
   }
 
   getAllUsers(page: number | string) {
