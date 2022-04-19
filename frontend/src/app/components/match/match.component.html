@@ -1,0 +1,330 @@
+<body class="bg-232323">
+  <header class="fixed-top"></header>
+
+  <!-- Page Content -->
+
+  <main *ngIf="$match | async as match" class="container main-tournament tournament">
+
+    <section class="card tournament-card">
+      <div class="d-flex justify-content-between">
+        <a href="/tourns/{{match.tournament.id}}">
+            <div class="d-flex flex-row">
+                <div class="tournament-img p-3">
+
+                    <img *ngIf="match.tournament.image" src="api/tournaments/{{match.tournament.id}}/image"
+                    alt="Tournament Image" class="rounded-circle border-green bg-232323">
+                    <img *ngIf="!match.tournament.image" src="/assets/images/product_02.jpg" alt="Tournament Image"
+                        class="rounded-circle border-green bg-232323">
+
+                </div>
+                <div class="d-flex align-items-center ps-2">
+                    <div>
+                        <h2 class="mt-0">{{match.tournament.tournamentName}}</h2>
+
+                        <h3 class="d-flex align-items-center pt-2"><em class="me-2">Organizador: </em>
+                            {{match.tournament.owner}}
+                        </h3>
+
+                        <div> <progress class="progress-bar round mb-1"
+                                value="{{match.tournament.numSignedUp}}"
+                                max="{{match.tournament.numParticipants}}"> </progress></div>
+                        <h5>Participantes:
+                            {{match.tournament.numSignedUp}}/{{match.tournament.numParticipants}}
+                            <span class="ps-5">{{match.tournament.location}}</span>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </a>
+          <div class="d-flex align-items-center justify-content-center p-2 me-5">
+              <div class="text-center">
+                  <h3 class="py-1 date-title">Fin de inscripciones</h3>
+                  <h3 class="py-1"><em>{{match.tournament.inscriptionDate}}</em></h3>
+                  <h3 class="py-1 date-title">Inicio del torneo</h3>
+                  <h3 class="py-1"><em>{{match.tournament.startDate}}</em></h3>
+              </div>
+          </div>
+      </div>
+    </section>
+
+    <!--Section add results-->
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <!--First pair-->
+                <div class="col-md-4 ps-0">
+                    <div class="card h-100">
+                        <div class="card-header text-center date-title">
+                            <span> {{match.teamOne.userA.name}} / {{match.teamOne.userB.name}}</span>
+
+
+                        </div>
+                        <div
+                            class="card-body profile-card pt-2 d-flex flex-column justify-content-center align-items-center">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="d-flex justify-content-start align-middle mt-2">
+
+                                        <span class="d-flex align-items-center partner-name">
+                                            {{match.teamOne.userA.realName}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="d-flex justify-content-start align-middle mt-2">
+
+                                        <span class="d-flex align-items-center partner-name">
+                                            {{match.teamOne.userB.realName}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <!-- Compress width of inputs -->
+                <div *ngIf="!match.hasWinner" class="col-md-4">
+                    <form action="/resultMach/{{match.id}}" method="post">
+                        <div class="card h-100">
+                            <div class="card-header text-center date-title">
+                                <span> RESULTADOS </span>
+                                <div *ngIf="!goodResult" style="color:red; font-size:10px;"> Resultados erroneos</div>
+                            </div>
+                            <div
+                                class="card-body profile-card pt-2 pb-0 d-flex flex-column justify-content-center align-items-center">
+                                <!--Primer set-->
+                                <div class="row my-1">
+                                    <div class="col-sm">
+                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="games1"
+                                            id="games1">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm">
+                                        <span>_______</span>
+                                    </div>
+                                    <div class="col-sm">
+                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="games2"
+                                            id="games2">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--Segundo set-->
+                                <div class="row my-1">
+                                    <div class="col-sm">
+                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="games3"
+                                            id="games3">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm">
+                                        <span>_______</span>
+                                    </div>
+                                    <div class="col-sm">
+                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="games4"
+                                            id="games4">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--Tercer set-->
+                                <div class="row my-1">
+                                    <div class="col-sm">
+                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="games5"
+                                            id="games5">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm">
+                                        <span>_______</span>
+                                    </div>
+                                    <div class="col-sm">
+                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="games6"
+                                            id="games6">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--Guardar resultados-->
+
+
+                                <div class="row my-3">
+                                    <button class="btn btn-green fw-bold" type="submit">Guardar
+                                        resultado</button>
+                                </div>
+                                <!-- <input type="hidden" name="_csrf" value="{{token}}" /> -->
+
+
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+                <div *ngIf="match.hasWinner" class="col-md-4">
+
+                    <div class="card h-100">
+                        <div class="card-header text-center date-title">
+                            <span> RESULTADOS </span>
+
+                        </div>
+                        <div
+                            class="card-body profile-card pt-2 pb-0 d-flex flex-column justify-content-center align-items-center">
+                            <!--Primer set-->
+                            <div class="row my-1">
+                                <div class="col-sm">
+                                    <select class="form-select bg-232323 color-fff fw-bold px-1" name="games1"
+                                        id="games1" style="color: black;" disabled>
+                                        <!-- <option value="0">{{match.result.0}}</option> -->
+                                        <option value="0">0</option>
+
+                                    </select>
+                                </div>
+                                <div class="col-sm">
+                                    <span>_______</span>
+                                </div>
+                                <div class="col-sm">
+                                    <select class="form-select bg-232323 color-fff fw-bold px-1" name="games2"
+                                        id="games2" style="color: black;" disabled>
+                                        <!-- <option value="0">{{match.result.1}}</option> -->
+                                        <option value="0">0</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <!--Segundo set-->
+                            <div class="row my-1">
+                                <div class="col-sm">
+                                    <select class="form-select bg-232323 color-fff fw-bold px-1" name="games3"
+                                        id="games3" style="color: black;" disabled>
+                                        <!-- <option value="0">{{match.result.2}}</option> -->
+                                        <option value="0">0</option>
+
+                                    </select>
+                                </div>
+                                <div class="col-sm">
+                                    <span>_______</span>
+                                </div>
+                                <div class="col-sm">
+                                    <select class="form-select bg-232323 color-fff fw-bold px-1" name="games4"
+                                        id="games4" style="color: black;" disabled>
+                                        <!-- <option value="0">{{match.result.3}}</option> -->
+                                        <option value="0">0</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <!--Tercer set-->
+                            <div class="row my-1">
+                                <div class="col-sm">
+                                    <select class="form-select bg-232323 color-fff fw-bold px-1" name="games5"
+                                        id="games5" style="color: black;" disabled>
+                                        <!-- <option value="0">{{match.result.4}}</option> -->
+                                        <option value="0">0</option>
+
+                                    </select>
+                                </div>
+                                <div class="col-sm">
+                                    <span>_______</span>
+                                </div>
+                                <div class="col-sm">
+                                    <select class="form-select bg-232323 color-fff fw-bold px-1" name="games6"
+                                        id="games6" style="color: black;" disabled>
+                                        <!-- <option value="0">{{match.result.5}}</option> -->
+                                        <option value="0">0</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <!--Guardar resultados-->
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- Second pair-->
+                <div class="col-md-4 pe-0">
+                    <div class="card h-100">
+                        <div class="card-header text-center date-title">
+                            <span> {{match.teamTwo.userA.name}} / {{match.teamTwo.userB.name}}</span>
+                        </div>
+                        <div
+                            class="card-body profile-card pt-2 d-flex flex-column justify-content-center align-items-center">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="d-flex justify-content-start align-middle mt-2">
+
+                                        <span
+                                            class="d-flex align-items-center partner-name">{{match.teamTwo.userA.realName}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="d-flex justify-content-start align-middle mt-2">
+
+                                        <span
+                                            class="d-flex align-items-center partner-name">{{match.teamTwo.userB.realName}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end row-->
+        </div>
+    </section>
+
+  </main>

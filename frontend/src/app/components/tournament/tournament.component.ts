@@ -146,8 +146,8 @@ export class TournamentComponent implements OnInit{
       about: '',
       ruleset: '',
       location: '',
-      inscriptionDate: '',
-      startDate: '',
+      inscriptionDate: '2022-12-16T16:00',
+      startDate: '2022-12-16T16:00',
       started: true,
       image: false
     }
@@ -166,9 +166,13 @@ export class TournamentComponent implements OnInit{
     let newstartDate = ''
     if (inscriptionDate != '') {
       newinscriptionDate = this.formatDate(inscriptionDate);
+    } else {
+      // newinscriptionDate = this.$tournament.inscriptionDate;
     }
     if (startDate != '') {
       newstartDate = this.formatDate(startDate);
+    } else {
+      // newstartDate = this.$tournament.startDate;
     }
 
     const updatedTournanent: Tournament = {
@@ -195,6 +199,15 @@ export class TournamentComponent implements OnInit{
     let splitted1 = date.split('T');
     let splitted2 = splitted1[0].split('-');
     let newDate = splitted1[1] + ' ' + ' ' + splitted2[2] + '/' + splitted2[1] + '/' + splitted2[0];
+    return newDate;
+    // "yyyy-MM-ddTHH:mm"
+    // "HH:mm  dd/MM/yyyy"
+  }
+
+  private formatDateReverse(date: string): string {
+    let splitted1 = date.split('  ');
+    let splitted2 = splitted1[1].split('/');
+    let newDate = splitted2[2] + '-' + splitted2[1] + '-' + splitted2[0] + 'T' + splitted1[0];
     return newDate;
     // "yyyy-MM-ddTHH:mm"
     // "HH:mm  dd/MM/yyyy"
