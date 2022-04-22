@@ -38,10 +38,10 @@ export class TournamentComponent{
     const id = activatedRoute.snapshot.params['id'];
     this.id = id;
 
-    this.getTournamentInit(id);
+    this.getTournamentInit(id, 1);
   }
 
-  getTournamentInit(id: number | string) {
+  getTournamentInit(id: number | string, aux: any) {
     this.tournamentService.getTournament(id).subscribe(
       tournament => {
         this.tournament = tournament;
@@ -63,7 +63,7 @@ export class TournamentComponent{
     )
   }
 
-  refreshTournament(id: number | string) {
+  refreshTournament(id: number | string, aux: any) {
     this.tournamentService.getTournament(id).subscribe(
       tournament => {
         this.tournament = tournament;
@@ -196,7 +196,8 @@ export class TournamentComponent{
       encodedPassword: '',
       roles: []
     }
-    this.getTournamentInit(this.id);
+
+    this.getTournamentInit(this.id, this.tournamentService.inscription(this.id, user2).subscribe());
   }
 
   startTournament(){
@@ -216,7 +217,7 @@ export class TournamentComponent{
       image: false
     }
 
-    this.getTournamentInit(this.id);
+    this.getTournamentInit(this.id, this.tournamentService.updateTournament(startedTournament).subscribe());
   }
 
   deleteTeam(id: number | undefined){
@@ -229,14 +230,14 @@ export class TournamentComponent{
     let newinscriptionDate = ''
     let newstartDate = ''
     if (inscriptionDate != '') {
-      newinscriptionDate = this.formatDate(inscriptionDate);
+      newinscriptionDate = inscriptionDate;
     } else {
-      newinscriptionDate =  this.tournament.inscriptionDate;
+      newinscriptionDate =  this.formatDateReverse(this.tournament.inscriptionDate);
     }
     if (startDate != '') {
-      newstartDate = this.formatDate(startDate);
+      newstartDate = startDate;
     } else {
-      newstartDate =  this.tournament.startDate;
+      newstartDate = this.formatDateReverse(this.tournament.startDate);
     }
 
     const updatedTournanent: Tournament = {
@@ -256,7 +257,7 @@ export class TournamentComponent{
       image: false
     }
 
-    this.refreshTournament(this.id)
+    this.getTournamentInit(this.id, this.tournamentService.updateTournament(updatedTournanent).subscribe())
   }
 
   private formatDate(date: string): string {
