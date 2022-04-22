@@ -1,7 +1,7 @@
 <body class="bg-232323">
   <header class="fixed-top"></header>
 
-  <main *ngIf="$tournament | async as tournament" class="container main-tournament tournament">
+  <main *ngIf="tournament !== undefined" class="container main-tournament tournament">
 
     <section class="card tournament-card">
       <div class="d-flex justify-content-between">
@@ -170,14 +170,14 @@
 
             <h5 class="card-title pb-1">Participantes</h5>
 
-            <div *ngFor="let team of ($participants | async)" class="row py-2 pair-tournament">
+            <div *ngFor="let team of participants" class="row py-2 pair-tournament">
               <span type="hidden"></span>
               <div class="col-md-11 d-flex justify-content-start align-items-center">
-                <div class="pe-2" *ngIf="checkUser(team.userA.name)">
+                <div class="pe-2">
                       {{team.userA.name}}
                 </div>
                 <i class="ri-arrow-left-right-fill"></i>
-                <div class="ps-2" *ngIf="checkUser(team.userB.name)">
+                <div class="ps-2">
                       {{team.userB.name}}
                 </div>
               </div>
@@ -201,14 +201,14 @@
             <!-- Tournament Bracket -->
             <div class="container pb-2">
               <div class="bracket d-flex flex-row flex-nowrap overflow-auto">
-                <div class="tournament-bracket tournament-bracket--rounded mb-5">
+                <div *ngIf="tournament.started" class="tournament-bracket tournament-bracket--rounded mb-5">
 
 
-                  <div *ngIf="$round4 | async as round4" class="tournament-bracket__round tournament-bracket__round--semifinals">
+                  <div class="tournament-bracket__round tournament-bracket__round--semifinals">
                     <h3 class="tournament-bracket__round-title">Octavos de final</h3>
                     <ul class="tournament-bracket__list">
 
-                      <li *ngFor="let match of ($round4 | async)" class="tournament-bracket__item">
+                      <li *ngFor="let match of round4" class="tournament-bracket__item">
                         <div class="tournament-bracket__match" tabindex="0">
                           <table class="tournament-bracket__table">
 
@@ -287,12 +287,12 @@
                   </div>
 
 
-                  <div *ngIf="$round3 | async as round3" class="tournament-bracket__round tournament-bracket__round--quarterfinals">
+                  <div class="tournament-bracket__round tournament-bracket__round--quarterfinals">
                     <h3 class="tournament-bracket__round-title">Cuartos de final</h3>
 
                     <ul class="tournament-bracket__list">
 
-                      <li *ngFor="let match of ($round3 | async)" class="tournament-bracket__item">
+                      <li *ngFor="let match of round3" class="tournament-bracket__item">
                         <div class="tournament-bracket__match" tabindex="0">
                           <table class="tournament-bracket__table">
                             <caption class="tournament-bracket__caption">
@@ -372,11 +372,11 @@
                   </div>
 
 
-                  <div *ngIf="$round2 | async as round2" class="tournament-bracket__round tournament-bracket__round--semifinals">
+                  <div class="tournament-bracket__round tournament-bracket__round--semifinals">
                     <h3 class="tournament-bracket__round-title">Semifinales</h3>
                     <ul class="tournament-bracket__list">
 
-                      <li *ngFor="let match of ($round2 | async)" class="tournament-bracket__item">
+                      <li *ngFor="let match of round2" class="tournament-bracket__item">
                         <div class="tournament-bracket__match" tabindex="0">
                           <table class="tournament-bracket__table">
 
@@ -455,11 +455,11 @@
                   </div>
 
 
-                  <div *ngIf="$round1 | async as round1" class="tournament-bracket__round tournament-bracket__round--bronze">
+                  <div class="tournament-bracket__round tournament-bracket__round--bronze">
                     <h3 class="tournament-bracket__round-title">Final</h3>
                     <ul class="tournament-bracket__list">
 
-                      <li *ngFor="let match of ($round1 | async)" class="tournament-bracket__item">
+                      <li *ngFor="let match of round1" class="tournament-bracket__item">
                         <div class="tournament-bracket__match" tabindex="0">
                           <table class="tournament-bracket__table">
 

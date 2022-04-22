@@ -3,7 +3,7 @@ import { Team } from './../../models/team.model';
 import { User } from './../../models/user.model';
 import { Tournament } from './../../models/tournament.model';
 import { TournamentService } from 'src/app/services/tournament.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
@@ -12,23 +12,19 @@ import { Observable } from 'rxjs';
 @Component({
   templateUrl: './tournament.component.html'
 })
-export class TournamentComponent implements OnInit{
+export class TournamentComponent{
 
   id: number = 0;
-  $tournament: Observable<Tournament> | undefined;
-  $participants: Observable<Team[]> | undefined;
+  tournament!: Tournament;
+  participants: Team[] = [];
 
   userInTournament: boolean | undefined;
 
   //Bracket Rounds
-  // $round4: Observable<Match[]> | undefined;
-  // $round3: Observable<Match[]> | undefined;
-  // $round2: Observable<Match[]> | undefined;
-  // $round1: Observable<Match[]> | undefined;
-  $round4: Observable<Match[]> | undefined;
-  $round3: Observable<Match[]> | undefined;
-  $round2: Observable<Match[]> | undefined;
-  $round1: Observable<Match[]> | undefined;
+  round4: Match[] = [];
+  round3: Match[] = [];
+  round2: Match[] = [];
+  round1: Match[] = [];
 
   //For User List on Inscription
   usersPage = -1;
@@ -39,48 +35,117 @@ export class TournamentComponent implements OnInit{
   constructor(private router: Router, activatedRoute: ActivatedRoute, public tournamentService: TournamentService,
     public userService: UserService, public loginService: LoginService) {
 
-    this.id = activatedRoute.snapshot.params['id'];
+    const id = activatedRoute.snapshot.params['id'];
+    this.id = id;
+
+    this.getTournamentInit(id);
   }
 
-  ngOnInit() {
-    this.getTournament(this.id);
-		this.getParticipants();
-    this.getRounds(this.id);
+  getTournamentInit(id: number | string) {
+    this.tournamentService.getTournament(id).subscribe(
+      tournament => {
+        this.tournament = tournament;
+        this.getParticipants();
+        if (tournament.started) {
+          this.getRound4();
+          this.getRound3();
+          this.getRound2();
+          this.getRound1();
+        }
+      },
+      error => {
+        if (error.status != 404) {
+          console.error('Unexpected Error on getTournament')
+        } else {
+          this.router.navigate(['/error404'])
+        }
+      }
+    )
+  }
+
+  refreshTournament(id: number | string) {
+    this.tournamentService.getTournament(id).subscribe(
+      tournament => {
+        this.tournament = tournament;
+      },
+      error => {
+        if (error.status != 404) {
+          console.error('Unexpected Error on getTournament')
+        } else {
+          this.router.navigate(['/error404'])
+        }
+      }
+    )
   }
 
   getParticipants() {
-		this.$participants = this.tournamentService.getTournamentTeams(this.id);
+		this.tournamentService.getTournamentTeams(this.id).subscribe(
+      teamList => {
+        this.participants = teamList;
+        let isSigned = false;
+        if (this.loginService.isLogged()) {
+          let name = this.loginService.currentUser().name;
+          for (let i = 0; i < teamList.length; i++){
+            if (teamList[i].userA.name == name || teamList[i].userB.name == name){
+              isSigned = true;
+            }
+          }
+        }
+        this.userInTournament = isSigned;
+      }
+    );
 	}
 
-  refreshParticipantsWhenFinish(items: Observable<any>) {
-		items.subscribe(_ => this.getParticipants());
-	}
-
-  getTournament(id: number | string) {
-    this.$tournament = this.tournamentService.getTournament(id);
+  getRound4() {
+    this.tournamentService.getTournamentRound(this.id, 4).subscribe(
+      matchList => {
+        this.round4 = matchList;
+      },
+      error => {
+        if (error.status != 400) {
+          console.error('Unexpected Error on getTournament')
+        }
+      }
+    )
   }
 
-  refreshTournamentWhenFinish(items: Observable<any>) {
-    items.subscribe(_ => this.getTournament(this.id));
-	}
-
-  getRounds(id: number | string) {
-    this.$round4 =  this.tournamentService.getTournamentRound(id, 4);
-    this.$round3 =  this.tournamentService.getTournamentRound(id, 3);
-    this.$round2 =  this.tournamentService.getTournamentRound(id, 2);
-    this.$round1 =  this.tournamentService.getTournamentRound(id, 1);
+  getRound3() {
+    this.tournamentService.getTournamentRound(this.id, 3).subscribe(
+      matchList => {
+        this.round3 = matchList;
+      },
+      error => {
+        if (error.status != 400) {
+          console.error('Unexpected Error on getTournament')
+        }
+      }
+    )
   }
 
-  refreshRoundsWhenFinish(items: Observable<any>) {
-		items.subscribe(_ => this.getRounds(this.id));
-    // items.subscribe(_ => this.getTournament(this.id));
-	}
+  getRound2() {
+    this.tournamentService.getTournamentRound(this.id, 2).subscribe(
+      matchList => {
+        this.round2 = matchList;
+      },
+      error => {
+        if (error.status != 400) {
+          console.error('Unexpected Error on getTournament')
+        }
+      }
+    )
+  }
 
-  checkUser(name: String) {
-    if (!this.userInTournament && this.loginService.isLogged()) {
-      this.userInTournament = name == this.loginService.currentUser().name;
-    }
-    return true;
+  getRound1() {
+    this.tournamentService.getTournamentRound(this.id, 1).subscribe(
+      matchList => {
+        this.round1 = matchList;
+      },
+      error => {
+        if (error.status != 400) {
+          console.error('Unexpected Error on getTournament')
+        }
+      }
+    )
   }
 
   getName() {
@@ -131,10 +196,9 @@ export class TournamentComponent implements OnInit{
       encodedPassword: '',
       roles: []
     }
-    this.refreshParticipantsWhenFinish(this.tournamentService.inscription(this.id, user2));
+    this.getTournamentInit(this.id);
   }
 
-  //idk why it doesnt work
   startTournament(){
     const startedTournament : Tournament = {
       id: this.id,
@@ -152,14 +216,14 @@ export class TournamentComponent implements OnInit{
       image: false
     }
 
-    this.refreshRoundsWhenFinish(this.tournamentService.updateTournament(startedTournament));
+    this.getTournamentInit(this.id);
   }
 
   deleteTeam(id: number | undefined){
 
   }
 
-  //It works but idk why it gives a 400 error (100% same JSON input than Postman)
+
   updateTournamentForm(name:string, about:string, ruleset:string, location:string, inscriptionDate:string, startDate:string){
 
     let newinscriptionDate = ''
@@ -167,12 +231,12 @@ export class TournamentComponent implements OnInit{
     if (inscriptionDate != '') {
       newinscriptionDate = this.formatDate(inscriptionDate);
     } else {
-      // newinscriptionDate = this.$tournament.inscriptionDate;
+      newinscriptionDate =  this.tournament.inscriptionDate;
     }
     if (startDate != '') {
       newstartDate = this.formatDate(startDate);
     } else {
-      // newstartDate = this.$tournament.startDate;
+      newstartDate =  this.tournament.startDate;
     }
 
     const updatedTournanent: Tournament = {
@@ -192,7 +256,7 @@ export class TournamentComponent implements OnInit{
       image: false
     }
 
-    this.refreshTournamentWhenFinish(this.tournamentService.updateTournament(updatedTournanent))
+    this.refreshTournament(this.id)
   }
 
   private formatDate(date: string): string {
