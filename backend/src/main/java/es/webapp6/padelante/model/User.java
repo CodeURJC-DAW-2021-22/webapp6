@@ -55,7 +55,7 @@ public class User {
 	@Lob
 	private Blob imageFile;
 
-	@JsonIgnore
+	@JsonView(Mostrar.class)
 	private boolean image;
 
 	

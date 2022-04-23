@@ -156,7 +156,7 @@ export class TournamentComponent{
   }
 
   resetUsersPage(){
-    this.usersPage = 0;
+    this.usersPage = -1;
     this.hasMoreUsers = true;
     this.usersList = [];
   }

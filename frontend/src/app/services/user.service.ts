@@ -17,18 +17,8 @@ constructor(private http: HttpClient) { }
 
   //getuser by id
   getUser(id: number | string): Observable<User> {
-    return this.http.get(BASE_URL + id).pipe(
-      //catchError(error => this.handleError(error))
-    ) as Observable<User>;
+    return this.http.get(BASE_URL + id) as Observable<User>;
   }
-
-  //get all users;
-  // OJITO QUE AQUI HAY PAGEABLE
-  // getAllUsers(): Observable<User[]> {
-  //   return this.HttpClient.get(BASE_URL).pipe(
-  //     //catchError(error => this.handleError(error))
-  //   ) as Observable<User[]>;
-  // }
 
   registerUser(User: User) {
 
@@ -67,6 +57,10 @@ constructor(private http: HttpClient) { }
 
   getAllUsers(page: number | string) {
     return this.http.get(BASE_URL + "?page=" + page, { withCredentials: true }) as Observable<any>;
+  }
+
+  getUserPairs(page: number | string) {
+    return this.http.get(BASE_URL + "me/pairs?page=" + page, { withCredentials: true }) as Observable<any>;
   }
 
   getUserMatches() {
