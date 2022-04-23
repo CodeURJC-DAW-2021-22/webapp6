@@ -92,8 +92,10 @@
                           <div class="d-flex align-items-center justify-content-between lineUser">
                             <div class="pe-2">
 
-                              <!-- <img class="partner-img rounded-circle border-green-tiny small me-2" src="/user/{{id}}/image"> -->
-                              <img class="partner-img rounded-circle border-green-tiny small me-2" src="/assets/images/no_profile_photo.jpg">
+                              <img *ngIf="user.image" class="partner-img rounded-circle border-green-tiny small me-2"
+                              src="/api/users/image/{{user?.id}}">
+                              <img *ngIf="!user.image" class="partner-img rounded-circle border-green-tiny small me-2"
+                              src="/assets/images/no_profile_photo.jpg">
 
                               {{user.name}}
                             </div>
