@@ -51,10 +51,14 @@
             </div>
 
             <div *ngIf="userInTournament && tournament.started" class="d-flex justify-content-end">
-              <button class="generarPDF d-inline button btn-tournament upper-text my-1" id="PDFWinner" onclick="genPdf()">
+              <button class="generarPDF d-inline button btn-tournament upper-text my-1" id="PDFWinner" (click)="createPDF()">
                 <i class="ri-file-download-fill"></i> Descargar PDF
               </button>
             </div>
+
+            <button class="generarPDF d-inline button btn-tournament upper-text my-1" id="PDFWinner" (click)="createPDF()">
+              <i class="ri-file-download-fill"></i> Descargar PDF
+            </button>
 
             <div *ngIf="getName()== this.tournament.owner && !tournament.started && tournament.numSignedUp > 1" class="d-flex justify-content-end">
               <button class="button-no-format" type="submit" (click)="startTournament()">
