@@ -53,6 +53,10 @@ export class TournamentService {
 		);
   }
 
+  deleteTeam(idTournament: number | string, idTeam: number | string) {
+    return this.http.delete(BASE_URL + idTournament + "/teams/" + idTeam, { withCredentials: true });
+  }
+
   inscription(id: number | string, user2: User) {
     return this.http.put(BASE_URL + id + "/teams", user2);
   }

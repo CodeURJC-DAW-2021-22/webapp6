@@ -220,8 +220,10 @@ export class TournamentComponent{
     this.getTournamentInit(this.id, this.tournamentService.updateTournament(startedTournament).subscribe());
   }
 
-  deleteTeam(id: number | undefined){
-
+  deleteTeam(idTeam: number | undefined){
+    if (idTeam !== undefined){
+      this.getTournamentInit(this.id, this.tournamentService.deleteTeam(this.id, idTeam).subscribe());
+    }
   }
 
 
