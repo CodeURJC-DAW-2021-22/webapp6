@@ -4,6 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { routing } from './app.routing';
+import {ChartModule} from 'primeng/chart';
+import {TabViewModule} from 'primeng/tabview';
+import {AppDemoActionsModule} from './app.demoactions.component';
+
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -16,7 +20,7 @@ import { TournamentComponent } from './components/tournament/tournament.componen
 import { MatchComponent } from './components/match/match.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { Error404Component } from './components/error/error_404.component';
-//import { DoughnutChart} from './components/doughnutchart/doughnutchart.component';
+import { DoughnutChartComponent} from './components/doughnutchart/doughnutchart.component';
 
 
 @NgModule({
@@ -32,14 +36,20 @@ import { Error404Component } from './components/error/error_404.component';
     MatchComponent,
     AdminComponent,
     Error404Component,
-    //DoughnutChart,
+    DoughnutChartComponent,
+
 
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    //DoughnutChart
+    ChartModule,
+    TabViewModule,
+    AppDemoActionsModule,
+
+
+
     routing
   ],
   providers: [],
