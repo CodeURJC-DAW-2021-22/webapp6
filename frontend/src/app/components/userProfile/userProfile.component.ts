@@ -112,6 +112,7 @@ export class UserProfileComponent{
         error => alert('Error deleting user image: ' + error)
       );
     } else {
+      console.log("Entramos en else")
       this.afterUploadImage();
     }
   }

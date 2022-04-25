@@ -178,7 +178,8 @@
 
                       <div class="col-md-8 col-lg-9">
                         <img *ngIf="hasImage()" src="api/users/image/{{loginService.currentUser().id}}"><br>
-                        <input *ngIf="hasImage()" type='checkbox' name='removeImage'> <label>Remove image</label><br>
+                        
+                        <input *ngIf="hasImage()" type='checkbox' name='removeImage' [(ngModel)]="removeImage"> <label>Remove image</label><br>
 
                         <img *ngIf="!hasImage()" src="/assets/images/no_profile_photo.jpg"> <br>
 
