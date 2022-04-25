@@ -29,14 +29,14 @@ constructor(private http: HttpClient) { }
     });
   }
 
-  setUserImage(user: User, formData: FormData) {
+  setUserImage(formData: FormData) {
     return this.http.post(BASE_URL + 'image', formData)
       .pipe(
         catchError(error => this.handleError(error))
       );
   }
 
-  deleteUserImage(user: User) {
+  deleteUserImage(){
     return this.http.delete(BASE_URL + 'image')
       .pipe(
         catchError(error => this.handleError(error))
@@ -80,6 +80,6 @@ constructor(private http: HttpClient) { }
   private handleError(error: any) {
     console.log("ERROR:");
     console.error(error);
-    return throwError("Server error (" + error.status + "): " + error.text())
+    return throwError("Server error (" + error.status + "): ");
   }
 }
