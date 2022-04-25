@@ -21,7 +21,7 @@ const appRoutes = [
   { path: 'admin', component: AdminComponent },
   { path: 'error404', component: Error404Component },
   { path: 'doughnut', component: DoughnutChartComponent},
-  // { path: '', redirectTo: '', pathMatch: 'full' }
+  { path: '', redirectTo: '', pathMatch: 'full' }
 ]
 
 export const routing = RouterModule.forRoot(appRoutes);

@@ -3,11 +3,11 @@
 
   <!-- Page Content -->
 
-  <main *ngIf="$match | async as match" class="container main-tournament tournament">
+  <main *ngIf="match !== undefined" class="container main-tournament tournament">
 
     <section class="card tournament-card">
       <div class="d-flex justify-content-between">
-        <a href="/tourns/{{match.tournament.id}}">
+        <a [routerLink]="['/tournament',match.tournament.id]">
             <div class="d-flex flex-row">
                 <div class="tournament-img p-3">
 
@@ -99,7 +99,7 @@
                                 <!--Primer set-->
                                 <div class="row my-1">
                                     <div class="col-sm">
-                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="games1"
+                                        <select #games1 class="form-select bg-232323 color-fff fw-bold px-1" name="games1"
                                             id="games1">
                                             <option value="0">0</option>
                                             <option value="1">1</option>
@@ -115,7 +115,7 @@
                                         <span>_______</span>
                                     </div>
                                     <div class="col-sm">
-                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="games2"
+                                        <select #games2 class="form-select bg-232323 color-fff fw-bold px-1" name="games2"
                                             id="games2">
                                             <option value="0">0</option>
                                             <option value="1">1</option>
@@ -131,7 +131,7 @@
                                 <!--Segundo set-->
                                 <div class="row my-1">
                                     <div class="col-sm">
-                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="games3"
+                                        <select #games3 class="form-select bg-232323 color-fff fw-bold px-1" name="games3"
                                             id="games3">
                                             <option value="0">0</option>
                                             <option value="1">1</option>
@@ -147,7 +147,7 @@
                                         <span>_______</span>
                                     </div>
                                     <div class="col-sm">
-                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="games4"
+                                        <select #games4 class="form-select bg-232323 color-fff fw-bold px-1" name="games4"
                                             id="games4">
                                             <option value="0">0</option>
                                             <option value="1">1</option>
@@ -163,7 +163,7 @@
                                 <!--Tercer set-->
                                 <div class="row my-1">
                                     <div class="col-sm">
-                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="games5"
+                                        <select #games5 class="form-select bg-232323 color-fff fw-bold px-1" name="games5"
                                             id="games5">
                                             <option value="0">0</option>
                                             <option value="1">1</option>
@@ -179,7 +179,7 @@
                                         <span>_______</span>
                                     </div>
                                     <div class="col-sm">
-                                        <select class="form-select bg-232323 color-fff fw-bold px-1" name="games6"
+                                        <select #games6 class="form-select bg-232323 color-fff fw-bold px-1" name="games6"
                                             id="games6">
                                             <option value="0">0</option>
                                             <option value="1">1</option>
@@ -196,8 +196,9 @@
 
 
                                 <div class="row my-3">
-                                    <button class="btn btn-green fw-bold" type="submit">Guardar
-                                        resultado</button>
+                                    <button class="btn btn-green fw-bold" type="submit"
+                                    (click)="setResult(games1.value,games2.value,games3.value,games4.value,games5.value,games6.value)">
+                                    Guardar resultado</button>
                                 </div>
                                 <!-- <input type="hidden" name="_csrf" value="{{token}}" /> -->
 
