@@ -6,7 +6,7 @@ import {Subscription} from 'rxjs';
 @Component({
     templateUrl: './doughnutchart.component.html'
 })
-export class DoughnutChart implements OnInit, OnDestroy {
+export class DoughnutChartComponent implements OnInit, OnDestroy {
 
     data: any;
 
@@ -20,19 +20,19 @@ export class DoughnutChart implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.data = {
-            labels: ['A','B','C'],
+            labels: ['Victorias','Derrotas'],
             datasets: [
                 {
-                    data: [300, 50, 100],
+                    data: [300, 50, ],
                     backgroundColor: [
                         "#FF6384",
                         "#36A2EB",
-                        "#FFCE56"
+
                     ],
                     hoverBackgroundColor: [
                         "#FF6384",
                         "#36A2EB",
-                        "#FFCE56"
+
                     ]
                 }
             ]

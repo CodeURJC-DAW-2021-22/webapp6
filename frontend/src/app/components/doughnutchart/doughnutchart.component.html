@@ -1,4 +1,4 @@
-<!-- <div class="content-section introduction">
+<div class="content-section introduction">
   <div class="feature-intro">
       <h1>DoughnutChart</h1>
       <p>A doughnut chart is a variant of the pie chart, with a blank center allowing for additional information about the data as a whole to be included.</p>
@@ -24,7 +24,8 @@
 &lt;p-chart type="doughnut" [data]="data" [options]="chartOptions" [style]="&#123;'width': '40%'&#125;"&gt;&lt;/p-chart&gt;
 </app-code>
 <app-code lang="typescript" ngNonBindable ngPreserveWhitespaces>
-export class DoughnutChartDemo &#123;
+
+export class DoughnutChartComponent &#123;
 
   data: any;
 
@@ -38,19 +39,17 @@ export class DoughnutChartDemo &#123;
 
   ngOnInit() &#123;
       this.data = &#123;
-          labels: ['A','B','C'],
+          labels: ['Victorias','Derrotas'],
           datasets: [
               &#123;
-                  data: [300, 50, 100],
+                  data: [300, 50],
                   backgroundColor: [
                       "#FF6384",
                       "#36A2EB",
-                      "#FFCE56"
                   ],
                   hoverBackgroundColor: [
                       "#FF6384",
                       "#36A2EB",
-                      "#FFCE56"
                   ]
               &#125;
           ]
@@ -95,4 +94,4 @@ export class DoughnutChartDemo &#123;
 </app-code>
       </p-tabPanel>
   </p-tabView>
-</div> -->
+</div>
