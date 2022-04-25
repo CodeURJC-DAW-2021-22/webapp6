@@ -56,10 +56,6 @@
               </button>
             </div>
 
-            <button class="generarPDF d-inline button btn-tournament upper-text my-1" id="PDFWinner" (click)="createPDF()">
-              <i class="ri-file-download-fill"></i> Descargar PDF
-            </button>
-
             <div *ngIf="getName()== this.tournament.owner && !tournament.started && tournament.numSignedUp > 1" class="d-flex justify-content-end">
               <button class="button-no-format" type="submit" (click)="startTournament()">
                   <span class="button btn-tournament upper-text my-1" title="Start Tournament">
@@ -210,7 +206,7 @@
                 <div *ngIf="tournament.started" class="tournament-bracket tournament-bracket--rounded mb-5">
 
 
-                  <div class="tournament-bracket__round tournament-bracket__round--semifinals">
+                  <div *ngIf="round4 != []" class="tournament-bracket__round tournament-bracket__round--semifinals">
                     <h3 class="tournament-bracket__round-title">Octavos de final</h3>
                     <ul class="tournament-bracket__list">
 
@@ -293,7 +289,7 @@
                   </div>
 
 
-                  <div class="tournament-bracket__round tournament-bracket__round--quarterfinals">
+                  <div *ngIf="round3 != []" class="tournament-bracket__round tournament-bracket__round--quarterfinals">
                     <h3 class="tournament-bracket__round-title">Cuartos de final</h3>
 
                     <ul class="tournament-bracket__list">
@@ -378,7 +374,7 @@
                   </div>
 
 
-                  <div class="tournament-bracket__round tournament-bracket__round--semifinals">
+                  <div *ngIf="round2 != []" class="tournament-bracket__round tournament-bracket__round--semifinals">
                     <h3 class="tournament-bracket__round-title">Semifinales</h3>
                     <ul class="tournament-bracket__list">
 
@@ -461,7 +457,7 @@
                   </div>
 
 
-                  <div class="tournament-bracket__round tournament-bracket__round--bronze">
+                  <div *ngIf="round1 != []" class="tournament-bracket__round tournament-bracket__round--bronze">
                     <h3 class="tournament-bracket__round-title">Final</h3>
                     <ul class="tournament-bracket__list">
 
