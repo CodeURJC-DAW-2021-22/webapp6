@@ -1,0 +1,110 @@
+
+
+<body class="bg-232323">
+
+  <header class="fixed-top"></header>
+
+
+  <div class="container main-tournament">
+
+    <div class="card">
+      <div class="card-body pt-3">
+        <!-- Bordered Tabs -->
+        <ul class="nav nav-tabs nav-tabs-bordered">
+
+          <li class="nav-item">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#players">Jugadores</button>
+          </li>
+
+          <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tournaments">Torneos</button>
+          </li>
+
+
+
+        </ul>
+
+
+        <div class="tab-content pt-2">
+
+          <!--Player finder-->
+          <div class="tab-pane fade show active profile-edit pt-3" id="players">
+
+            <div class="card text-center">
+              <div class="card-body profile-card pt-2 d-flex flex-column justify-content-center">
+                <h2 class="mt-2 mb-1">Usuarios encontrados</h2>
+
+                <span id="elements2">
+
+
+                  <div  *ngIf="isAdmin()" class="row">
+                    <div  *ngFor="let user of usersList" class="col-md-12">
+                      <div class="d-flex lineUser">
+
+                      <img  *ngIf="hasImage()" class="userFinder" src="/user/{{user.id}}/image">
+                      <img *ngIf="!hasImage()" class="userFinder" src="/assets/images/no_profile_photo.jpg">
+
+                      <span class="d-flex align-items-center partner-name">{{user.name}}</span>
+
+                        <button class="btn btn-danger binUsers"  title="Perma delate users"
+                         (click)="removeUser(user.id)">Remove</button>
+
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div *ngIf="hasMoreUsers" class="row">
+                    <div class="d-flex justify-content-center">
+                      <a class="cargar-mas" (click)="getUser()">Cargar más</a>
+                    </div>
+                  </div>
+
+                </span>
+
+              </div>
+
+
+            </div>
+          </div>
+
+          <!--Tournament finder-->
+          <div class="tab-pane fade profile-edit pt-3" id="tournaments">
+            <div class="card text-center">
+              <div class="card-body profile-card pt-2 d-flex flex-column justify-content-center">
+                <h2 class="mt-2 mb-1">Torneos encontrados</h2>
+
+                <span id="elements">
+                  <div  *ngIf="isAdmin()" class="row">
+
+                    <div *ngFor="let Tournament of tournaments" class="col-md-12">
+                        <div class="d-flex lineTournament">
+
+                            <img  *ngIf="Tournament.image" class="tournamentFinder" src="/api/tournaments/{{Tournament?.id}}/image">
+                            <img *ngIf="!Tournament.image" class="tournamentFinder" src="/assets/images/product_02.jpg">
+
+                          <span class="d-flex align-items-center partner-name">{{Tournament.tournamentName}}</span>
+                          <button class="btn btn-danger binUsers"  title="Perma delate users"
+                           (click)="removeTournament(Tournament.id)">Remove</button>
+
+                        </div>
+                      </div>
+                  </div>
+
+                  <div *ngIf="hasMoreTournaments" class="row">
+                    <div class="d-flex justify-content-center">
+                      <a class="cargar-mas mb-5" (click)="getTournaments()">Cargar más</a>
+                    </div>
+                  </div>
+                </span>
+
+              </div>
+            </div>
+          </div>
+
+        </div><!-- End Bordered Tabs -->
+
+      </div>
+    </div>
+  </div>
+</body>
