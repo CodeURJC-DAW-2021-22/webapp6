@@ -22,6 +22,11 @@ export class UserProfileComponent{
   hasMorePairs: boolean = true;
   pagePairs: number = -1;
 
+  @ViewChild("file")
+  file: any;
+
+  removeImage:boolean;
+
   constructor(private router: Router,public loginService: LoginService, public userService: UserService) {
 
     this.getUserTournaments();
@@ -81,11 +86,37 @@ export class UserProfileComponent{
       user.country=country;
       user.phone = phone;
 
+      this.uploadImage();
       this.userService.updateUser(user);
       this.loginService.reqIsLogged();
+      
     }
 
   hasImage(){
       return this.loginService.currentUser().image;
+  }
+
+  uploadImage(): void {
+
+    const image = this.file.nativeElement.files[0];
+    if (image) {
+      let formData = new FormData();
+      formData.append("imageFile", image);
+      this.userService.setUserImage(formData).subscribe(
+        _ => this.afterUploadImage(),
+        error => alert('Error uploading user image: ' + error)
+      );
+    } else if(this.removeImage){
+      this.userService.deleteUserImage().subscribe(
+        _ => this.afterUploadImage(),
+        error => alert('Error deleting user image: ' + error)
+      );
+    } else {
+      this.afterUploadImage();
+    }
+  }
+
+  private afterUploadImage(){
+    this.router.navigate(['/user_profile']);
   }
 }
