@@ -61,6 +61,17 @@ export class TournamentService {
     return this.http.put(BASE_URL + id + "/teams", user2);
   }
 
+  deleteTournament(id: number){
+    return this.http.delete(BASE_URL + id).pipe(map(
+      Response => true,
+      error => {
+        if (error.status != 400) {
+          console.error('Unexpected Error on deleteUser')
+        } 
+      }
+    ));
+  }
+
   private handleError(error: any) {
     console.log("ERROR:");
     console.error(error);
