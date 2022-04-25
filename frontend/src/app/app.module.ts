@@ -16,7 +16,7 @@ import { TournamentComponent } from './components/tournament/tournament.componen
 import { MatchComponent } from './components/match/match.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { Error404Component } from './components/error/error_404.component';
-//import { DoughnutChart} from './components/doughnutchart/doughnutchart.component';
+import { DoughnutChart} from './components/doughnutchart/doughnutchart.component';
 
 
 @NgModule({
@@ -32,14 +32,14 @@ import { Error404Component } from './components/error/error_404.component';
     MatchComponent,
     AdminComponent,
     Error404Component,
-    //DoughnutChart,
+    DoughnutChart,
 
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    //DoughnutChart
+    DoughnutChart,
     routing
   ],
   providers: [],

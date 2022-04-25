@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
-import {AppConfigService} from '../../../service/appconfigservice';
-import {AppConfig} from '../../../domain/appconfig';
+ import {AppConfigService} from '../../services/appconfigservice' ;
+ import {AppConfig} from '../../appconfig' ;
 
 @Component({
-    templateUrl: './doughnutchart.html'
+    templateUrl: './doughnutchart.component.html'
 })
 export class DoughnutChart implements OnInit, OnDestroy {
 
@@ -16,7 +16,7 @@ export class DoughnutChart implements OnInit, OnDestroy {
 
     config: AppConfig;
 
-    constructor(private configService: AppConfigService) {}
+     constructor(private configService: AppConfigService) {}
 
     ngOnInit() {
         this.data = {
