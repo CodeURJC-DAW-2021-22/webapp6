@@ -43,9 +43,14 @@ constructor(private http: HttpClient) { }
       );
   }
 
-  deleteUser(user: User) {
-    return this.http.delete(BASE_URL + user.id).pipe(
-      catchError(error => this.handleError(error))
+  deleteUser(id: number | string) {
+    return this.http.put(BASE_URL + id, { withCredentials: true } ).subscribe(
+      response => {},
+      error => {
+        if (error.status != 400) {
+          console.error('Unexpected Error on deleteUser')
+        } 
+      }
     );
   }
 

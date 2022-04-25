@@ -73,11 +73,17 @@ hasImage(){
  }
 
  removeUser(id:number){
-
+  this.userService.deleteUser(id);
+  this.usersPage = -1;
+  this.hasMoreUsers = true;
+  this.usersList = [];
+  this.getUser();
  }
 
  removeTournament(id : number){
 
  }
+
+
 
 }
