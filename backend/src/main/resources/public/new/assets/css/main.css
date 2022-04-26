@@ -281,8 +281,8 @@ header .navbar {
 .header-nav .nav-icon {
     font-size: 27px;
     color: #fff;
-    padding-top: 0.3rem;
-    padding-bottom: 0.7rem;
+    padding-top: 0.05rem;
+    padding-bottom: 0.75rem;
 }
 
 .header-nav .nav-profile {
@@ -300,7 +300,7 @@ header .navbar {
 
 .header-nav .badge-number {
     position: absolute;
-    inset: 4px 6px auto auto;
+    inset: 0px 5px auto auto;
     font-weight: normal;
     font-size: 11px;
     padding: 3px 6px;
