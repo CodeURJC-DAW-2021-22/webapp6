@@ -1,12 +1,15 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
- import {AppConfigService} from '../../services/appconfigservice' ;
- import {AppConfig} from '../../appconfig' ;
+import { User } from 'src/app/models/user.model';
+import { LoginService } from 'src/app/services/login.service';
+
 
 @Component({
+    selector: 'doughnutChart',
     templateUrl: './doughnutchart.component.html'
 })
-export class DoughnutChartComponent implements OnInit, OnDestroy {
+
+export class DoughnutChartComponent  {
 
     data: any;
 
@@ -14,41 +17,52 @@ export class DoughnutChartComponent implements OnInit, OnDestroy {
 
    subscription: Subscription;
 
-    config: AppConfig;
 
-     constructor(private configService: AppConfigService) {}
+
+   constructor(public loginService: LoginService) { }
+
 
     ngOnInit() {
-        this.data = {
-            labels: ['Victorias','Derrotas'],
-            datasets: [
-                {
-                    data: [300, 50, ],
-                    backgroundColor: [
-                        "#FF6384",
-                        "#36A2EB",
+      this.loginService.fetchCurrentUser().subscribe(
+        response => {
+          let user = response as User;
 
-                    ],
-                    hoverBackgroundColor: [
-                        "#FF6384",
-                        "#36A2EB",
+          console.log(user);
 
-                    ]
-                }
-            ]
-        };
+          this.data = {
+              labels: ['Victorias','Derrotas'],
+              datasets: [
+                  {
+                      data: [user.numWins+1, user.numLoses ],
+                      backgroundColor: [
+                          "#FF6384",
+                          "#36A2EB",
 
-        this.config = this.configService.config;
-        this.updateChartOptions();
-        this.subscription = this.configService.configUpdate$.subscribe(config => {
-            this.config = config;
-            this.updateChartOptions();
-        });
+                      ],
+                      hoverBackgroundColor: [
+                          "#FF6384",
+                          "#36A2EB",
+
+                      ]
+                  }
+              ]
+          };
+
+
+
+        },
+        error => {
+          if (error.status != 403) {
+              console.error('Error when asking if logged: ' + JSON.stringify(error));
+          }
+        }
+      );
+
+
+
     }
 
-    updateChartOptions() {
-        this.chartOptions = this.config && this.config.dark ? this.getDarkTheme() : this.getLightTheme();
-    }
+
 
     getLightTheme() {
         return {
@@ -74,9 +88,5 @@ export class DoughnutChartComponent implements OnInit, OnDestroy {
         }
     }
 
-    ngOnDestroy() {
-        if (this.subscription) {
-            this.subscription.unsubscribe();
-        }
-    }
+
 }

@@ -8,7 +8,8 @@ import { TournamentComponent } from './components/tournament/tournament.componen
 import { MatchComponent } from './components/match/match.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { Error404Component } from './components/error/error_404.component';
- import {  DoughnutChartComponent } from './components/doughnutchart/doughnutchart.component';
+import {  DoughnutChartComponent } from './components/doughnutchart/doughnutchart.component';
+import { LineChartComponent} from './components/linechart/linechart.component';
 
 const appRoutes = [
   { path: '', component: MainComponent },
@@ -21,7 +22,9 @@ const appRoutes = [
   { path: 'admin', component: AdminComponent },
   { path: 'error404', component: Error404Component },
   { path: 'doughnut', component: DoughnutChartComponent},
-  { path: '', redirectTo: '', pathMatch: 'full' }
+  { path: 'linechart', component: LineChartComponent},
+  { path: '', redirectTo: '', pathMatch: 'full' },
+
 ]
 
 export const routing = RouterModule.forRoot(appRoutes);

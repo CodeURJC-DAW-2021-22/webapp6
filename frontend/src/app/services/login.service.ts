@@ -32,6 +32,12 @@ export class LoginService {
 
   }
 
+  fetchCurrentUser() {
+
+    return this.http.get('/api/users/me', { withCredentials: true });
+
+  }
+
   logIn(username: string, password: string) {
 
     this.http.post(BASE_URL + "/login", { username: username, password: password }, { withCredentials: true }).subscribe(
