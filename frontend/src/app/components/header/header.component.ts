@@ -13,7 +13,11 @@ export class HeaderComponent {
   userMatches: Match[] = [];
 
   constructor(public loginService: LoginService, public userService: UserService) {
-    userService.getUserMatches().subscribe(
+    this.getUserMatches();
+  }
+
+  getUserMatches(){
+    this.userService.getUserMatches().subscribe(
       listMatches => this.userMatches = listMatches,
       error => {
         if (error.status != 403) {

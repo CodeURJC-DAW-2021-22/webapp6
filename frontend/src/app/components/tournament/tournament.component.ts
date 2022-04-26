@@ -42,10 +42,10 @@ export class TournamentComponent{
     const id = activatedRoute.snapshot.params['id'];
     this.id = id;
 
-    this.getTournamentInit(id, 1);
+    this.getTournamentInit(id);
   }
 
-  getTournamentInit(id: number | string, aux: any) {
+  getTournamentInit(id: number | string) {
     this.tournamentService.getTournament(id).subscribe(
       tournament => {
         this.tournament = tournament;
@@ -201,7 +201,9 @@ export class TournamentComponent{
       roles: []
     }
 
-    this.getTournamentInit(this.id, this.tournamentService.inscription(this.id, user2).subscribe());
+    this.tournamentService.inscription(this.id, user2).subscribe(
+      _ => this.getTournamentInit(this.id)
+    );
   }
 
   startTournament(){
@@ -221,12 +223,16 @@ export class TournamentComponent{
       image: false
     }
 
-    this.getTournamentInit(this.id, this.tournamentService.updateTournament(startedTournament).subscribe());
+    this.tournamentService.updateTournament(startedTournament).subscribe(
+      _ => this.getTournamentInit(this.id)
+    );
   }
 
   deleteTeam(idTeam: number | undefined){
     if (idTeam !== undefined){
-      this.getTournamentInit(this.id, this.tournamentService.deleteTeam(this.id, idTeam).subscribe());
+      this.tournamentService.deleteTeam(this.id, idTeam).subscribe(
+        _ => this.getTournamentInit(this.id)
+      );
     }
   }
 
@@ -263,7 +269,9 @@ export class TournamentComponent{
       image: false
     }
 
-    this.getTournamentInit(this.id, this.tournamentService.updateTournament(updatedTournanent).subscribe())
+    this.tournamentService.updateTournament(updatedTournanent).subscribe(
+      _ => this.getTournamentInit(this.id)
+    );
   }
 
   private formatDate(date: string): string {
@@ -320,10 +328,4 @@ export class TournamentComponent{
     const pdf= pdfMake.createPdf(PdfDefinition);
     pdf.open();
   }
-
-  //
-  //IF INSCRIPTION OR DELETE TEAM WENT SUCCESFULLY ->  this.router.navigate(['/tournament', this.tournament.id]);
-  //BECAUSE VAR USERINTOURNAMENT HAS TO BE UPDATED BY CONTRUCTOR
-  //
-
 }

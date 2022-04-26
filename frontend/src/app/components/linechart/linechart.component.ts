@@ -25,7 +25,7 @@ export class LineChartComponent {
           labels: ['', '', '', '', '', '', '','','',''],
           datasets: [
               {
-                  label: 'Karma Set',
+                  label: 'Karma',
                   data: [user.historicalKarma[0],user.historicalKarma[1],user.historicalKarma[2],
                   user.historicalKarma[3],user.historicalKarma[4],user.historicalKarma[5],user.historicalKarma[6],
                   user.historicalKarma[7],user.historicalKarma[8],user.historicalKarma[9]],
@@ -33,9 +33,16 @@ export class LineChartComponent {
                   borderColor: '#67d400',
                   tension: .4
               }
-
           ]
       };
+      this.basicOptions = {
+        title:{
+          display: false
+        },
+        legend: {
+          display: false
+        }
+      }
     },
     error => {
       if (error.status != 403) {

@@ -44,14 +44,7 @@ constructor(private http: HttpClient) { }
   }
 
   deleteUser(id: number | string) {
-    return this.http.put(BASE_URL + id, { withCredentials: true } ).subscribe(
-      response => {},
-      error => {
-        if (error.status != 400) {
-          console.error('Unexpected Error on deleteUser')
-        }
-      }
-    );
+    return this.http.put(BASE_URL + id, { withCredentials: true } )
   }
 
   updateUser(user: User) {

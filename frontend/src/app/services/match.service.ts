@@ -23,7 +23,7 @@ export class MatchService {
   }
 
   resultMatch(id: number | string, result: number[]) {
-    this.http.put(BASE_URL + id + '/result', {result: result}, { withCredentials: true }).subscribe();
+    return this.http.put(BASE_URL + id + '/result', {result: result}, { withCredentials: true });
     //We can return the match thta has been updated. Not done because not used (yet)
   }
 

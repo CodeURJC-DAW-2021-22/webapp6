@@ -20,10 +20,10 @@ export class MatchComponent {
     public loginService: LoginService) {
 
       this.id = activatedRoute.snapshot.params['id'];
-      this.getMatch(this.id, 1);
+      this.getMatch(this.id);
   }
 
-  getMatch(id: number | string, aux: any) {
+  getMatch(id: number | string) {
     this.matchService.getMatch(id).subscribe(
       response => this.match = response,
       error => {
@@ -37,7 +37,9 @@ export class MatchComponent {
   }
 
   setResult(games1, games2, games3, games4, games5, games6){
-    this.getMatch(this.id, this.matchService.resultMatch(this.match?.id, [games1, games2, games3, games4, games5, games6]));
+    this.matchService.resultMatch(this.match?.id, [games1, games2, games3, games4, games5, games6]).subscribe(
+      _ => this.getMatch(this.id)
+    );
   }
 
 }

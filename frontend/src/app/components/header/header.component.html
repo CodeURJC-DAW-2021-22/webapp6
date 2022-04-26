@@ -22,7 +22,7 @@
 
           <li *ngIf="loginService.isLogged()" class="nav-item dropdown mt-1">
 
-            <a class="nav-link nav-icon" data-bs-toggle="dropdown">
+            <a class="nav-link nav-icon" data-bs-toggle="dropdown" (click)="getUserMatches()">
                 <i class="ri-dribbble-line"></i>
                 <span *ngIf="hasUserMatches()" class="badge bg-danger badge-number">{{numUserMatches()}}</span>
             </a>

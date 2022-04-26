@@ -21,10 +21,10 @@ export class AdminComponent {
 
   constructor(private router: Router,public loginService: LoginService, public userService: UserService, public tournamentService:TournamentService) {
     this.getTournaments();
-    this.getUser();
+    this.getUsers();
   }
 
-  getUser(){
+  getUsers(){
     this.usersPage = this.usersPage + 1;
     this.userService.getAllUsers(this.usersPage).subscribe(
       listPairs => {
@@ -60,34 +60,44 @@ export class AdminComponent {
     )
   }
 
-
-
-hasImage(){
+  hasImage(){
     return this.loginService.currentUser().image;
-}
-
-
+  }
 
  isAdmin(){
    return this.loginService.currentUser().roles.length=2;
  }
 
  removeUser(id:number){
-   if(this.userService.deleteUser(id)){
-    this.usersPage = -1;
-    this.hasMoreUsers = true;
-    this.usersList = [];
-    this.getUser();
-   }
+  this.userService.deleteUser(id).subscribe(
+    _ => {
+      this.usersPage = -1;
+      this.hasMoreUsers = true;
+      this.usersList = [];
+      this.getUsers();
+    },
+    error => {
+      if (error.status != 400) {
+        console.error('Unexpected Error on deleteTourn')
+      }
+    }
+  )
  }
 
  removeTournament(id : number){
-  if(this.tournamentService.deleteTournament(id)){
-    this.tournaments=  [];
-    this.hasMoreTournaments= true;
-    this.page=-1;
-    this.getTournaments();
-  }
+  this.tournamentService.deleteTournament(id).subscribe(
+    _ => {
+      this.tournaments=  [];
+      this.hasMoreTournaments= true;
+      this.page=-1;
+      this.getTournaments();
+    },
+    error => {
+      if (error.status != 400) {
+        console.error('Unexpected Error on deleteTourn')
+      }
+    }
+  )
  }
 
 

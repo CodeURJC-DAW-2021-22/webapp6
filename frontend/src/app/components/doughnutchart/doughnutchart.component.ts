@@ -33,25 +33,19 @@ export class DoughnutChartComponent  {
               labels: ['Victorias','Derrotas'],
               datasets: [
                   {
+                      // Delete "+1" when fix the 0-0 chart error
                       data: [user.numWins+1, user.numLoses ],
                       backgroundColor: [
                           "#67d400",
                           "#121212",
-
                       ],
                       hoverBackgroundColor: [
-                          "#00C851",
+                          "#67d400",
                           "#121212",
-
-
-
                       ]
                   }
-              ]
+              ],
           };
-
-
-
         },
         error => {
           if (error.status != 403) {
