@@ -86,10 +86,17 @@ export class UserProfileComponent{
       user.country=country;
       user.phone = phone;
 
-      this.uploadImage();
-      this.userService.updateUser(user);
+
+      this.userService.updateUser(user).subscribe(
+        response => { this.uploadImage();},
+        error => {
+          if (error.status != 400) {
+            console.error('Unexpected Error on deleteUser')
+          }
+        }
+      )
       this.loginService.reqIsLogged();
-      
+
     }
 
   hasImage(){

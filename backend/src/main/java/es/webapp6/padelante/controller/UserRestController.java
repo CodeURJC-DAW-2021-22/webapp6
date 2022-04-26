@@ -145,7 +145,7 @@ public class UserRestController {
 	public ResponseEntity<User> deleteUser(@PathVariable long id) {
 
 		if (userService.exist(id)) {
-			if(!userService.findById(id).get().getStatus()){
+			if(userService.findById(id).get().getStatus()){
 				userService.delete(userService.findById(id).get());
 				return new ResponseEntity<>(HttpStatus.OK);
 			} else{
