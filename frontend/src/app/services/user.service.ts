@@ -29,23 +29,28 @@ constructor(private http: HttpClient) { }
     });
   }
 
-  setUserImage(user: User, formData: FormData) {
+  setUserImage(formData: FormData) {
     return this.http.post(BASE_URL + 'image', formData)
       .pipe(
         catchError(error => this.handleError(error))
       );
   }
 
-  deleteUserImage(user: User) {
+  deleteUserImage(){
     return this.http.delete(BASE_URL + 'image')
       .pipe(
         catchError(error => this.handleError(error))
       );
   }
 
-  deleteUser(user: User) {
-    return this.http.delete(BASE_URL + user.id).pipe(
-      catchError(error => this.handleError(error))
+  deleteUser(id: number | string) {
+    return this.http.put(BASE_URL + id, { withCredentials: true } ).subscribe(
+      response => {},
+      error => {
+        if (error.status != 400) {
+          console.error('Unexpected Error on deleteUser')
+        } 
+      }
     );
   }
 
@@ -75,6 +80,6 @@ constructor(private http: HttpClient) { }
   private handleError(error: any) {
     console.log("ERROR:");
     console.error(error);
-    return throwError("Server error (" + error.status + "): " + error.text())
+    return throwError("Server error (" + error.status + "): ");
   }
 }

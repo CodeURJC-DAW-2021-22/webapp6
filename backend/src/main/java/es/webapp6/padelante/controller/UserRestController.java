@@ -142,11 +142,16 @@ public class UserRestController {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
 			@ApiResponse(responseCode = "404", description = "User wasn't found", content = @Content) })
 	@PutMapping("/{id}")
-	public ResponseEntity<User> deleteUser(@PathVariable long id, @RequestBody User user) {
+	public ResponseEntity<User> deleteUser(@PathVariable long id) {
 
-		if (userService.exist(id) && !user.getStatus()) {
-			userService.delete(userService.findById(id).get());
-			return new ResponseEntity<>(HttpStatus.OK);
+		if (userService.exist(id)) {
+			if(!userService.findById(id).get().getStatus()){
+				userService.delete(userService.findById(id).get());
+				return new ResponseEntity<>(HttpStatus.OK);
+			} else{
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
+			
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}

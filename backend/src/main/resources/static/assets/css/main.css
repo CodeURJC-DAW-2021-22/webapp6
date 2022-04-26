@@ -1,6 +1,9 @@
 /*--------------------------------------------------------------
 # General CSS
 --------------------------------------------------------------*/
+node_modules/primeicons/primeicons.css
+node_modules/primeng/resources/themes/lara-light-blue/theme.css
+node_modules/primeng/resources/primeng.min.css
 
 .upper-text {
     text-transform: uppercase;
@@ -278,6 +281,8 @@ header .navbar {
 .header-nav .nav-icon {
     font-size: 27px;
     color: #fff;
+    padding-top: 0.3rem;
+    padding-bottom: 0.7rem;
 }
 
 .header-nav .nav-profile {
@@ -450,7 +455,7 @@ Admin search
     border-radius: 50%;
     background-size: 100% auto;
     border: 3px solid #67d400;
-    
+
 }
 
 .lineUser .partner-name {
@@ -531,7 +536,7 @@ Admin search
     border-radius: 50%;
     background-size: 100% auto;
     border: 3px solid #67d400;
-    
+
 }
 
 .lineTournament .partner-name {
@@ -679,17 +684,17 @@ Admin search
 ::-webkit-scrollbar {
     width: 10px;
   }
-  
+
   /* Track */
   ::-webkit-scrollbar-track {
     background: #232323;
   }
-  
+
   /* Handle */
   ::-webkit-scrollbar-thumb {
     background: #67d400;
   }
-  
+
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: #fff;
@@ -1231,7 +1236,7 @@ Admin search
 --------------------------------------------------------------*/
 
 .addUser{
-    color:#67d400; 
+    color:#67d400;
     font-size: 20px;
     padding: 0.1rem 0.4rem;
     background-color: #121212;
@@ -1252,15 +1257,15 @@ progress {
     height: 15px;
     background-color: #67d400;
   }
-  
+
   progress::-moz-progress-bar {
     background: lightcolor;
   }
-  
+
   progress::-webkit-progress-value {
     background: #67d400;
   }
-  
+
   progress::-webkit-progress-bar {
     background: rgb(160, 160, 160);
   }

@@ -20,11 +20,10 @@ export class MatchService {
 
   getMatch(id: number | string) {
     return this.http.get(BASE_URL + id, { withCredentials: true }) as Observable<Match>;
-    // return this.http.get(BASE_URL + id, { withCredentials: true }).pipe(catchError(error => this.router.navigate(['/error_404'])));
   }
 
   resultMatch(id: number | string, result: number[]) {
-    this.http.put(BASE_URL + id + '/result', { result: result}, { withCredentials: true });
+    this.http.put(BASE_URL + id + '/result', {result: result}, { withCredentials: true }).subscribe();
     //We can return the match thta has been updated. Not done because not used (yet)
   }
 
