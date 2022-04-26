@@ -89,12 +89,12 @@
                       <h5 class="card-title pb-0 mb-0">Victorias - Derrotas</h5>
 
                       <!-- Donut Chart -->
-                      <div id="donutChart" style="min-height: 250px;" class="echart d-flex align-items-center"></div>
-
-                      <div hidden id="numWins">{{loginService.currentUser().numWins}}</div>
+                      <!-- <div id="donutChart" style="min-height: 250px;" class="echart d-flex align-items-center"></div> -->
+                            <doughnutChart> </doughnutChart>
+                      <!-- <div hidden id="numWins">{{loginService.currentUser().numWins}}</div>
                       <div hidden id="numLoses">{{loginService.currentUser().numLoses}}</div>
 
-                      <script src="/assets/js/stats.js"></script>
+                      <script src="/assets/js/stats.js"></script> -->
 
                       <!-- Donut Chart End -->
                     </div>
@@ -106,9 +106,13 @@
                       <div hidden id="historicalKarma">{{loginService.currentUser().historicalKarma}}</div>
 
                       <!-- Line Chart -->
-                      <div id="lineChart" style="min-height: 400px;" class="echart d-flex align-items-center"></div>
+                      <!-- <div id="lineChart" style="min-height: 400px;" class="echart d-flex align-items-center">
 
-                      <script src="/assets/js/karma.js"></script>
+                      </div> -->
+                      <lineChart></lineChart>
+
+
+                      <!-- <script src="/assets/js/karma.js"></script> -->
                       <!-- End Line Chart -->
 
                     </div>
@@ -178,7 +182,7 @@
 
                       <div class="col-md-8 col-lg-9">
                         <img *ngIf="hasImage()" src="api/users/image/{{loginService.currentUser().id}}"><br>
-                        
+
                         <input *ngIf="hasImage()" type='checkbox' name='removeImage' [(ngModel)]="removeImage"> <label>Remove image</label><br>
 
                         <img *ngIf="!hasImage()" src="/assets/images/no_profile_photo.jpg"> <br>

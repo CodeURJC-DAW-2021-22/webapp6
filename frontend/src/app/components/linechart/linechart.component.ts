@@ -30,7 +30,7 @@ export class LineChartComponent {
                   user.historicalKarma[3],user.historicalKarma[4],user.historicalKarma[5],user.historicalKarma[6],
                   user.historicalKarma[7],user.historicalKarma[8],user.historicalKarma[9]],
                   fill: false,
-                  borderColor: '#42A5F5',
+                  borderColor: '#67d400',
                   tension: .4
               }
 
@@ -56,25 +56,25 @@ export class LineChartComponent {
           plugins: {
               legend: {
                   labels: {
-                      color: '#495057'
+                      color: '#67d400'
                   }
               }
           },
           scales: {
               x: {
                   ticks: {
-                      color: '#495057'
+                      color: '#67d400'
                   },
                   grid: {
-                      color: '#ebedef'
+                      color: '#121212'
                   }
               },
               y: {
                   ticks: {
-                      color: '#495057'
+                      color: '#67d400'
                   },
                   grid: {
-                      color: '#ebedef'
+                      color: '#121212'
                   }
               }
           }

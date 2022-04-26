@@ -35,13 +35,15 @@ export class DoughnutChartComponent  {
                   {
                       data: [user.numWins+1, user.numLoses ],
                       backgroundColor: [
-                          "#FF6384",
-                          "#36A2EB",
+                          "#67d400",
+                          "#121212",
 
                       ],
                       hoverBackgroundColor: [
-                          "#FF6384",
-                          "#36A2EB",
+                          "#00C851",
+                          "#121212",
+
+
 
                       ]
                   }
