@@ -21,6 +21,7 @@ import { MatchComponent } from './components/match/match.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { Error404Component } from './components/error/error_404.component';
 import { DoughnutChartComponent} from './components/doughnutchart/doughnutchart.component';
+import { LineChartComponent} from './components/linechart/linechart.component';
 
 
 @NgModule({
@@ -37,9 +38,9 @@ import { DoughnutChartComponent} from './components/doughnutchart/doughnutchart.
     AdminComponent,
     Error404Component,
     DoughnutChartComponent,
-
-
+    LineChartComponent
   ],
+
   imports: [
     BrowserModule,
     FormsModule,
