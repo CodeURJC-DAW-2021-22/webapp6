@@ -413,15 +413,12 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
     https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/padelante/security/RestSecurityConfig.java
   
   
-  
 - **Álvaro González:** 
 
   - Descripción de tareas:
   
     Me he encargado de implementar parte de las apis Rest, así como de ayudar a Rubén con Docker y heroku. Posteriormente, me he encargado de incorporar el tema de la    seguridad para las api Rest.
     Por otra parte, me he encargardo de algunas de las peticiones de Postman, asi como del fichero .json de las peticiones de Postman.
-    
-    
     
   - Commits más significativos:
   
@@ -448,13 +445,11 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
     https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/padelante/security/RestSecurityConfig.java
  
  
- 
 - **Daniel Haro:** 
 
   - Descripción de tareas:
   
     Me he encargado principalmente de documentar las API REST en todas las clases necesarias, así como de su análisis y alguna corrección menor. Por otro lado he analizado las peticiones con Postman a diferentes endpoints, comprobando que devolvían la respuesta esperada.
-    
     
   - Commits más significativos:
      
@@ -463,7 +458,6 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
      https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/884345ad04e5f27af24d916c13e4198003c274f8
      
      https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/d6a0bb99ba52af905772bcb617e7e951ec38a4e4
-    
     
   - Ficheros más relevantes:
 
@@ -476,15 +470,11 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
     https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/java/es/webapp6/padelante/controller/TournamentRestController.java
   
   
-    
-    
 - **Silvia Ventura:** 
 
   - Descripción de tareas: 
   
     Me he encargado de cambiar el diagrama y actualizarlo. También me he encargado de ocultar los datos sensibles que no debrían verse al hacer una petición para los     Users y Tournaments
-    
-    
     
   - Commits más significativos:
   
@@ -498,7 +488,6 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
      
      https://github.com/CodeURJC-DAW-2021-22/webapp6/tree/c2142a2cbba41af0f21f3c83868933ac19eaea99
     
-    
   - Ficheros más relevantes:
   
     https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/java/es/webapp6/padelante/controller/PageImplJacksonSerializer.java
@@ -511,4 +500,70 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
     
     https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/backend/src/main/java/es/webapp6/padelante/model/Team.java
     
+    
 # FASE 4
+
+- **Rubén Catalán:** 
+
+  - Descripción de tareas: 
+  
+    Me he encargado de los componentes header, main, tournament y match, además de implementar todas sus funcionalidades y todos los AJAX en TypeScript. Por último, he contribuido en la reutilizacion de códigos similares en los servicios y en el desarrollo de la documentación sobre la preparación del entorno de desarrollo.
+    
+  - Commits más significativos:
+  
+     
+    
+    
+  - Ficheros más relevantes:
+  
+    
+
+- **Álvaro González:**  
+
+  - Descripción de tareas: 
+  
+    
+    
+    
+  - Commits más significativos:
+  
+     
+    
+    
+  - Ficheros más relevantes:
+  
+    
+
+
+- **Daniel Haro:**  
+
+  - Descripción de tareas: 
+  
+    
+    
+    
+  - Commits más significativos:
+  
+     
+    
+    
+  - Ficheros más relevantes:
+  
+    
+
+
+- **Silvia Ventura:** 
+
+  - Descripción de tareas: 
+  
+    
+    
+    
+  - Commits más significativos:
+  
+     
+    
+    
+  - Ficheros más relevantes:
+  
+    
