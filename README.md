@@ -294,11 +294,15 @@ https://rawcdn.githack.com/CodeURJC-DAW-2021-22/webapp6/c908eef6aae7103bd57f908b
   
   ```$ cd ./backend/docker```
   
+  Por último, se deberá ejecutar el siguiente comando:
+  
   ```$ docker-compose up```
   
   Cuando se termine de ejecutar la sentencia, el usuario debería poder acceder a la aplicación desde la URL:
   
   https://localhost:8443/
+  
+  __Nota:__ El archivo ```docker-compose.yml``` está configurado con la imagen creada con el usuario de Docker ```rubencatalan```. Si ha creado su propia imagen como se dice en el siguiente punto, se deberá cambiar en la linea 4 de ese archivo el nombre anterior por el nombre de usuario de Docker que se haya puesto en la nueva imagen.
 
 ## Construcción de la imagen docker
 
@@ -503,7 +507,49 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
     
 # FASE 4
 
-- **Rubén Catalán:** 
+## Preparación del entorno de desarrollo
+
+  Para esta fase se usa:
+  - Node.js
+  - Angular CLI ```13.3.1```
+  - Maven ```3.8.5```
+  - Docker
+  - Usuario registrado en Docker Hub
+  - Docker Compose
+
+  __Nota:__ Esta preparación está pensada para que el archivo ```docker-compose.yml``` esté configurado con la imagen creada con el usuario de Docker ```rubencatalan```. Se deberá cambiar en la linea 4 de ese archivo el nombre anterior por el nombre de usuario de Docker que se vaya a utilizar a continuación.
+
+  Se deberá haber clonado el repositorio de git previamente usando la siguiente sentencia:
+  
+  ```$ git clone https://github.com/CodeURJC-DAW-2021-22/webapp6```
+  
+  El usuario deberá ejecutar las siguientes sentencias en el terminal después de haberse situado con la sentencia ```cd``` en la carpeta del proyecto ```webapp6```:
+  
+  ```$ cd ./backend/docker```
+  
+  ```$ ./create_image.sh <usuario_docker>```
+  
+  donde ```<usuario_docker>``` es el nombre de su usuario en Docker Hub. De esta forma se habrá creado la imagen Docker correspondiente.
+  
+  Por último, deberá ejecutar:
+  
+  ```$ docker-compose up```
+  
+  Cuando se termine de ejecutar la sentencia, el usuario debería poder acceder a la web con arquitectura tradicional (MVC) desde la URL:
+  
+  https://localhost:8443/
+  
+  y a la web SPA desde la URL:
+  
+  https://localhost:8443/new/
+  
+## Diagrama de clases y templates de la SPA
+
+<foto del diagrama>
+
+## Participación de los miembros
+
+- **Rubén Catalán:**
 
   - Descripción de tareas: 
   
@@ -567,3 +613,6 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
   - Ficheros más relevantes:
   
     
+## Vídeo
+
+<link del video en YT>
