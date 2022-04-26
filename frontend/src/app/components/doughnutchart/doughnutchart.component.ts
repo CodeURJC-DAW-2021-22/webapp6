@@ -33,7 +33,7 @@ export class DoughnutChartComponent  {
               labels: ['Victorias','Derrotas'],
               datasets: [
                   {
-                      data: [user.numWins, user.numLoses ],
+                      data: [user.numWins+1, user.numLoses ],
                       backgroundColor: [
                           "#FF6384",
                           "#36A2EB",

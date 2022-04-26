@@ -47,9 +47,6 @@ import { DoughnutChartComponent} from './components/doughnutchart/doughnutchart.
     ChartModule,
     TabViewModule,
     AppDemoActionsModule,
-
-
-
     routing
   ],
   providers: [],
