@@ -12,16 +12,23 @@ export class LineChartComponent {
   basicData: any;
   basicOptions: any;
 
-
+  constructor(public loginService: LoginService) { }
 
 
   ngOnInit() {
+    this.loginService.fetchCurrentUser().subscribe(
+      response => {
+        let user = response as User;
+
+        console.log(user);
       this.basicData = {
           labels: ['', '', '', '', '', '', '','','',''],
           datasets: [
               {
                   label: 'Karma Set',
-                  data: [65, 59, 80, 81, 56, 55, 40,20,100,200],
+                  data: [user.historicalKarma[0],user.historicalKarma[1],user.historicalKarma[2],
+                  user.historicalKarma[3],user.historicalKarma[4],user.historicalKarma[5],user.historicalKarma[6],
+                  user.historicalKarma[7],user.historicalKarma[8],user.historicalKarma[9]],
                   fill: false,
                   borderColor: '#42A5F5',
                   tension: .4
@@ -29,6 +36,13 @@ export class LineChartComponent {
 
           ]
       };
+    },
+    error => {
+      if (error.status != 403) {
+          console.error('Error when asking if logged: ' + JSON.stringify(error));
+      }
+    }
+  );
 
 
 
