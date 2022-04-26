@@ -62,14 +62,14 @@ export class TournamentService {
   }
 
   deleteTournament(id: number){
-    return this.http.delete(BASE_URL + id).pipe(map(
-      Response => true,
+    return this.http.delete(BASE_URL + id).subscribe(
+      response => {},
       error => {
         if (error.status != 400) {
-          console.error('Unexpected Error on deleteUser')
-        } 
+          console.error('Unexpected Error on deleteTourn')
+        }
       }
-    ));
+    );
   }
 
   private handleError(error: any) {

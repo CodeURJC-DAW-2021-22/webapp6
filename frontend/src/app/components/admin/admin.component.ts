@@ -82,7 +82,12 @@ hasImage(){
  }
 
  removeTournament(id : number){
-  this.tournamentService.deleteTournament(id);
+  if(this.tournamentService.deleteTournament(id)){
+    this.tournaments=  [];
+    this.hasMoreTournaments= true;
+    this.page=-1;
+    this.getTournaments();
+  }
  }
 
 

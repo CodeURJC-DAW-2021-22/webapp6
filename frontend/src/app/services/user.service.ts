@@ -49,15 +49,13 @@ constructor(private http: HttpClient) { }
       error => {
         if (error.status != 400) {
           console.error('Unexpected Error on deleteUser')
-        } 
+        }
       }
     );
   }
 
   updateUser(user: User) {
-    return this.http.put(BASE_URL , user,{ withCredentials: true }).subscribe((resp: any) => {
-      console.log("Register new User: Successfully");
-    });
+    return this.http.put(BASE_URL , user,{ withCredentials: true })
   }
 
   getAllUsers(page: number | string) {
