@@ -85,6 +85,20 @@ export class TournamentService {
     ))
   }
 
+  setTournamentImage(id:number, formData: FormData) {
+    return this.http.post(BASE_URL +id+ '/image', formData)
+      .pipe(
+        catchError(error => this.handleError(error))
+      );
+  }
+
+  deleteTournamentImage(id:number){
+    return this.http.delete(BASE_URL +id+ '/image')
+      .pipe(
+        catchError(error => this.handleError(error))
+      );
+  }
+
   private handleError(error: any) {
     console.log("ERROR:");
     console.error(error);

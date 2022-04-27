@@ -3,7 +3,7 @@ import { Team } from './../../models/team.model';
 import { User } from './../../models/user.model';
 import { Tournament } from './../../models/tournament.model';
 import { TournamentService } from 'src/app/services/tournament.service';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
@@ -30,6 +30,11 @@ export class TournamentComponent{
   usersPage = -1;
   hasMoreUsers: boolean = true;
   usersList: User[] = [];
+
+  @ViewChild("file")
+  file: any;
+
+  removeImage:boolean;
 
 
   constructor(private router: Router, activatedRoute: ActivatedRoute, public tournamentService: TournamentService,
@@ -205,12 +210,46 @@ export class TournamentComponent{
       startDate: newstartDate,
       started: false,
       //BE CAREFULL WITH THIS BOOLEAN WHEN UPDATED A IMG (NOT DONE YET)
-      image: false
+      image: this.tournament.image
     }
 
     this.tournamentService.updateTournament(updatedTournanent).subscribe(
-      _ => this.getTournamentInit(this.id)
+      response => { this.uploadImage();
+        this.getTournamentInit(this.id)
+        },
+        error => {
+          if (error.status != 400) {
+            console.error('Unexpected Error on deleteUser')
+          }
+        }
     );
+  }
+
+  uploadImage(): void {
+
+    const image = this.file.nativeElement.files[0];
+    if (image) {
+      let formData = new FormData();
+      formData.append("imageFile", image);
+      this.tournamentService.setTournamentImage(this.id,formData).subscribe(
+        _ => {this.afterUploadImage();this.getTournamentInit(this.id)},
+        error => alert('Error uploading user image: ' + error)
+      );
+    } else if(this.removeImage){
+      this.tournamentService.deleteTournamentImage(this.id).subscribe(
+        _ => {this.afterUploadImage();
+          this.getTournamentInit(this.id)},
+        error => alert('Error deleting user image: ' + error)
+      );
+    } else {
+      console.log("Entramos en else")
+      this.afterUploadImage();
+      this.getTournamentInit(this.id);
+    }
+  }
+
+  private afterUploadImage(){
+    this.router.navigate(['/tournament/'+this.id]);
   }
 
   private formatDateReverse(date: string): string {

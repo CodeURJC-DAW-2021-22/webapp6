@@ -556,9 +556,9 @@
 
                   <img *ngIf="tournament.image" src="/api/tournaments/{{tournament.id}}/image"><br>
                   <img *ngIf="!tournament.image" src="../../../assets/images/product_02.jpg">
-                  <input *ngIf="tournament.image" type='checkbox' name='removeImage'> <label>Remove image</label><br>
+                  <input *ngIf="tournament.image" type='checkbox' name='removeImage' [(ngModel)]="removeImage"> <label>Remove image</label><br>
 
-                  <input type='file' name='imageField' accept=".jpg, .jpeg">
+                  <input #file   type='file' name='imageField' accept=".jpg, .jpeg">
 
                 </div>
               </div>
