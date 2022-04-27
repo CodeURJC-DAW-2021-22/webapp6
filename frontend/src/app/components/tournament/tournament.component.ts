@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
-import { Observable } from 'rxjs';
 
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
@@ -25,10 +24,7 @@ export class TournamentComponent{
   userInTournament: boolean | undefined;
 
   //Bracket Rounds
-  round4: Match[] = [];
-  round3: Match[] = [];
-  round2: Match[] = [];
-  round1: Match[] = [];
+  rounds: Match[][] = [[],[],[],[]];
 
   //For User List on Inscription
   usersPage = -1;
@@ -51,16 +47,14 @@ export class TournamentComponent{
         this.tournament = tournament;
         this.getParticipants();
         if (tournament.started) {
-          this.getRound4();
-          this.getRound3();
-          this.getRound2();
-          this.getRound1();
+          this.getRound(4);
+          this.getRound(3);
+          this.getRound(2);
+          this.getRound(1);
         }
       },
       error => {
-        if (error.status != 404) {
-          console.error('Unexpected Error on getTournament')
-        } else {
+        if (error){
           this.router.navigate(['/error404'])
         }
       }
@@ -73,9 +67,7 @@ export class TournamentComponent{
         this.tournament = tournament;
       },
       error => {
-        if (error.status != 404) {
-          console.error('Unexpected Error on getTournament')
-        } else {
+        if (error){
           this.router.navigate(['/error404'])
         }
       }
@@ -100,55 +92,9 @@ export class TournamentComponent{
     );
 	}
 
-  getRound4() {
-    this.tournamentService.getTournamentRound(this.id, 4).subscribe(
-      matchList => {
-        this.round4 = matchList;
-      },
-      error => {
-        if (error.status != 400) {
-          console.error('Unexpected Error on getTournament')
-        }
-      }
-    )
-  }
-
-  getRound3() {
-    this.tournamentService.getTournamentRound(this.id, 3).subscribe(
-      matchList => {
-        this.round3 = matchList;
-      },
-      error => {
-        if (error.status != 400) {
-          console.error('Unexpected Error on getTournament')
-        }
-      }
-    )
-  }
-
-  getRound2() {
-    this.tournamentService.getTournamentRound(this.id, 2).subscribe(
-      matchList => {
-        this.round2 = matchList;
-      },
-      error => {
-        if (error.status != 400) {
-          console.error('Unexpected Error on getTournament')
-        }
-      }
-    )
-  }
-
-  getRound1() {
-    this.tournamentService.getTournamentRound(this.id, 1).subscribe(
-      matchList => {
-        this.round1 = matchList;
-      },
-      error => {
-        if (error.status != 400) {
-          console.error('Unexpected Error on getTournament')
-        }
-      }
+  getRound(num: number) {
+    this.tournamentService.getTournamentRound(this.id, num).subscribe(
+      matchList => this.rounds[num-1] = matchList
     )
   }
 
@@ -168,16 +114,9 @@ export class TournamentComponent{
   getUsersForInscription(){
     this.usersPage = this.usersPage + 1;
     this.userService.getAllUsers(this.usersPage).subscribe(
-      listUsers => {
-        if (listUsers.content != undefined) {
-          this.usersList = this.usersList.concat(listUsers.content);
-          this.hasMoreUsers = !listUsers.last;
-        } else {
-          this.hasMoreUsers = false;
-        }
-      },
-      error => {
-        console.error('Unexpected Error on getUsersForInscription')
+      info => {
+        this.usersList = this.usersList.concat(info[0]);
+        this.hasMoreUsers = info[1];
       }
     )
   }
@@ -272,15 +211,6 @@ export class TournamentComponent{
     this.tournamentService.updateTournament(updatedTournanent).subscribe(
       _ => this.getTournamentInit(this.id)
     );
-  }
-
-  private formatDate(date: string): string {
-    let splitted1 = date.split('T');
-    let splitted2 = splitted1[0].split('-');
-    let newDate = splitted1[1] + ' ' + ' ' + splitted2[2] + '/' + splitted2[1] + '/' + splitted2[0];
-    return newDate;
-    // "yyyy-MM-ddTHH:mm"
-    // "HH:mm  dd/MM/yyyy"
   }
 
   private formatDateReverse(date: string): string {

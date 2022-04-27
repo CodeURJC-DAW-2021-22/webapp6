@@ -206,11 +206,11 @@
                 <div *ngIf="tournament.started" class="tournament-bracket tournament-bracket--rounded mb-5">
 
 
-                  <div *ngIf="round4 != []" class="tournament-bracket__round tournament-bracket__round--semifinals">
+                  <div *ngIf="rounds[3] != []" class="tournament-bracket__round tournament-bracket__round--semifinals">
                     <h3 class="tournament-bracket__round-title">Octavos de final</h3>
                     <ul class="tournament-bracket__list">
 
-                      <li *ngFor="let match of round4" class="tournament-bracket__item">
+                      <li *ngFor="let match of rounds[3]" class="tournament-bracket__item">
                         <div class="tournament-bracket__match" tabindex="0">
                           <table class="tournament-bracket__table">
 
@@ -289,12 +289,12 @@
                   </div>
 
 
-                  <div *ngIf="round3 != []" class="tournament-bracket__round tournament-bracket__round--quarterfinals">
+                  <div *ngIf="rounds[2] != []" class="tournament-bracket__round tournament-bracket__round--quarterfinals">
                     <h3 class="tournament-bracket__round-title">Cuartos de final</h3>
 
                     <ul class="tournament-bracket__list">
 
-                      <li *ngFor="let match of round3" class="tournament-bracket__item">
+                      <li *ngFor="let match of rounds[2]" class="tournament-bracket__item">
                         <div class="tournament-bracket__match" tabindex="0">
                           <table class="tournament-bracket__table">
                             <caption class="tournament-bracket__caption">
@@ -374,11 +374,11 @@
                   </div>
 
 
-                  <div *ngIf="round2 != []" class="tournament-bracket__round tournament-bracket__round--semifinals">
+                  <div *ngIf="rounds[1] != []" class="tournament-bracket__round tournament-bracket__round--semifinals">
                     <h3 class="tournament-bracket__round-title">Semifinales</h3>
                     <ul class="tournament-bracket__list">
 
-                      <li *ngFor="let match of round2" class="tournament-bracket__item">
+                      <li *ngFor="let match of rounds[1]" class="tournament-bracket__item">
                         <div class="tournament-bracket__match" tabindex="0">
                           <table class="tournament-bracket__table">
 
@@ -457,11 +457,11 @@
                   </div>
 
 
-                  <div *ngIf="round1 != []" class="tournament-bracket__round tournament-bracket__round--bronze">
+                  <div *ngIf="rounds[0] != []" class="tournament-bracket__round tournament-bracket__round--bronze">
                     <h3 class="tournament-bracket__round-title">Final</h3>
                     <ul class="tournament-bracket__list">
 
-                      <li *ngFor="let match of round1" class="tournament-bracket__item">
+                      <li *ngFor="let match of rounds[0]" class="tournament-bracket__item">
                         <div class="tournament-bracket__match" tabindex="0">
                           <table class="tournament-bracket__table">
 

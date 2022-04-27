@@ -1,9 +1,8 @@
 import { TournamentService } from './../../services/tournament.service';
 
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { LoginService } from 'src/app/services/login.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Tournament } from 'src/app/models/tournament.model';
 import { User } from 'src/app/models/user.model';
 
@@ -19,7 +18,7 @@ export class AdminComponent {
   hasMoreUsers: boolean = true;
   usersList: User[] = [];
 
-  constructor(private router: Router,public loginService: LoginService, public userService: UserService, public tournamentService:TournamentService) {
+  constructor(public loginService: LoginService, public userService: UserService, public tournamentService:TournamentService) {
     this.getTournaments();
     this.getUsers();
   }
@@ -27,18 +26,9 @@ export class AdminComponent {
   getUsers(){
     this.usersPage = this.usersPage + 1;
     this.userService.getAllUsers(this.usersPage).subscribe(
-      listPairs => {
-        if (listPairs.content != undefined) {
-          this.usersList = this.usersList.concat(listPairs.content);
-          this.hasMoreUsers = !listPairs.last;
-        } else {
-          this.hasMoreUsers = false;
-        }
-      },
-      error => {
-        if (error.status != 403) {
-          console.error('Unexpected Error on getUserPairs')
-        }
+      info => {
+        this.usersList = this.usersList.concat(info[0]);
+        this.hasMoreUsers = info[1];
       }
     )
   }
@@ -46,16 +36,9 @@ export class AdminComponent {
   getTournaments() {
     this.page = this.page + 1;
     this.tournamentService.getTournaments(this.page).subscribe(
-      listTournaments => {
-        if (listTournaments.content != undefined) {
-          this.tournaments = this.tournaments.concat(listTournaments.content);
-          this.hasMoreTournaments = !listTournaments.last;
-        } else {
-          this.hasMoreTournaments = false;
-        }
-      },
-      error => {
-        console.error('Unexpected Error on getTournaments')
+      info => {
+        this.tournaments = this.tournaments.concat(info[0]);
+        this.hasMoreTournaments = info[1];
       }
     )
   }
@@ -75,11 +58,6 @@ export class AdminComponent {
       this.hasMoreUsers = true;
       this.usersList = [];
       this.getUsers();
-    },
-    error => {
-      if (error.status != 400) {
-        console.error('Unexpected Error on deleteTourn')
-      }
     }
   )
  }
@@ -91,11 +69,6 @@ export class AdminComponent {
       this.hasMoreTournaments= true;
       this.page=-1;
       this.getTournaments();
-    },
-    error => {
-      if (error.status != 400) {
-        console.error('Unexpected Error on deleteTourn')
-      }
     }
   )
  }

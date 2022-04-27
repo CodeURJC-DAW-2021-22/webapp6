@@ -1,7 +1,7 @@
 import { User } from './../models/user.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, map } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Match } from '../models/match.model';
 
@@ -44,7 +44,10 @@ constructor(private http: HttpClient) { }
   }
 
   deleteUser(id: number | string) {
-    return this.http.put(BASE_URL + id, { withCredentials: true } )
+    return this.http.put(BASE_URL + id, { withCredentials: true } ).pipe(map(
+      response => response,
+      error => errorIgnore(error, 400, "deleteUser")
+    ))
   }
 
   updateUser(user: User) {
@@ -52,11 +55,17 @@ constructor(private http: HttpClient) { }
   }
 
   getAllUsers(page: number | string) {
-    return this.http.get(BASE_URL + "?page=" + page, { withCredentials: true }) as Observable<any>;
+    return this.http.get(BASE_URL + "?page=" + page, { withCredentials: true }).pipe(map(
+      response => getInfoPageable(response),
+      error => errorIgnore(error, 403, "getAllUsers")
+    ));
   }
 
   getUserPairs(page: number | string) {
-    return this.http.get(BASE_URL + "me/pairs?page=" + page, { withCredentials: true }) as Observable<any>;
+    return this.http.get(BASE_URL + "me/pairs?page=" + page, { withCredentials: true }).pipe(map(
+      response => getInfoPageable(response),
+      error => errorIgnore(error, 403, "getUserPairs")
+    ));
   }
 
   getUserMatches() {
@@ -65,7 +74,10 @@ constructor(private http: HttpClient) { }
   }
 
   getUserTournaments(page: number | string) {
-    return this.http.get(BASE_URL + "me/tournaments?page=" + page, { withCredentials: true }) as Observable<any>;
+    return this.http.get(BASE_URL + "me/tournaments?page=" + page, { withCredentials: true }).pipe(map(
+      response => getInfoPageable(response),
+      error => errorIgnore(error, 403, "getUserTournaments")
+    ));
   }
 
   private handleError(error: any) {
@@ -74,3 +86,17 @@ constructor(private http: HttpClient) { }
     return throwError("Server error (" + error.status + "): ");
   }
 }
+function getInfoPageable(response: any): [any[], boolean] {
+  if (response.content != undefined) {
+    return [response.content,!response.last]
+  } else {
+    return [[],false]
+  }
+}
+
+function errorIgnore(error: any, errorNum: number, funcName: string) {
+  if (error.status != errorNum) {
+    console.error('Unexpected Error on' + funcName)
+  }
+}
+

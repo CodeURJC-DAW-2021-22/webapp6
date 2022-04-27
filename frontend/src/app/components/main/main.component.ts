@@ -12,6 +12,7 @@ export class MainComponent {
   userTournaments: Tournament[] = [];
   tournaments: Tournament[] = [];
   hasMoreTournaments: boolean = true;
+
   hasMoreUserTournaments: boolean = true;
   page: number = -1;
   pageUser: number = -1;
@@ -24,16 +25,9 @@ export class MainComponent {
   getTournaments() {
     this.page = this.page + 1;
     this.tournamentService.getTournaments(this.page).subscribe(
-      listTournaments => {
-        if (listTournaments.content != undefined) {
-          this.tournaments = this.tournaments.concat(listTournaments.content);
-          this.hasMoreTournaments = !listTournaments.last;
-        } else {
-          this.hasMoreTournaments = false;
-        }
-      },
-      error => {
-        console.error('Unexpected Error on getTournaments')
+      info => {
+        this.tournaments = this.tournaments.concat(info[0]);
+        this.hasMoreTournaments = info[1];
       }
     )
   }
@@ -41,32 +35,10 @@ export class MainComponent {
   getUserTournaments() {
     this.pageUser = this.pageUser + 1;
     this.userService.getUserTournaments(this.pageUser).subscribe(
-      listTournaments => {
-        if (listTournaments.content != undefined) {
-          this.userTournaments = this.userTournaments.concat(listTournaments.content);
-          this.hasMoreUserTournaments = !listTournaments.last;
-        } else {
-          this.hasMoreUserTournaments = false;
-        }
-      },
-      error => {
-        if (error.status != 403) {
-          console.error('Unexpected Error on getUserTournaments')
-        }
+      info => {
+        this.userTournaments = this.userTournaments.concat(info[0]);
+        this.hasMoreUserTournaments = info[1];
       }
     )
   }
-
-//   createImageFromBlob(image: Blob) {
-//     let imageToShow: any;
-//     let reader = new FileReader();
-//     reader.addEventListener("load", () => {
-//        imageToShow = reader.result;
-//     }, false);
-
-//     if (image) {
-//        reader.readAsDataURL(image);
-//     }
-//     return imageToShow;
-//  }
 }

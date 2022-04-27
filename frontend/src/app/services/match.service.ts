@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { Match } from '../models/match.model';
 import { UserService } from './user.service';
-import { Router } from '@angular/router';
 
 const BASE_URL = '/api/matches/';
 
@@ -13,7 +12,7 @@ const BASE_URL = '/api/matches/';
 })
 export class MatchService {
 
-  constructor(private http: HttpClient, public userService: UserService, private router: Router) {
+  constructor(private http: HttpClient, public userService: UserService) {
   }
 
   // THIS FUNCTIONS MAY NO WORK, TEST THEM WHEN DOING THE PAGES OF MATCH

@@ -1,6 +1,5 @@
 import { User } from './../models/user.model';
 import { Match } from './../models/match.model';
-import { LoginService } from './login.service';
 import { Team } from './../models/team.model';
 import { Tournament } from './../models/tournament.model';
 import { Injectable } from '@angular/core';
@@ -15,24 +14,42 @@ const BASE_URL = '/api/tournaments/';
 })
 export class TournamentService {
 
-  constructor(private http: HttpClient, private router: Router, private loginService :LoginService) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   getTournament(id: number | string) {
-    return this.http.get(BASE_URL + id, { withCredentials: true }) as Observable<Tournament>;
-    // return this.http.get(BASE_URL + id, { withCredentials: true }).pipe(catchError(error => this.router.navigate(['/error_404'])));
+    return this.http.get(BASE_URL + id, { withCredentials: true }).pipe(map(
+      response => response as Tournament,
+      error => {
+        if (error.status != 404) {
+          console.error('Unexpected Error on getTournament')
+          return false
+        } else {
+          return true
+        }
+      }
+    ))
   }
 
   getTournaments(page: number | string) {
-    return this.http.get(BASE_URL + "?page=" + page, { withCredentials: true }) as Observable<any>;
+    return this.http.get(BASE_URL + "?page=" + page, { withCredentials: true }).pipe(map(
+      response => getInfoPageableTournament(response),
+      _error => console.error('Unexpected Error on getTournaments')
+    ));
   }
 
   getTournamentTeams(id: number | string) {
-    return this.http.get(BASE_URL + id + "/teams", { withCredentials: true }) as Observable<Team[]>;
+    return this.http.get(BASE_URL + id + "/teams", { withCredentials: true }).pipe(map(
+      response => response as Team[],
+      error => console.error('Unexpected Error on getTournamentTeams')
+    ))
   }
 
   getTournamentRound(id: number | string, round: number | string) {
-    return this.http.get(BASE_URL + id + "/matches?round=" + round, { withCredentials: true }) as Observable<Match[]>;
+    return this.http.get(BASE_URL + id + "/matches?round=" + round, { withCredentials: true }).pipe(map(
+      response => response as Match[],
+      error => errorIgnore(error, 400, "deleteTournament")
+    ));
   }
 
   createTournament(Tournament: Tournament) {
@@ -40,7 +57,7 @@ export class TournamentService {
       // let To : Tournament;
       // To={owner:"owner",tournamentName:"tournamentName",numParticipants:1,numSignedUp:0,rounds:0,about:"about",ruleset:"ruleset",
       // location:"location", inscriptionDate:"2022-12-16T16:00",startDate:"2022-12-16T16:00"}
-      return this.http.post(BASE_URL, Tournament, { withCredentials: true }).subscribe((resp: any) => {
+      return this.http.post(BASE_URL, Tournament, { withCredentials: true }).subscribe((_resp: any) => {
         console.log("Creation Tournament: Successfully");
         this.router.navigate(['']);
       });
@@ -62,7 +79,10 @@ export class TournamentService {
   }
 
   deleteTournament(id: number){
-    return this.http.delete(BASE_URL + id);
+    return this.http.delete(BASE_URL + id).pipe(map(
+      response => response,
+      error => errorIgnore(error, 400, "deleteTournament")
+    ))
   }
 
   private handleError(error: any) {
@@ -72,3 +92,33 @@ export class TournamentService {
   }
 
 }
+
+function getInfoPageableTournament(response: any): [Tournament[], boolean] {
+  if (response.content != undefined) {
+    return [response.content,!response.last]
+  } else {
+    return [[],false]
+  }
+}
+
+function errorIgnore(error: any, errorNum: number, funcName: string) {
+  if (error.status != errorNum) {
+    console.error('Unexpected Error on' + funcName)
+  }
+}
+
+//Didnt work, idk. Should debug to know
+
+// function participantsMapping(teamList: Team[]): [Team[], boolean] {
+//   let isSigned = false;
+//   if (this.loginService.isLogged()) {
+//     let name = this.loginService.currentUser().name;
+//     for (let i = 0; i < teamList.length; i++){
+//       if (teamList[i].userA.name == name || teamList[i].userB.name == name){
+//         isSigned = true;
+//       }
+//     }
+//   }
+//   return [teamList, isSigned]
+// }
+

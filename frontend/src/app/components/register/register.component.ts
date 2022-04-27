@@ -1,8 +1,6 @@
 import { User } from './../../models/user.model';
 import { Component, ViewChild } from '@angular/core';
-import { LoginService } from '../../services/login.service';
 import { UserService } from 'src/app/services/user.service';
-import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +16,7 @@ export class RegisterComponent {
 
   removeImage:boolean | undefined;
 
-  constructor(private router: Router,activatedRoute: ActivatedRoute,private service: UserService)
+  constructor(private service: UserService)
   {
     // const id = activatedRoute.snapshot.params['id'];
     // if (id) {

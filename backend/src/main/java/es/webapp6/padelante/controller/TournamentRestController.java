@@ -193,7 +193,7 @@ public class TournamentRestController {
 			@ApiResponse(responseCode = "404", description = "tournament not found", content = @Content) })
 	@PutMapping("/{id}/teams")
 	@JsonView(User.Mostrar.class)
-	public ResponseEntity<List<Team>> tournamentTeams (@PathVariable long id, @RequestBody User user2, HttpServletRequest request) {
+	public ResponseEntity<List<Team>> inscription (@PathVariable long id, @RequestBody User user2, HttpServletRequest request) {
 		Principal principal = request.getUserPrincipal();
 
 		if (tournamentService.exist(id) && userService.exist(user2.getId())) {

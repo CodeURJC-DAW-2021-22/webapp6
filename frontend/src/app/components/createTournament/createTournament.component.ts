@@ -1,8 +1,7 @@
 import { Tournament } from './../../models/tournament.model';
 import { TournamentService } from './../../services/tournament.service';
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 
 

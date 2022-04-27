@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs';
 import { MatchService } from './../../services/match.service';
 import { Match } from './../../models/match.model';
 import { Component } from '@angular/core';

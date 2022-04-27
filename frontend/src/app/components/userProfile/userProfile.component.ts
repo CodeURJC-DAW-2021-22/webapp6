@@ -2,7 +2,7 @@ import { User } from '../../models/user.model';
 import { Component, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { LoginService } from 'src/app/services/login.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Tournament } from 'src/app/models/tournament.model';
 
 
@@ -44,18 +44,9 @@ export class UserProfileComponent{
   getUserPairs() {
     this.pagePairs = this.pagePairs + 1;
     this.userService.getUserPairs(this.pagePairs).subscribe(
-      listPairs => {
-        if (listPairs.content != undefined) {
-          this.userPairs = this.userPairs.concat(listPairs.content);
-          this.hasMorePairs = !listPairs.last;
-        } else {
-          this.hasMorePairs = false;
-        }
-      },
-      error => {
-        if (error.status != 403) {
-          console.error('Unexpected Error on getUserPairs')
-        }
+      info => {
+        this.userPairs = this.userPairs.concat(info[0]);
+        this.hasMorePairs = info[1];
       }
     )
   }
@@ -63,18 +54,9 @@ export class UserProfileComponent{
   getUserTournaments() {
     this.pageUser = this.pageUser + 1;
     this.userService.getUserTournaments(this.pageUser).subscribe(
-      listTournaments => {
-        if (listTournaments.content != undefined) {
-          this.userTournaments = this.userTournaments.concat(listTournaments.content);
-          this.hasMoreUserTournaments = !listTournaments.last;
-        } else {
-          this.hasMoreUserTournaments = false;
-        }
-      },
-      error => {
-        if (error.status != 403) {
-          console.error('Unexpected Error on getUserTournaments')
-        }
+      info => {
+        this.userTournaments = this.userTournaments.concat(info[0]);
+        this.hasMoreUserTournaments = info[1];
       }
     )
   }
