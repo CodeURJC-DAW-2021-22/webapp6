@@ -26,6 +26,7 @@ export class UserProfileComponent{
   file: any;
 
   removeImage:boolean;
+  auxURL: number = 1;
 
   constructor(private router: Router,public loginService: LoginService, public userService: UserService) {
 
@@ -68,17 +69,14 @@ export class UserProfileComponent{
       user.country=country;
       user.phone = phone;
 
-
       this.userService.updateUser(user).subscribe(
-        response => { this.uploadImage();},
+        response => this.uploadImage(),
         error => {
           if (error.status != 400) {
             console.error('Unexpected Error on deleteUser')
           }
         }
       )
-      this.loginService.reqIsLogged();
-
     }
 
   hasImage(){
@@ -88,17 +86,24 @@ export class UserProfileComponent{
   uploadImage(): void {
 
     const image = this.file.nativeElement.files[0];
-    if (image) {
+    if (this.removeImage) {
+      this.userService.deleteUserImage().subscribe(
+        _ => this.afterUploadImage(),
+        error => {
+          if (error.status != 400) {
+            console.error('Error deleting user image')
+          }
+        }
+      );
+    } else if(image){
       let formData = new FormData();
       formData.append("imageFile", image);
       this.userService.setUserImage(formData).subscribe(
-        _ => this.afterUploadImage(),
-        error => alert('Error uploading user image: ' + error)
-      );
-    } else if(this.removeImage){
-      this.userService.deleteUserImage().subscribe(
-        _ => this.afterUploadImage(),
-        error => alert('Error deleting user image: ' + error)
+        _ => {
+          this.afterUploadImage()
+          this.auxURL = this.auxURL +1
+        },
+        error => alert('Error uploading user image')
       );
     } else {
       console.log("Entramos en else")
@@ -107,6 +112,7 @@ export class UserProfileComponent{
   }
 
   private afterUploadImage(){
-    this.router.navigate(['/user_profile']);
+    this.loginService.reqIsLogged();
+    this.removeImage = false;
   }
 }

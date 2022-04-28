@@ -13,7 +13,7 @@
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
 
-              <img *ngIf="hasImage()" src="api/users/image/{{loginService.currentUser().id}}" alt="User Image"
+              <img *ngIf="hasImage()" src="api/users/image/{{loginService.currentUser().id}}?{{auxURL}}" alt="User Image"
                 class="rounded-circle border-green bg-232323">
               <img *ngIf="!hasImage()" src="/assets/images/no_profile_photo.jpg" alt="User Image"
                 class="rounded-circle border-green bg-232323">
@@ -178,11 +178,12 @@
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Imagen de Perfil </label>
 
                       <div class="col-md-8 col-lg-9">
-                        <img *ngIf="hasImage()" src="api/users/image/{{loginService.currentUser().id}}"><br>
-
-                        <input *ngIf="hasImage()" type='checkbox' name='removeImage' [(ngModel)]="removeImage"> <label>Remove image</label><br>
-
+                        <img *ngIf="hasImage()" src="api/users/image/{{loginService.currentUser().id}}?{{auxURL}}">
                         <img *ngIf="!hasImage()" src="/assets/images/no_profile_photo.jpg"> <br>
+
+                        <span *ngIf="hasImage()">
+                          <input type='checkbox' name='removeImage' [(ngModel)]="removeImage"> <label>Remove image</label><br>
+                        </span>
 
                         <input #file type='file' name='imageField' accept=".jpg, .jpeg">
                       </div>

@@ -35,6 +35,7 @@ export class TournamentComponent{
   file: any;
 
   removeImage:boolean;
+  auxURL: number = 1;
 
 
   constructor(private router: Router, activatedRoute: ActivatedRoute, public tournamentService: TournamentService,
@@ -214,42 +215,48 @@ export class TournamentComponent{
     }
 
     this.tournamentService.updateTournament(updatedTournanent).subscribe(
-      response => { this.uploadImage();
-        this.getTournamentInit(this.id)
-        },
-        error => {
-          if (error.status != 400) {
-            console.error('Unexpected Error on deleteUser')
-          }
+      response => this.uploadImage(),
+      error => {
+        if (error.status != 400) {
+          console.error('Unexpected Error on deleteUser')
         }
+      }
     );
   }
 
   uploadImage(): void {
 
     const image = this.file.nativeElement.files[0];
-    if (image) {
+    if (this.removeImage) {
+      this.tournamentService.deleteTournamentImage(this.id).subscribe(
+        _ => this.afterUploadImage(),
+        error => {
+          if (error.status != 400) {
+            console.error('Error deleting user image')
+          }
+        }
+      );
+    } else if(image){
       let formData = new FormData();
       formData.append("imageFile", image);
-      this.tournamentService.setTournamentImage(this.id,formData).subscribe(
-        _ => {this.afterUploadImage();this.getTournamentInit(this.id)},
-        error => alert('Error uploading user image: ' + error)
-      );
-    } else if(this.removeImage){
-      this.tournamentService.deleteTournamentImage(this.id).subscribe(
-        _ => {this.afterUploadImage();
-          this.getTournamentInit(this.id)},
-        error => alert('Error deleting user image: ' + error)
+      this.tournamentService.setTournamentImage(this.id, formData).subscribe(
+        _ => {
+          this.afterUploadImage()
+          this.auxURL = this.auxURL +1
+        },
+        error => alert('Error uploading user image')
       );
     } else {
       console.log("Entramos en else")
       this.afterUploadImage();
-      this.getTournamentInit(this.id);
     }
   }
 
   private afterUploadImage(){
-    this.router.navigate(['/tournament/'+this.id]);
+    this.getTournamentInit(this.id)
+    this.removeImage = false;
+    let aux: any
+    this.file = aux
   }
 
   private formatDateReverse(date: string): string {
