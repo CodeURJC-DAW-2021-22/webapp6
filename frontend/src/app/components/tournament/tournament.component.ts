@@ -81,19 +81,16 @@ export class TournamentComponent{
   }
 
   getParticipants() {
-		this.tournamentService.getTournamentTeams(this.id).subscribe(
-      teamList => {
-        this.participants = teamList;
-        let isSigned = false;
-        if (this.loginService.isLogged()) {
-          let name = this.loginService.currentUser().name;
-          for (let i = 0; i < teamList.length; i++){
-            if (teamList[i].userA.name == name || teamList[i].userB.name == name){
-              isSigned = true;
-            }
-          }
-        }
-        this.userInTournament = isSigned;
+    let name: string
+    if (this.loginService.isLogged()) {
+      name = this.loginService.currentUser().name
+    } else {
+      name = ""
+    }
+		this.tournamentService.getTournamentTeams(this.id, name).subscribe(
+      info => {
+        this.participants = info[0];
+        this.userInTournament = info[1];
       }
     );
 	}

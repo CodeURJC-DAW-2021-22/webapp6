@@ -38,10 +38,10 @@ export class TournamentService {
     ));
   }
 
-  getTournamentTeams(id: number | string) {
+  getTournamentTeams(id: number | string, name: string) {
     return this.http.get(BASE_URL + id + "/teams", { withCredentials: true }).pipe(map(
-      response => response as Team[],
-      error => console.error('Unexpected Error on getTournamentTeams')
+      response => participantsMapping(response as Team[], name),
+      _error => console.error('Unexpected Error on getTournamentTeams')
     ))
   }
 
@@ -53,10 +53,6 @@ export class TournamentService {
   }
 
   createTournament(Tournament: Tournament) {
-
-      // let To : Tournament;
-      // To={owner:"owner",tournamentName:"tournamentName",numParticipants:1,numSignedUp:0,rounds:0,about:"about",ruleset:"ruleset",
-      // location:"location", inscriptionDate:"2022-12-16T16:00",startDate:"2022-12-16T16:00"}
       return this.http.post(BASE_URL, Tournament, { withCredentials: true }).subscribe((_resp: any) => {
         console.log("Creation Tournament: Successfully");
         this.router.navigate(['']);
@@ -123,16 +119,13 @@ function errorIgnore(error: any, errorNum: number, funcName: string) {
 
 //Didnt work, idk. Should debug to know
 
-// function participantsMapping(teamList: Team[]): [Team[], boolean] {
-//   let isSigned = false;
-//   if (this.loginService.isLogged()) {
-//     let name = this.loginService.currentUser().name;
-//     for (let i = 0; i < teamList.length; i++){
-//       if (teamList[i].userA.name == name || teamList[i].userB.name == name){
-//         isSigned = true;
-//       }
-//     }
-//   }
-//   return [teamList, isSigned]
-// }
+function participantsMapping(teamList: Team[], name: string): [Team[], boolean] {
+  let isSigned = false;
+  for (let i = 0; i < teamList.length; i++){
+    if (teamList[i].userA.name == name || teamList[i].userB.name == name){
+      isSigned = true;
+    }
+  }
+  return [teamList, isSigned]
+}
 
