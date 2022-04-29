@@ -4,8 +4,7 @@ import { Team } from './../models/team.model';
 import { Tournament } from './../models/tournament.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map, Observable, throwError } from 'rxjs';
-import { Router } from '@angular/router';
+import { map, throwError } from 'rxjs';
 
 const BASE_URL = '/api/tournaments/';
 
@@ -14,7 +13,7 @@ const BASE_URL = '/api/tournaments/';
 })
 export class TournamentService {
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient) {
   }
 
   getTournament(id: number | string) {
@@ -53,17 +52,17 @@ export class TournamentService {
   }
 
   createTournament(Tournament: Tournament) {
-      return this.http.post(BASE_URL, Tournament, { withCredentials: true }).subscribe((_resp: any) => {
-        console.log("Creation Tournament: Successfully");
-        this.router.navigate(['']);
-      });
-
+    return this.http.post(BASE_URL, Tournament, { withCredentials: true }).pipe(map(
+      response => response as Tournament,
+      error => errorIgnore(error, 403, "createTournament")
+    ));
   }
 
   updateTournament(tournament: Tournament) {
-    return this.http.put(BASE_URL + tournament.id, tournament).pipe(
-			catchError(error => this.handleError(error))
-		);
+    return this.http.put(BASE_URL + tournament.id, tournament).pipe(map(
+      response => response,
+      error => errorIgnore(error, 400, "updateTournament")
+    ));
   }
 
   deleteTeam(idTournament: number | string, idTeam: number | string) {
@@ -82,17 +81,18 @@ export class TournamentService {
   }
 
   setTournamentImage(id:number, formData: FormData) {
-    return this.http.post(BASE_URL +id+ '/image', formData)
-      .pipe(
-        catchError(error => this.handleError(error))
-      );
+    return this.http.post(BASE_URL +id+ '/image', formData).pipe(map(
+      response => response,
+      _error => console.error('Unexpected error in setTournamentImage')
+    ))
   }
 
   deleteTournamentImage(id:number){
     return this.http.delete(BASE_URL +id+ '/image')
-      .pipe(
-        catchError(error => this.handleError(error))
-      );
+      .pipe(map(
+        response => response,
+        error => errorIgnore(error, 400, "deleteTournamentImage")
+      ));
   }
 
   private handleError(error: any) {

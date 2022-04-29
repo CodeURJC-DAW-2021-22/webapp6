@@ -43,7 +43,8 @@
               <a class="button btn-tournament upper-text my-1" href="#"><i class="ri-heart-3-fill pe-1"></i> Seguir</a>
             </div> -->
 
-            <div *ngIf="this.loginService.isLogged() && !userInTournament && !tournament.started" class="d-flex justify-content-end">
+            <div *ngIf="this.loginService.isLogged() && !userInTournament && !tournament.started &&
+              tournament.numParticipants > tournament.numSignedUp" class="d-flex justify-content-end">
               <a class="d-inline button btn-tournament upper-text my-1" href="#" data-bs-toggle="modal" (click)="getUsersForInscription()"
                 data-bs-target="#staticBackdrop">
                 <i class="ri-edit-fill pe-1"></i> Incribirse

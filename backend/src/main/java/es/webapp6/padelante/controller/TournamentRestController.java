@@ -144,7 +144,6 @@ public class TournamentRestController {
 		if (principal != null) {
 			// Data that must be default because tournament could be inconsistent
 			tournament.setOwner(principal.getName());
-			tournament.setNumParticipants(0);
 			tournament.setNumSignedUp(0);
 			tournament.setRounds(0);
 

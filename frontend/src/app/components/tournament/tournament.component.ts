@@ -207,17 +207,11 @@ export class TournamentComponent{
       inscriptionDate: newinscriptionDate,
       startDate: newstartDate,
       started: false,
-      //BE CAREFULL WITH THIS BOOLEAN WHEN UPDATED A IMG (NOT DONE YET)
       image: this.tournament.image
     }
 
     this.tournamentService.updateTournament(updatedTournanent).subscribe(
-      response => this.uploadImage(),
-      error => {
-        if (error.status != 400) {
-          console.error('Unexpected Error on deleteUser')
-        }
-      }
+      _ => this.uploadImage()
     );
   }
 
@@ -226,12 +220,7 @@ export class TournamentComponent{
     const image = this.file.nativeElement.files[0];
     if (this.removeImage) {
       this.tournamentService.deleteTournamentImage(this.id).subscribe(
-        _ => this.afterUploadImage(),
-        error => {
-          if (error.status != 400) {
-            console.error('Error deleting user image')
-          }
-        }
+        _ => this.afterUploadImage()
       );
     } else if(image){
       let formData = new FormData();
@@ -240,11 +229,9 @@ export class TournamentComponent{
         _ => {
           this.afterUploadImage()
           this.auxURL = this.auxURL +1
-        },
-        error => alert('Error uploading user image')
+        }
       );
     } else {
-      console.log("Entramos en else")
       this.afterUploadImage();
     }
   }

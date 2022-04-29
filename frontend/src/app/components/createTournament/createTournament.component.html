@@ -33,7 +33,7 @@
                     <div class="col-12">
                       <label for="tournamentImage" class="form-label">Imagen del torneo</label>
                       <div class="tournament-img">
-                        <input type='file' name='imageField' accept=".jpg, .jpeg, .png" />
+                        <input #file type='file' name='imageField' accept=".jpg, .jpeg, .png" />
                       </div>
                       <div class="invalid-feedback">Introduce una imagen válida.</div>
                     </div>
@@ -111,7 +111,7 @@
                     </div>
 
                     <div class="col-12 mt-4">
-                      <button class="btn btn-login upper-text w-100" (click)="TournamentCreated($event,tournamentName.value,
+                      <button class="btn btn-login upper-text w-100" (click)="TournamentCreated(tournamentName.value,
                       about.value,ruleset.value,location.value,numParticipants.value,inscriptionDate.value,startDate.value)" type="submit">Crear torneo</button>
                     </div>
 
