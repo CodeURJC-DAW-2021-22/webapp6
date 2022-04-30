@@ -34,8 +34,13 @@ export class MatchComponent {
   }
 
   setResult(games1, games2, games3, games4, games5, games6){
-    this.matchService.resultMatch(this.match?.id, [games1, games2, games3, games4, games5, games6]).subscribe(
-      _ => this.getMatch(this.id)
+    this.matchService.resultMatch(this.match?.id, [+games1, +games2, +games3, +games4, +games5, +games6]).subscribe(
+      response => this.match = response,
+      error => {
+        if (error.status == 400) {
+          alert("Resultado inválido")
+        }
+      }
     );
   }
 

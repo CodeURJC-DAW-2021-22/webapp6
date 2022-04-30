@@ -11,7 +11,7 @@
             <div class="d-flex flex-row">
                 <div class="tournament-img p-3">
 
-                    <img *ngIf="match.tournament.image" src="api/tournaments/{{match.tournament.id}}/image"
+                    <img *ngIf="match.tournament.image" [src]="tournamentService.getTournamentImage(match.tournament?.id, 0)"
                     alt="Tournament Image" class="rounded-circle border-green bg-232323">
                     <img *ngIf="!match.tournament.image" src="/assets/images/product_02.jpg" alt="Tournament Image"
                         class="rounded-circle border-green bg-232323">

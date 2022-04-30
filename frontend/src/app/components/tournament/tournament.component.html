@@ -8,7 +8,7 @@
         <div class="d-flex flex-row">
           <div class="tournament-img p-3">
 
-            <img *ngIf="tournament.image" src="api/tournaments/{{tournament.id}}/image?{{auxURL}}" alt="Tournament Image" class="rounded-circle border-green bg-232323">
+            <img *ngIf="tournament.image" [src]="tournamentService.getTournamentImage(id, auxURL)" alt="Tournament Image" class="rounded-circle border-green bg-232323">
             <img *ngIf="!tournament.image" src="../../../assets/images/product_02.jpg" alt="Tournament Image" class="rounded-circle border-green bg-232323">
 
           </div>
@@ -89,12 +89,12 @@
                     <span id="elements">
 
                       <div *ngFor="let user of usersList" class="row">
-                        <div class="col-md-12">
+                        <div *ngIf="user.name != loginService.currentUser().name" class="col-md-12">
                           <div class="d-flex align-items-center justify-content-between lineUser">
                             <div class="pe-2">
 
                               <img *ngIf="user.image" class="partner-img rounded-circle border-green-tiny small me-2"
-                              src="/api/users/image/{{user?.id}}">
+                              [src]="userService.getUserImage(user?.id, 0)">
                               <img *ngIf="!user.image" class="partner-img rounded-circle border-green-tiny small me-2"
                               src="/assets/images/no_profile_photo.jpg">
 
@@ -207,7 +207,7 @@
                 <div *ngIf="tournament.started" class="tournament-bracket tournament-bracket--rounded mb-5">
 
 
-                  <div *ngIf="rounds[3] != []" class="tournament-bracket__round tournament-bracket__round--semifinals">
+                  <div *ngIf="!rounds[3] = []" class="tournament-bracket__round tournament-bracket__round--semifinals">
                     <h3 class="tournament-bracket__round-title">Octavos de final</h3>
                     <ul class="tournament-bracket__list">
 
@@ -290,7 +290,7 @@
                   </div>
 
 
-                  <div *ngIf="rounds[2] != []" class="tournament-bracket__round tournament-bracket__round--quarterfinals">
+                  <div *ngIf="!rounds[2] = []" class="tournament-bracket__round tournament-bracket__round--quarterfinals">
                     <h3 class="tournament-bracket__round-title">Cuartos de final</h3>
 
                     <ul class="tournament-bracket__list">
@@ -375,7 +375,7 @@
                   </div>
 
 
-                  <div *ngIf="rounds[1] != []" class="tournament-bracket__round tournament-bracket__round--semifinals">
+                  <div *ngIf="!rounds[1] = []" class="tournament-bracket__round tournament-bracket__round--semifinals">
                     <h3 class="tournament-bracket__round-title">Semifinales</h3>
                     <ul class="tournament-bracket__list">
 
@@ -458,7 +458,7 @@
                   </div>
 
 
-                  <div *ngIf="rounds[0] != []" class="tournament-bracket__round tournament-bracket__round--bronze">
+                  <div *ngIf="!rounds[0] = []" class="tournament-bracket__round tournament-bracket__round--bronze">
                     <h3 class="tournament-bracket__round-title">Final</h3>
                     <ul class="tournament-bracket__list">
 
@@ -555,7 +555,7 @@
                 <label for="tournamentImage" class="col-md-4 col-lg-3 col-form-label">Imagen del torneo</label>
                 <div class="col-md-8 col-lg-9 tournament-img">
 
-                  <img *ngIf="tournament.image" src="/api/tournaments/{{tournament.id}}/image?{{auxURL}}">
+                  <img *ngIf="tournament.image" [src]="tournamentService.getTournamentImage(id, auxURL)">
                   <img *ngIf="!tournament.image" src="../../../assets/images/product_02.jpg"><br>
 
                   <span *ngIf="tournament.image">

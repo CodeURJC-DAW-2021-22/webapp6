@@ -80,6 +80,10 @@ export class TournamentService {
     ))
   }
 
+  getTournamentImage(id: number, aux: number) {
+    return BASE_URL + id + "/image?" + aux
+  }
+
   setTournamentImage(id:number, formData: FormData) {
     return this.http.post(BASE_URL +id+ '/image', formData).pipe(map(
       response => response,

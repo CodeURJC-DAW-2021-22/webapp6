@@ -28,6 +28,10 @@ constructor(private http: HttpClient, private router: Router) { }
       );
   }
 
+  getUserImage(id: number, aux: number) {
+    return BASE_URL + "image/" + id + "?" + aux
+  }
+
   setUserImage(formData: FormData) {
     return this.http.post(BASE_URL + 'image', formData).pipe(map(
       response => response,

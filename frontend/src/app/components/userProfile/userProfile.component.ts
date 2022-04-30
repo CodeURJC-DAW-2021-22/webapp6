@@ -1,3 +1,4 @@
+import { TournamentService } from 'src/app/services/tournament.service';
 import { User } from '../../models/user.model';
 import { Component, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
@@ -27,7 +28,7 @@ export class UserProfileComponent{
   removeImage:boolean;
   auxURL: number = 1;
 
-  constructor(public loginService: LoginService, public userService: UserService) {
+  constructor(public loginService: LoginService, public userService: UserService, public tournamentService: TournamentService) {
 
     this.getUserTournaments();
     this.getUserPairs();
