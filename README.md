@@ -607,6 +607,7 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
     
     
   - Commits más significativos:
+  
         https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/12c5bd794d0b31def1f3848aeb348b80d299f802
         https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/dee397e92159a0446c17cfb13fa60201a9f1cd08
         https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/fa5ba30d59157d764ff48b5071c45b620642f826
@@ -617,6 +618,7 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
     
     
   - Ficheros más relevantes:
+  
         https://github.com/CodeURJC-DAW-2021-22/webapp6/tree/main/frontend/src/app/components/doughnutchart
         https://github.com/CodeURJC-DAW-2021-22/webapp6/tree/main/frontend/src/app/components/linechart
         https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/frontend/src/app/models/team.model.ts
