@@ -13,6 +13,7 @@ export class DoughnutChartComponent  {
     data: any;
 
     chartOptions: any;
+    draw: number;
 
 
 
@@ -27,13 +28,15 @@ export class DoughnutChartComponent  {
           let user = response as User;
 
           console.log(user);
+          this.draw = user.numLoses+user.numWins;
+
 
           this.data = {
               labels: ['Victorias','Derrotas'],
               datasets: [
                   {
-                      // Delete "+1" when fix the 0-0 chart error
-                      data: [user.numWins+1, user.numLoses ],
+
+                      data: [user.numWins, user.numLoses ],
                       backgroundColor: [
                           "#67d400",
                           "#121212",

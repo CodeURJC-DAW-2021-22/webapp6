@@ -1,9 +1,14 @@
-
-    <p-chart
+<div *ngIf="draw == 0">
+No ha jugado ningún partido todavía
+</div>
+  <p-chart *ngIf="draw != 0"
       type="doughnut"
       [data]="data"
       [options]="chartOptions"
       width="250px"
       height="250px"
-    ></p-chart>
+  >
+
+  </p-chart>
+
 
