@@ -2,7 +2,6 @@ import { User } from '../../models/user.model';
 import { Component, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { LoginService } from 'src/app/services/login.service';
-import { Router } from '@angular/router';
 import { Tournament } from 'src/app/models/tournament.model';
 
 
@@ -28,18 +27,14 @@ export class UserProfileComponent{
   removeImage:boolean;
   auxURL: number = 1;
 
-  constructor(private router: Router,public loginService: LoginService, public userService: UserService) {
+  constructor(public loginService: LoginService, public userService: UserService) {
 
     this.getUserTournaments();
     this.getUserPairs();
   }
 
-  calculatedKarma( array : number[]){
-    let j = 0;
-      for(let i = 0; i < array.length;i++){
-          j+=array[i];
-      }
-    return Math.round(j/array.length);
+  getKarma(array : number[]){
+    return array[array.length-1];
   }
 
   getUserPairs() {
@@ -62,7 +57,7 @@ export class UserProfileComponent{
     )
   }
 
-  updateUserForm(event:any,fullName:string,location:string, country:string, phone:string){
+  updateUserForm(fullName:string,location:string, country:string, phone:string){
       let user = this.loginService.currentUser();
       user.realName=fullName;
       user.location = location;
@@ -70,12 +65,7 @@ export class UserProfileComponent{
       user.phone = phone;
 
       this.userService.updateUser(user).subscribe(
-        response => this.uploadImage(),
-        error => {
-          if (error.status != 400) {
-            console.error('Unexpected Error on deleteUser')
-          }
-        }
+        _ => this.uploadImage()
       )
     }
 
@@ -88,12 +78,7 @@ export class UserProfileComponent{
     const image = this.file.nativeElement.files[0];
     if (this.removeImage) {
       this.userService.deleteUserImage().subscribe(
-        _ => this.afterUploadImage(),
-        error => {
-          if (error.status != 400) {
-            console.error('Error deleting user image')
-          }
-        }
+        _ => this.afterUploadImage()
       );
     } else if(image){
       let formData = new FormData();
@@ -102,11 +87,9 @@ export class UserProfileComponent{
         _ => {
           this.afterUploadImage()
           this.auxURL = this.auxURL +1
-        },
-        error => alert('Error uploading user image')
+        }
       );
     } else {
-      console.log("Entramos en else")
       this.afterUploadImage();
     }
   }

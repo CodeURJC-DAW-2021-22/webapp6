@@ -18,12 +18,7 @@ export class HeaderComponent {
 
   getUserMatches(){
     this.userService.getUserMatches().subscribe(
-      listMatches => this.userMatches = listMatches,
-      error => {
-        if (error.status != 403) {
-            console.error('Unexpected Error on getUserMatches')
-        }
-      }
+      listMatches => this.userMatches = listMatches
     )
   }
 

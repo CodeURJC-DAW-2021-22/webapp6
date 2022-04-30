@@ -26,9 +26,7 @@ export class MatchComponent {
     this.matchService.getMatch(id).subscribe(
       response => this.match = response,
       error => {
-        if (error.status != 404) {
-          console.error('Unexpected Error on getMatch')
-        } else {
+        if (error){
           this.router.navigate(['/error404'])
         }
       }
