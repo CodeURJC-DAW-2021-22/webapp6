@@ -2,9 +2,11 @@
 
 cd ../../frontend
 
-npm install
+# npm install
 
 ng build --prod --base-href="/new/"
+
+rm -r ../backend/src/main/resources/public/new/*
 
 cp -r dist/frontend/* ../backend/src/main/resources/public/new/
 

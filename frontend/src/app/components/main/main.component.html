@@ -30,9 +30,7 @@
             <div class="product-item">
               <a [routerLink]="['/tournament',userTournament.id]">
 
-                <!-- <img *ngIf="hasTournamentImage(userTournament.id)" class="img-lista-torneos" [src]="getTournamentImage(userTournament.id)"> -->
-                <!-- <img class="img-lista-torneos" [src]="getTournamentImage(userTournament.id)"> -->
-                <img *ngIf="userTournament.image" class="img-lista-torneos" src="/api/tournaments/{{userTournament?.id}}/image">
+                <img *ngIf="userTournament.image" class="img-lista-torneos" [src]="tournamentService.getTournamentImage(userTournament?.id, 0)">
                 <img *ngIf="!userTournament.image" class="img-lista-torneos" src="../../../assets/images/product_02.jpg">
 
               </a>
@@ -73,7 +71,7 @@
               <!-- select image from DB when necessary-->
               <a [routerLink]="['/tournament',tournament.id]">
 
-                <img *ngIf="tournament.image" class="img-lista-torneos" src="/api/tournaments/{{tournament?.id}}/image">
+                <img *ngIf="tournament.image" class="img-lista-torneos" [src]="tournamentService.getTournamentImage(tournament?.id, 0)">
                 <img *ngIf="!tournament.image" class="img-lista-torneos" src="../../../assets/images/product_02.jpg">
 
               </a>

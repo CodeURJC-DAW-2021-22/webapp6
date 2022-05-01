@@ -1,9 +1,9 @@
 import { User } from './../models/user.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError, map } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { map } from 'rxjs';
 import { Match } from '../models/match.model';
+import { Router } from '@angular/router';
 
 const BASE_URL = '/api/users/';
 
@@ -13,34 +13,37 @@ const BASE_URL = '/api/users/';
 export class UserService {
 
 
-constructor(private http: HttpClient) { }
+constructor(private http: HttpClient, private router: Router) { }
 
   //getuser by id
-  getUser(id: number | string): Observable<User> {
-    return this.http.get(BASE_URL + id) as Observable<User>;
+  getUser(id: number | string) {
+    return this.http.get(BASE_URL + id).pipe(map(
+      response => response as User
+    ))
   }
 
   registerUser(User: User) {
+      return this.http.post(BASE_URL, User,{ withCredentials: true }).subscribe(
+        _ => this.router.navigate(['login'])
+      );
+  }
 
-
-      return this.http.post(BASE_URL, User,{ withCredentials: true }).subscribe((resp: any) => {
-        console.log("Register new User: Successfully");
-
-    });
+  getUserImage(id: number, aux: number) {
+    return BASE_URL + "image/" + id + "?" + aux
   }
 
   setUserImage(formData: FormData) {
-    return this.http.post(BASE_URL + 'image', formData)
-      .pipe(
-        catchError(error => this.handleError(error))
-      );
+    return this.http.post(BASE_URL + 'image', formData).pipe(map(
+      response => response,
+      _error => console.error('Unexpected Error on setUserImage')
+    ))
   }
 
   deleteUserImage(){
-    return this.http.delete(BASE_URL + 'image')
-      .pipe(
-        catchError(error => this.handleError(error))
-      );
+    return this.http.delete(BASE_URL + 'image').pipe(map(
+      response => response,
+      error => errorIgnore(error, 400, "deleteUserImage")
+    ))
   }
 
   deleteUser(id: number | string) {
@@ -51,7 +54,10 @@ constructor(private http: HttpClient) { }
   }
 
   updateUser(user: User) {
-    return this.http.put(BASE_URL , user,{ withCredentials: true })
+    return this.http.put(BASE_URL , user,{ withCredentials: true }).pipe(map(
+      response => response,
+      error => errorIgnore(error, 400, "updateUser")
+    ));
   }
 
   getAllUsers(page: number | string) {
@@ -69,8 +75,10 @@ constructor(private http: HttpClient) { }
   }
 
   getUserMatches() {
-    return this.http.get(BASE_URL + 'me/matches', { withCredentials: true }) as Observable<Match[]>;
-    // return this.http.get(BASE_URL + id, { withCredentials: true }).pipe(catchError(error => this.router.navigate(['/error_404'])));
+    return this.http.get(BASE_URL + 'me/matches', { withCredentials: true }).pipe(map(
+      response => response as Match[],
+      error => errorIgnore(error, 403, "getUserMatches")
+    ));
   }
 
   getUserTournaments(page: number | string) {
@@ -79,13 +87,9 @@ constructor(private http: HttpClient) { }
       error => errorIgnore(error, 403, "getUserTournaments")
     ));
   }
-
-  private handleError(error: any) {
-    console.log("ERROR:");
-    console.error(error);
-    return throwError("Server error (" + error.status + "): ");
-  }
 }
+
+
 function getInfoPageable(response: any): [any[], boolean] {
   if (response.content != undefined) {
     return [response.content,!response.last]

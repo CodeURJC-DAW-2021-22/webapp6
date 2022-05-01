@@ -1,5 +1,3 @@
-
-
 <body class="bg-232323">
 
   <header class="fixed-top"></header>
@@ -41,7 +39,7 @@
                     <div  *ngFor="let user of usersList" class="col-md-12">
                       <div class="d-flex lineUser">
 
-                      <img  *ngIf="hasImage()" class="userFinder" src="/user/{{user.id}}/image">
+                      <img  *ngIf="hasImage()" class="userFinder" [src]="userService.getUserImage(user.id, 0)">
                       <img *ngIf="!hasImage()" class="userFinder" src="/assets/images/no_profile_photo.jpg">
 
                       <span class="d-flex align-items-center partner-name">{{user.name}}</span>
@@ -77,15 +75,15 @@
                 <span id="elements">
                   <div  *ngIf="isAdmin()" class="row">
 
-                    <div *ngFor="let Tournament of tournaments" class="col-md-12">
+                    <div *ngFor="let tournament of tournaments" class="col-md-12">
                         <div class="d-flex lineTournament">
 
-                            <img  *ngIf="Tournament.image" class="tournamentFinder" src="/api/tournaments/{{Tournament?.id}}/image">
-                            <img *ngIf="!Tournament.image" class="tournamentFinder" src="/assets/images/product_02.jpg">
+                            <img  *ngIf="tournament.image" class="tournamentFinder" [src]="tournamentService.getTournamentImage(tournament?.id, 0)">
+                            <img *ngIf="!tournament.image" class="tournamentFinder" src="/assets/images/product_02.jpg">
 
-                          <span class="d-flex align-items-center partner-name">{{Tournament.tournamentName}}</span>
+                          <span class="d-flex align-items-center partner-name">{{tournament.tournamentName}}</span>
                           <button class="btn btn-danger binUsers"  title="Perma delate users"
-                           (click)="removeTournament(Tournament.id)">Remove</button>
+                           (click)="removeTournament(tournament.id)">Remove</button>
 
                         </div>
                       </div>
@@ -93,7 +91,7 @@
 
                   <div *ngIf="hasMoreTournaments" class="row">
                     <div class="d-flex justify-content-center">
-                      <a class="cargar-mas mb-5" (click)="getTournaments()">Cargar más</a>
+                      <a class="cargar-mas" (click)="getTournaments()">Cargar más</a>
                     </div>
                   </div>
                 </span>

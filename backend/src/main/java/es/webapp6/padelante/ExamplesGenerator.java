@@ -81,16 +81,21 @@ public class ExamplesGenerator {
 		User user18 = new User("Almudena", passwordEncoder.encode("pass"), "almudena@correo.com", "Almudena Arias", "USER");
 
 		ArrayList<Integer> array = user1.getHistoricalKarma();
-		array.add(600);
-		array.add(400);
-		array.add(525);
-		array.add(369);
+		array.add(550);
+		array.add(450);
+		array.add(500);
+		array.add(375);
 		array.add(400);
 		array.add(450);
 		array.add(500);
-		array.add(523);
-		array.add(560);
+		array.add(525);
+		array.add(540);
 		user1.setHistoricalKarma(array);
+		user1.setNumMatchesPlayed(9);
+		user1.setNumWins(7);
+		user1.setNumLoses(2);
+		user1.setLocation("Madrid");
+		user1.setCountry("España");
 
 		userRepository.save(userNone);
 		userRepository.save(user1);

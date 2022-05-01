@@ -601,18 +601,37 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
 - **Silvia Ventura:** 
 
   - Descripción de tareas: 
+  Me he encargado de hacer la gráfica de las derrotas y vistorias del usuario y del karma a lo largo del tiempo. También me he encargado de hacer los diagramas que se necesitan para esta iteración
   
     
     
     
   - Commits más significativos:
   
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/12c5bd794d0b31def1f3848aeb348b80d299f802
+  
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/dee397e92159a0446c17cfb13fa60201a9f1cd08
+  
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/fa5ba30d59157d764ff48b5071c45b620642f826
+  
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/19b585be3a3d97c0ae21ca9b6a4a66337b391c70
+  
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/27f95aaa975cafe61085ddac60ecc5b194380a06
+  
      
     
     
   - Ficheros más relevantes:
   
-    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/tree/main/frontend/src/app/components/doughnutchart
+  
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/tree/main/frontend/src/app/components/linechart
+  
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/frontend/src/app/models/team.model.ts
+  
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/frontend/src/app/models/match.model.ts
+  
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/frontend/src/app/appconfig.ts
 ## Vídeo
 
 <link del video en YT>

@@ -144,7 +144,10 @@ export class TournamentComponent{
     }
 
     this.tournamentService.inscription(this.id, user2).subscribe(
-      _ => this.getTournamentInit(this.id)
+      _ => {
+        this.getTournamentInit(this.id)
+        this.resetUsersPage()
+      }
     );
   }
 
