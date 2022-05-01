@@ -545,7 +545,7 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
   
 ## Diagrama de clases y templates de la SPA
 
-<foto del diagrama>
+<img src="https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/PadelantePhotos/Diagrams phase 4.png" width="1000"></img>
 
 ## Participación de los miembros
 
