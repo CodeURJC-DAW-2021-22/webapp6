@@ -553,16 +553,31 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
 
   - Descripción de tareas: 
   
-    Me he encargado de los componentes header, main, tournament y match, además de implementar todas sus funcionalidades y todos los AJAX en TypeScript. Por último, he contribuido en la reutilizacion de códigos similares en los servicios y en el desarrollo de la documentación sobre la preparación del entorno de desarrollo.
+    Me he encargado de los componentes header, main, tournament y match principalmente, además de implementar sus funcionalidades y todos los AJAX de la aplicación en TypeScript. Por otra parte, he contribuido en la modularización de código similar y de "mapear" las respuestas y errores de las API en los servicios. Por último, he modificado el script para dockerizar la aplicación, la he publicado en Heroku y he desarrollado la documentación sobre la preparación del entorno de desarrollo.
     
   - Commits más significativos:
   
-     
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/821b6a829a1396f29d5ef5c4117b928ad39d0e5e
     
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/184d9ee3a43935a66b16573aff62d9a1ce7a9eb2
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/a81a2edd23a191a376ef8e67dcd56aa40c7e54dc
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/673bc8f9b77e445a64e92dcaee44290b7b3f2cfe
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/51c60d542b5d7ed9b8dee78e5a89c20c11c8130e
     
   - Ficheros más relevantes:
-  
+   
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/frontend/src/app/components/tournament/tournament.component.ts
     
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/frontend/src/app/components/match/match.component.ts
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/frontend/src/app/services/tournament.service.ts
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/frontend/src/app/services/user.service.ts
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/frontend/src/app/services/match.service.ts
 
 - **Álvaro González:**  
 
@@ -601,10 +616,7 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
 - **Silvia Ventura:** 
 
   - Descripción de tareas: 
-  Me he encargado de hacer la gráfica de las derrotas y vistorias del usuario y del karma a lo largo del tiempo. También me he encargado de hacer los diagramas que se necesitan para esta iteración
-  
-    
-    
+    Me he encargado de hacer la gráfica de las derrotas y vistorias del usuario y del karma a lo largo del tiempo. También me he encargado de hacer los diagramas que se necesitan para esta iteración
     
   - Commits más significativos:
   
@@ -618,9 +630,6 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
   
     https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/27f95aaa975cafe61085ddac60ecc5b194380a06
   
-     
-    
-    
   - Ficheros más relevantes:
   
     https://github.com/CodeURJC-DAW-2021-22/webapp6/tree/main/frontend/src/app/components/doughnutchart
@@ -632,6 +641,7 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
     https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/frontend/src/app/models/match.model.ts
   
     https://github.com/CodeURJC-DAW-2021-22/webapp6/blob/main/frontend/src/app/appconfig.ts
+    
 ## Vídeo
 
 <link del video en YT>
