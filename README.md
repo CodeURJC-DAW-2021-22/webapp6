@@ -583,19 +583,33 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
 
   - Descripción de tareas: 
   
-    
+    Me he encargado de lo que viene a ser la generación del pdf, y de las amiganes. Además de la preparacion de los formularios de registro de nuevos usuarios y creación de torneos. También me he encargado del perfil del usuario. Por otro lado, he intentado ayudar en todo lo que he podido a mis compañeros.
     
     
   - Commits más significativos:
   
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/e64b4e140dc9218e7c4d9cfe5dd495ba0874fa7b
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/8d453af0b21013b05de5ca6fe44a17f3004c006f
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/33e1be206ff55c6c6d2dd7f2b1eb178e97ff2934
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/630b1b8c05ed83fa78ee930715a3ad7de9c9abaf
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/c7b810803901ecbb4157fc895cbb0f23a15512e3
      
-    
-    
   - Ficheros más relevantes:
-  
+
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/frontend/src/app/components/admin/admin.component.ts
     
-
-
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/frontend/src/app/components/register/register.component.ts
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/frontend/src/app/components/userProfile/userProfile.component.ts
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/frontend/src/app/models/user.model.ts
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/frontend/src/app/services/user.service.ts
+  
 - **Daniel Haro:**  
 
   - Descripción de tareas: 
