@@ -614,16 +614,32 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
 
   - Descripción de tareas: 
   
+  Me he encargado principalmente de la edición de las imágenes (subida y borrado), así como de poder dar de baja usuarios y torneos de la aplicación. 
     
     
     
   - Commits más significativos:
   
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/4565d0be8dcc972df46dd5d0f93ffd3b0b8b4c1e
+  
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/ba5bac2e2f90bcde34e2d5bf51f8786b783d475d
+  
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/a43ddf1cddd14e357e562269007d29447af43eef
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/0aaf7fd02f516a040c410a052d2d83cc7ac866b2
      
     
     
   - Ficheros más relevantes:
   
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/backend/src/main/java/es/webapp6/padelante/controller/UserRestController.java
+  
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/frontend/src/app/components/admin/admin.component.ts
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/frontend/src/app/components/userProfile/userProfile.component.html
+    
+    https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/frontend/src/app/services/tournament.service.ts
+    
     
 
 
@@ -658,4 +674,4 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
     
 ## Vídeo
 
-<link del video en YT>
+https://www.youtube.com/watch?v=5Bwm3sY_KyU
