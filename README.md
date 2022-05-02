@@ -510,28 +510,17 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
 ## Preparación del entorno de desarrollo
 
   Para esta fase se usa:
-  - Node.js
-  - Angular CLI ```13.3.1```
   - Maven ```3.8.5```
   - Docker
-  - Usuario registrado en Docker Hub
   - Docker Compose
 
-  __Nota:__ Esta preparación está pensada para que el archivo ```docker-compose.yml``` esté configurado con la imagen creada con el usuario de Docker ```rubencatalan```. Se deberá cambiar en la linea 4 de ese archivo el nombre anterior por el nombre de usuario de Docker que se vaya a utilizar a continuación.
-
-  Se deberá haber clonado el repositorio de git previamente usando la siguiente sentencia:
+Se deberá haber clonado el repositorio de git previamente usando la siguiente sentencia:
   
   ```$ git clone https://github.com/CodeURJC-DAW-2021-22/webapp6```
   
   El usuario deberá ejecutar las siguientes sentencias en el terminal después de haberse situado con la sentencia ```cd``` en la carpeta del proyecto ```webapp6```:
   
   ```$ cd ./backend/docker```
-  
-  ```$ ./create_image.sh <usuario_docker>```
-  
-  donde ```<usuario_docker>``` es el nombre de su usuario en Docker Hub. De esta forma se habrá creado la imagen Docker correspondiente.
-  
-  Por último, deberá ejecutar:
   
   ```$ docker-compose up```
   
@@ -542,6 +531,25 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
   y a la web SPA desde la URL:
   
   https://localhost:8443/new/
+  
+
+  __Nota:__ Esta preparación está pensada para que el archivo ```docker-compose.yml``` esté configurado con la imagen creada con el usuario de Docker ```rubencatalan```. Si se quiere ejecutar con una imagen de Docker actualizada que no sea la aportada en Docker Hub bajo el nombre ```rubencatalan/padelante_web```, se deberá cambiar en la linea 4 de ese archivo el nombre de usuario anterior por el nombre de usuario de Docker que se vaya a utilizar a continuación si se quiere ejecutar con la imagen que sea cree con el siguiente script.
+  
+  Se necesitaría además:
+  - Node.js
+  - Angular CLI ```13.3.1```
+  - Usuario registrado en Docker Hub
+  
+  En el mismo directorio que antes, ejecutar el siguiente comando
+  
+  ```$ ./create_image.sh <usuario_docker>```
+  
+  donde ```<usuario_docker>``` es el nombre de su usuario en Docker Hub. De esta forma se habrá creado la imagen Docker correspondiente.
+  
+  Por último, deberá ejecutar de nuevo
+  
+  ```$ docker-compose up```
+  
   
 ## Diagrama de clases y templates de la SPA
 
@@ -614,9 +622,7 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
 
   - Descripción de tareas: 
   
-  Me he encargado principalmente de la edición de las imágenes (subida y borrado), así como de poder dar de baja usuarios y torneos de la aplicación. 
-    
-    
+    Me he encargado principalmente de la edición de las imágenes (subida y borrado), así como de poder dar de baja usuarios y torneos de la aplicación. 
     
   - Commits más significativos:
   
@@ -627,8 +633,6 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
     https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/a43ddf1cddd14e357e562269007d29447af43eef
     
     https://github.com/CodeURJC-DAW-2021-22/webapp6/commit/0aaf7fd02f516a040c410a052d2d83cc7ac866b2
-     
-    
     
   - Ficheros más relevantes:
   
@@ -640,9 +644,6 @@ Y ya estaría desplegada la aplicación en Heroku y estará accesible a traves d
     
     https://github.com/CodeURJC-DAW-2021-22/webapp6/blame/main/frontend/src/app/services/tournament.service.ts
     
-    
-
-
 - **Silvia Ventura:** 
 
   - Descripción de tareas: 
