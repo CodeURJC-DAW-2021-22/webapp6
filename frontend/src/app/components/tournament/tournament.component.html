@@ -207,7 +207,7 @@
                 <div *ngIf="tournament.started" class="tournament-bracket tournament-bracket--rounded mb-5">
 
 
-                  <div *ngIf="!rounds[3] = []" class="tournament-bracket__round tournament-bracket__round--semifinals">
+                  <div *ngIf="!RoundEmpty(3)" class="tournament-bracket__round tournament-bracket__round--semifinals">
                     <h3 class="tournament-bracket__round-title">Octavos de final</h3>
                     <ul class="tournament-bracket__list">
 
@@ -290,7 +290,7 @@
                   </div>
 
 
-                  <div *ngIf="!rounds[2] = []" class="tournament-bracket__round tournament-bracket__round--quarterfinals">
+                  <div *ngIf="!RoundEmpty(2)" class="tournament-bracket__round tournament-bracket__round--quarterfinals">
                     <h3 class="tournament-bracket__round-title">Cuartos de final</h3>
 
                     <ul class="tournament-bracket__list">
@@ -375,7 +375,7 @@
                   </div>
 
 
-                  <div *ngIf="!rounds[1] = []" class="tournament-bracket__round tournament-bracket__round--semifinals">
+                  <div *ngIf="!RoundEmpty(1)" class="tournament-bracket__round tournament-bracket__round--semifinals">
                     <h3 class="tournament-bracket__round-title">Semifinales</h3>
                     <ul class="tournament-bracket__list">
 
@@ -458,7 +458,7 @@
                   </div>
 
 
-                  <div *ngIf="!rounds[0] = []" class="tournament-bracket__round tournament-bracket__round--bronze">
+                  <div *ngIf="!RoundEmpty(0)" class="tournament-bracket__round tournament-bracket__round--bronze">
                     <h3 class="tournament-bracket__round-title">Final</h3>
                     <ul class="tournament-bracket__list">
 

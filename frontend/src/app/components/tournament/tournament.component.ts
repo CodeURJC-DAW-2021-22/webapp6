@@ -101,6 +101,10 @@ export class TournamentComponent{
     )
   }
 
+  RoundEmpty(num: number): boolean{
+    return this.rounds[num].length == 0;
+  }
+
   getName() {
     if (this.loginService.isLogged()){
       return this.loginService.currentUser().name;
